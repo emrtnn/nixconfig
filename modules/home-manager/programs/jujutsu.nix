@@ -1,9 +1,9 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config-files, pkgs, lib, inputs, ... }:
 {
 	programs.jujutsu = {
 		enable = true;
 	};
 
-	xdg.configFiles."jujutsu/config.toml".source = inputs.self.config-files.jujutsu.configToml;
+	xdg.configFile."jujutsu/config.toml".source = config-files.jujutsu.configToml;
 
 }

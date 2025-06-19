@@ -8,38 +8,24 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  hardware = {
-    opengl.enable = true;
-    nvidia.modesetting.enable = true;
-  };
-
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true,
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/910bc05c-86c9-46a0-b9d3-d5ac7c010b18";
+    { device = "/dev/disk/by-uuid/90a54132-1806-4d8b-a405-e9b223ec9441";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/11CE-479A";
+    { device = "/dev/disk/by-uuid/8CD2-A261";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/d55366fa-15bc-4542-bfd3-930ce5f3de9e"; }
+    [ { device = "/dev/disk/by-uuid/66d5bf38-d023-432d-9582-8bec5abd0694"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

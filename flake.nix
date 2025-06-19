@@ -14,6 +14,8 @@
 
 	outputs = { self, nixpkgs, home-manager, ... } @inputs:
 		let
+                        lib = nixpkgs.lib;
+
 			supportedSystems = [
 				"x86_64-linux"
 			];
@@ -60,7 +62,8 @@
 							home-manager.useUserPackages = true;
 							home-manager.users.mrwellick = import ./users/mrwellick {
 								pkgs = packagesWithOverlays.x86_64-linux;
-								inherit inputs;
+								inherit inputs lib;
+								config-files = config-files;
 							};
 						}
 					];

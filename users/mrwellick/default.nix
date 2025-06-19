@@ -1,5 +1,7 @@
-{ config, pkgs, inputs, lib, ... }:
+{ pkgs, inputs, lib, config-files, ... }:
 {
+
+	_module.args = { inherit inputs config-files; };
 	home.username = "mrwellick";
 	home.homeDirectory = "/home/mrwellick";
 	home.stateVersion = "25.05";

@@ -11,6 +11,7 @@
 	networking.hostName = "mrwellick-nixos";
 
 	time.timeZone = "Europe/Madrid";
+
 	i18n.defaultLocale = "es_ES.UTF-8";
 	i18n.extraLocaleSettings = {
 		LC_ADDRESS = "es_ES.UTF-8";
@@ -20,7 +21,28 @@
 		LC_NAME = "es_ES.UTF-8";
 		LC_NUMERIC = "es_ES.UTF-8";
 		LC_PAPER = "es_ES.UTF-8";
+		LC_TELEPHONE = "es_ES.UTF-8";
+		LC_TIME = "es_ES.UTF-8";
 	};
+	hardware = {
+	  opengl.enable = true;
+	  nvidia.modesetting.enable = true;
+	};
+
+	services.xserver.xkb = {
+		layout = "es";
+		variant = "";
+	};
+	security.rtkit.enable = true;
+	services.pipewire = {
+	  enable = true;
+	  alsa.enable = true;
+	  alsa.support32Bit = true;
+	  pulse.enable = true;
+	  jack.enable = true;
+	};
+
+	console.keyMap = "es";
 
 	boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 10;
@@ -35,6 +57,10 @@
 	nix.settings.builders-use-substitutes = true;
   nix.settings.trusted-users = [ "root" "@wheel" ];
 
+  programs.ssh = {
+    startAgent = true;
+  };
+
 	services.openssh = {
     enable = true;
     settings = {
@@ -43,14 +69,24 @@
     };
   };
 
-	services.NetworkManager.enable = true;
+  users.users.mrwellick = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "audio"
+      "input"
+    ];
+    shell = pkgs.nushell;
+  };
+
+	networking.networkmanager.enable = true;
 
 	nix.gc = {
 		automatic = true;
-		interval = {
-			days = 7;
-		};
-		options = "--delete-older-than 7d";
+		dates =	"weekly";
+          	options = "--delete-older-than 7d";
 	};
 
 	system.stateVersion = "25.05";
