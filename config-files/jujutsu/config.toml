@@ -1,0 +1,12 @@
+editor = "helix"
+
+[user]
+email = "enriquemartin1402@gmail.com"
+name = "tyrellw3llick"
+
+[aliases]
+b = ["branch"]
+n = ["new"]
+
+[ui]
+default-command = "log"

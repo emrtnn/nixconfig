@@ -40,6 +40,12 @@
 					config = ./config-files/waybar/config;
 					style.css = ./config-files/waybar/style.css;
 				};
+				jujutsu = {
+					configToml = ./config-files/jujutsu/config.toml;
+				};
+				nushell = {
+					configNu = ./config-files/nushell/config.nu;
+				};
 			};
 		in
 		{
@@ -55,6 +61,7 @@
 							home-manager.users.mrwellick = import ./users/mrwellick {
 								pkgs = packagesWithOverlays.x86_64-linux;
 								inherit config inputs;
+								configFiles = config-files;
 							};
 						}
 					];

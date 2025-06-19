@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ... }:
+{ config, pkgs, inputs, lib, configFiles, ... }:
 {
 	home.username = "mrwellick";
 	home.homeDirectory = "/home/mrwellick";
@@ -6,12 +6,14 @@
 
 	imports = [
 		inputs.self.modules.home-manager.programs.git
+		inputs.self.modules.home-manager.programs.nushell { inherit configFiles; }
+		inputs.self.modules.home-manager.programs.jujutsu { inherit configFiles; }
 	];
 
 	home.packages = with pkgs; [
 		brave
 		eza
-		rigrep
+		ripgrep
 		fzf
 		btop
 	];
@@ -20,6 +22,7 @@
 	xdg.userDirs.enable = true;
 
 	home.sessionVariables = {
+		SHELL = "${pkgs.nushell}/bin/nu";
     EDITOR = "nvim";
     BROWSER = "brave";
   };
