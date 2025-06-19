@@ -61,7 +61,6 @@
 							home-manager.users.mrwellick = import ./users/mrwellick {
 								pkgs = packagesWithOverlays.x86_64-linux;
 								inherit inputs;
-								configFiles = config-files;
 							};
 						}
 					];

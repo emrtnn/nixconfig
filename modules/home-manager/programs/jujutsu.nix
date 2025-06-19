@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, configFiles, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
 	programs.jujutsu = {
 		enable = true;

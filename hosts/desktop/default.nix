@@ -4,8 +4,8 @@
 	imports = [
 		./hardware-configuration.nix
 		./fonts
-		inputs.self.modules.common.default
-		inputs.self.modules.desktop.default
+		../../modules/common
+		../../modules/desktop
 	];
 
 	networking.hostName = "mrwellick-nixos";
@@ -52,23 +52,6 @@
 		};
 		options = "--delete-older-than 7d";
 	};
-
-	/* TODO: move to hardware-configuration.nix  after the installer has created it
-	hardware = {
-		opengl.enable = true;
-		nvidia.modesetting.enable = true;
-	};
-
-	sound.enable = true;
-	security.rtkit.enable = true;
-	services.pipewire = {
-		enable = true;
-		alsa.enable = true;
-		alsa.support32Bit = true;
-		pulse.enable = true;
-		jack.enable = true;
-	};
-	*/
 
 	system.stateVersion = "25.05";
 }

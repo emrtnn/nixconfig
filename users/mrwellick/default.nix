@@ -1,13 +1,13 @@
-{ config, pkgs, inputs, lib, configFiles, ... }:
+{ config, pkgs, inputs, lib, ... }:
 {
 	home.username = "mrwellick";
 	home.homeDirectory = "/home/mrwellick";
 	home.stateVersion = "25.05";
 
 	imports = [
-		inputs.self.modules.home-manager.programs.git
-		inputs.self.modules.home-manager.programs.nushell { inherit configFiles; }
-		inputs.self.modules.home-manager.programs.jujutsu { inherit configFiles; }
+		../../modules/home-manager/programs/git.nix
+		../../modules/home-manager/programs/nushell.nix
+		../../modules/home-manager/programs/jujutsu.nix
 	];
 
 	home.packages = with pkgs; [
