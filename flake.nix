@@ -60,7 +60,7 @@
 							home-manager.useUserPackages = true;
 							home-manager.users.mrwellick = import ./users/mrwellick {
 								pkgs = packagesWithOverlays.x86_64-linux;
-								inherit config inputs;
+								inherit inputs;
 								configFiles = config-files;
 							};
 						}
