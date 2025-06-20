@@ -13,6 +13,7 @@
 		../../modules/home-manager/programs/jujutsu.nix
 		../../modules/home-manager/programs/ghostty.nix
 		../../modules/home-manager/programs/starship.nix
+		../../modules/home-manager/programs/helix.nix
 	];
 
 	home.packages = with pkgs; [
@@ -28,7 +29,7 @@
 
 	home.sessionVariables = {
 		SHELL = "${pkgs.nushell}/bin/nu";
-    EDITOR = "nvim";
+    EDITOR = "hx";
     BROWSER = "brave";
   };
 }
