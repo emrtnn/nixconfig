@@ -51,6 +51,9 @@
 				ghostty = {
 					config = ./config-files/ghostty/config;
 				};
+				starship = {
+					config = ./config-files/starship/starship.toml;
+				};
 			};
 		in
 		{

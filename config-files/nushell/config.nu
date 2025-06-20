@@ -1,6 +1,6 @@
 # Nushell configuration file
 
-show-banner = false
+$env.config.show_banner = false
 
 # Environment variables
 

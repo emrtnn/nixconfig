@@ -12,6 +12,7 @@
 		../../modules/home-manager/programs/nushell.nix
 		../../modules/home-manager/programs/jujutsu.nix
 		../../modules/home-manager/programs/ghostty.nix
+		../../modules/home-manager/programs/starship.nix
 	];
 
 	home.packages = with pkgs; [
