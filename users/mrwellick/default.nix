@@ -2,6 +2,7 @@
 {
 
 	_module.args = { inherit inputs config-files; };
+
 	home.username = "mrwellick";
 	home.homeDirectory = "/home/mrwellick";
 	home.stateVersion = "25.05";
@@ -10,6 +11,7 @@
 		../../modules/home-manager/programs/git.nix
 		../../modules/home-manager/programs/nushell.nix
 		../../modules/home-manager/programs/jujutsu.nix
+		../../modules/home-manager/programs/ghostty.nix
 	];
 
 	home.packages = with pkgs; [

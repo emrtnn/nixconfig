@@ -48,6 +48,9 @@
 				nushell = {
 					configNu = ./config-files/nushell/config.nu;
 				};
+				ghostty = {
+					config = ./config-files/ghostty/config;
+				};
 			};
 		in
 		{
