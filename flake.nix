@@ -16,7 +16,7 @@
 
 	outputs = { self, nixpkgs, home-manager, ... } @inputs:
 		let
-                        lib = nixpkgs.lib;
+			lib = nixpkgs.lib;
 
 			supportedSystems = [
 				"x86_64-linux"
@@ -27,7 +27,6 @@
 			myOverlays = [
 				inputs.jujutsu.overlays.default
 				inputs.yazi.overlays.default
-				inputs.helix.overlays.default
 			];
 
 			packagesWithOverlays = forAllSystems (system: import nixpkgs {
