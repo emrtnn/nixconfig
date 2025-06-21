@@ -14,6 +14,7 @@
 		../../modules/home-manager/programs/ghostty.nix
 		../../modules/home-manager/programs/starship.nix
 		../../modules/home-manager/programs/helix.nix
+		../../modules/home-manager/programs/yazi.nix
 	];
 
 	home.packages = with pkgs; [
@@ -29,7 +30,6 @@
 
 	home.sessionVariables = {
 		SHELL = "${pkgs.nushell}/bin/nu";
-    EDITOR = "hx";
     BROWSER = "brave";
   };
 }

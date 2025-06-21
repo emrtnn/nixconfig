@@ -1,7 +1,8 @@
-{ config-files, pkgs, plugins, config, ... }:
+{ config-files, pkgs, plugins, inputs, ... }:
 {
 	programs.helix = {
 		enable = true;
+		package = inputs.helix.packages.${pkgs.system}.default;
 		defaultEditor = true;
 		settings = {
 			theme = "kanabox";
@@ -79,6 +80,18 @@
 				}
 			];
 		};
+		extraConfig = 
+			''
+				[keys.normal]
+				C-y = [
+				':sh rm -f /tmp/unique-file',
+				':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+				':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+				':open %sh{cat /tmp/unique-file}',
+				':redraw',
+				]
+			'';
+
 		themes.kanabox = let
 			fujiWhite = "#DCD7BA";
 			oldWhite = "#C8C093";

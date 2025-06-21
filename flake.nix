@@ -10,6 +10,8 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
 		jujutsu.url = "github:martinvonz/jj";
+		yazi.url = "github:sxyazi/yazi";
+		helix.url = "github:helix-editor/helix";
   };
 
 	outputs = { self, nixpkgs, home-manager, ... } @inputs:
@@ -24,6 +26,8 @@
 
 			myOverlays = [
 				inputs.jujutsu.overlays.default
+				inputs.yazi.overlays.default
+				inputs.helix.overlays.default
 			];
 
 			packagesWithOverlays = forAllSystems (system: import nixpkgs {
@@ -53,6 +57,9 @@
 				};
 				starship = {
 					config = ./config-files/starship/starship.toml;
+				};
+				yazi = {
+					initLua = ./config-files/yazi/init.lua;
 				};
 			};
 		in
