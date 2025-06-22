@@ -1,51 +1,132 @@
+/* Import the Tokyo Night color palette */
+@import "tokyo-night.css";
+
 * {
-  font-family: JetBrainsMono;
-  font-size: 13px;
+  font-family: FantasqueSansMono Nerd Font;
+  font-size: 17px;
   min-height: 0;
-  color: white;
 }
 
-window#waybar {
-  background-color: transparent;
+#waybar {
+  background: transparent;
+  color: @foreground;
+  margin: 5px 5px;
 }
 
+/* --- Workspaces --- */
 #workspaces {
-  margin-top: 3px;
-  margin-bottom: 2px;
-  margin-right: 10px;
-  margin-left: 25px;
+  background-color: @module-bg;
+  border-radius: 1rem;
+  margin: 5px;
+  margin-left: 1rem;
+  padding: 0.25rem 0.25rem;
 }
 
 #workspaces button {
-  border-radius: 15px;
-  margin-right: 10px;
-  padding: 1px 10px;
-  font-weight: bolder;
-  background-color: #181818;
+  color: @gray;
+  border-radius: 1rem;
+  padding: 0.4rem;
 }
 
-#workspaces button.active,
-#workspaces button.focused {
-  padding: 0 22px;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-  background: #7C9D96;
+#workspaces button.active {
+  color: @cyan;
+  border-radius: 1rem;
 }
 
+#workspaces button:hover {
+  color: @blue;
+  border-radius: 1rem;
+}
+
+/* --- Center Module --- */
+#window {
+  background-color: @module-bg;
+  color: @blue;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+}
+
+/* --- Right-side Modules --- */
+#custom-music {
+  background-color: @module-bg;
+  padding: 0.5rem 1rem;
+  margin: 5px 5px;
+
+}
+
+#network,
 #tray,
-#mpd,
-#custom-weather,
-#cpu,
-#temperature,
-#memory,
-#sway-mode,
 #backlight,
-#pulseaudio,
-#custom-vpn,
-#disk,
-#custom-recorder,
-#custom-audiorec,
-#battery,
 #clock,
+#battery,
+#pulseaudio,
+#custom-lock,
+#custom-power {
+  background-color: @module-bg;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+}
+
+/* --- Individual Module Styling --- */
+
+/* The first module on the right */
+#custom-music {
+  color: @magenta;
+
+  border-radius: 1rem;
+  margin-right: 5px;
+}
+
 #network {
-  padding: 0 10px;
+  color: @cyan;
+  /* This is a middle module, so no rounding */
+  border-radius: 1rem 0 0 1rem;
+  padding-left: 1.2rem;
+}
+
+#pulseaudio {
+  color: @blue;
+  border-radius: 0;
+}
+
+#clock {
+  color: @green;
+  border-radius: 0;
+}
+
+#custom-lock {
+  color: @yellow;
+  border-radius: 0;
+}
+
+/* The last module on the right */
+#custom-power {
+  color: @red;
+  border-radius: 0 1rem 1rem 0;
+  margin-right: 1rem;
+  padding-right: 1.2rem;
+  /* Add extra padding to the last item */
+}
+
+/* Fallback styles for modules you might add later */
+#battery {
+  color: @green;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#tray {
+  margin-right: 1rem;
+  border-radius: 1rem;
 }

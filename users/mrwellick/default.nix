@@ -29,6 +29,7 @@
 		wl-clipboard
 		hyprpicker
 		hyprshot
+		playerctl
 	];
 
 	xdg.enable = true;
@@ -73,6 +74,7 @@
 		"rofy/config.rasi".source = config-files.rofi.configRasi;
 		"waybar/config".source = config-files.waybar.config;
 		"waybar/style.css".source = config-files.waybar.styleCss;
+		"waybar/tokyo-night.css".source = config-files.waybar.tokyoNightCss;
 		"hypr/hyprlock.conf".source = config-files.hyprlock.config;
 		"hypr/mocha.conf".source = config-files.hyprlock.mochaTheme;
 		"hypr/hypridle.conf".source = config-files.hypridle.config;

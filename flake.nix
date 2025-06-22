@@ -63,6 +63,7 @@
 				waybar = {
 					config = ./config-files/waybar/config;
 					styleCss = ./config-files/waybar/style.css;
+					tokyoNightCss = ./config-files/waybar/tokyo-night.css;
 				};
 				hyprlock = {
 					config = ./config-files/hypr/hyprlock.conf;
