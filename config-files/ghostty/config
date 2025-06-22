@@ -1,7 +1,7 @@
 theme = "kanagawabones"
 font-family = "CaskaydiaCove Nerd Font Mono"
-font-size = 21.0 # En TOML, los números flotantes son más explícitos
-cursor-style = "Block"
+font-size = 26
+cursor-style = "block"
 background-opacity = 0.9
 background-blur-radius = 5
 link-url = true

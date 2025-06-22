@@ -25,7 +25,7 @@
 		LC_TIME = "es_ES.UTF-8";
 	};
 	hardware = {
-	  opengl.enable = true;
+		graphics.enable = true;
 	  nvidia.modesetting.enable = true;
 	};
 

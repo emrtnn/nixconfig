@@ -49,10 +49,9 @@
 		enable = true;
 		systemd.enable = true;
 		hyprland.enable = true;
-		theme = "nord";
 	};
 
-	services.sww.enable = true;
+	services.swww.enable = true;
 
 	xdg.configFile = {
 		"hypr/hyprland.conf".source = config-files.hyprland.config;
