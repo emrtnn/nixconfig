@@ -249,5 +249,6 @@
 		vtsls
 		vscode-langservers-extracted
 		hyprls
+		marksman
 	];
 }

@@ -71,7 +71,6 @@
 
 	xdg.configFile = {
 		"hypr/hyprland.conf".source = config-files.hyprland.config;
-		"rofy/config.rasi".source = config-files.rofi.configRasi;
 		"waybar/config".source = config-files.waybar.config;
 		"waybar/style.css".source = config-files.waybar.styleCss;
 		"waybar/tokyo-night.css".source = config-files.waybar.tokyoNightCss;

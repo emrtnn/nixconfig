@@ -42,9 +42,6 @@
 				hyprland = {
 					config = ./config-files/hypr/hyprland.conf;
 				};
-				rofi = {
-					configRasi = ./config-files/rofi/config.rasi;
-				};
 				jujutsu = {
 					configToml = ./config-files/jujutsu/config.toml;
 				};
