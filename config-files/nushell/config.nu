@@ -1,9 +1,14 @@
 # Nushell configuration file
 
-$env.config.show_banner = false
-$env.config.buffer_editor = "hx"
 $env.EDITOR = "hx"
 $env.VISUAL = "hx"
+
+# Settings
+$env.config = {
+	show_banner: false
+	buffer_editor: "hx"
+	highlight_resolved_externals: true
+}
 
 # Yazi cd into the dir when is closed
 def --env y [...args] {
