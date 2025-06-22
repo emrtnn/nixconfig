@@ -57,6 +57,7 @@
 		"hypr/hyprland.conf".source = config-files.hyprland.config;
 		"rofy/config.rasi".source = config-files.rofi.configRasi;
 		"waybar/config".source = config-files.waybar.config;
+		"waybar/style.css".source = config-files.waybar.styleCss;
 		"hypr/hyprlock.conf".source = config-files.hyprlock.config;
 		"hypr/mocha.conf".source = config-files.hyprlock.mochaTheme;
 		"hypr/hypridle.conf".source = config-files.hypridle.config;

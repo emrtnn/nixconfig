@@ -61,6 +61,7 @@
 				};
 				waybar = {
 					config = ./config-files/waybar/config;
+					styleCss = ./config-files/waybar/style.css;
 				};
 				hyprlock = {
 					config = ./config-files/hypr/hyprlock.conf;
