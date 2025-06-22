@@ -12,7 +12,6 @@
 		jujutsu.url = "github:martinvonz/jj";
 		yazi.url = "github:sxyazi/yazi";
 		helix.url = "github:helix-editor/helix";
-		hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
 	outputs = { self, nixpkgs, home-manager, ... } @inputs:
@@ -28,7 +27,6 @@
 			myOverlays = [
 				inputs.jujutsu.overlays.default
 				inputs.yazi.overlays.default
-				inputs.hyprpanel.overlay
 			];
 
 			packagesWithOverlays = forAllSystems (system: import nixpkgs {
@@ -41,14 +39,10 @@
 
 			config-files = {
 				hyprland = {
-					config = ./config-files/hyprland/hyprland.conf;
+					config = ./config-files/hypr/hyprland.conf;
 				};
 				rofi = {
 					configRasi = ./config-files/rofi/config.rasi;
-				};
-				waybar = {
-					config = ./config-files/waybar/config;
-					style.css = ./config-files/waybar/style.css;
 				};
 				jujutsu = {
 					configToml = ./config-files/jujutsu/config.toml;
@@ -64,6 +58,22 @@
 				};
 				yazi = {
 					initLua = ./config-files/yazi/init.lua;
+				};
+				waybar = {
+					config = ./config-files/waybar/config;
+				};
+				hyprlock = {
+					config = ./config-files/hypr/hyprlock.conf;
+					mochaTheme = ./config-files/hypr/mocha.conf;
+				};
+				hypridle = {
+					config = ./config-files/hypr/hypridle.conf;
+				};
+				walker = {
+					configToml = ./config-files/walker/config.toml;
+					defaultCss = ./config-files/walker/themes/default.css;
+					defaultToml = ./config-files/walker/themes/default.toml;
+					defaultWindowToml = ./config-files/walker/themes/default_window.toml;
 				};
 			};
 		in
