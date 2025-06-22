@@ -54,9 +54,13 @@
     "https://nix-community.cachix.org/"
 		"https://cache.nixos.org"
 		"https://helix.cachix.org"
+		"https://walker.cachix.org"
+		"https://walker-git.cachix.org"
   ];
 	nix.settings.extra-trusted-public-keys = [
 		"helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
+		"walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+		"walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
 	];
 
 	nix.settings.builders-use-substitutes = true;

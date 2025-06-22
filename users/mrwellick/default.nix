@@ -15,6 +15,8 @@
 		../../modules/home-manager/programs/starship.nix
 		../../modules/home-manager/programs/helix.nix
 		../../modules/home-manager/programs/yazi.nix
+
+		inputs.walker.homeManagerModules.default
 	];
 
 	home.packages = with pkgs; [
@@ -24,9 +26,7 @@
 		fzf
 		btop
 		libnotify
-		walker
-		wl-clip-persist
-
+		wl-clipboard
 		hyprpicker
 		hyprshot
 	];
@@ -53,6 +53,12 @@
 		enable = true;
 	};
 
+	services.clipse = {
+		enable = true;
+		allowDuplicates = false;
+	};
+
+
 	xdg.configFile = {
 		"hypr/hyprland.conf".source = config-files.hyprland.config;
 		"rofy/config.rasi".source = config-files.rofi.configRasi;
@@ -61,10 +67,5 @@
 		"hypr/hyprlock.conf".source = config-files.hyprlock.config;
 		"hypr/mocha.conf".source = config-files.hyprlock.mochaTheme;
 		"hypr/hypridle.conf".source = config-files.hypridle.config;
-		"walker/config.toml".source = config-files.walker.configToml;
-		"walker/themes/default.css".source = config-files.walker.defaultCss;
-		"walker/themes/default.toml".source = config-files.walker.defaultToml;
-		"walker/themes/default_window.toml".source = config-files.walker.defaultWindowToml;
 	};
-
 }

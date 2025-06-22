@@ -12,6 +12,7 @@
 		jujutsu.url = "github:martinvonz/jj";
 		yazi.url = "github:sxyazi/yazi";
 		helix.url = "github:helix-editor/helix";
+		walker.url = "github:abenz1267/walker";
   };
 
 	outputs = { self, nixpkgs, home-manager, ... } @inputs:
@@ -69,12 +70,6 @@
 				};
 				hypridle = {
 					config = ./config-files/hypr/hypridle.conf;
-				};
-				walker = {
-					configToml = ./config-files/walker/config.toml;
-					defaultCss = ./config-files/walker/themes/default.css;
-					defaultToml = ./config-files/walker/themes/default.toml;
-					defaultWindowToml = ./config-files/walker/themes/default_window.toml;
 				};
 			};
 		in

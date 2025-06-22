@@ -231,6 +231,5 @@
 		rust-analyzer
 		gopls
 		vtsls
-		wl-clipboard
 	];
 }
