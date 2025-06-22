@@ -75,8 +75,24 @@
 					language-servers = [ "vtsls" ];
 				}
 				{
+					name = "tsx";
+					language-servers = [ "vtsls" ];
+				}
+				{
 					name = "javascript";
 					language-servers = [ "vtsls" ];
+				}
+				{
+					name = "hyprlang";
+					language-servers = [ "hyprls" ];
+				}
+				{
+					name = "css";
+					language-servers = [ "vscode-css-language-server" ];
+				}
+				{
+					name = "json";
+					language-servers = [ "vscode-json-language-server" ];
 				}
 			];
 		};
@@ -231,5 +247,7 @@
 		rust-analyzer
 		gopls
 		vtsls
+		vscode-langservers-extracted
+		hyprls
 	];
 }
