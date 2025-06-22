@@ -71,6 +71,9 @@
 				hypridle = {
 					config = ./config-files/hypr/hypridle.conf;
 				};
+				wallpapers = {
+					kanagawa = ./config-files/wallpapers/kanagawa.jpg;
+				};
 			};
 		in
 		{

@@ -1,6 +1,6 @@
-theme = "kanagawabones"
+theme = "tokyonight"
 font-family = "CaskaydiaCove Nerd Font Mono"
-font-size = 20
+font-size = 18
 cursor-style = "block"
 background-opacity = 1
 background-blur-radius = 5

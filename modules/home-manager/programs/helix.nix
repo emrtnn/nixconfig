@@ -5,7 +5,7 @@
 		package = inputs.helix.packages.${pkgs.system}.default;
 		defaultEditor = true;
 		settings = {
-			theme = "kanabox";
+			theme = "tokyonight";
 			editor = {
 				line-number = "relative";
 				mouse = true;

@@ -58,6 +58,15 @@
 		allowDuplicates = false;
 	};
 
+	programs.walker = {
+		enable = true;
+		runAsService = true;
+		config = {
+			search.placeholder = "Search...";
+			websearch.prefix = "?";
+		};
+	};
+
 
 	xdg.configFile = {
 		"hypr/hyprland.conf".source = config-files.hyprland.config;
@@ -68,4 +77,8 @@
 		"hypr/mocha.conf".source = config-files.hyprlock.mochaTheme;
 		"hypr/hypridle.conf".source = config-files.hypridle.config;
 	};
+
+	home.file.".wallpapers/kanagawa.jpg" = {
+    source = config-files.wallpapers.kanagawa;
+  };
 }
