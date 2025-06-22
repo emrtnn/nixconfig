@@ -15,6 +15,9 @@
 		../../modules/home-manager/programs/starship.nix
 		../../modules/home-manager/programs/helix.nix
 		../../modules/home-manager/programs/yazi.nix
+
+
+		inputs.hyprpanel.homeManagerModules.hyprpanel
 	];
 
 	home.packages = with pkgs; [
@@ -23,6 +26,11 @@
 		ripgrep
 		fzf
 		btop
+		mako
+		libnotify
+		rofi-wayland
+		hyprpicker
+		wl-clip-persist
 	];
 
 	xdg.enable = true;
@@ -30,6 +38,25 @@
 
 	home.sessionVariables = {
 		SHELL = "${pkgs.nushell}/bin/nu";
-    BROWSER = "brave";
-  };
+		BROWSER = "brave";
+	};
+
+	services.clipse = {
+		enable = true;
+	};
+
+	programs.hyprpanel = {
+		enable = true;
+		systemd.enable = true;
+		hyprland.enable = true;
+		theme = "nord";
+	};
+
+	services.sww.enable = true;
+
+	xdg.configFile = {
+		"hypr/hyprland.conf".source = config-files.hyprland.config;
+		"rofy/config.rasi".source = config-files.rofi.configRasi;
+	};
+
 }

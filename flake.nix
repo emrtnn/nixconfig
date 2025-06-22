@@ -12,6 +12,7 @@
 		jujutsu.url = "github:martinvonz/jj";
 		yazi.url = "github:sxyazi/yazi";
 		helix.url = "github:helix-editor/helix";
+		hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
 	outputs = { self, nixpkgs, home-manager, ... } @inputs:
@@ -27,6 +28,7 @@
 			myOverlays = [
 				inputs.jujutsu.overlays.default
 				inputs.yazi.overlays.default
+				inputs.hyprpanel.overlay
 			];
 
 			packagesWithOverlays = forAllSystems (system: import nixpkgs {
@@ -39,7 +41,10 @@
 
 			config-files = {
 				hyprland = {
-					hyprland.conf = ./config-files/hyprland/hyprland.conf;
+					config = ./config-files/hyprland/hyprland.conf;
+				};
+				rofi = {
+					configRasi = ./config-files/rofi/config.rasi;
 				};
 				waybar = {
 					config = ./config-files/waybar/config;

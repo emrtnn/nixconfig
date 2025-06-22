@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...}:
+{ config-files, pkgs, inputs, ...}:
 {
 
 	programs.hyprland = {
@@ -6,11 +6,16 @@
 		xwayland.enable = true;
 	};
 
+	programs.regreet = {
+		enable = true;
+	};
+	
 	environment.sessionVariables = {
 		WLR_NO_HARDWARE_CURSORS = "1";
 		NIXOS_OZONE_WL = "1";
 	};
 
 	xdg.portal.enable = true;
-	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland];
+
 }
