@@ -30,6 +30,7 @@
 		hyprpicker
 		hyprshot
 		playerctl
+		telegram-desktop
 	];
 
 	xdg.enable = true;
@@ -68,6 +69,9 @@
 		};
 	};
 
+	programs.vesktop = {
+		enable = true;
+	};
 
 	xdg.configFile = {
 		"hypr/hyprland.conf".source = config-files.hyprland.config;
