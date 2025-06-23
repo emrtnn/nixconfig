@@ -17,6 +17,7 @@
 		../../modules/home-manager/programs/yazi.nix
 
 		../../modules/home-manager/developer/rust.nix
+		../../modules/home-manager/developer/go.nix
 
 		inputs.walker.homeManagerModules.default
 	];
