@@ -72,6 +72,9 @@
 				wallpapers = {
 					kanagawa = ./config-files/wallpapers/kanagawa.jpg;
 				};
+				cursors = {
+					breezeBlack = ./config-files/cursor-themes/BreezeX-Black-hyprcursor;
+				};
 			};
 		in
 		{

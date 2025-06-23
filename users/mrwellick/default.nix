@@ -88,7 +88,13 @@
 		"hypr/hypridle.conf".source = config-files.hypridle.config;
 	};
 
-	home.file.".wallpapers/kanagawa.jpg" = {
-    source = config-files.wallpapers.kanagawa;
-  };
+	home.file = {
+		".wallpapers/kanagawa.jpg" = {
+		  source = config-files.wallpapers.kanagawa;
+		};
+
+		".local/share/icons/BreezeX-Black-hyprcursor" = {
+			source = config-files.cursors.breezeBlack;
+		};
+	};
 }
