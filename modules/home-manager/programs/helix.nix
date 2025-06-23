@@ -244,8 +244,6 @@
 
 	home.packages = with pkgs; [
 		nil
-		gopls
-		vtsls
 		vscode-langservers-extracted
 		hyprls
 		marksman

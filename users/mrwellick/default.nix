@@ -18,7 +18,9 @@
 
 		../../modules/home-manager/developer/rust.nix
 		../../modules/home-manager/developer/go.nix
-
+		../../modules/home-manager/developer/python.nix
+		../../modules/home-manager/developer/node.nix
+		
 		inputs.walker.homeManagerModules.default
 	];
 
