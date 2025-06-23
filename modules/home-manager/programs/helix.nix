@@ -247,5 +247,7 @@
 		vscode-langservers-extracted
 		hyprls
 		marksman
+		docker-compose-language-service
+		yaml-language-server
 	];
 }
