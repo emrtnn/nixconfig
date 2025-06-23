@@ -244,7 +244,6 @@
 
 	home.packages = with pkgs; [
 		nil
-		rust-analyzer
 		gopls
 		vtsls
 		vscode-langservers-extracted

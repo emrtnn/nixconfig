@@ -16,6 +16,8 @@
 		../../modules/home-manager/programs/helix.nix
 		../../modules/home-manager/programs/yazi.nix
 
+		../../modules/home-manager/developer/rust.nix
+
 		inputs.walker.homeManagerModules.default
 	];
 
