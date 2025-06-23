@@ -9,6 +9,7 @@
       nerd-fonts.jetbrains-mono
 			nerd-fonts.caskaydia-cove
 			nerd-fonts.geist-mono
+			nerd-fonts.fantasque-sans-mono
       twemoji-color-font
     ];
 	};

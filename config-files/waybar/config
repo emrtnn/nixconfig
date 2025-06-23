@@ -35,13 +35,13 @@
     },
 
     "custom/music": {
-        "format": "󰑈 {}",
+        "format": "󰑈  {}",
         "escape": true,
         "interval": 5,
         "tooltip": false,
         "exec": "playerctl metadata --format='{{ title }}'",
         "on-click": "playerctl play-pause",
-        "max-length": 10
+        "max-length": 15
     },
 
     "clock": {
@@ -59,7 +59,7 @@
 
     "custom/power": {
         "tooltip": false,
-        "on-click": "sudo systemctl suspend",
+        "on-click": "systemctl suspend",
         "format": "⏻"
     }
 }

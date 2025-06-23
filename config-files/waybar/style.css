@@ -10,15 +10,16 @@
 #waybar {
   background: transparent;
   color: @foreground;
-  margin: 5px 5px;
+  margin: 0px 5px;
 }
 
 /* --- Workspaces --- */
 #workspaces {
   background-color: @module-bg;
   border-radius: 1rem;
-  margin: 5px;
+  margin-right: 1rem;
   margin-left: 1rem;
+  margin-top: 5px;
   padding: 0.5rem 0.5rem;
 }
 
@@ -44,15 +45,19 @@
   color: @blue;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
-  margin: 5px 0;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-top: 5px;
 }
 
 /* --- Right-side Modules --- */
 #custom-music {
   background-color: @module-bg;
+  color: @magenta;
   padding: 0.5rem 1rem;
-  margin: 5px 5px;
-
+  border-radius: 1rem;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 
 #network,
@@ -65,18 +70,13 @@
 #custom-power {
   background-color: @module-bg;
   padding: 0.5rem 1rem;
-  margin: 5px 0;
+  margin-right: 0px;
+  margin-top: 5px;
 }
 
 /* --- Individual Module Styling --- */
 
 /* The first module on the right */
-#custom-music {
-  color: @magenta;
-
-  border-radius: 1rem;
-  margin-right: 5px;
-}
 
 #network {
   color: @cyan;
