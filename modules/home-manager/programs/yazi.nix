@@ -5,7 +5,7 @@
 		initLua = config-files.yazi.initLua;
 		settings = {
 			mgr = {
-				ratio = [ 1 4 5 ]  ;
+				ratio = [ 2 4 4 ]  ;
 				sort_by = "natural";
 				sort_translit = true;
 				sort_dir_first = true;
