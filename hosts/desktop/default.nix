@@ -24,15 +24,16 @@
 		LC_TELEPHONE = "es_ES.UTF-8";
 		LC_TIME = "es_ES.UTF-8";
 	};
+
 	hardware = {
 		graphics.enable = true;
 	  nvidia.modesetting.enable = true;
 	};
 
-	services.xserver.xkb = {
-		layout = "es";
-		variant = "";
+	virtualisation.docker = {
+		enable = true;
 	};
+
 	security.rtkit.enable = true;
 	services.pipewire = {
 	  enable = true;
@@ -86,6 +87,7 @@
       "video"
       "audio"
       "input"
+      "docker"
     ];
     shell = pkgs.nushell;
   };
