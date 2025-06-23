@@ -25,9 +25,17 @@
 		LC_TIME = "es_ES.UTF-8";
 	};
 
+	nixpkgs.config.allowUnfree = true;
+
+	services.xserver.videoDrivers = [ "nvidia" ];
+	
 	hardware = {
 		graphics.enable = true;
-	  nvidia.modesetting.enable = true;
+	  nvidia = {
+	  	modesetting.enable = true;
+	  	open = true;
+	  	powerManagement.enable = true;
+	  };
 	};
 
 	virtualisation.docker = {

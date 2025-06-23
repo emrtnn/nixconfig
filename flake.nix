@@ -85,16 +85,13 @@
 						./hosts/desktop
 
 						home-manager.nixosModules.home-manager {
-							home-manager.useGlobalPkgs = true;
-							home-manager.useUserPackages = true;
 							home-manager.users.mrwellick = import ./users/mrwellick {
-								pkgs = packagesWithOverlays.x86_64-linux;
 								inherit inputs lib;
+								pkgs = packagesWithOverlays.x86_64-linux;
 								config-files = config-files;
 							};
 						}
 					];
-					specialArgs = { inherit inputs self config-files; };
 				};
 			};
 		};
