@@ -7,6 +7,7 @@
 		settings = {
 			theme = "tokyonight";
 			editor = {
+				true-color = true;
 				line-number = "relative";
 				mouse = true;
 				scrolloff = 10;
