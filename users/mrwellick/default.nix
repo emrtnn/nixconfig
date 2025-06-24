@@ -39,6 +39,7 @@
 		telegram-desktop
 		hyperfine
 		flamegraph
+		zip
 	];
 
 	xdg.enable = true;

@@ -62,8 +62,8 @@
 }
 
 #network,
-#tray,
-#backlight,
+#cpu,
+#memory,
 #clock,
 #battery,
 #pulseaudio,
@@ -84,6 +84,16 @@
   /* This is a middle module, so no rounding */
   border-radius: 1rem 0 0 1rem;
   padding-left: 1.2rem;
+}
+
+#cpu {
+  color: @yellow;
+  border-radius: 0;
+}
+
+#memory {
+  color: @red;
+  border-radius: 0;
 }
 
 #pulseaudio {
