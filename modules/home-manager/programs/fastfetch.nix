@@ -6,8 +6,8 @@
       logo = {
         source = "nixos";
         padding = {
-          right = 1;
           top = 1;
+          left = 1;
         };
       };
       display = {
