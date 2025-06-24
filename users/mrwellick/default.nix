@@ -15,6 +15,7 @@
 		../../modules/home-manager/programs/starship.nix
 		../../modules/home-manager/programs/helix.nix
 		../../modules/home-manager/programs/yazi.nix
+		../../modules/home-manager/programs/fastfetch.nix
 
 		../../modules/home-manager/developer/rust.nix
 		../../modules/home-manager/developer/go.nix
@@ -36,6 +37,8 @@
 		hyprshot
 		playerctl
 		telegram-desktop
+		hyperfine
+		flamegraph
 	];
 
 	xdg.enable = true;
