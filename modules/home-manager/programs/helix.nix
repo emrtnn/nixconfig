@@ -1,9 +1,11 @@
-{ config-files, pkgs, plugins, inputs, ... }:
+{ pkgs,  inputs, ... }:
 {
 	programs.helix = {
 		enable = true;
 		package = inputs.helix.packages.${pkgs.system}.default;
 		defaultEditor = true;
+
+		# General settings
 		settings = {
 			theme = "tokyonight";
 			editor = {
@@ -51,11 +53,11 @@
 				lsp = {
 					enable = true;
 					display-messages = true;
-					display-inlay-hints = true;
-
 				};
 			};
 		};
+
+		# Settings for the different languages supported
 		languages = {
 			language = [
 				{
@@ -96,7 +98,20 @@
 					language-servers = [ "vscode-json-language-server" ];
 				}
 			];
+			# Language servers config
+			language-server = {
+				rust-analyzer = {
+					config = {
+						autoArchive = true;
+						check = {
+							command = "clippy";
+						};
+					};
+				};
+			};
 		};
+
+		# Use yazi as file explorer
 		extraConfig = 
 			''
 				[keys.normal]
@@ -109,6 +124,9 @@
 				]
 			'';
 
+		# Some custom themes
+
+		# kanabox theme
 		themes.kanabox = let
 			fujiWhite = "#DCD7BA";
 			oldWhite = "#C8C093";
