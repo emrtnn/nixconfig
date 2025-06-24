@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ... }:
+{ inputs, pkgs,... }:
 
 {
 	imports = [
@@ -7,6 +7,8 @@
 		../../modules/common
 		../../modules/desktop
 	];
+
+	nixpkgs.config.allowUnfree = true;
 
 	networking.hostName = "mrwellick-nixos";
 
@@ -24,8 +26,6 @@
 		LC_TELEPHONE = "es_ES.UTF-8";
 		LC_TIME = "es_ES.UTF-8";
 	};
-
-	nixpkgs.config.allowUnfree = true;
 
 	services.xserver.videoDrivers = [ "nvidia" ];
 	

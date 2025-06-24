@@ -1,4 +1,4 @@
-{ config-files, pkgs, inputs, ...}:
+{ pkgs, ...}:
 {
 
 	programs.hyprland = {

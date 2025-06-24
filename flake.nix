@@ -7,36 +7,30 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
 		jujutsu.url = "github:martinvonz/jj";
 		yazi.url = "github:sxyazi/yazi";
 		helix.url = "github:helix-editor/helix";
 		walker.url = "github:abenz1267/walker";
+		rust-overlay.url = "github:oxalica/rust-overlay";
+
   };
 
 	outputs = { self, nixpkgs, home-manager, ... } @inputs:
 		let
-			lib = nixpkgs.lib;
+			system = "x86_64-linux";
+			pkgs = import nixpkgs {
+				system = system;
+				config.allowUnfree = true;
+				overlays = [
+					inputs.jujutsu.overlays.default
+					inputs.yazi.overlays.default
+					inputs.rust-overlay.overlays.default
+				];
+			};
 
-			supportedSystems = [
-				"x86_64-linux"
-			];
-
-			forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
-
-			myOverlays = [
-				inputs.jujutsu.overlays.default
-				inputs.yazi.overlays.default
-			];
-
-			packagesWithOverlays = forAllSystems (system: import nixpkgs {
-				inherit system;
-				overlays = myOverlays;
-				config = {
-					allowUnfree = true;
-				};
-			});
 
 			config-files = {
 				hyprland = {
@@ -78,18 +72,27 @@
 			};
 		in
 		{
+
+			nixpkgs = {
+				system = system;
+				config.allowUnfree = true;
+			};
+
 			nixosConfigurations = {
 				"desktop" = nixpkgs.lib.nixosSystem {
-					system = "x86_64-linux";
+
+					system = system;
+
+					specialArgs = { inherit inputs config-files; };
+
 					modules = [
+
 						./hosts/desktop
 
 						home-manager.nixosModules.home-manager {
-							home-manager.users.mrwellick = import ./users/mrwellick {
-								inherit inputs lib;
-								pkgs = packagesWithOverlays.x86_64-linux;
-								config-files = config-files;
-							};
+							home-manager.extraSpecialArgs = { inherit inputs pkgs config-files; };
+							home-manager.sharedModules = [ inputs.walker.homeManagerModules.default ];
+							home-manager.users.mrwellick = import ./users/mrwellick;
 						}
 					];
 				};

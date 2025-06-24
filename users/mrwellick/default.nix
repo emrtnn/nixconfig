@@ -1,7 +1,5 @@
-{ pkgs, inputs, lib, config-files, ... }:
+{ pkgs, inputs,  config-files, ... }:
 {
-
-	_module.args = { inherit inputs config-files; };
 
 	home.username = "mrwellick";
 	home.homeDirectory = "/home/mrwellick";
@@ -22,7 +20,6 @@
 		../../modules/home-manager/developer/python.nix
 		../../modules/home-manager/developer/node.nix
 		
-		inputs.walker.homeManagerModules.default
 	];
 
 	home.packages = with pkgs; [

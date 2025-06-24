@@ -1,7 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    rustc
-    cargo
+    (rust-bin.stable.latest.default.override {
+      extensions = [ "rust-src" "rust-analyzer" "rustfmt" "clippy" ];
+    })
   ];
 }
