@@ -42,6 +42,10 @@
 		enable = true;
 	};
 
+	services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{power/wakeup}="disabled"
+  '';
+
 	security.rtkit.enable = true;
 	services.pipewire = {
 	  enable = true;
