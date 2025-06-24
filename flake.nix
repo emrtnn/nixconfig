@@ -64,7 +64,7 @@
 					config = ./config-files/hypr/hypridle.conf;
 				};
 				wallpapers = {
-					kanagawa = ./config-files/wallpapers/kanagawa.jpg;
+					mountain = ./config-files/wallpapers/mountain_wp.jpeg;
 				};
 				cursors = {
 					breezeBlack = ./config-files/cursor-themes/BreezeX-Black-hyprcursor;

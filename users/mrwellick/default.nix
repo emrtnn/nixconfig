@@ -90,10 +90,12 @@
 	};
 
 	home.file = {
-		".wallpapers/kanagawa.jpg" = {
-		  source = config-files.wallpapers.kanagawa;
+		# Wallpapers
+		".wallpapers/mountain_wp.jpeg" = {
+		  source = config-files.wallpapers.mountain;
 		};
 
+		# Cursor styles
 		".local/share/icons/BreezeX-Black-hyprcursor" = {
 			source = config-files.cursors.breezeBlack;
 		};
