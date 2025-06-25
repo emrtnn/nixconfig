@@ -1,4 +1,4 @@
-{ config-files, lib, pkgs, inputs, ... }:
+{ config-files, ... }:
 {
 	programs.nushell = {
 		enable = true;

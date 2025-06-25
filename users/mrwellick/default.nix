@@ -37,6 +37,7 @@
 		hyperfine
 		flamegraph
 		zip
+		calibre
 	];
 
 	xdg.enable = true;
