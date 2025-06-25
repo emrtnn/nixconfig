@@ -24,7 +24,6 @@
 }
 
 #workspaces button {
-  font-family: CaskaydiaCove Nerd Font;
   color: @gray;
   border-radius: 1rem;
   padding: 0.4rem;

@@ -37,6 +37,7 @@
 		hyperfine
 		flamegraph
 		zip
+		unzip
 		calibre
 	];
 
