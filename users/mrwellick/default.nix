@@ -61,6 +61,31 @@
 
 	services.hypridle = {
 		enable = true;
+		settings = {
+			general = {
+				lock_cmd = "pidof hyprlock || hyprlock";
+				before_sleep_cmd = "loginctl lock-session";
+				after_sleep_cmd = "hyprctl dispatch dpms on";
+			};
+
+			listener = [
+			{
+					timeout = 180;
+					on-timeout = ''send-notification "Hyprland Idle" "Session is about to lock due to inactivity."'';
+				}
+
+				{
+					timeout = 300;
+					on-timeout = "loginctl lock-session";
+				}
+
+				{
+					timeout = 360;
+					on-timeout = "hyprctl dispatch dpms off && systemctl suspend";
+					on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
+				}
+			];
+		};
 	};
 
 	services.clipse = {
@@ -88,7 +113,6 @@
 		"waybar/tokyo-night.css".source = config-files.waybar.tokyoNightCss;
 		"hypr/hyprlock.conf".source = config-files.hyprlock.config;
 		"hypr/mocha.conf".source = config-files.hyprlock.mochaTheme;
-		"hypr/hypridle.conf".source = config-files.hypridle.config;
 	};
 
 	home.file = {

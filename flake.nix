@@ -60,9 +60,6 @@
 					config = ./config-files/hypr/hyprlock.conf;
 					mochaTheme = ./config-files/hypr/mocha.conf;
 				};
-				hypridle = {
-					config = ./config-files/hypr/hypridle.conf;
-				};
 				wallpapers = {
 					mountain = ./config-files/wallpapers/mountain_wp.jpeg;
 				};
