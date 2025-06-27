@@ -39,6 +39,7 @@
 		zip
 		unzip
 		calibre
+		mdbook
 	];
 
 	xdg.enable = true;
