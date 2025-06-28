@@ -5,5 +5,9 @@
       extensions = [ "rust-src" "rustfmt" "clippy" ];
     })
     rust-analyzer
+    cargo-watch
+    cargo-audit
+    cargo-deny
+    cargo-expand
   ];
 }

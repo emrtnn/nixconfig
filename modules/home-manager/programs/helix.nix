@@ -18,7 +18,6 @@
 				completion-replace = true;
 				bufferline = "always";
 				popup-border = "all";
-
 				statusline = {
 					left = ["mode" "spinner"];
 					center = ["file-name"];
@@ -27,7 +26,10 @@
 				cursor-shape = {
 					insert = "bar";
 					normal = "block";
-					select = "block";
+					select = "underline";
+				};
+				file-picker = {
+					hidden = true;
 				};
 				whitespace = {
 					render = {
@@ -46,9 +48,6 @@
 					render = true;
 					character = "╎";
 					skip-levels = 1;
-				};
-				inline-diagnostics = {
-					cursor-line = "warning";
 				};
 				lsp = {
 					enable = true;

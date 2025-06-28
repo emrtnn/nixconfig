@@ -6,5 +6,6 @@
     wget
     clang
     gcc
+    mold
   ];
 }
