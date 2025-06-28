@@ -42,6 +42,7 @@
 		unzip
 		calibre
 		mdbook
+		keepass
 	];
 
 	xdg.enable = true;
