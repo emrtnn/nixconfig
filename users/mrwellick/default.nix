@@ -1,4 +1,4 @@
-{ pkgs, inputs,  config-files, ... }:
+{ pkgs, config-files, ... }:
 {
 
 	home.username = "mrwellick";
@@ -20,6 +20,7 @@
 		../../modules/home-manager/developer/go.nix
 		../../modules/home-manager/developer/python.nix
 		../../modules/home-manager/developer/node.nix
+		../../modules/home-manager/developer/github-cli.nix
 		
 	];
 
