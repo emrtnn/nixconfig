@@ -14,6 +14,7 @@
 		../../modules/home-manager/programs/helix.nix
 		../../modules/home-manager/programs/yazi.nix
 		../../modules/home-manager/programs/fastfetch.nix
+		../../modules/home-manager/programs/mtp.nix
 
 		../../modules/home-manager/developer/rust.nix
 		../../modules/home-manager/developer/go.nix
@@ -23,6 +24,7 @@
 	];
 
 	home.packages = with pkgs; [
+		nautilus
 		brave
 		eza
 		ripgrep

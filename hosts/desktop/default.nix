@@ -83,6 +83,8 @@
 	nix.settings.builders-use-substitutes = true;
   nix.settings.trusted-users = [ "root" "@wheel" ];
 
+  services.gvfs.enable = true;
+
   programs.ssh = {
     startAgent = true;
   };
