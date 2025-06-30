@@ -4,8 +4,5 @@
     git
     vim
     wget
-    clang
-    gcc
-    mold
   ];
 }

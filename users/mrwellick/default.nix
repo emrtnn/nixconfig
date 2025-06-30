@@ -15,13 +15,7 @@
 		../../modules/home-manager/programs/yazi.nix
 		../../modules/home-manager/programs/fastfetch.nix
 		../../modules/home-manager/programs/mtp.nix
-
-		../../modules/home-manager/developer/rust.nix
-		../../modules/home-manager/developer/go.nix
-		../../modules/home-manager/developer/python.nix
-		../../modules/home-manager/developer/node.nix
-		../../modules/home-manager/developer/github-cli.nix
-		
+		../../modules/home-manager/programs/github-cli.nix
 	];
 
 	home.packages = with pkgs; [

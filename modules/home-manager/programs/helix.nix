@@ -271,5 +271,9 @@
 		docker-compose-language-service
 		dockerfile-language-server-nodejs
 		yaml-language-server
+    rust-analyzer
+    ruff
+    gopls
+    vtsls
 	];
 }

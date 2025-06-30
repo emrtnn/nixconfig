@@ -19,6 +19,12 @@
 		NIXOS_OZONE_WL = "1";
 	};
 
+	environment.systemPackages = with pkgs; [
+		clang
+    gcc
+    mold
+	];
+
 	xdg.portal.enable = true;
 	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland];
 
