@@ -61,27 +61,20 @@
 	services.hypridle = {
 		enable = true;
 		settings = {
-			general = {
-				lock_cmd = "pidof hyprlock || hyprlock";
-				before_sleep_cmd = "loginctl lock-session";
-				after_sleep_cmd = "hyprctl dispatch dpms on";
-			};
-
 			listener = [
-			{
+				{
 					timeout = 180;
-					on-timeout = ''send-notification "Hyprland Idle" "Session is about to lock due to inactivity."'';
+					on-timeout = ''notify-send "Hyprland Idle" "Session is about to lock due to inactivity."'';
 				}
 
 				{
 					timeout = 300;
-					on-timeout = "loginctl lock-session";
+					on-timeout = "pidof hyprlock || hyprlock";
 				}
 
 				{
 					timeout = 360;
-					on-timeout = "hyprctl dispatch dpms off && systemctl suspend";
-					on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
+					on-timeout = "systemctl suspend";
 				}
 			];
 		};
