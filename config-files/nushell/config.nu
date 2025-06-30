@@ -1,9 +1,10 @@
 # Nushell configuration file
 
+# Settings
+
 $env.EDITOR = "hx"
 $env.VISUAL = "hx"
 
-# Settings
 $env.config = {
 	show_banner: false
 	buffer_editor: "hx"
@@ -11,22 +12,31 @@ $env.config = {
 	edit_mode: "vi"
 }
 
-# Yazi cd into the dir when is closed
-def --env y [...args] {
-	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-	yazi ...$args --cwd-file $tmp
-	let cwd = (open $tmp)
-	if $cwd != "" and $cwd != $env.PWD {
-		cd $cwd
-	}
-	rm -fp $tmp
-}
-
 # Environment variables
 
 $env.TRANSIENT_PROMPT_COMMAND = null
 $env.SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/ssh-agent.socket"
 
+# Aliases
+
+# Git
+alias ga = git add
+alias gc = git commit
+alias gco = git checkout
+alias gcp = git cherry-pick
+alias gdiff = git diff
+alias gl = git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+alias gs = git status
+alias gt = git tag
+
+# Jujutsu
+alias jd = jj desc
+alias jf = jj git fetch
+alias jn = jj new
+alias jp = jj git push
+alias js = jj st
+
 # Startup programs
+
 sleep 0.1sec
 fastfetch
