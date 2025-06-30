@@ -22,3 +22,10 @@ Status:children_add(function()
 		" ",
 	})
 end, 500, Status.RIGHT)
+
+-- Plugins
+-- Copy file content (Use "ya pkgs add AnirudhG07/plugins-yazi:copy-file-contents" to install on new environments)
+require("copy-file-contents"):setup({
+	append_char = "\n",
+	notification = true,
+})

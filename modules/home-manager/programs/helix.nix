@@ -49,6 +49,9 @@
 					character = "╎";
 					skip-levels = 1;
 				};
+				inline-diagnostics = {
+					cursor-line = "warning";
+				};
 				lsp = {
 					enable = true;
 					display-messages = true;

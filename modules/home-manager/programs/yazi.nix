@@ -19,5 +19,10 @@
 				image_quality = 90;
 			};
 		};
+		keymap = {
+			mgr.prepend_keymap = [
+				{ run = "plugin copy-file-contents"; on = "<A-y>"; desc = "Copy contents of the file"; }
+			];
+		};
 	};
 }
