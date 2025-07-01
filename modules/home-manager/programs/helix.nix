@@ -34,7 +34,7 @@
 				auto-save = {
 					after-delay = {
 						enable = true;
-						timeout = 1500;
+						timeout = 500;
 					};
 				};
 				whitespace = {
