@@ -31,6 +31,12 @@
 				file-picker = {
 					hidden = true;
 				};
+				auto-save = {
+					after-delay = {
+						enable = true;
+						timeout = 1500;
+					};
+				};
 				whitespace = {
 					render = {
 						space = "all";
