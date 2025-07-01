@@ -31,6 +31,8 @@
       ];
 
       LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [ openssl ];
+
+      shellHook = "nu";
     };
   };
 }
