@@ -38,6 +38,8 @@
 		calibre
 		mdbook
 		keepass
+		postgresql
+		dbeaver-bin
 	];
 
 	xdg.enable = true;
