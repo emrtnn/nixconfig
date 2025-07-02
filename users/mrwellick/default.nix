@@ -76,7 +76,7 @@
 
 				{
 					timeout = 360;
-					on-timeout = "loginctl lock-session";
+					on-timeout = "hyrctl dispatch dpms off";
 					on-resume = "hyprctl dipatch dpms on";
 				}
 			];
@@ -88,14 +88,100 @@
 		allowDuplicates = false;
 	};
 
-	programs.walker = {
+	programs.wofi = {
 		enable = true;
-		runAsService = true;
-		config = {
-			search.placeholder = "Search...";
-			websearch.prefix = "?";
+		settings = {
+			location = "center";
+			show ="drun";
+	 		prompt ="Search...";
+	 		allow_markup = true;
+	 		allow_images = true;
+	 		image_size = 40;
+	 		orientation = "vertical";
+	 		content_halign = "fill";
+	 		halign = "fill";
+	 		insensitive = true;
+	 		gtk_dark = true;
+	 		no_actions = true;
+	 		filter_rate = 100;
+	 		width = 600;
+	 		height = 350;
 		};
-	};
+		style = ''
+			@define-color	selected-text  #88C0D0;
+			@define-color	text  #D8DEE9;
+			@define-color	base  #2E3440;
+
+			* {
+			  font-family: 'CaskaydiaMono Nerd Font', monospace;
+			  font-size: 18px;
+			}
+
+			window {
+			  margin: 0px;
+			  padding: 20px;
+			  background-color: @base;
+			}
+
+			#inner-box {
+			  margin: 0;
+			  padding: 0;
+			  border: none;
+			  background-color: @base;
+			}
+
+			#outer-box {
+			  margin: 0;
+			  padding: 20px;
+			  border: none;
+			  background-color: @base;
+			}
+
+			#scroll {
+			  margin: 0;
+			  padding: 0;
+			  border: none;
+			  background-color: @base;
+			}
+
+			#input {
+			  margin: 0;
+			  padding: 10px;
+			  border: none;
+			  background-color: @base;
+			  color: @text;
+			}
+
+			#input:focus {
+			  outline: none;
+			  box-shadow: none;
+			  border: none;
+			}
+
+			#text {
+			  margin: 5px;
+			  border: none;
+			  color: @text;
+			}
+
+			#entry {
+			  background-color: @base;
+			}
+
+			#entry:selected {
+			  outline: none;
+			  border: none;
+			}
+
+			#entry:selected #text {
+			  color: @selected-text;
+			}
+
+			#entry image {
+			  -gtk-icon-transform: scale(0.7);
+			}
+		'';
+};
 
 	programs.vesktop = {
 		enable = true;

@@ -13,7 +13,6 @@
 		jujutsu.url = "github:martinvonz/jj";
 		yazi.url = "github:sxyazi/yazi";
 		helix.url = "github:helix-editor/helix";
-		walker.url = "github:abenz1267/walker";
 		rust-overlay.url = "github:oxalica/rust-overlay";
 
   };
@@ -88,7 +87,6 @@
 
 						home-manager.nixosModules.home-manager {
 							home-manager.extraSpecialArgs = { inherit inputs pkgs config-files; };
-							home-manager.sharedModules = [ inputs.walker.homeManagerModules.default ];
 							home-manager.users.mrwellick = import ./users/mrwellick;
 						}
 					];
