@@ -36,7 +36,7 @@
 					config = ./config-files/hypr/hyprland.conf;
 				};
 				jujutsu = {
-					configToml = ./config-files/jujutsu/config.toml;
+					configToml = ./config-files/jj/config.toml;
 				};
 				nushell = {
 					configNu = ./config-files/nushell/config.nu;

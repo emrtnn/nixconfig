@@ -4,6 +4,6 @@
 		enable = true;
 	};
 
-	xdg.configFile."jujutsu/config.toml".source = config-files.jujutsu.configToml;
+	xdg.configFile."jj/config.toml".source = config-files.jujutsu.configToml;
 
 }

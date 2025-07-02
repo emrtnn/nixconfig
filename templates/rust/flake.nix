@@ -20,7 +20,7 @@
     devShells.${system}.default = pkgs.mkShell {
       buildInputs = with pkgs; [
         (rust-bin.stable.latest.default.override {
-          extensions = ["rust-src" "rust-fmt" "clippy"];
+          extensions = ["rust-src" "rustfmt" "clippy"];
         })
         cargo-watch
         cargo-audit
