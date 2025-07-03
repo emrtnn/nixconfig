@@ -10,23 +10,34 @@
 #waybar {
   background: transparent;
   color: @foreground;
-  margin: 0px 5px;
+  margin: 0px 0px;
+}
+
+/* A single class for all modules to define consistent spacing */
+.module-group {
+  background-color: @module-bg;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-top: 5px;
+  /* This is the key: a single value for gaps between modules */
+  margin-right: 1rem; 
 }
 
 /* --- Workspaces --- */
 #workspaces {
   background-color: @module-bg;
   border-radius: 0.5rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
   margin-top: 5px;
   padding: 0.5rem 0.5rem;
+  /* Set consistent outer and inner margins */
+  margin-left: 0.5rem;
+  margin-right: 1rem;
 }
 
 #workspaces button {
   color: @gray;
   border-radius: 0.5rem;
-  padding: 0.4rem;
+  padding: 0.25rem;
 }
 
 #workspaces button.active {
@@ -39,27 +50,26 @@
   border-radius: 0.5rem;
 }
 
-/* --- Center Module --- */
-#clock {
+/* --- Center Modules --- */
+#clock, #custom-music {
   background-color: @module-bg;
-  color: @blue;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
   margin-top: 5px;
+  /* Consistent gap */
+  margin-right: 1rem;
 }
+
+#clock {
+  color: @blue;
+}
+
+#custom-music {
+  color: @magenta;
+}
+
 
 /* --- Right-side Modules --- */
-#custom-music {
-  background-color: @module-bg;
-  color: @magenta;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  margin-right: 5px;
-  margin-top: 5px;
-}
-
 #network,
 #cpu,
 #memory,
@@ -68,20 +78,17 @@
 #custom-lock,
 #custom-power {
   background-color: @module-bg;
-  padding: 0.5rem 1rem;
-  margin-right: 0px;
+  color: @foreground; /* Set a base color */
+  padding: 0.5rem 1rem; /* Make padding consistent for all */
   margin-top: 5px;
 }
 
 /* --- Individual Module Styling --- */
 
 /* The first module on the right */
-
 #network {
   color: @cyan;
-  /* This is a middle module, so no rounding */
   border-radius: 0.5rem 0 0 0.5rem;
-  padding-left: 1.2rem;
 }
 
 #cpu {
@@ -108,29 +115,6 @@
 #custom-power {
   color: @red;
   border-radius: 0 0.5rem 0.5rem 0;
-  margin-right: 1rem;
-  padding-right: 1.2rem;
-  /* Add extra padding to the last item */
-}
-
-/* Fallback styles for modules you might add later */
-#battery {
-  color: @green;
-}
-
-#battery.charging {
-  color: @green;
-}
-
-#battery.warning:not(.charging) {
-  color: @red;
-}
-
-#backlight {
-  color: @yellow;
-}
-
-#tray {
-  margin-right: 1rem;
-  border-radius: 0.5rem;
+  /* This is the final outer margin */
+  margin-right: 0.5rem;
 }
