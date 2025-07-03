@@ -1,7 +1,10 @@
-theme = "tokyonight"
+theme = "kanagawabones"
 font-family = "CaskaydiaCove Nerd Font Mono"
 font-size = 18
-cursor-style = "block"
+cursor-style = "bar"
+cursor-style-blink = true
+mouse-hide-while-typing = true
+app-notifications = "clipboard-copy"
 background-opacity = 1
 background-blur-radius = 5
 link-url = true

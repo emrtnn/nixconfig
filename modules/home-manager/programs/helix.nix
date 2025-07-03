@@ -7,7 +7,7 @@
 
 		# General settings
 		settings = {
-			theme = "tokyonight";
+			theme = "kanagawabones";
 			editor = {
 				true-color = true;
 				line-number = "relative";
