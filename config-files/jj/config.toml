@@ -10,3 +10,4 @@ n = ["new"]
 
 [ui]
 default-command = "log"
+paginate = "never"

@@ -9,7 +9,6 @@ $env.config = {
 	show_banner: false
 	buffer_editor: "hx"
 	highlight_resolved_externals: true
-	edit_mode: "vi"
 }
 
 # Environment variables
