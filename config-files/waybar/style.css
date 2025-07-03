@@ -16,7 +16,7 @@
 /* --- Workspaces --- */
 #workspaces {
   background-color: @module-bg;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   margin-right: 1rem;
   margin-left: 1rem;
   margin-top: 5px;
@@ -25,25 +25,25 @@
 
 #workspaces button {
   color: @gray;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 0.4rem;
 }
 
 #workspaces button.active {
   color: @cyan;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 #workspaces button:hover {
   color: @blue;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 /* --- Center Module --- */
-#window {
+#clock {
   background-color: @module-bg;
   color: @blue;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   margin-right: 1rem;
   margin-left: 1rem;
@@ -55,7 +55,7 @@
   background-color: @module-bg;
   color: @magenta;
   padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   margin-right: 5px;
   margin-top: 5px;
 }
@@ -63,7 +63,6 @@
 #network,
 #cpu,
 #memory,
-#clock,
 #battery,
 #pulseaudio,
 #custom-lock,
@@ -81,7 +80,7 @@
 #network {
   color: @cyan;
   /* This is a middle module, so no rounding */
-  border-radius: 1rem 0 0 1rem;
+  border-radius: 0.5rem 0 0 0.5rem;
   padding-left: 1.2rem;
 }
 
@@ -100,11 +99,6 @@
   border-radius: 0;
 }
 
-#clock {
-  color: @green;
-  border-radius: 0;
-}
-
 #custom-lock {
   color: @yellow;
   border-radius: 0;
@@ -113,7 +107,7 @@
 /* The last module on the right */
 #custom-power {
   color: @red;
-  border-radius: 0 1rem 1rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
   margin-right: 1rem;
   padding-right: 1.2rem;
   /* Add extra padding to the last item */
@@ -138,5 +132,5 @@
 
 #tray {
   margin-right: 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }

@@ -40,6 +40,8 @@
 		keepass
 		postgresql
 		dbeaver-bin
+		hypridle
+		hyprlock
 	];
 
 	xdg.enable = true;
@@ -54,43 +56,6 @@
 
 	services.swaync = {
 		enable = true;
-	};
-
-	programs.hyprlock = {
-		enable = true;
-	};
-
-	services.hypridle = {
-		enable = true;
-		settings = {
-			general = {
-				locK_cmd = "pidof hyprlock | hyprlock";
-				before_sleep_cmd = "loginctl lock-session";
-				after_sleep_cmd = "hyprctl dispatch dpms on";
-			};
-			listener = [
-				{
-					timeout = 150;
-					on-timeout = ''notify-send "Hyprland Idle" "Session is about to lock due to inactivity."'';
-				}
-
-				{
-					timeout = 300;
-					on-timeout = "loginctl lock-session";
-				}
-
-				{
-					timeout = 360;
-					on-timeout = "hyrctl dispatch dpms off";
-					on-resume = "hyprctl dipatch dpms on";
-				}
-
-				{
-					timeout = 1800;
-					on-timeout = "systemctl suspend";
-				}
-			];
-		};
 	};
 
 	services.clipse = {
@@ -204,6 +169,7 @@
 		"waybar/tokyo-night.css".source = config-files.waybar.tokyoNightCss;
 		"hypr/hyprlock.conf".source = config-files.hyprlock.config;
 		"hypr/mocha.conf".source = config-files.hyprlock.mochaTheme;
+		"hypr/hypridle.conf".source = config-files.hypridle.config;
 	};
 
 	home.file = {

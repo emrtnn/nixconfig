@@ -2,8 +2,8 @@
     "layer": "top",
     "position": "top",
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["custom/music", "network", "cpu", "memory", "pulseaudio", "clock", "custom/lock", "custom/power"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/music", "network", "cpu", "memory", "pulseaudio", "custom/lock", "custom/power"],
 
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -61,9 +61,7 @@
 
     "clock": {
         "timezone": "Europe/Madrid",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "  {:%d/%m/%Y}",
-        "format": "󰥔  {:%H:%M}"
+        "format": "󰥔  {:%d - %H:%M}"
     },
 
     "custom/lock": {

@@ -7,7 +7,7 @@
 
 		# General settings
 		settings = {
-			theme = "kanagawabones";
+			theme = "kanabox";
 			editor = {
 				true-color = true;
 				line-number = "relative";
