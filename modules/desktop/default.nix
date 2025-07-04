@@ -23,6 +23,7 @@
 		clang
     gcc
     mold
+    lld
 	];
 
 	xdg.portal.enable = true;
