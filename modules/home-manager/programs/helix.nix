@@ -76,6 +76,7 @@
 				{
 					name = "rust";
 					language-servers = [ "rust-analyzer" ];
+					auto-format = true;
 				}
 				{
 					name = "go";
