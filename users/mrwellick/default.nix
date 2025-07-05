@@ -42,6 +42,7 @@
 		dbeaver-bin
 		hypridle
 		hyprlock
+		tree
 	];
 
 	xdg.enable = true;
