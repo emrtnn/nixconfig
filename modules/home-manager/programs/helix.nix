@@ -15,7 +15,11 @@
 				scrolloff = 10;
 				cursorline = true;
 				continue-comments = false;
+				auto-completion = true;
 				completion-replace = true;
+				idle-timeout = 5;
+				completion-timeout = 5;
+				completion-trigger-len = 0;
 				bufferline = "always";
 				popup-border = "all";
 				statusline = {

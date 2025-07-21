@@ -43,6 +43,11 @@
 		hypridle
 		hyprlock
 		tree
+		evince
+		localsend
+		ripgrep
+		libreoffice
+		claude-code
 	];
 
 	xdg.enable = true;
