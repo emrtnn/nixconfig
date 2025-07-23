@@ -80,6 +80,7 @@
 				{
 					name = "rust";
 					language-servers = [ "rust-analyzer" ];
+					formatter = { command = "rustfmt"; };
 					auto-format = true;
 				}
 				{
@@ -88,15 +89,39 @@
 				}
 				{
 					name = "typescript";
-					language-servers = [ "vtsls" ];
+					formatter = {
+		        command = "biome";
+		        args = ["format" "--stdin-file-path" "%{buffer_name}"];
+		      };
+		      auto-format = true;
+		      language-servers = [ "vtsls" ];
 				}
 				{
 					name = "tsx";
-					language-servers = [ "vtsls" ];
+					formatter = {
+		        command = "biome";
+		        args = ["format" "--stdin-file-path" "%{buffer_name}"];
+		      };
+		      auto-format = true;
+					language-servers = [ "vtsls" "vscode-html-language-server" "tailwindcss-language-server"];
 				}
 				{
 					name = "javascript";
+					formatter = {
+		        command = "biome";
+		        args = ["format" "--stdin-file-path" "%{buffer_name}"];
+		      };
+		      auto-format = true;
 					language-servers = [ "vtsls" ];
+				}
+				{
+					name = "jsx";
+					formatter = {
+		        command = "biome";
+		        args = ["format" "--stdin-file-path" "%{buffer_name}"];
+		      };
+		      auto-format = true;
+					language-servers = [ "vtsls" "vscode-html-language-server" "tailwindcss-language-server"];
 				}
 				{
 					name = "hyprlang";
@@ -104,7 +129,11 @@
 				}
 				{
 					name = "css";
-					language-servers = [ "vscode-css-language-server" ];
+					language-servers = [ "vscode-css-language-server" "tailwindcss-language-server"];
+				}
+				{
+					name = "html";
+					language-servers = [ "vscode-html-language-server" "tailwindcss-language-server"];
 				}
 				{
 					name = "json";
@@ -121,6 +150,22 @@
 						};
 					};
 				};
+				vtsls = {
+					command = "vtsls";
+					args = ["--stdio"];
+				};
+				vscode-css-language-server = {
+          command = "vscode-css-language-server";
+          args = ["--stdio"];
+        };
+        vscode-json-language-server = {
+          command = "vscode-json-language-server";
+          args = ["--stdio"];
+        };
+        tailwindcss-language-server = {
+        	command = "tailwindcss-language-server";
+        	args = ["--stdio"];
+        };
 			};
 		};
 
@@ -130,7 +175,7 @@
 				[keys.normal]
 				C-y = [
 				':sh rm -f /tmp/unique-file',
-				':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+				':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
 				':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
 				':open %sh{cat /tmp/unique-file}',
 				':redraw',
@@ -281,6 +326,7 @@
 		marksman
 		docker-compose-language-service
 		dockerfile-language-server-nodejs
+		tailwindcss-language-server
 		yaml-language-server
     rust-analyzer
     ruff
