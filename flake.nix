@@ -26,6 +26,7 @@
 				overlays = [
 					inputs.jujutsu.overlays.default
 					inputs.yazi.overlays.default
+					inputs.helix.overlays.default
 					inputs.rust-overlay.overlays.default
 				];
 			};
