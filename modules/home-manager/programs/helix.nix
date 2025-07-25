@@ -115,6 +115,15 @@
 					language-servers = [ "vtsls" ];
 				}
 				{
+					name = "python";
+					language-servers = [ "pyright" ];
+					formatter = {
+						command = "ruff";
+						args = ["format" "%{buffer_name}" ];
+					};
+					auto-format = true;
+				}
+				{
 					name = "jsx";
 					formatter = {
 		        command = "biome";
@@ -332,5 +341,6 @@
     ruff
     gopls
     vtsls
+    pyright
 	];
 }
