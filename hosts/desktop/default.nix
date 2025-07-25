@@ -68,12 +68,14 @@
     "https://nix-community.cachix.org/"
 		"https://cache.nixos.org"
 		"https://helix.cachix.org"
+		"https://devenv.cachix.org"
   ];
 
 	nix.settings.extra-trusted-public-keys = [
 		"hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
 		"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 		"helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
+    "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuCsAen6VNgRA0WCLniVmPSFunU="
 	];
 
 	nix.settings.builders-use-substitutes = true;

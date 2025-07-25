@@ -14,10 +14,11 @@
 		yazi.url = "github:sxyazi/yazi";
 		helix.url = "github:helix-editor/helix";
 		rust-overlay.url = "github:oxalica/rust-overlay";
+    devenv.url = "github:cachix/devenv";
 
   };
 
-	outputs = { self, nixpkgs, home-manager, ... } @inputs:
+	outputs = { self, nixpkgs, home-manager, devenv, ... } @inputs:
 		let
 			system = "x86_64-linux";
 			pkgs = import nixpkgs {
