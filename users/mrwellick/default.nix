@@ -53,6 +53,13 @@
 	xdg.enable = true;
 	xdg.userDirs.enable = true;
 
+	xdg.mimeApps = {
+		enable = true;
+		defaultApplications = {
+			"application/pdf" = "org.gnome.Evince.desktop";
+		};
+	};
+
 	home.sessionVariables = {
 		SHELL = "${pkgs.nushell}/bin/nu";
 		BROWSER = "brave";
