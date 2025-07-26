@@ -119,7 +119,7 @@
 					language-servers = [ "pyright" ];
 					formatter = {
 						command = "ruff";
-						args = ["format" "%{buffer_name}" ];
+						args = ["format" "-" ];
 					};
 					auto-format = true;
 				}
