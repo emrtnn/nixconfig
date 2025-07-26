@@ -16,6 +16,7 @@
 		../../modules/home-manager/programs/fastfetch.nix
 		../../modules/home-manager/programs/mtp.nix
 		../../modules/home-manager/programs/github-cli.nix
+		../../modules/home-manager/programs/direnv.nix
 	];
 
 	home.packages = with pkgs; [
