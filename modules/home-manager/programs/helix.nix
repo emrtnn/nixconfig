@@ -89,30 +89,23 @@
 				}
 				{
 					name = "typescript";
-					formatter = {
-		        command = "biome";
-		        args = ["format" "--stdin-file-path" "%{buffer_name}"];
-		      };
+		      language-servers = [ { name = "typescript-language-server"; except-features = ["format"];} "biome"];
 		      auto-format = true;
-		      language-servers = [ "vtsls" ];
 				}
 				{
 					name = "tsx";
-					formatter = {
-		        command = "biome";
-		        args = ["format" "--stdin-file-path" "%{buffer_name}"];
-		      };
+					language-servers = [ {name = "typescript-language-server"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
 		      auto-format = true;
-					language-servers = [ "vtsls" "vscode-html-language-server" "tailwindcss-language-server"];
 				}
 				{
 					name = "javascript";
-					formatter = {
-		        command = "biome";
-		        args = ["format" "--stdin-file-path" "%{buffer_name}"];
-		      };
+		      language-servers = [ { name = "typescript-language-server"; except-features = ["format"];} "biome"];
 		      auto-format = true;
-					language-servers = [ "vtsls" ];
+				}
+				{
+					name = "jsx";
+					language-servers = [ {name = "typescript-language-server"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
+		      auto-format = true;
 				}
 				{
 					name = "python";
@@ -124,15 +117,6 @@
 					auto-format = true;
 				}
 				{
-					name = "jsx";
-					formatter = {
-		        command = "biome";
-		        args = ["format" "--stdin-file-path" "%{buffer_name}"];
-		      };
-		      auto-format = true;
-					language-servers = [ "vtsls" "vscode-html-language-server" "tailwindcss-language-server"];
-				}
-				{
 					name = "hyprlang";
 					language-servers = [ "hyprls" ];
 				}
@@ -142,11 +126,11 @@
 				}
 				{
 					name = "html";
-					language-servers = [ "vscode-html-language-server" "tailwindcss-language-server"];
+					language-servers = [ "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls" ];
 				}
 				{
 					name = "json";
-					language-servers = [ "vscode-json-language-server" ];
+					language-servers = [ {name = "vscode-json-language-server"; except-features = ["format"]; } "biome" ];
 				}
 			];
 			# Language servers config
@@ -159,9 +143,13 @@
 						};
 					};
 				};
-				vtsls = {
-					command = "vtsls";
+				emmet-ls = {
+					command = "emmet-ls";
 					args = ["--stdio"];
+				};
+				biome = {
+					command = "biome";
+					args = ["lsp-proxy"];
 				};
 				vscode-css-language-server = {
           command = "vscode-css-language-server";
@@ -340,7 +328,9 @@
     rust-analyzer
     ruff
     gopls
-    vtsls
+    typescript-language-server
     pyright
+    emmet-ls
+    biome
 	];
 }
