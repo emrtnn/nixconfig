@@ -2,12 +2,12 @@
 
 # Settings
 
-$env.EDITOR = "hx"
-$env.VISUAL = "hx"
+$env.EDITOR = "nvim"
+$env.VISUAL = "nvim"
 
 $env.config = {
 	show_banner: false
-	buffer_editor: "hx"
+	buffer_editor: "nvim"
 	highlight_resolved_externals: true
 }
 

@@ -3,11 +3,10 @@
 	programs.helix = {
 		enable = true;
 		package = inputs.helix.packages.${pkgs.system}.default;
-		defaultEditor = true;
 
 		# General settings
 		settings = {
-			theme = "dracula_at_night";
+			theme = "dracula";
 			editor = {
 				true-color = true;
 				line-number = "relative";

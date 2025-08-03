@@ -7,7 +7,7 @@
 		extraConfig = {
 				init.defaultBranch = "master";
 				pull.rebase = true;
-				core.editor = "hx";
+				core.editor = "nvim";
 		};
 	};
 }
