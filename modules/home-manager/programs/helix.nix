@@ -7,7 +7,7 @@
 
 		# General settings
 		settings = {
-			theme = "kanabox";
+			theme = "dracula_at_night";
 			editor = {
 				true-color = true;
 				line-number = "relative";
