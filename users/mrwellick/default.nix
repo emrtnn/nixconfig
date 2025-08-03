@@ -50,6 +50,7 @@
 		ripgrep
 		libreoffice
 		claude-code
+		smile
 	];
 
 	xdg.enable = true;
