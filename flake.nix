@@ -14,22 +14,24 @@
 		yazi.url = "github:sxyazi/yazi";
 		helix.url = "github:helix-editor/helix";
 		rust-overlay.url = "github:oxalica/rust-overlay";
+		neovim-nighly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
 	outputs = { self, nixpkgs, home-manager, ... } @inputs:
 		let
 			system = "x86_64-linux";
+			overlays = with inputs; [
+				jujutsu.overlays.default
+				yazi.overlays.default
+				helix.overlays.default
+				rust-overlay.overlays.default
+			];
+
 			pkgs = import nixpkgs {
 				system = system;
 				config.allowUnfree = true;
-				overlays = [
-					inputs.jujutsu.overlays.default
-					inputs.yazi.overlays.default
-					inputs.helix.overlays.default
-					inputs.rust-overlay.overlays.default
-				];
+				overlays = overlays;
 			};
-
 
 			config-files = {
 				hyprland = {
@@ -75,6 +77,7 @@
 			nixpkgs = {
 				system = system;
 				config.allowUnfree = true;
+				overlays = overlays;
 			};
 
 			nixosConfigurations = {
