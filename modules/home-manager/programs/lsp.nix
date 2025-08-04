@@ -17,5 +17,7 @@
     emmet-ls
     biome
     lua-language-server
+    stylua
+    prettier
 	];
 }

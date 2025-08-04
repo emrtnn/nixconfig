@@ -88,22 +88,22 @@
 				}
 				{
 					name = "typescript";
-		      language-servers = [ { name = "vstls"; except-features = ["format"];} "biome"];
+		      language-servers = [ { name = "vtsls"; except-features = ["format"];} "biome"];
 		      auto-format = true;
 				}
 				{
 					name = "tsx";
-					language-servers = [ {name = "vstls"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
+					language-servers = [ {name = "vtsls"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
 		      auto-format = true;
 				}
 				{
 					name = "javascript";
-		      language-servers = [ { name = "vstls"; except-features = ["format"];} "biome"];
+		      language-servers = [ { name = "vtsls"; except-features = ["format"];} "biome"];
 		      auto-format = true;
 				}
 				{
 					name = "jsx";
-					language-servers = [ {name = "vstls"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
+					language-servers = [ {name = "vtsls"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
 		      auto-format = true;
 				}
 				{
