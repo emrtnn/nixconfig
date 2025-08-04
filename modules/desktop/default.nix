@@ -24,6 +24,7 @@
     gcc
     mold
     lld
+    gnumake
 	];
 
 	xdg.portal.enable = true;
