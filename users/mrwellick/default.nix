@@ -106,6 +106,9 @@
     "btop/btop.conf".source = config-files.btop.config;
     "btop/themes/btop.theme".source = config-files.btop.theme;
 
+    # Yazi
+    "yazi/theme.toml".source = config-files.yazi.theme;
+
     # Neovim
     "nvim/".source = config-files.nvim;
   };

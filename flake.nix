@@ -59,6 +59,7 @@
         };
         yazi = {
           initLua = ./config-files/yazi/init.lua;
+          theme = ./config-files/yazi/theme.toml;
         };
         waybar = {
           config = ./config-files/waybar/config.jsonc;
