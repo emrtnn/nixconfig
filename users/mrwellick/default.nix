@@ -17,6 +17,7 @@
 		../../modules/home-manager/programs/mtp.nix
 		../../modules/home-manager/programs/github-cli.nix
 		../../modules/home-manager/programs/direnv.nix
+		../../modules/home-manager/programs/walker.nix
 	];
 
 	home.packages = with pkgs; [
@@ -81,39 +82,28 @@
 		allowDuplicates = false;
 	};
 
-	programs.wofi = {
-		enable = true;
-		settings = {
-			location = "center";
-			show ="drun";
-	 		prompt ="Search...";
-	 		allow_markup = true;
-	 		allow_images = true;
-	 		image_size = 40;
-	 		orientation = "vertical";
-	 		content_halign = "fill";
-	 		halign = "fill";
-	 		insensitive = true;
-	 		gtk_dark = true;
-	 		no_actions = true;
-	 		filter_rate = 100;
-	 		width = 600;
-	 		height = 350;
-		};
-	};
-
 	programs.vesktop = {
 		enable = true;
 	};
 
 	xdg.configFile = {
+		# Hyprland
 		"hypr/hyprland.conf".source = config-files.hyprland.config;
+
+		# Hyprlock
+		"hypr/hyprlock.conf".source = config-files.hyprlock.config;
+
+		# Hypridle
+		"hypr/hypridle.conf".source = config-files.hypridle.config;
+
+		# Waybar
 		"waybar/config".source = config-files.waybar.config;
 		"waybar/style.css".source = config-files.waybar.styleCss;
-		"waybar/tokyo-night.css".source = config-files.waybar.tokyoNightCss;
-		"hypr/hyprlock.conf".source = config-files.hyprlock.config;
-		"hypr/mocha.conf".source = config-files.hyprlock.mochaTheme;
-		"hypr/hypridle.conf".source = config-files.hypridle.config;
+		"waybar/kanagawa.css".source = config-files.waybar.kanagawaCss;
+
+    # Btop
+    "btop/btop.conf".source = config-files.btop.config;
+    "btop/themes/btop.theme".source = config-files.btop.theme;
 	};
 
 	home.file = {

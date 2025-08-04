@@ -1,5 +1,5 @@
 {
-  description = "Mr. Wellick Nixos Configuration";
+  description = "Nixos Configuration";
 
   inputs = {
     home-manager = {
@@ -14,7 +14,8 @@
 		yazi.url = "github:sxyazi/yazi";
 		helix.url = "github:helix-editor/helix";
 		rust-overlay.url = "github:oxalica/rust-overlay";
-		neovim-nighly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+		neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+		walker.url = "github:abenz1267/walker";
   };
 
 	outputs = { self, nixpkgs, home-manager, ... } @inputs:
@@ -25,6 +26,7 @@
 				yazi.overlays.default
 				helix.overlays.default
 				rust-overlay.overlays.default
+				neovim-nightly-overlay.overlays.default
 			];
 
 			pkgs = import nixpkgs {
@@ -53,13 +55,12 @@
 					initLua = ./config-files/yazi/init.lua;
 				};
 				waybar = {
-					config = ./config-files/waybar/config;
+					config = ./config-files/waybar/config.jsonc;
 					styleCss = ./config-files/waybar/style.css;
-					tokyoNightCss = ./config-files/waybar/tokyo-night.css;
+					kanagawaCss = ./config-files/waybar/kanagawa.css;
 				};
 				hyprlock = {
 					config = ./config-files/hypr/hyprlock.conf;
-					mochaTheme = ./config-files/hypr/mocha.conf;
 				};
 				hypridle = {
 					config = ./config-files/hypr/hypridle.conf;
@@ -70,6 +71,10 @@
 				cursors = {
 					breezeBlack = ./config-files/cursor-themes/BreezeX-Black-hyprcursor;
 				};
+        btop = {
+          config = ./config-files/btop/btop.conf;
+          theme = ./config-files/btop/btop.theme;
+        };
 			};
 		in
 		{

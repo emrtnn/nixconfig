@@ -1,120 +1,51 @@
-/* Import the Tokyo Night color palette */
-@import "tokyo-night.css";
+@import "./kanagawa.css";
 
 * {
-  font-family: FantasqueSansMono Nerd Font;
-  font-size: 17px;
-  min-height: 0;
-}
-
-#waybar {
-  background: transparent;
+  background-color: @background;
   color: @foreground;
-  margin: 0px 0px;
+
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: CaskaydiaCove Nerd Font Mono;
+  font-size: 16px;
 }
 
-/* A single class for all modules to define consistent spacing */
-.module-group {
-  background-color: @module-bg;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  margin-top: 5px;
-  /* This is the key: a single value for gaps between modules */
-  margin-right: 1rem; 
+.modules-left {
+  margin-left: 8px;
 }
 
-/* --- Workspaces --- */
-#workspaces {
-  background-color: @module-bg;
-  border-radius: 0.5rem;
-  margin-top: 5px;
-  padding: 0.5rem 0.5rem;
-  /* Set consistent outer and inner margins */
-  margin-left: 0.5rem;
-  margin-right: 1rem;
+.modules-right {
+  margin-right: 8px;
 }
 
 #workspaces button {
-  color: @gray;
-  border-radius: 0.5rem;
-  padding: 0.25rem;
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
 }
 
-#workspaces button.active {
-  color: @cyan;
-  border-radius: 0.5rem;
+#workspaces button.empty {
+  opacity: 0.5;
 }
 
-#workspaces button:hover {
-  color: @blue;
-  border-radius: 0.5rem;
-}
-
-/* --- Center Modules --- */
-#clock, #custom-music {
-  background-color: @module-bg;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  margin-top: 5px;
-  /* Consistent gap */
-  margin-right: 1rem;
-}
-
-#clock {
-  color: @blue;
-}
-
-#custom-music {
-  color: @magenta;
-}
-
-
-/* --- Right-side Modules --- */
-#network,
+#tray,
 #cpu,
-#memory,
 #battery,
+#network,
 #pulseaudio,
-#custom-lock,
-#custom-power {
-  background-color: @module-bg;
-  color: @foreground; /* Set a base color */
-  padding: 0.5rem 1rem; /* Make padding consistent for all */
-  margin-top: 5px;
-}
-
-/* --- Individual Module Styling --- */
-
-/* The first module on the right */
-#network {
-  color: @cyan;
-  border-radius: 0.5rem 0 0 0.5rem;
-}
-
-#cpu {
-  color: @yellow;
-  border-radius: 0;
-}
-
-#memory {
-  color: @red;
-  border-radius: 0;
-}
-
-#pulseaudio {
-  color: @blue;
-  border-radius: 0;
-}
-
+#clock,
+#custom-power,
 #custom-lock {
-  color: @yellow;
-  border-radius: 0;
+  min-width: 12px;
+  margin: 0 7.5px;
 }
 
-/* The last module on the right */
-#custom-power {
-  color: @red;
-  border-radius: 0 0.5rem 0.5rem 0;
-  /* This is the final outer margin */
-  margin-right: 0.5rem;
+#custom-expand-icon {
+  margin-right: 12px;
+}
+
+tooltip {
+  padding: 2px;
 }
