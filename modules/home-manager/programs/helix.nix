@@ -88,22 +88,22 @@
 				}
 				{
 					name = "typescript";
-		      language-servers = [ { name = "typescript-language-server"; except-features = ["format"];} "biome"];
+		      language-servers = [ { name = "vstls"; except-features = ["format"];} "biome"];
 		      auto-format = true;
 				}
 				{
 					name = "tsx";
-					language-servers = [ {name = "typescript-language-server"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
+					language-servers = [ {name = "vstls"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
 		      auto-format = true;
 				}
 				{
 					name = "javascript";
-		      language-servers = [ { name = "typescript-language-server"; except-features = ["format"];} "biome"];
+		      language-servers = [ { name = "vstls"; except-features = ["format"];} "biome"];
 		      auto-format = true;
 				}
 				{
 					name = "jsx";
-					language-servers = [ {name = "typescript-language-server"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
+					language-servers = [ {name = "vstls"; except-features = ["format"];} "biome" "vscode-html-language-server" "tailwindcss-language-server" "emmet-ls"];
 		      auto-format = true;
 				}
 				{
@@ -315,21 +315,4 @@
 		};
 	};
 
-	home.packages = with pkgs; [
-		nil
-		vscode-langservers-extracted
-		hyprls
-		marksman
-		docker-compose-language-service
-		dockerfile-language-server-nodejs
-		tailwindcss-language-server
-		yaml-language-server
-    rust-analyzer
-    ruff
-    gopls
-    typescript-language-server
-    pyright
-    emmet-ls
-    biome
-	];
 }

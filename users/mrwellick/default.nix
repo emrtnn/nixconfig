@@ -18,6 +18,7 @@
 		../../modules/home-manager/programs/github-cli.nix
 		../../modules/home-manager/programs/direnv.nix
 		../../modules/home-manager/programs/walker.nix
+		../../modules/home-manager/programs/lsp.nix
 	];
 
 	home.packages = with pkgs; [
