@@ -17,7 +17,6 @@ return {
 		options = {
 			diagnostics = "nvim_lsp",
 			always_show_bufferline = false,
-			mode = "tabs",
 			separator_style = "slant",
 		},
 	},

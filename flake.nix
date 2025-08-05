@@ -72,9 +72,7 @@
         hypridle = {
           config = ./config-files/hypr/hypridle.conf;
         };
-        wallpapers = {
-          mountain = ./config-files/wallpapers/mountain_wp.jpeg;
-        };
+        wallpapers = ./config-files/wallpapers;
         cursors = {
           breezeBlack = ./config-files/cursor-themes/BreezeX-Black-hyprcursor;
         };

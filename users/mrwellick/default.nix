@@ -114,10 +114,8 @@
   };
 
   home.file = {
-    # Wallpapers
-    ".wallpapers/mountain_wp.jpeg" = {
-      source = config-files.wallpapers.mountain;
-    };
+    # Wallpaper
+    ".wallpapers/".source = config-files.wallpapers;
 
     # Cursor styles
     ".local/share/icons/BreezeX-Black-hyprcursor" = {
