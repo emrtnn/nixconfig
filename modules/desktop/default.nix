@@ -1,33 +1,39 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
 
-	programs.hyprland = {
-		enable = true;
-		xwayland.enable = true;
-	};
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
-	programs.regreet = {
-		enable = true;
-	};
+  programs.regreet = {
+    enable = true;
+  };
 
+  programs.waybar = {
+    enable = true;
+  };
 
-	programs.waybar = {
-		enable = true;
-	};
-	
-	environment.sessionVariables = {
-		NIXOS_OZONE_WL = "1";
-	};
+  environment.variables = {
+    EDITOR = "nvim";
+  };
 
-	environment.systemPackages = with pkgs; [
-		clang
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
+  environment.systemPackages = with pkgs; [
+    clang
     gcc
     mold
     lld
     gnumake
-	];
+  ];
 
-	xdg.portal.enable = true;
-	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland];
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-hyprland
+  ];
 
 }
