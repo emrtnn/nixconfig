@@ -10,7 +10,7 @@
 
 	nixpkgs.config.allowUnfree = true;
 
-	networking.hostName = "mrwellick-nixos";
+	networking.hostName = "nixos";
 
 	time.timeZone = "Europe/Madrid";
 

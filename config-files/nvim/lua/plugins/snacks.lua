@@ -17,5 +17,12 @@ return {
 			end,
 			desc = "Delete Other Buffers",
 		},
+		{
+			"<leader>bd",
+			function()
+				require("snacks.bufdelete").delete()
+			end,
+			desc = "Delete current buffer",
+		},
 	},
 }

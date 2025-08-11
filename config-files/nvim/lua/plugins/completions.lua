@@ -13,6 +13,7 @@ return {
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 		local luasnip = require("luasnip")
 		local compare = require("cmp.config.compare")
+		local defaults = require("cmp.config.default")()
 
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
@@ -26,17 +27,6 @@ return {
 				completion = cmp.config.window.bordered(),
 				docuemntation = cmp.config.window.bordered(),
 			},
-			sorting = {
-				comparators = {
-					compare.exact,
-					compare.score,
-					compare.recently_used,
-					compare.kind,
-					compare.sort_text,
-					compare.length,
-					compare.offset,
-				},
-			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-p>"] = cmp.mapping.select_prev_item(),
 				["<C-n>"] = cmp.mapping.select_next_item(),
@@ -47,11 +37,11 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			sources = cmp.config.sources({
-				{ name = "buffer" },
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
 				{ name = "path" },
+				{ name = "luasnip" },
 			}),
+			sorting = defaults.sorting,
 		})
 	end,
 }
