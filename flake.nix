@@ -80,6 +80,9 @@
           config = ./config-files/btop/btop.conf;
           theme = ./config-files/btop/btop.theme;
         };
+        fastfetch = {
+          config = ./config-files/fastfetch/config.jsonc;
+        };
         nvim = ./config-files/nvim;
       };
     in

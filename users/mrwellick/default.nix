@@ -109,6 +109,9 @@
     # Yazi
     "yazi/theme.toml".source = config-files.yazi.theme;
 
+    # Fastetch
+    "fastfetch/config.jsonc".source = config-files.fastfetch.config;
+
     # Neovim
     "nvim/".source = config-files.nvim;
   };
