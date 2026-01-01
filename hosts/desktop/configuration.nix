@@ -7,7 +7,6 @@
   imports = [
     ./hardware-configuration.nix
     ./fonts.nix
-    ./hosts/x86_64-nvidia.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -54,6 +53,16 @@
 
   # Terminal autologin manager
   services.getty.autologinUser = "impuremonad";
+
+  services.xserver.videoDrivers = ["nvidia"];
+  hardware = {
+    graphics.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      open = true;
+      powerManagement.enable = true;
+    };
+  };
 
   programs.hyprland = {
     enable = true;
