@@ -2,5 +2,7 @@
 result
 result-*
 
+hardware-configuration.nix
+
 # Ignore automatically generated direnv output
 .direnv
