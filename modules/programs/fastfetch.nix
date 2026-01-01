@@ -3,8 +3,6 @@
     enable = true;
 
     settings = {
-      "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
-
       logo = {
         color = {"1" = "green";};
         padding = {
@@ -17,10 +15,11 @@
       modules = [
         "break"
 
-        # --- Hardware ---
+        # --- Hardware (Green) ---
         {
           type = "custom";
-          format = "\\u001b[32m┌──────────────────────Hardware──────────────────────┐";
+          # Use {#32} for Green instead of \\u001b[32m
+          format = "{#32}┌──────────────────────Hardware──────────────────────┐";
         }
         {
           type = "host";
@@ -61,15 +60,16 @@
         }
         {
           type = "custom";
-          format = "\\u001b[32m└────────────────────────────────────────────────────┘";
+          format = "{#32}└────────────────────────────────────────────────────┘";
         }
 
         "break"
 
-        # --- Software ---
+        # --- Software (Yellow) ---
         {
           type = "custom";
-          format = "\\u001b[33m┌──────────────────────Software──────────────────────┐";
+          # Use {#33} for Yellow
+          format = "{#33}┌──────────────────────Software──────────────────────┐";
         }
         {
           type = "kernel";
@@ -105,7 +105,8 @@
           type = "command";
           key = "│ ├󰸌";
           keyColor = "yellow";
-          text = ''echo -e "$theme \e[38m●\e[37m●\e[36m●\e[35m●\e[34m●\e[33m●\e[32m●\e[31m●"'';
+          # Note: We use printf instead of echo -e for better reliability
+          text = ''printf "$theme \033[38m●\033[37m●\033[36m●\033[35m●\033[34m●\033[33m●\033[32m●\033[31m●"'';
         }
         {
           type = "terminalfont";
@@ -114,15 +115,16 @@
         }
         {
           type = "custom";
-          format = "\\u001b[33m└────────────────────────────────────────────────────┘";
+          format = "{#33}└────────────────────────────────────────────────────┘";
         }
 
         "break"
 
-        # --- Uptime / Age ---
+        # --- Uptime / Age (Magenta) ---
         {
           type = "custom";
-          format = "\\u001b[35m┌────────────────────Uptime / Age────────────────────┐";
+          # Use {#35} for Magenta
+          format = "{#35}┌────────────────────Uptime / Age────────────────────┐";
         }
         {
           type = "command";
@@ -137,7 +139,7 @@
         }
         {
           type = "custom";
-          format = "\\u001b[35m└────────────────────────────────────────────────────┘";
+          format = "{#35}└────────────────────────────────────────────────────┘";
         }
 
         "break"
