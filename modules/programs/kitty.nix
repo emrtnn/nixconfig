@@ -16,8 +16,8 @@
       italic_font = "auto";
       bold_italic_font = "auto";
 
-      window_padding_width = 14;
-      window_padding_height = 14;
+      window_padding_width = 7;
+      window_padding_height = 7;
       hide_window_decorations = "yes";
       show_window_resize_notification = "no";
       confirm_os_window_close = 0;

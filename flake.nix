@@ -26,7 +26,7 @@
     nixosConfigurations.monad = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        ./configuration.nix
+        ./hosts/desktop/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {
