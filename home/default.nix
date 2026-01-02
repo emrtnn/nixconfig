@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -43,5 +42,9 @@
         exec uwsm start hyprland-uwsm.desktop
       fi
     '';
+  };
+  home.file."Pictures/Wallpapers" = {
+    source = ../wallpapers;
+    recursive = true;
   };
 }

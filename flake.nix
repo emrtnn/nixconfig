@@ -22,10 +22,6 @@
   outputs = {
     nixpkgs,
     home-manager,
-    hyprland,
-    nvf,
-    yazi,
-    quickshell,
     ...
   } @ inputs: {
     nixosConfigurations.monad = nixpkgs.lib.nixosSystem {
