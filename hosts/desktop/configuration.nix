@@ -88,7 +88,7 @@
       "networkmanager"
       "wheel"
     ];
-    shell = pkgs.nushell;
+    shell = pkgs.bash;
   };
 
   environment.systemPackages = with pkgs; [
