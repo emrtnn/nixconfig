@@ -21,7 +21,8 @@
     fd
     tree
     brave
-    chromium
+    google-chrome
+    nautilus
     bitwarden-desktop
   ];
 

@@ -33,6 +33,8 @@
     LC_TIME = "es_ES.UTF-8";
   };
 
+  programs.dconf.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
