@@ -170,7 +170,7 @@
             ''
               {
                 function()
-                  local clients = vim.lsp.get_active_clients()
+                  local clients = vim.lsp.get_clients()
                   if next(clients) == nil then return "No LSP" end
                   return clients[1].name
                 end,
