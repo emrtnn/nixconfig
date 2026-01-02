@@ -251,7 +251,72 @@
           };
         };
 
-        autocomplete.blink-cmp.enable = true;
+        snippets.luasnip.enable = true;
+
+        autocomplete.nvim-cmp = {
+          enable = true;
+          sources = {
+            nvim_lsp = "[LSP]";
+            path = "[Path]";
+            luasnip = "[Snip]";
+          };
+          mappings = {
+            complete = "<C-Space>";
+            confirm = "<CR>";
+            next = "<C-n>";
+            previous = "<C-p>";
+            close = "<C-e>";
+            scrollDocsUp = "<C-b>";
+            scrollDocsDown = "<C-f>";
+          };
+          format = {
+            _type = "lua-inline";
+            expr = ''
+              function(entry, item)
+                local icons = {
+                  Text = "󰉿", Method = "󰆧", Function = "󰊕", Constructor = "",
+                  Field = "󰜢", Variable = "󰀫", Class = "󰠱", Interface = "",
+                  Module = "", Property = "󰜢", Unit = "󰑭", Value = "󰎠",
+                  Enum = "", Keyword = "󰌋", Snippet = "", Color = "󰏘",
+                  File = "󰈙", Reference = "󰈇", Folder = "󰉋", EnumMember = "",
+                  Constant = "󰏿", Struct = "󰙅", Event = "", Operator = "󰆕",
+                  TypeParameter = ""
+                }
+
+                if icons[item.kind] then
+                  item.kind = icons[item.kind] .. " " .. item.kind
+                end
+
+                local widths = { abbr = 40, menu = 30 }
+                for key, width in pairs(widths) do
+                  if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
+                    item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. "…"
+                  end
+                end
+
+                return item
+              end
+            '';
+          };
+          setupOpts = {
+            experimental = {
+              ghost_text = true;
+            };
+            completion = {
+              completeopt = "menu,menuone,noinsert";
+            };
+            window = {
+              completion = {
+                border = "rounded";
+                winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None";
+              };
+              documentation = {
+                border = "rounded";
+                winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None";
+              };
+            };
+          };
+        };
 
         clipboard = {
           enable = true;
@@ -532,6 +597,215 @@
               resize_right = "<A-l>";
             };
           };
+          motion = {
+            flash-nvim = {
+              enable = true;
+              setupOpts = {
+                labels = "asdfghjklqwertyuiopzxcvbnm";
+                search = {
+                  mode = "fuzzy";
+                };
+              };
+              mappings = {
+                jump = "s";
+                treesitter = "S";
+              };
+            };
+          };
+        };
+        visuals = {
+          indent-blankline = {
+            enable = true;
+            setupOpts = {
+              scope = {
+                enabled = true;
+                show_start = true;
+              };
+            };
+          };
+        };
+        ui = {
+          nvim-highlight-colors = {
+            enable = true;
+            setupOpts = {
+              render = "background";
+              enable_tailwind = true;
+            };
+          };
+        };
+        dashboard.alpha = {
+          enable = true;
+          theme = null;
+          layout = [
+            {
+              type = "padding";
+              val = 7;
+            }
+            {
+              type = "text";
+              val = [
+                "                                                                         "
+                "                                                                       "
+                "       ████ ██████           █████       ██                      "
+                "      ███████████             █████                               "
+                "      █████████ ███████████████████ ███   ███████████     "
+                "     █████████  ███    █████████████ █████ ██████████████     "
+                "    █████████ ██████████ █████████ █████ █████ ████ █████     "
+                "  ███████████ ███    ███ █████████ █████ █████ ████ █████    "
+                " ██████  █████████████████████ ████ █████ █████ ████ ██████   "
+                "                                                                         "
+              ];
+              opts = {
+                hl = "Type";
+                position = "center";
+              };
+            }
+
+            {
+              type = "padding";
+              val = 2;
+            }
+
+            {
+              type = "group";
+              val = [
+                {
+                  type = "button";
+                  val = "  Find File";
+                  on_press = {__raw = "function() require('telescope.builtin').find_files() end";};
+                  opts = {
+                    shortcut = "f";
+                    keymap = [
+                      "n"
+                      "f"
+                      "<cmd>Telescope find_files<CR>"
+                      {
+                        noremap = true;
+                        silent = true;
+                        nowait = true;
+                      }
+                    ];
+                    position = "center";
+                    hl = "Function";
+                    cursor = 3;
+                    width = 40;
+                    align_shortcut = "right";
+                    hl_shortcut = "Keyword";
+                  };
+                }
+                {
+                  type = "button";
+                  val = "  New File";
+                  on_press = {__raw = "function() vim.cmd[[ene]] vim.cmd[[startinsert]] end";};
+                  opts = {
+                    shortcut = "n";
+                    keymap = [
+                      "n"
+                      "n"
+                      "<cmd>ene <BAR> startinsert<CR>"
+                      {
+                        noremap = true;
+                        silent = true;
+                        nowait = true;
+                      }
+                    ];
+                    position = "center";
+                    hl = "Function";
+                    cursor = 3;
+                    width = 40;
+                    align_shortcut = "right";
+                    hl_shortcut = "Keyword";
+                  };
+                }
+                {
+                  type = "button";
+                  val = "  Recent";
+                  on_press = {__raw = "function() require('telescope.builtin').oldfiles() end";};
+                  opts = {
+                    shortcut = "r";
+                    keymap = [
+                      "n"
+                      "r"
+                      "<cmd>Telescope oldfiles<CR>"
+                      {
+                        noremap = true;
+                        silent = true;
+                        nowait = true;
+                      }
+                    ];
+                    position = "center";
+                    hl = "Function";
+                    cursor = 3;
+                    width = 40;
+                    align_shortcut = "right";
+                    hl_shortcut = "Keyword";
+                  };
+                }
+                {
+                  type = "button";
+                  val = "  Grep";
+                  on_press = {__raw = "function() require('telescope.builtin').live_grep() end";};
+                  opts = {
+                    shortcut = "g";
+                    keymap = [
+                      "n"
+                      "g"
+                      "<cmd>Telescope live_grep<CR>"
+                      {
+                        noremap = true;
+                        silent = true;
+                        nowait = true;
+                      }
+                    ];
+                    position = "center";
+                    hl = "Function";
+                    cursor = 3;
+                    width = 40;
+                    align_shortcut = "right";
+                    hl_shortcut = "Keyword";
+                  };
+                }
+                {
+                  type = "button";
+                  val = "  Quit";
+                  on_press = {__raw = "function() vim.cmd[[qa]] end";};
+                  opts = {
+                    shortcut = "q";
+                    keymap = [
+                      "n"
+                      "q"
+                      "<cmd>qa<CR>"
+                      {
+                        noremap = true;
+                        silent = true;
+                        nowait = true;
+                      }
+                    ];
+                    position = "center";
+                    hl = "Function";
+                    cursor = 3;
+                    width = 40;
+                    align_shortcut = "right";
+                    hl_shortcut = "Keyword";
+                  };
+                }
+              ];
+            }
+
+            {
+              type = "padding";
+              val = 2;
+            }
+
+            {
+              type = "text";
+              val = "λ Purely Functional Editing";
+              opts = {
+                hl = "Comment";
+                position = "center";
+              };
+            }
+          ];
         };
       };
     };
