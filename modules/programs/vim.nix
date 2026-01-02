@@ -515,6 +515,23 @@
               ring.storage = "sqlite";
             };
           };
+          smart-splits = {
+            enable = true;
+
+            # 2. Define the keymaps using the native NVF options
+            keymaps = {
+              move_cursor_left = "<C-h>";
+              move_cursor_down = "<C-j>";
+              move_cursor_up = "<C-k>";
+              move_cursor_right = "<C-l>";
+
+              # Optional: Resize keys (matches the Tmux config below)
+              resize_left = "<A-h>";
+              resize_down = "<A-j>";
+              resize_up = "<A-k>";
+              resize_right = "<A-l>";
+            };
+          };
         };
       };
     };
