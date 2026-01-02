@@ -14,7 +14,6 @@
   ];
 
   home.packages = with pkgs; [
-    fastfetch
     bat
     fzf
     lazygit
@@ -22,7 +21,7 @@
     fd
     tree
     brave
-    stow
+    chromium
     bitwarden-desktop
   ];
 
