@@ -99,6 +99,7 @@
       unbind C-b
       bind-key C-a send-prefix
 
+      bind ^L send-keys 'clear'\; send-keys 'Enter'
       bind ^X lock-server
       bind c new-window -c "#{pane_current_path}"
       bind ^D detach
