@@ -12,6 +12,8 @@
       package = pkgs.nerd-fonts.jetbrains-mono;
     };
     settings = {
+      shell = "${pkgs.nushell}/bin/nu";
+
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";
