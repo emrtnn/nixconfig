@@ -10,12 +10,41 @@
     historyLimit = 100000;
     terminal = "xterm-256color";
 
+    shell = "${pkgs.nushell}/bin/nu";
+
     # --- Plugins ---
     plugins = with pkgs.tmuxPlugins; [
       sensible
       yank
-      vim-tmux-navigator
       tmux-fzf
+      {
+        plugin = mkTmuxPlugin {
+          pluginName = "smart-splits";
+          version = "v2.0.5";
+          rtpFilePath = "smart-splits.tmux";
+          src = pkgs.fetchFromGitHub {
+            owner = "mrjones2014";
+            repo = "smart-splits.nvim";
+            rev = "v2.0.5";
+            sha256 = "sha256-EqnSGTyADvIpHxN3jZxwetENdqv/XUossUzrEvLHHMk=";
+          };
+        };
+
+        # 2. Configure using the official docs variables
+        extraConfig = ''
+          set -g @smart-splits_move_left_key  'C-h'
+          set -g @smart-splits_move_down_key  'C-j'
+          set -g @smart-splits_move_up_key    'C-k'
+          set -g @smart-splits_move_right_key 'C-l'
+
+          set -g @smart-splits_resize_left_key  'M-h'
+          set -g @smart-splits_resize_down_key  'M-j'
+          set -g @smart-splits_resize_up_key    'M-k'
+          set -g @smart-splits_resize_right_key 'M-l'
+
+          set -g @smart-splits_resize_step_size '3'
+        '';
+      }
       {
         plugin = tmux-floax;
         extraConfig = ''
