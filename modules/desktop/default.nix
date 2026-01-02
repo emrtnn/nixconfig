@@ -11,6 +11,6 @@
     ../programs/fastfetch.nix
     ../programs/opencode.nix
     ../programs/tmux.nix
-    ../programs/gtk.nix
+    ../programs/direnv.nix
   ];
 }
