@@ -24,6 +24,11 @@
     google-chrome
     nautilus
     bitwarden-desktop
+    (inputs.quickshell.packages.${pkgs.system}.default.withModules (with pkgs.qt6; [
+      qtsvg
+      qt5compat
+      qtimageformats
+    ]))
   ];
 
   home.sessionVariables = {
