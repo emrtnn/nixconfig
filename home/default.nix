@@ -82,4 +82,11 @@
       gtk-application-prefer-dark-theme = 1;
     };
   };
+
+  services.gnome-keyring = {
+    enable = true;
+    components = [
+      "secrets"
+    ];
+  };
 }
