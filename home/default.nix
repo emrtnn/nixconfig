@@ -87,6 +87,7 @@
     enable = true;
     components = [
       "secrets"
+      "ssh"
     ];
   };
 }
