@@ -104,6 +104,13 @@
         $input | nu-highlight
       }
 
+      def rcopy [] {
+        ls **/* | where type == file
+        | each { |it| $"($it.name)\n(open $it.name)\n" }
+        | str join "\n"
+        | wl-copy
+      }
+
       def "nu-keybind commandline-copy" []: nothing -> nothing {
         commandline
         | nu-highlight-default
