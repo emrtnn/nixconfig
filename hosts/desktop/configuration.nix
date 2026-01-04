@@ -14,6 +14,10 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  zramSwap.memoryMax = {
+    enable = true;
+  };
+
   networking.hostName = "monad";
   networking.networkmanager.enable = true;
 
