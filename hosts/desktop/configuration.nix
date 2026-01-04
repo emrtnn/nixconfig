@@ -47,7 +47,10 @@
     jack.enable = true;
   };
 
-  programs.ssh.startAgent = true;
+  programs.ssh.startAgent = false;
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.hyprland.enableGnomeKeyring = true;
 
   services.openssh = {
     enable = true;
