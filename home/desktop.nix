@@ -22,6 +22,7 @@
     ../modules/programs/tmux.nix
     ../modules/programs/direnv.nix
     ../modules/programs/zsh.nix
+    ../modules/programs/vesktop.nix
   ];
 
   home.packages = with pkgs; [
