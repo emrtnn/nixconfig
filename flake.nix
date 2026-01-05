@@ -33,7 +33,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.impuremonad = import ./home;
+            users.impuremonad = import ./home/desktop.nix;
             extraSpecialArgs = {inherit inputs;};
             backupFileExtension = "backup";
           };
