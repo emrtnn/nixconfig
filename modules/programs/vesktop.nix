@@ -1,6 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  pkgs-stable = import inputs.nixpkgs-stable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
+in {
   programs.vesktop = {
     enable = true;
-    useSystem = true;
+    package = pkgs-stable.vesktop;
   };
 }
