@@ -573,6 +573,11 @@
           oil-nvim = {
             enable = true;
             gitStatus.enable = true;
+            setupOpts = {
+              default_file_explorer = true;
+              skip_confirm_for_simple_edits = true;
+              watch_for_changes = true;
+            };
           };
           yanky-nvim = {
             enable = true;
