@@ -46,7 +46,7 @@
     };
 
     profileExtra = ''
-      if uwsm check may-start; then
+      if [ -z "$DISPLAY" ] && [ -z "$TMUX" ] && [ "$XDG_VTNR" = "1" ] && uwsm check may-start; then
         exec uwsm start hyprland-uwsm.desktop
       fi
     '';
