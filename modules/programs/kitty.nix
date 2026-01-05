@@ -34,5 +34,9 @@
       tab_powerline_style = "slanted";
       tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
     };
+    keybindings = {
+      "ctrl+insert" = "copy_from_clipboard";
+      "shift+insert" = "paste_from_clipboard";
+    };
   };
 }
