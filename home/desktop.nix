@@ -9,7 +9,19 @@
 
   imports = [
     inputs.nvf.homeManagerModules.default
-    ../modules/desktop
+    ../modules/programs/carapace.nix
+    ../modules/programs/kitty.nix
+    ../modules/programs/nushell.nix
+    ../modules/programs/starship.nix
+    ../modules/programs/vim.nix
+    ../modules/programs/yazi.nix
+    ../modules/programs/zoxide.nix
+    ../modules/programs/git.nix
+    ../modules/programs/fastfetch.nix
+    ../modules/programs/opencode.nix
+    ../modules/programs/tmux.nix
+    ../modules/programs/direnv.nix
+    ../modules/programs/zsh.nix
   ];
 
   home.packages = with pkgs; [
@@ -31,17 +43,8 @@
   ];
 
   home.sessionVariables = {
-    SHELL = "${pkgs.nushell}/bin/nu";
+    SHELL = "${pkgs.zsh}/bin/zsh";
     BROWSER = "brave";
-  };
-
-  programs.bash = {
-    enable = true;
-    profileExtra = ''
-      if uwsm check may-start; then
-        exec uwsm start hyprland-uwsm.desktop
-      fi
-    '';
   };
 
   home.file."Pictures/Wallpapers" = {

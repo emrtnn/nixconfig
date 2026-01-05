@@ -37,6 +37,7 @@
     LC_TIME = "es_ES.UTF-8";
   };
 
+  programs.zsh.enable = true;
   programs.dconf.enable = true;
 
   services.pipewire = {
@@ -97,7 +98,7 @@
       "networkmanager"
       "wheel"
     ];
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
   };
 
   environment.systemPackages = with pkgs; [
