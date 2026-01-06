@@ -22,7 +22,7 @@
           cursorline = true;
           scrolloff = 4;
           sidescrolloff = 8;
-          wrap = true;
+          wrap = false;
 
           termguicolors = true;
           signcolumn = "yes";

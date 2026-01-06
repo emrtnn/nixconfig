@@ -13,7 +13,7 @@
       };
 
       keybinds = {
-        input_newline = "ctrl+n";
+        input_newline = "shift+insert";
       };
 
       mcp = {
