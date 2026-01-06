@@ -15,15 +15,27 @@
     autocd = true;
 
     history = {
-      size = 100000;
-      save = 100000;
+      size = 10000;
+      save = 10000;
       share = true;
+      append = true;
+      expireDuplicatesFirst = true;
+      saveNoDups = true;
+      findNoDups = true;
       ignoreDups = true;
+      ignoreSpace = true;
+    };
+
+    historySubstringSearch = {
+      enable = true;
+      searchUpKey = "^p";
+      searchDownKey = "^n";
     };
 
     defaultKeymap = "viins";
 
     shellAliases = {
+      ls = "eza";
       cat = "bat";
       grep = "rg";
       pfzf = "fzf --preview='bat --color=always {}'";
@@ -58,11 +70,14 @@
     initContent = ''
       # Vi Mode
       bindkey "^?" backward-delete-char
-
       autoload -U edit-command-line
       zle -N edit-command-line
       bindkey -M vicmd 'v' visual-mode
       bindkey -M vicmd '^v' edit-command-line
+
+      # Ignore completion case
+      zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
+      zstyle ":completion:*" list-colors "\$\{(s.:.)LS_COLORS\}"
 
       fastfetch
     '';

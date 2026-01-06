@@ -24,11 +24,11 @@
     ../modules/programs/zsh.nix
     ../modules/programs/vesktop.nix
     ../modules/programs/btop.nix
+    ../modules/programs/fzf.nix
   ];
 
   home.packages = with pkgs; [
     bat
-    fzf
     lazygit
     ripgrep
     fd
