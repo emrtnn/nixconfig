@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   home.username = "impuremonad";
@@ -49,11 +50,6 @@
     BROWSER = "brave";
   };
 
-  home.file."Pictures/Wallpapers" = {
-    source = ../wallpapers;
-    recursive = true;
-  };
-
   home.pointerCursor = {
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
@@ -99,5 +95,15 @@
   services.cliphist = {
     enable = true;
     allowImages = true;
+  };
+
+  xdg.configFile."hypr" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/hypr";
+    recursive = true;
+  };
+
+  home.file."Pictures/Wallpapers" = {
+    source = ../wallpapers;
+    recursive = true;
   };
 }
