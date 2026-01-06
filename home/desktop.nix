@@ -23,6 +23,7 @@
     ../modules/programs/direnv.nix
     ../modules/programs/zsh.nix
     ../modules/programs/vesktop.nix
+    ../modules/programs/btop.nix
   ];
 
   home.packages = with pkgs; [
