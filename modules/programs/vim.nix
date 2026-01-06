@@ -86,7 +86,10 @@
           }
           {
             key = "ih";
-            mode = ["o" "x"];
+            mode = [
+              "o"
+              "x"
+            ];
             action = ":<C-U>Gitsigns select_hunk<CR>";
             desc = "GitSigns Select Hunk";
           }
@@ -115,6 +118,53 @@
           name = "gruvbox";
           style = "dark";
           transparent = false;
+        };
+
+        treesitter = {
+          enable = true;
+          highlight.enable = true;
+          indent.enable = true;
+          fold = true;
+          autotagHtml = true;
+          addDefaultGrammars = true;
+
+          textobjects = {
+            enable = true;
+            setupOpts = {
+              move = {
+                enable = true;
+                set_jumps = true;
+                goto_next_start = {
+                  "]f" = "@function.outer";
+                  "]c" = "@class.outer";
+                  "]a" = "@parameter.inner";
+                };
+                goto_next_end = {
+                  "]F" = "@function.outer";
+                  "]C" = "@class.outer";
+                  "]A" = "@parameter.inner";
+                };
+                goto_previous_start = {
+                  "[f" = "@function.outer";
+                  "[c" = "@class.outer";
+                  "[a" = "@parameter.inner";
+                };
+                goto_previous_end = {
+                  "[F" = "@function.outer";
+                  "[C" = "@class.outer";
+                  "[A" = "@parameter.inner";
+                };
+              };
+            };
+          };
+        };
+
+        diagnostics = {
+          enable = true;
+          nvim-lint = {
+            enable = true;
+            lint_after_save = true;
+          };
         };
 
         statusline.lualine = {
@@ -245,7 +295,12 @@
             pickers = {
               find_files = {
                 hidden = false;
-                find_command = ["${pkgs.fd}/bin/fd" "--type" "f" "--strip-cwd-prefix"];
+                find_command = [
+                  "${pkgs.fd}/bin/fd"
+                  "--type"
+                  "f"
+                  "--strip-cwd-prefix"
+                ];
               };
             };
           };
@@ -259,6 +314,7 @@
             nvim_lsp = "[LSP]";
             path = "[Path]";
             luasnip = "[Snip]";
+            buffer = "[Buffer]";
           };
           mappings = {
             complete = "<C-Space>";
@@ -359,6 +415,9 @@
 
         languages = {
           enableTreesitter = true;
+          enableExtraDiagnostics = true;
+          enableFormat = true;
+          enableDAP = true;
 
           nix = {
             enable = true;
@@ -509,19 +568,41 @@
             enable = true;
             setupOpts = {
               signs = {
-                add = {text = "▎";};
-                change = {text = "▎";};
-                delete = {text = "";};
-                topdelete = {text = "";};
-                changedelete = {text = "▎";};
-                untracked = {text = "▎";};
+                add = {
+                  text = "▎";
+                };
+                change = {
+                  text = "▎";
+                };
+                delete = {
+                  text = "";
+                };
+                topdelete = {
+                  text = "";
+                };
+                changedelete = {
+                  text = "▎";
+                };
+                untracked = {
+                  text = "▎";
+                };
               };
               signs_staged = {
-                add = {text = "▎";};
-                change = {text = "▎";};
-                delete = {text = "";};
-                topdelete = {text = "";};
-                changedelete = {text = "▎";};
+                add = {
+                  text = "▎";
+                };
+                change = {
+                  text = "▎";
+                };
+                delete = {
+                  text = "";
+                };
+                topdelete = {
+                  text = "";
+                };
+                changedelete = {
+                  text = "▎";
+                };
               };
             };
             mappings = {
@@ -547,10 +628,23 @@
         };
 
         mini = {
-          pairs.enable = true;
           ai.enable = true;
           icons.enable = true;
           surround.enable = true;
+        };
+
+        autopairs.nvim-autopairs = {
+          enable = true;
+          setupOpts = {
+            disable_filetype = [
+              "TelescopePrompt"
+              "guihua"
+            ];
+            disable_in_macro = true;
+            ignored_next_char = "[%w%.]";
+            enable_check_bracket_line = true;
+            check_ts = true;
+          };
         };
 
         comments = {
@@ -602,6 +696,20 @@
               resize_right = "<A-l>";
             };
           };
+          snacks-nvim = {
+            enable = true;
+            setupOpts = {
+              indent = {
+                enabled = true;
+              };
+              input = {
+                enabled = true;
+              };
+              notifier = {
+                enabled = true;
+              };
+            };
+          };
           motion = {
             flash-nvim = {
               enable = true;
@@ -618,23 +726,30 @@
             };
           };
         };
-        visuals = {
-          indent-blankline = {
+
+        ui = {
+          borders = {
             enable = true;
-            setupOpts = {
-              scope = {
-                enabled = true;
-                show_start = true;
+            globalStyle = "rounded";
+            plugins = {
+              nvim-cmp = {
+                enable = true;
+                style = "rounded";
+              };
+              which-key = {
+                enable = true;
+                style = "rounded";
               };
             };
           };
-        };
-        ui = {
-          nvim-highlight-colors = {
+
+          colorizer = {
             enable = true;
             setupOpts = {
-              render = "background";
-              enable_tailwind = true;
+              user_default_options = {
+                tailwind = true;
+                mode = "background";
+              };
             };
           };
         };
@@ -677,7 +792,9 @@
                 {
                   type = "button";
                   val = "  Find File";
-                  on_press = {__raw = "function() require('telescope.builtin').find_files() end";};
+                  on_press = {
+                    __raw = "function() require('telescope.builtin').find_files() end";
+                  };
                   opts = {
                     shortcut = "f";
                     keymap = [
@@ -701,7 +818,9 @@
                 {
                   type = "button";
                   val = "  New File";
-                  on_press = {__raw = "function() vim.cmd[[ene]] vim.cmd[[startinsert]] end";};
+                  on_press = {
+                    __raw = "function() vim.cmd[[ene]] vim.cmd[[startinsert]] end";
+                  };
                   opts = {
                     shortcut = "n";
                     keymap = [
@@ -725,7 +844,9 @@
                 {
                   type = "button";
                   val = "  Recent";
-                  on_press = {__raw = "function() require('telescope.builtin').oldfiles() end";};
+                  on_press = {
+                    __raw = "function() require('telescope.builtin').oldfiles() end";
+                  };
                   opts = {
                     shortcut = "r";
                     keymap = [
@@ -749,7 +870,9 @@
                 {
                   type = "button";
                   val = "  Grep";
-                  on_press = {__raw = "function() require('telescope.builtin').live_grep() end";};
+                  on_press = {
+                    __raw = "function() require('telescope.builtin').live_grep() end";
+                  };
                   opts = {
                     shortcut = "g";
                     keymap = [
@@ -773,7 +896,9 @@
                 {
                   type = "button";
                   val = "  Quit";
-                  on_press = {__raw = "function() vim.cmd[[qa]] end";};
+                  on_press = {
+                    __raw = "function() vim.cmd[[qa]] end";
+                  };
                   opts = {
                     shortcut = "q";
                     keymap = [

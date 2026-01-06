@@ -105,6 +105,7 @@
     vim
     wget
     git
+    gcc
 
     # Hyrpland pkgs
     wl-clipboard
