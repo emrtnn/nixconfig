@@ -8,7 +8,7 @@
     themeFile = "gruvbox-dark";
     font = {
       name = "JetBrainsMono Nerd Font Mono";
-      size = 16;
+      size = 13;
       package = pkgs.nerd-fonts.jetbrains-mono;
     };
     settings = {
