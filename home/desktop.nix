@@ -33,6 +33,7 @@
     lazygit
     ripgrep
     fd
+    dnsutils
     tree
     brave
     google-chrome
