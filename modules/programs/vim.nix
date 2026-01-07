@@ -124,12 +124,12 @@
           enable = true;
           highlight.enable = true;
           indent.enable = true;
-          fold = true;
+          fold = false;
           autotagHtml = true;
           addDefaultGrammars = true;
 
           textobjects = {
-            enable = true;
+            enable = false;
             setupOpts = {
               move = {
                 enable = true;
