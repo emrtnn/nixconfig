@@ -129,7 +129,7 @@
           addDefaultGrammars = true;
 
           textobjects = {
-            enable = false;
+            enable = true;
             setupOpts = {
               move = {
                 enable = true;
