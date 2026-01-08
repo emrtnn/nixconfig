@@ -26,6 +26,7 @@
     ../modules/programs/vesktop.nix
     ../modules/programs/btop.nix
     ../modules/programs/fzf.nix
+    ../modules/programs/swappy.nix
   ];
 
   home.packages = with pkgs; [
@@ -39,6 +40,8 @@
     google-chrome
     nautilus
     bitwarden-desktop
+    grim
+    slurp
     (inputs.quickshell.packages.${pkgs.system}.default.withModules (with pkgs.qt6; [
       qtsvg
       qt5compat
