@@ -42,6 +42,7 @@
     bitwarden-desktop
     grim
     slurp
+    hyprpicker
     (inputs.quickshell.packages.${pkgs.system}.default.withModules (with pkgs.qt6; [
       qtsvg
       qt5compat
