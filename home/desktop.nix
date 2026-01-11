@@ -27,6 +27,7 @@
     ../modules/programs/btop.nix
     ../modules/programs/fzf.nix
     ../modules/programs/swappy.nix
+    ../modules/desktop/quickshell.nix
   ];
 
   home.packages = with pkgs; [
@@ -43,11 +44,6 @@
     grim
     slurp
     hyprpicker
-    (inputs.quickshell.packages.${pkgs.system}.default.withModules (with pkgs.qt6; [
-      qtsvg
-      qt5compat
-      qtimageformats
-    ]))
   ];
 
   home.sessionVariables = {
@@ -102,9 +98,15 @@
     allowImages = true;
   };
 
-  xdg.configFile."hypr" = {
-    source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/hypr";
-    recursive = true;
+  xdg.configFile = {
+    "hypr" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/hypr";
+      recursive = true;
+    };
+    "quickshell" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/quickshell";
+      recursive = true;
+    };
   };
 
   home.file."Pictures/Wallpapers" = {
