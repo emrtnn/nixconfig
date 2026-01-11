@@ -11,7 +11,7 @@
   imports = [
     inputs.nvf.homeManagerModules.default
     ../modules/programs/carapace.nix
-    ../modules/programs/kitty.nix
+    ../modules/desktop/kitty.nix
     ../modules/programs/nushell.nix
     ../modules/programs/starship.nix
     ../modules/programs/vim.nix
@@ -26,7 +26,7 @@
     ../modules/programs/vesktop.nix
     ../modules/programs/btop.nix
     ../modules/programs/fzf.nix
-    ../modules/programs/swappy.nix
+    ../modules/desktop/swappy.nix
     ../modules/desktop/quickshell.nix
   ];
 
