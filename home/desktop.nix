@@ -28,6 +28,8 @@
     ../modules/programs/fzf.nix
     ../modules/desktop/swappy.nix
     ../modules/desktop/quickshell.nix
+    ../modules/desktop/hyprlock.nix
+    ../modules/desktop/hypridle.nix
   ];
 
   home.packages = with pkgs; [
