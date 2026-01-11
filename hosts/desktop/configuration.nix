@@ -9,8 +9,18 @@
     ./fonts.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = false;
+    limine = {
+      enable = true;
+      extraEntries = ''
+        /Windows 11
+          protocol: efi_chainload
+          image_path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+      '';
+    };
+    efi.canTouchEfiVariables = true;
+  };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
