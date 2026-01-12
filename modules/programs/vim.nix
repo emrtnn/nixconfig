@@ -129,7 +129,7 @@
           addDefaultGrammars = true;
 
           textobjects = {
-            enable = true;
+            enable = false;
             setupOpts = {
               move = {
                 enable = true;
@@ -429,6 +429,7 @@
           ts = {
             enable = true;
             format.enable = true;
+            format.type = ["biome" "prettier"];
             lsp.enable = true;
             treesitter.enable = true;
             extraDiagnostics.enable = true;
@@ -454,6 +455,7 @@
           css = {
             enable = true;
             format.enable = true;
+            format.type = ["biome" "prettier"];
             lsp.enable = true;
             treesitter.enable = true;
           };
@@ -475,6 +477,7 @@
           astro = {
             enable = true;
             format.enable = true;
+            format.type = ["biome" "prettier"];
             extraDiagnostics.enable = true;
             lsp.enable = true;
             treesitter.enable = true;
@@ -494,6 +497,8 @@
 
           html = {
             enable = true;
+            extraDiagnostics.enable = true;
+
             format.enable = true;
             lsp.enable = true;
             treesitter = {
