@@ -39,6 +39,7 @@
     fd
     dnsutils
     tree
+    tree-sitter
     brave
     google-chrome
     nautilus
