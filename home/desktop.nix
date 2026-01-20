@@ -54,6 +54,7 @@
     hyprpicker
     wf-recorder
     ffmpeg
+    mpv
   ];
 
   home.sessionVariables = {
