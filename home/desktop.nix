@@ -123,4 +123,6 @@
     source = ../wallpapers;
     recursive = true;
   };
+
+  home.file.".face".source = ../assets/.face;
 }
