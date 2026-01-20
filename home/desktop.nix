@@ -53,6 +53,7 @@
     slurp
     hyprpicker
     wf-recorder
+    ffmpeg
   ];
 
   home.sessionVariables = {
