@@ -9,20 +9,47 @@
     inputs.noctalia.nixosModules.default
   ];
 
-  boot.loader = {
-    systemd-boot.enable = false;
-    limine = {
-      enable = true;
-      extraEntries = ''
-        /Windows 11
-          protocol: efi_chainload
-          image_path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
-      '';
+  boot = {
+    loader = {
+      systemd-boot.enable = false;
+      limine = {
+        enable = true;
+        extraEntries = ''
+          /Windows 11
+            protocol: efi_chainload
+            image_path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+        '';
+      };
+      efi.canTouchEfiVariables = true;
     };
-    efi.canTouchEfiVariables = true;
-  };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
+
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.initrd.verbose=false"
+      "nvidia-drm.modeset=1"
+    ];
+
+    initrd = {
+      enable = true;
+      systemd.enable = true;
+      verbose = false;
+    };
+
+    consoleLogLevel = 0;
+    plymouth = {
+      enable = true;
+      font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
+      theme = "splash";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = ["splash"];
+        })
+      ];
+    };
+  };
 
   zramSwap.memoryMax = {
     enable = true;
