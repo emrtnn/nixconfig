@@ -755,12 +755,6 @@
             };
           };
 
-          breadcrumbs = {
-            enable = true;
-            source = "nvim-navic";
-            lualine.winbar.enable = true;
-          };
-
           colorizer = {
             enable = true;
             setupOpts = {
