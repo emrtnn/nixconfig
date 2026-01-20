@@ -298,7 +298,6 @@ _: {
             {id = "Notifications";}
             {id = "PowerProfile";}
             {id = "KeepAwake";}
-            {id = "NightLight";}
           ];
         };
         cards = [
@@ -497,16 +496,6 @@ _: {
       templates = {
         activeTemplates = [];
         enableUserTheming = false;
-      };
-
-      nightLight = {
-        enabled = true;
-        forced = false;
-        autoSchedule = false;
-        nightTemp = "4562";
-        dayTemp = "6500";
-        manualSunrise = "06:30";
-        manualSunset = "22:30";
       };
 
       hooks = {
