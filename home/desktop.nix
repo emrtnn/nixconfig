@@ -47,6 +47,7 @@
     grim
     slurp
     hyprpicker
+    wf-recorder
   ];
 
   home.sessionVariables = {
