@@ -4,12 +4,15 @@
   config,
   ...
 }: {
-  home.username = "impuremonad";
-  home.homeDirectory = "/home/impuremonad";
-  home.stateVersion = "25.11";
+  home = {
+    username = "impuremonad";
+    homeDirectory = "/home/impuremonad";
+    stateVersion = "25.11";
+  };
 
   imports = [
     inputs.nvf.homeManagerModules.default
+    inputs.noctalia.homeModules.default
     ../modules/programs/carapace.nix
     ../modules/desktop/kitty.nix
     ../modules/programs/nushell.nix
@@ -27,9 +30,11 @@
     ../modules/programs/btop.nix
     ../modules/programs/fzf.nix
     ../modules/desktop/swappy.nix
-    ../modules/desktop/quickshell.nix
     ../modules/desktop/hyprlock.nix
     ../modules/desktop/hypridle.nix
+    ../modules/desktop/noctalia.nix
+    # Commented in favour of noctalia shell
+    # ../modules/desktop/quickshell.nix
   ];
 
   home.packages = with pkgs; [

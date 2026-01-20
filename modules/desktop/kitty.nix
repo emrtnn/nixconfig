@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
     themeFile = "gruvbox-dark";
