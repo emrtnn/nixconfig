@@ -10,6 +10,6 @@
       qt5compat
       qtimageformats
     ]);
-    systemd.enable = true;
+    systemd.enable = false;
   };
 }
