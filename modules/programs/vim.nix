@@ -161,6 +161,13 @@
 
         diagnostics = {
           enable = true;
+          config = {
+            virtual_text = true;
+            underline = true;
+            signs = true;
+            update_in_insert = false;
+            severity_sort = true;
+          };
           nvim-lint = {
             enable = true;
             lint_after_save = true;
@@ -746,6 +753,12 @@
                 style = "rounded";
               };
             };
+          };
+
+          breadcrumbs = {
+            enable = true;
+            source = "nvim-navic";
+            lualine.winbar.enable = true;
           };
 
           colorizer = {
