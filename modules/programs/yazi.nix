@@ -7,7 +7,7 @@
         owner = "bennyyip";
         repo = "gruvbox-dark.yazi";
         rev = "main";
-        sha256 = "sha256-qNxauqv8tRPztO17PGKl3ue6cSWGqIuEzYViaRXDVcQ=";
+        sha256 = "sha256-Y/i+eS04T2+Sg/Z7/CGbuQHo5jxewXIgORTQm25uQb4=";
       };
     };
 
