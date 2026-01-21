@@ -200,7 +200,7 @@ _: {
       };
 
       location = {
-        name = "Spain";
+        name = "Granada, Spain";
         weatherEnabled = true;
         weatherShowEffects = true;
         useFahrenheit = false;
