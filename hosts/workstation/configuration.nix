@@ -52,16 +52,13 @@
 
   networking = {
     hostName = "arpano";
-    networkmanager.enable = true;
-    networkmanager.dns = "systemd-resolved";
-    nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
-  };
-
-  hardware = {
-    bluetooth = {
+    networkmanager = {
       enable = true;
-      powerOnBoot = true;
+      dns = "systemd-resolved";
+      wifi.powersave = false;
     };
+
+    nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
   };
 
   services = {
@@ -127,11 +124,27 @@
   services.xserver.videoDrivers = ["nvidia"];
   hardware = {
     graphics.enable = true;
+
     nvidia = {
       modesetting.enable = true;
       open = true;
       powerManagement.enable = true;
     };
+
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+  };
+
+  powerManagement = {
+    enable = true;
+    resumeCommands = ''
+      ${pkgs.kmod}/bin/modprobe -r r8169
+      ${pkgs.kmod}/bin/modprobe r8169
+      sleep 2
+      systemctl restart NetworkManager.service
+    '';
   };
 
   programs.hyprland = {
