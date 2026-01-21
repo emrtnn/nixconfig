@@ -159,7 +159,7 @@ _: {
         avatarImage = "/home/impuremonad/.face";
         dimmerOpacity = 0.51;
         showScreenCorners = true;
-        forceBlackScreenCorners = false;
+        forceBlackScreenCorners = true;
         scaleRatio = 1;
         radiusRatio = 1;
         iRadiusRatio = 1;
