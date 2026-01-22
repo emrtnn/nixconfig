@@ -59,6 +59,11 @@
     };
 
     nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+    firewall = {
+      enable = true;
+      trustedInterfaces = ["tailscale0"];
+      allowedUDPPorts = [41641];
+    };
   };
 
   services = {
@@ -74,54 +79,74 @@
         };
       };
     };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
+    gnome.gnome-keyring.enable = true;
+
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
+    };
+
+    getty.autologinUser = "impuremonad";
+
+    xserver.videoDrivers = ["nvidia"];
+
+    tailscale = {
+      enable = true;
+    };
+  };
+
+  security = {
+    pam.services.hyprland.enableGnomeKeyring = true;
   };
 
   time.timeZone = "Europe/Madrid";
 
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "es_ES.UTF-8";
-    LC_IDENTIFICATION = "es_ES.UTF-8";
-    LC_MEASUREMENT = "es_ES.UTF-8";
-    LC_MONETARY = "es_ES.UTF-8";
-    LC_NAME = "es_ES.UTF-8";
-    LC_NUMERIC = "es_ES.UTF-8";
-    LC_PAPER = "es_ES.UTF-8";
-    LC_TELEPHONE = "es_ES.UTF-8";
-    LC_TIME = "es_ES.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "es_ES.UTF-8";
+      LC_IDENTIFICATION = "es_ES.UTF-8";
+      LC_MEASUREMENT = "es_ES.UTF-8";
+      LC_MONETARY = "es_ES.UTF-8";
+      LC_NAME = "es_ES.UTF-8";
+      LC_NUMERIC = "es_ES.UTF-8";
+      LC_PAPER = "es_ES.UTF-8";
+      LC_TELEPHONE = "es_ES.UTF-8";
+      LC_TIME = "es_ES.UTF-8";
+    };
   };
 
   programs = {
     zsh.enable = true;
     dconf.enable = true;
-  };
+    ssh.startAgent = false;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
+      # UWSM
+      withUWSM = true;
 
-  programs.ssh.startAgent = false;
-
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.hyprland.enableGnomeKeyring = true;
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
+      # Set the flake package
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # Make sure to also set the portal package, so that they are in sync
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
   };
 
-  # Terminal autologin manager
-  services.getty.autologinUser = "impuremonad";
-
-  services.xserver.videoDrivers = ["nvidia"];
   hardware = {
     graphics.enable = true;
 
@@ -147,47 +172,39 @@
     '';
   };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-
-    # UWSM
-    withUWSM = true;
-
-    # Set the flake package
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    # Make sure to also set the portal package, so that they are in sync
-    portalPackage =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
-
   # Hint Electron apps to use Wayland
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+    systemPackages = with pkgs; [
+      vim
+      wget
+      git
+      gcc
 
-  users.users.impuremonad = {
-    isNormalUser = true;
-    description = "impuremonad";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
+      # Hyrpland pkgs
+      wl-clipboard
+      hyprpaper
     ];
-    shell = pkgs.zsh;
   };
 
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    gcc
+  users = {
+    users.impuremonad = {
+      isNormalUser = true;
+      description = "impuremonad";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      shell = pkgs.zsh;
+    };
+  };
 
-    # Hyrpland pkgs
-    wl-clipboard
-    hyprpaper
-  ];
-
-  system.autoUpgrade = {
-    enable = true;
-    dates = "weekly";
+  system = {
+    autoUpgrade = {
+      enable = true;
+      dates = "weekly";
+    };
+    stateVersion = "25.11";
   };
 
   nix = {
@@ -196,6 +213,7 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+
     settings = {
       auto-optimise-store = true;
       experimental-features = [
@@ -203,22 +221,22 @@
         "flakes"
       ];
     };
+
+    settings = {
+      # Cachix
+      substituters = ["https://hyprland.cachix.org"];
+
+      trusted-substituters = [
+        "https://hyprland.cachix.org"
+        "https://devenv.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      ];
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  # Cachix
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-substituters = [
-      "https://hyprland.cachix.org"
-      "https://devenv.cachix.org"
-    ];
-    trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    ];
-  };
-
-  system.stateVersion = "25.11";
 }
