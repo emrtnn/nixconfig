@@ -68,6 +68,7 @@
 
   services = {
     noctalia-shell.enable = true;
+
     resolved = {
       enable = true;
       settings = {
@@ -78,6 +79,17 @@
           DNSOverTLS = "true";
         };
       };
+    };
+
+    # Printers
+    printing = {
+      enable = true;
+      drivers = [pkgs.gutenprint];
+    };
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
     };
 
     pipewire = {
