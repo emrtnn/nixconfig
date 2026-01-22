@@ -188,71 +188,73 @@
           };
 
           # --- SECTION A: Mode ---
-          activeSection.a = [
-            ''{ "mode", icons_enabled = true, separator = { left = "", right = "" }, right_padding = 2 }''
-          ];
+          activeSection = {
+            a = [
+              ''{ "mode", icons_enabled = true, separator = { left = "", right = "" }, right_padding = 2 }''
+            ];
 
-          # --- SECTION B: Branch ---
-          activeSection.b = [
-            ''{ "branch", icon = "", separator = { left = "", right = "" } }''
-          ];
+            # --- SECTION B: Branch ---
+            b = [
+              ''{ "branch", icon = "", separator = { left = "", right = "" } }''
+            ];
 
-          # --- SECTION C: Diagnostics & File Info ---
-          activeSection.c = [
-            ''
-              {
-                "diagnostics",
-                sources = { "nvim_diagnostic" },
-                symbols = { error = " ", warn = " ", info = " ", hint = " " },
-                colored = true
-              }
-            ''
-            # 2. Filetype Icon (No text, just icon)
-            ''{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } }''
-            # 3. Filename (Relative path)
-            ''{ "filename", path = 1, symbols = { modified = "  ", readonly = "  ", unnamed = "" } }''
-          ];
+            # --- SECTION C: Diagnostics & File Info ---
+            c = [
+              ''
+                {
+                  "diagnostics",
+                  sources = { "nvim_diagnostic" },
+                  symbols = { error = " ", warn = " ", info = " ", hint = " " },
+                  colored = true
+                }
+              ''
+              # 2. Filetype Icon (No text, just icon)
+              ''{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } }''
+              # 3. Filename (Relative path)
+              ''{ "filename", path = 1, symbols = { modified = "  ", readonly = "  ", unnamed = "" } }''
+            ];
 
-          # --- SECTION X: Diff & LSP ---
-          activeSection.x = [
-            # 1. Diff (Moved to Right)
-            ''
-              {
-                "diff",
-                symbols = { added = " ", modified = " ", removed = " " },
-                colored = true
-              }
-            ''
-            # 2. LSP Status (Native NVF logic is good, but let's keep it minimal)
-            ''
-              {
-                function()
-                  local clients = vim.lsp.get_clients()
-                  if next(clients) == nil then return "No LSP" end
-                  return clients[1].name
-                end,
-                icon = " ",
-                color = { fg = "#d3869b", gui = "bold" } -- Gruvbox purple-ish
-              }
-            ''
-          ];
+            # --- SECTION X: Diff & LSP ---
+            x = [
+              # 1. Diff (Moved to Right)
+              ''
+                {
+                  "diff",
+                  symbols = { added = " ", modified = " ", removed = " " },
+                  colored = true
+                }
+              ''
+              # 2. LSP Status (Native NVF logic is good, but let's keep it minimal)
+              ''
+                {
+                  function()
+                    local clients = vim.lsp.get_clients()
+                    if next(clients) == nil then return "No LSP" end
+                    return clients[1].name
+                  end,
+                  icon = " ",
+                  color = { fg = "#d3869b", gui = "bold" } -- Gruvbox purple-ish
+                }
+              ''
+            ];
 
-          # --- SECTION Y: Progress & Location ---
-          activeSection.y = [
-            ''{ "progress", separator = " ", padding = { left = 1, right = 0 } }''
-            ''{ "location", padding = { left = 0, right = 1 } }''
-          ];
+            # --- SECTION Y: Progress & Location ---
+            y = [
+              ''{ "progress", separator = " ", padding = { left = 1, right = 0 } }''
+              ''{ "location", padding = { left = 0, right = 1 } }''
+            ];
 
-          # --- SECTION Z: Time ---
-          activeSection.z = [
-            ''
-              {
-                function() return " " .. os.date("%R") end,
-                separator = { right = "" },
-                left_padding = 2
-              }
-            ''
-          ];
+            # --- SECTION Z: Time ---
+            z = [
+              ''
+                {
+                  function() return " " .. os.date("%R") end,
+                  separator = { right = "" },
+                  left_padding = 2
+                }
+              ''
+            ];
+          };
         };
 
         telescope = {
@@ -275,6 +277,22 @@
                   override_generic_sorter = true;
                   override_file_sorter = true;
                   case_mode = "smart_case";
+                };
+              };
+            }
+            {
+              name = "ui-select";
+              packages = [pkgs.vimPlugins.telescope-ui-select-nvim];
+              setup = {
+                "ui-select" = {
+                  __raw = ''
+                    require("telescope.themes").get_cursor {
+                      layout_config = {
+                        width = 0.3,
+                        height = 0.2,
+                      },
+                    }
+                  '';
                 };
               };
             }
