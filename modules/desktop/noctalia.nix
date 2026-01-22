@@ -269,13 +269,13 @@ _: {
         autoPasteClipboard = false;
         enableClipPreview = true;
         clipboardWrapText = true;
-        position = "bottom_center";
+        position = "center";
         pinnedApps = [];
         useApp2Unit = false;
         sortByMostUsed = true;
         terminalCommand = "kitty -e";
         customLaunchPrefixEnabled = true;
-        customLaunchPrefix = "runapp";
+        customLaunchPrefix = "uwsm-app --";
         viewMode = "list";
         showCategories = true;
         iconMode = "tabler";
