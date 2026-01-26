@@ -55,6 +55,9 @@ _: {
               usePrimaryColor = true;
             }
             {
+              id = "plugin:pomodoro";
+            }
+            {
               id = "Spacer";
               width = 10;
             }
@@ -105,8 +108,8 @@ _: {
           right = [
             {
               blacklist = [];
-              colorizeIcons = false;
-              drawerEnabled = true;
+              colorizeIcons = true;
+              drawerEnabled = false;
               hidePassive = false;
               id = "Tray";
               pinned = [];
@@ -120,6 +123,9 @@ _: {
             {
               id = "Spacer";
               width = 10;
+            }
+            {
+              id = "plugin:tailscale";
             }
             {
               displayMode = "onhover";
@@ -494,7 +500,36 @@ _: {
       };
 
       templates = {
-        activeTemplates = [];
+        activeTemplates = [
+          {
+            "enabled" = true;
+            "id" = "kitty";
+          }
+          {
+            "enabled" = true;
+            "id" = "btop";
+          }
+          {
+            "enabled" = true;
+            "id" = "discord";
+          }
+          {
+            "enabled" = true;
+            "id" = "telegram";
+          }
+          {
+            "enabled" = true;
+            "id" = "yazi";
+          }
+          {
+            "enabled" = true;
+            "id" = "qt";
+          }
+          {
+            "enabled" = true;
+            "id" = "gtk";
+          }
+        ];
         enableUserTheming = false;
       };
 
@@ -540,6 +575,38 @@ _: {
       mShadow = "#282828";
       mHover = "#83a598";
       mOnHover = "#282828";
+    };
+
+    plugins = {
+      sources = [
+        {
+          enabled = true;
+          name = "Official Noctalia Plugins";
+          url = "https://github.com/noctalia-dev/noctalia-plugins";
+        }
+      ];
+
+      states = {
+        tailscale = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+      };
+
+      version = 1;
+    };
+
+    pluginSettings = {
+      tailscale = {
+        refreshInterval = 5000;
+        compactMode = true;
+        showIpAddress = false;
+        showPeerCount = false;
+        hideDisconnected = true;
+        terminalCommand = "kitty";
+        pingCount = 5;
+        defaultPeerAction = "copy-ip";
+      };
     };
   };
 }

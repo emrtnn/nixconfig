@@ -27,7 +27,6 @@
     ../modules/programs/direnv.nix
     ../modules/programs/zsh.nix
     ../modules/programs/vesktop.nix
-    ../modules/programs/btop.nix
     ../modules/programs/fzf.nix
     ../modules/desktop/swappy.nix
     ../modules/desktop/hyprlock.nix
@@ -55,6 +54,7 @@
     wf-recorder
     ffmpeg
     mpv
+    btop
   ];
 
   home.sessionVariables = {
