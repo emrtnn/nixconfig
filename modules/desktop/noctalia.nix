@@ -75,6 +75,10 @@ _: {
               showLabelsOnlyWhenOccupied = false;
               unfocusedIconsOpacity = 1;
             }
+            {
+              id = "Spacer";
+              width = 10;
+            }
           ];
           center = [
             {
@@ -588,6 +592,10 @@ _: {
 
       states = {
         tailscale = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+        pomodoro = {
           enabled = true;
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
         };
