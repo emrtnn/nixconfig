@@ -24,7 +24,6 @@
       "quiet"
       "splash"
       "boot.initrd.verbose=false"
-      "nvidia-drm.modeset=1"
     ];
 
     initrd = {
@@ -112,7 +111,7 @@
 
     getty.autologinUser = "impuremonad";
 
-    xserver.videoDrivers = ["nvidia"];
+    xserver.videoDrivers = ["amdgpu"];
 
     tailscale = {
       enable = true;
@@ -160,19 +159,27 @@
   };
 
   hardware = {
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
 
-    nvidia = {
-      modesetting.enable = true;
-      open = true;
-      powerManagement.enable = true;
+      extraPackages = with pkgs; [
+        rocmPackages.clr
+        rocmPackages.clr.icd
+      ];
     };
+
+    enableRedistributableFirmware = true;
 
     bluetooth = {
       enable = true;
       powerOnBoot = true;
     };
   };
+
+  systemd.tmpfiles.rules = [
+    "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
+  ];
 
   powerManagement = {
     enable = true;
@@ -196,6 +203,9 @@
       # Hyrpland pkgs
       wl-clipboard
       hyprpaper
+
+      radeontop
+      nvtopPackages.amd
     ];
   };
 
@@ -232,9 +242,7 @@
         "nix-command"
         "flakes"
       ];
-    };
 
-    settings = {
       # Cachix
       substituters = ["https://hyprland.cachix.org"];
 
