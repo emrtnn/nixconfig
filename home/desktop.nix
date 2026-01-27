@@ -32,8 +32,7 @@
     ../modules/desktop/hyprlock.nix
     ../modules/desktop/hypridle.nix
     ../modules/desktop/noctalia.nix
-    # Commented in favour of noctalia shell
-    # ../modules/desktop/quickshell.nix
+    ../modules/programs/thunderbird.nix
   ];
 
   home.packages = with pkgs; [
