@@ -59,7 +59,7 @@
     hostName = "monad";
     networkmanager.enable = true;
     networkmanager.dns = "systemd-resolved";
-    nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+    nameservers = ["1.1.1.1" "1.0.0.1"];
   };
   services = {
     noctalia-shell.enable = true;
@@ -67,10 +67,10 @@
       enable = true;
       settings = {
         Resolve = {
-          DNSSEC = "true";
+          DNSSEC = "allow-downgrade";
           Domains = ["~."];
-          FallbackDNS = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
-          DNSOverTLS = "true";
+          FallbackDNS = ["1.1.1.1" "1.0.0.1"];
+          DNSOverTLS = "opportunistic";
         };
       };
     };
