@@ -55,9 +55,6 @@ _: {
               usePrimaryColor = true;
             }
             {
-              id = "plugin:pomodoro";
-            }
-            {
               id = "Spacer";
               width = 10;
             }
@@ -81,6 +78,24 @@ _: {
             }
           ];
           center = [
+            {
+              defaultSettings = {
+                audioCodec = "opus";
+                audioSource = "default_output";
+                colorRange = "limited";
+                copyToClipboard = true;
+                directory = "/home/impuremonad/Videos/Screenrecords";
+                filenamePattern = "recording_yyyyMMdd_HHmmss";
+                frameRate = 30;
+                hideInactive = true;
+                quality = "high";
+                resolution = "original";
+                showCursor = true;
+                videoCodec = "h264";
+                videoSource = "portal";
+              };
+              id = "plugin:screen-recorder";
+            }
             {
               colorizeIcons = false;
               hideMode = "hidden";
@@ -595,12 +610,11 @@ _: {
           enabled = true;
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
         };
-        pomodoro = {
+        screen-recorder = {
           enabled = true;
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
         };
       };
-
       version = 1;
     };
 
@@ -614,6 +628,21 @@ _: {
         terminalCommand = "kitty";
         pingCount = 5;
         defaultPeerAction = "copy-ip";
+      };
+      screen-recorder = {
+        audioCodec = "opus";
+        audioSource = "default_output";
+        colorRange = "limited";
+        copyToClipboard = true;
+        directory = "/home/impuremonad/Videos/Screenrecords";
+        filenamePattern = "recording_yyyyMMdd_HHmmss";
+        frameRate = 30;
+        hideInactive = true;
+        quality = "high";
+        resolution = "original";
+        showCursor = true;
+        videoCodec = "h264";
+        videoSource = "portal";
       };
     };
   };
