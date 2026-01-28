@@ -49,8 +49,8 @@
     bitwarden-desktop
     grim
     slurp
+    gpu-screen-recorder
     hyprpicker
-    wf-recorder
     ffmpeg
     mpv
     btop
