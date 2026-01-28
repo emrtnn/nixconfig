@@ -177,10 +177,6 @@
       wget
       git
       gcc
-
-      # Hyrpland pkgs
-      wl-clipboard
-      hyprpaper
     ];
   };
 

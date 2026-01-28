@@ -54,6 +54,9 @@
     ffmpeg
     mpv
     btop
+    amp-cli
+    wl-clipboard
+    hyprpaper
   ];
 
   home.sessionVariables = {
