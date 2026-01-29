@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./fonts.nix
     inputs.noctalia.nixosModules.default
+    inputs.silentSDDM.nixosModules.default
   ];
 
   boot = {
@@ -105,7 +106,6 @@
       };
     };
 
-
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
@@ -139,6 +139,11 @@
   };
 
   programs = {
+    silentSDDM = {
+      enable = true;
+      theme = "default";
+      profileIcons.impuremonad = ../../assets/.face;
+    };
     zsh.enable = true;
     dconf.enable = true;
     ssh.startAgent = false;
