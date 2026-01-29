@@ -45,6 +45,7 @@
     tree-sitter
     brave
     google-chrome
+    helium
     nautilus
     bitwarden-desktop
     grim
