@@ -661,6 +661,7 @@
         "noctalia": "noctalia",
         "nvf": "nvf",
         "quickshell": "quickshell",
+        "silentSDDM": "silentSDDM",
         "yazi": "yazi"
       }
     },
@@ -682,6 +683,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "silentSDDM": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769638839,
+        "narHash": "sha256-Kx7f8mgXj/WY36VDWPgKJujLpYD83kmGvBlS2uDTedM=",
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
+        "rev": "26c20f89d3a347eef0bfbe21b06af23e60a6bbd0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
         "type": "github"
       }
     },

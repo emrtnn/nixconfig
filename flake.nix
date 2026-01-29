@@ -22,46 +22,49 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     ...
-    } @ inputs: {
-      nixosConfigurations.monad = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/desktop/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.impuremonad = import ./home/desktop.nix;
-              extraSpecialArgs = {inherit inputs;};
-              backupFileExtension = "backup";
-            };
-          }
-        ];
-      };
-
-      nixosConfigurations.arpano = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/workstation/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.impuremonad = import ./home/desktop.nix;
-              extraSpecialArgs = {inherit inputs;};
-              backupFileExtension = "backup";
-
-            };
-          }
-        ];
-      };
+  } @ inputs: {
+    nixosConfigurations.monad = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/desktop/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.impuremonad = import ./home/desktop.nix;
+            extraSpecialArgs = {inherit inputs;};
+            backupFileExtension = "backup";
+          };
+        }
+      ];
     };
+
+    nixosConfigurations.arpano = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/workstation/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.impuremonad = import ./home/desktop.nix;
+            extraSpecialArgs = {inherit inputs;};
+            backupFileExtension = "backup";
+          };
+        }
+      ];
+    };
+  };
 }
