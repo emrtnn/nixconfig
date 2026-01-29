@@ -105,7 +105,11 @@
       };
     };
 
-    getty.autologinUser = "impuremonad";
+
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
 
     xserver.videoDrivers = ["nvidia"];
 
