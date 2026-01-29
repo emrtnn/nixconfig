@@ -67,6 +67,11 @@
   };
 
   services = {
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    
     noctalia-shell.enable = true;
 
     resolved = {
@@ -109,8 +114,6 @@
         PasswordAuthentication = false;
       };
     };
-
-    getty.autologinUser = "impuremonad";
 
     xserver.videoDrivers = ["amdgpu"];
 
