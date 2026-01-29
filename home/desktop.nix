@@ -43,7 +43,6 @@
     dnsutils
     tree
     tree-sitter
-    brave
     google-chrome
     helium
     nautilus
@@ -62,7 +61,19 @@
 
   home.sessionVariables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
-    BROWSER = "brave";
+    BROWSER = "helium";
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "helium.desktop";
+      "x-scheme-handler/http" = "helium.desktop";
+      "x-scheme-handler/https" = "helium.desktop";
+      "x-scheme-handler/about" = "helium.desktop";
+      "x-scheme-handler/unknown" = "helium.desktop";
+      "application/xhtml+xml" = "helium.desktop";
+    };
   };
 
   home.pointerCursor = {
