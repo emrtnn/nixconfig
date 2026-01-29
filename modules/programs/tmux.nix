@@ -66,7 +66,7 @@
       {
         plugin = fzf-tmux-url;
         extraConfig = ''
-          set -g @fzf-url-open "brave"
+          set -g @fzf-url-open "helium"
           set -g @fzf-url-bind 'u'
         '';
       }
