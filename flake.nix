@@ -32,10 +32,17 @@
     nixpkgs,
     home-manager,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    overlays = [
+      (final: prev: {
+        helium = prev.callPackage ./pkgs/helium.nix {};
+      })
+    ];
+  in {
     nixosConfigurations.monad = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
+        {nixpkgs.overlays = overlays;}
         ./hosts/desktop/configuration.nix
         home-manager.nixosModules.home-manager
         {
@@ -53,6 +60,7 @@
     nixosConfigurations.arpano = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
+        {nixpkgs.overlays = overlays;}
         ./hosts/workstation/configuration.nix
         home-manager.nixosModules.home-manager
         {
