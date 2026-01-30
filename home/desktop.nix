@@ -46,6 +46,7 @@
     google-chrome
     helium
     nautilus
+    imv
     bitwarden-desktop
     grim
     slurp
@@ -73,6 +74,13 @@
       "x-scheme-handler/about" = "helium.desktop";
       "x-scheme-handler/unknown" = "helium.desktop";
       "application/xhtml+xml" = "helium.desktop";
+      "image/png" = "imv.desktop";
+      "image/jpeg" = "imv.desktop";
+      "image/gif" = "imv.desktop";
+      "image/webp" = "imv.desktop";
+      "image/svg+xml" = "imv.desktop";
+      "image/bmp" = "imv.desktop";
+      "image/avif" = "imv.desktop";
     };
   };
 
