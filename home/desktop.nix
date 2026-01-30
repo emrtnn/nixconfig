@@ -65,22 +65,33 @@
     BROWSER = "helium";
   };
 
-  xdg.mimeApps = {
+  xdg = {
     enable = true;
-    defaultApplications = {
-      "text/html" = "helium.desktop";
-      "x-scheme-handler/http" = "helium.desktop";
-      "x-scheme-handler/https" = "helium.desktop";
-      "x-scheme-handler/about" = "helium.desktop";
-      "x-scheme-handler/unknown" = "helium.desktop";
-      "application/xhtml+xml" = "helium.desktop";
-      "image/png" = "imv.desktop";
-      "image/jpeg" = "imv.desktop";
-      "image/gif" = "imv.desktop";
-      "image/webp" = "imv.desktop";
-      "image/svg+xml" = "imv.desktop";
-      "image/bmp" = "imv.desktop";
-      "image/avif" = "imv.desktop";
+    mimeApps = {
+      enable = true;
+      associations.added = {
+        "text/html" = ["helium.desktop"];
+        "x-scheme-handler/http" = ["helium.desktop"];
+        "x-scheme-handler/https" = ["helium.desktop"];
+        "x-scheme-handler/about" = "helium.desktop";
+        "x-scheme-handler/unknown" = "helium.desktop";
+        "application/xhtml+xml" = "helium.desktop";
+      };
+      defaultApplications = {
+        "text/html" = "helium.desktop";
+        "x-scheme-handler/http" = "helium.desktop";
+        "x-scheme-handler/https" = "helium.desktop";
+        "x-scheme-handler/about" = "helium.desktop";
+        "x-scheme-handler/unknown" = "helium.desktop";
+        "application/xhtml+xml" = "helium.desktop";
+        "image/png" = "imv.desktop";
+        "image/jpeg" = "imv.desktop";
+        "image/gif" = "imv.desktop";
+        "image/webp" = "imv.desktop";
+        "image/svg+xml" = "imv.desktop";
+        "image/bmp" = "imv.desktop";
+        "image/avif" = "imv.desktop";
+      };
     };
   };
 
