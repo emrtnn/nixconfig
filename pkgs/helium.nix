@@ -37,7 +37,7 @@ in
         mkdir -p $out/share/applications
         cp "${extracted}/helium.desktop" $out/share/applications/
         substituteInPlace $out/share/applications/helium.desktop \
-          --replace-quiet "Exec=helium" "Exec=$out/bin/helium"
+          --replace-quiet "Exec=AppRun" "Exec=$out/bin/helium"
       fi
 
       # Install icon
