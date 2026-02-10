@@ -58,6 +58,7 @@
     amp-cli
     wl-clipboard
     hyprpaper
+    evince
   ];
 
   home.sessionVariables = {
@@ -91,6 +92,7 @@
         "image/svg+xml" = "imv.desktop";
         "image/bmp" = "imv.desktop";
         "image/avif" = "imv.desktop";
+        "application/pdf" = "org.gnome.Evince.desktop";
       };
     };
   };
