@@ -121,6 +121,8 @@
     tailscale = {
       enable = true;
     };
+
+    gvfs.enable = true;
   };
 
   security = {
