@@ -1,4 +1,8 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.eza = {
     enable = true;
     enableZshIntegration = true;
@@ -40,7 +44,7 @@
       cat = "bat";
       grep = "rg";
       pfzf = "fzf --preview='bat --color=always {}'";
-      nfzf = "nvim $(fzf -m --preview='bat --color=always {}')";
+      nfzf = "hx $(fzf -m --preview='bat --color=always {}')";
 
       gc = "git commit";
       gp = "git push";
@@ -59,7 +63,7 @@
     };
 
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "hx";
     };
 
     initContent = ''

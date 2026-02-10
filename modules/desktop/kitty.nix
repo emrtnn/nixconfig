@@ -23,6 +23,7 @@
       allow_remote_control = "yes";
 
       cursor_shape = "block";
+      cursor_blink_interval = "0.4";
       enable_audio_bell = "no";
 
       tab_bar_edge = "bottom";
