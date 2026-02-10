@@ -1,6 +1,17 @@
-{pkgs, ...}: {
+{...}: {
   programs.git = {
     enable = true;
+
+    delta = {
+      enable = true;
+      options = {
+        navigate = true;
+        side-by-side = true;
+        line-numbers = true;
+        syntax-theme = "gruvbox-dark";
+        dark = true;
+      };
+    };
 
     settings = {
       user = {
@@ -8,7 +19,7 @@
         email = "enriquemartin1402@gmail.com";
       };
       core = {
-        editor = "nvim";
+        editor = "hx";
         autocrlf = "input";
       };
       color = {
@@ -21,19 +32,11 @@
         default = "simple";
       };
       diff = {
-        tool = "vimdiff";
+        colorMoved = "default";
       };
       merge = {
-        tool = "vimdiff";
         conflictstyle = "zdiff3";
       };
-
-      mergetool = {
-        vimdiff = {
-          cmd = "nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'";
-        };
-      };
-
       init = {
         defaultBranch = "master";
       };
@@ -42,9 +45,6 @@
       };
       rerere = {
         enabled = true;
-      };
-      pager = {
-        log = "less -F -X -R";
       };
     };
   };
