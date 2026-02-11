@@ -21,7 +21,6 @@
     ../modules/programs/yazi.nix
     ../modules/programs/zoxide.nix
     ../modules/programs/git.nix
-    ../modules/programs/fastfetch.nix
     ../modules/programs/opencode.nix
     ../modules/programs/tmux.nix
     ../modules/programs/direnv.nix
