@@ -184,6 +184,7 @@
     };
 
     systemPackages = with pkgs; [
+      bash
       vim
       wget
       git
