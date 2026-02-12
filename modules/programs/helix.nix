@@ -61,6 +61,26 @@
         cursorline = true;
         mouse = false;
 
+        whitespace = {
+          characters = {
+            space = "·";
+            nbsp = "⍽";
+            nnbsp = "␣";
+            tab = "→";
+            newline = "⏎";
+            tabpad = "·";
+          };
+
+          render = {
+            space = "all";
+            tab = "all";
+            nbsp = "all";
+            nnbsp = "all";
+            newline = "all";
+            tabpad = "all";
+          };
+        };
+
         search = {
           smart-case = true;
           wrap-around = true;
