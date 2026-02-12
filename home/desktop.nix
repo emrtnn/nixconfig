@@ -31,6 +31,7 @@
     ../modules/desktop/hyprlock.nix
     ../modules/desktop/hypridle.nix
     ../modules/desktop/noctalia.nix
+    ../modules/desktop/libreoffice.nix
     ../modules/programs/thunderbird.nix
   ];
 
