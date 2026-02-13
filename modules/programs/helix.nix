@@ -138,9 +138,6 @@
 
       keys = {
         normal = {
-          "C-d" = ["half_page_down" "align_view_center"];
-          "C-u" = ["half_page_up" "align_view_center"];
-
           # Yazi file manager integration
           "C-y" = [
             ":sh rm -f /tmp/yazi-chosen"
