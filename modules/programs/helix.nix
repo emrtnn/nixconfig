@@ -59,7 +59,8 @@
       editor = {
         line-number = "relative";
         cursorline = true;
-        mouse = false;
+        mouse = true;
+        completion-replace = true;
 
         whitespace = {
           characters = {
@@ -122,9 +123,9 @@
         gutters = ["diagnostics" "diff" "line-numbers" "spacer"];
 
         statusline = {
-          left = ["mode" "spinner" "file-name" "file-modification-indicator"];
-          center = ["diagnostics"];
-          right = ["selections" "position" "file-encoding" "file-type"];
+          left = ["mode" "spinner" "version-control" "spacer" "separator" "file-name" "read-only-indicator" "file-modification-indicator"];
+          center = [];
+          right = ["diagnostics" "workspace-diagnostics" "position" "total-line-numbers" "position-percentage" "file-encoding" "file-type" "register" "selections" "selections"];
           separator = "│";
           mode = {
             normal = "NORMAL";
