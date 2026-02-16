@@ -1,7 +1,5 @@
 {...}: {
-  programs.git = {
-    enable = true;
-
+  programs = {
     delta = {
       enable = true;
       options = {
@@ -13,38 +11,42 @@
       };
     };
 
-    settings = {
-      user = {
-        name = "impuremonad";
-        email = "enriquemartin1402@gmail.com";
-      };
-      core = {
-        editor = "hx";
-        autocrlf = "input";
-      };
-      color = {
-        ui = "auto";
-      };
-      pull = {
-        rebase = true;
-      };
-      push = {
-        default = "simple";
-      };
-      diff = {
-        colorMoved = "default";
-      };
-      merge = {
-        conflictstyle = "zdiff3";
-      };
-      init = {
-        defaultBranch = "master";
-      };
-      log = {
-        date = "relative";
-      };
-      rerere = {
-        enabled = true;
+    git = {
+      enable = true;
+
+      settings = {
+        user = {
+          name = "impuremonad";
+          email = "enriquemartin1402@gmail.com";
+        };
+        core = {
+          editor = "hx";
+          autocrlf = "input";
+        };
+        color = {
+          ui = "auto";
+        };
+        pull = {
+          rebase = true;
+        };
+        push = {
+          default = "simple";
+        };
+        diff = {
+          colorMoved = "default";
+        };
+        merge = {
+          conflictstyle = "zdiff3";
+        };
+        init = {
+          defaultBranch = "master";
+        };
+        log = {
+          date = "relative";
+        };
+        rerere = {
+          enabled = true;
+        };
       };
     };
   };
