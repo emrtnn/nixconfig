@@ -59,6 +59,7 @@
     wl-clipboard
     hyprpaper
     evince
+    obsidian
   ];
 
   home.sessionVariables = {
