@@ -24,6 +24,10 @@
 
       cursor_shape = "block";
       cursor_blink_interval = "0.4";
+      shell_integration = "no-cursor";
+      cursor_trail = 3;
+      cursor_trail_decay = "0.1 0.4";
+      cursor_trail_start_threshold = 2;
       enable_audio_bell = "no";
 
       tab_bar_edge = "bottom";
