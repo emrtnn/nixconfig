@@ -74,6 +74,19 @@
       bindkey -M vicmd 'v' visual-mode
       bindkey -M vicmd '^v' edit-command-line
 
+      # Cursor shape: blinking block for insert, static block for normal/visual
+      _cursor_block_blink() { printf '\e[1 q'; }
+      _cursor_block_static() { printf '\e[2 q'; }
+      zle-keymap-select() {
+        case $KEYMAP in
+          vicmd|visual) _cursor_block_static ;;
+          *)            _cursor_block_blink ;;
+        esac
+      }
+      zle -N zle-keymap-select
+      zle-line-init() { _cursor_block_blink; }
+      zle -N zle-line-init
+
       # Ignore completion case
       zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
       zstyle ":completion:*" list-colors "\$\{(s.:.)LS_COLORS\}"
