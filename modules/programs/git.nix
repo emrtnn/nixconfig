@@ -22,6 +22,7 @@
         core = {
           editor = "hx";
           autocrlf = "input";
+          pager = "delta";
         };
         color = {
           ui = "auto";
