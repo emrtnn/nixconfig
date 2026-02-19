@@ -123,7 +123,7 @@
         gutters = ["diagnostics" "diff" "line-numbers" "spacer"];
 
         statusline = {
-          left = ["mode" "spinner" "version-control" "spacer" "separator" "file-name" "read-only-indicator" "file-modification-indicator"];
+          left = ["mode" "spinner" "spacer" "version-control" "spacer" "file-name" "read-only-indicator" "file-modification-indicator"];
           center = [];
           right = ["diagnostics" "workspace-diagnostics" "position" "total-line-numbers" "position-percentage" "file-encoding" "file-type" "register" "selections" "selections"];
           separator = "│";
