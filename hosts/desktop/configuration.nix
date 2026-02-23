@@ -8,6 +8,7 @@
     ./fonts.nix
     inputs.noctalia.nixosModules.default
     inputs.silentSDDM.nixosModules.default
+    ../../modules/desktop/hyprland.nix
   ];
 
   boot = {
@@ -120,10 +121,6 @@
     gvfs.enable = true;
   };
 
-  security = {
-    pam.services.hyprland.enableGnomeKeyring = true;
-  };
-
   time.timeZone = "Europe/Madrid";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -149,19 +146,6 @@
     zsh.enable = true;
     dconf.enable = true;
     ssh.startAgent = false;
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-
-      # UWSM
-      withUWSM = true;
-
-      # Set the flake package
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # Make sure to also set the portal package, so that they are in sync
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-    };
   };
 
   hardware = {
