@@ -57,7 +57,7 @@
     btop
     amp-cli
     wl-clipboard
-    hyprpaper
+
     evince
     obsidian
   ];
@@ -132,6 +132,9 @@
     };
   };
 
+  # Disable niri-flake's config generation; we use an out-of-store symlink instead
+  programs.niri.config = null;
+
   services.gnome-keyring = {
     enable = true;
     components = [
@@ -152,6 +155,14 @@
     };
     "quickshell" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/quickshell";
+      recursive = true;
+    };
+    "niri" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/niri";
+      recursive = true;
+    };
+    "swaylock" = {
+      source = ../dotfiles/swaylock;
       recursive = true;
     };
   };

@@ -8,7 +8,7 @@
     ./fonts.nix
     inputs.noctalia.nixosModules.default
     inputs.silentSDDM.nixosModules.default
-    ../../modules/desktop/hyprland.nix
+    ../../modules/desktop/niri.nix
   ];
 
   boot = {
