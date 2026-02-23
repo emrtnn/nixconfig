@@ -1,0 +1,237 @@
+// Input configuration
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            variant "altgr-intl"
+        }
+        repeat-delay 250
+        repeat-rate 35
+    }
+
+    mouse {
+        accel-speed 0.35
+        scroll-method "on-button-down"
+        scroll-button 274
+    }
+
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+// Monitor configuration
+output "DP-1" {
+    mode "2560x1440@239.970"
+    scale 1
+}
+
+// Layout
+layout {
+    gaps 5
+
+    center-focused-column "never"
+
+    default-column-width { proportion 0.5; }
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 1.0
+    }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        on
+        width 3
+        active-color "#d79921"
+        inactive-color "#595959aa"
+    }
+
+    shadow {
+        on
+        softness 4
+        spread 3
+        color "#1a1a1aee"
+    }
+
+    struts {
+        left 15
+        right 15
+        top 15
+        bottom 15
+    }
+
+  background-color "transparent"
+}
+
+// Cursor
+cursor {
+    hide-after-inactive-ms 3000
+}
+
+// Prefer server-side decorations
+prefer-no-csd
+
+// Animations
+animations {
+    // Window open
+    window-open {
+        duration-ms 200
+        curve "ease-out-expo"
+    }
+
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+
+    workspace-switch {
+        duration-ms 250
+        curve "ease-out-cubic"
+    }
+}
+
+// Window rules
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#".*"#
+    opacity 1.0
+}
+
+window-rule {
+    match app-id=r#".*"#
+    match is-focused=false
+    opacity 0.95
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+
+layer-rule {
+  match namespace="^noctalia-wallpaper*"
+  place-within-backdrop true
+}
+
+overview {
+  workspace-shadow {
+    off
+  }
+}
+
+spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock -f" "timeout" "600" "niri msg action power-off-monitors" "before-sleep" "swaylock -f"
+
+// Keybindings
+binds {
+    // Window management
+    Super+Q { close-window; }
+    Super+Return { spawn "kitty"; }
+    Super+F { spawn "nautilus" "--new-window"; }
+    Super+Shift+F { spawn "kitty" "--class" "monad.yazi" "-e" "yazi"; }
+    Super+B { spawn "helium"; }
+    Super+Alt+B { spawn "helium" "--incognito"; }
+    Super+Shift+Slash { spawn "bitwarden"; }
+
+    // Copy/Paste
+    Super+C { spawn "wl-copy"; }
+
+    // Screenshots
+    Super+S { spawn "sh" "-c" "grim -g \"$(slurp -w 0)\" -t png - | tee >(wl-copy) | swappy -f -"; }
+    Super+Shift+S { spawn "sh" "-c" "grim -t png - | tee >(wl-copy) | swappy -f -"; }
+    Super+Shift+P { spawn "hyprpicker" "-a"; }
+
+    // Noctalia
+    Super+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Super+Shift+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Super+Comma { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Super+Shift+Return { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+    Super+Period { spawn "noctalia-shell" "ipc" "call" "launcher" "emoji"; }
+    Super+R { spawn "noctalia-shell" "ipc" "call" "plugin:screen-recorder" "toggle"; }
+
+    // Web apps
+    Super+X { spawn "helium" "--app=https://x.com"; }
+    Super+Shift+X { spawn "helium" "--app=https://x.com/compose/post"; }
+    Super+W { spawn "helium" "--app=https://web.whatsapp.com"; }
+    Super+A { spawn "helium" "--app=https://gemini.google.com"; }
+    Super+E { spawn "thunderbird"; }
+    Super+Shift+C { spawn "helium" "--app=https://calendar.google.com"; }
+    Super+Y { spawn "helium" "--app=https://youtube.com"; }
+    Super+Shift+Y { spawn "google-chrome-stable" "--app=https://primevideo.com"; }
+
+    // Focus (column = left/right, window = up/down in niri's scrollable model)
+    Super+H { focus-column-left; }
+    Super+L { focus-column-right; }
+    Super+K { focus-window-up; }
+    Super+J { focus-window-down; }
+
+    // Move windows
+    Super+Shift+H { move-column-left; }
+    Super+Shift+L { move-column-right; }
+    Super+Shift+K { move-window-up; }
+    Super+Shift+J { move-window-down; }
+
+    // Resize
+    Super+Alt+H { set-column-width "-10%"; }
+    Super+Alt+L { set-column-width "+10%"; }
+    Super+Alt+K { set-window-height "-10%"; }
+    Super+Alt+J { set-window-height "+10%"; }
+
+    // Column width presets
+    Super+P { switch-preset-column-width; }
+
+    // Tiling controls
+    Super+T { toggle-window-floating; }
+    Super+F5 { fullscreen-window; }
+
+    // Workspaces
+    Super+1 { focus-workspace 1; }
+    Super+2 { focus-workspace 2; }
+    Super+3 { focus-workspace 3; }
+    Super+4 { focus-workspace 4; }
+    Super+5 { focus-workspace 5; }
+    Super+6 { focus-workspace 6; }
+    Super+7 { focus-workspace 7; }
+    Super+8 { focus-workspace 8; }
+    Super+9 { focus-workspace 9; }
+    Super+0 { focus-workspace 10; }
+
+    Super+Shift+1 { move-column-to-workspace 1; }
+    Super+Shift+2 { move-column-to-workspace 2; }
+    Super+Shift+3 { move-column-to-workspace 3; }
+    Super+Shift+4 { move-column-to-workspace 4; }
+    Super+Shift+5 { move-column-to-workspace 5; }
+    Super+Shift+6 { move-column-to-workspace 6; }
+    Super+Shift+7 { move-column-to-workspace 7; }
+    Super+Shift+8 { move-column-to-workspace 8; }
+    Super+Shift+9 { move-column-to-workspace 9; }
+    Super+Shift+0 { move-column-to-workspace 10; }
+
+    // Scroll through workspaces
+    Super+WheelScrollDown { focus-workspace-down; }
+    Super+WheelScrollUp { focus-workspace-up; }
+
+    // Media keys
+    XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPause allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
+
+    // Consume window into/expel from column
+    Super+O { consume-or-expel-window-left; }
+
+    // Quit niri
+    Super+Shift+E { quit; }
+
+    // Power off monitors
+    Super+Ctrl+P { power-off-monitors; }
+
+    // Toggle keyboard shortcuts inhibit
+    Super+Escape { toggle-keyboard-shortcuts-inhibit; }
+}
