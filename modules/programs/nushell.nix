@@ -157,8 +157,6 @@
       $env.config.color_config.row_index = "light_yellow_bold"
       $env.config.color_config.header = "light_yellow_bold"
 
-      # --- Startup ---
-      fastfetch
     '';
   };
 }
