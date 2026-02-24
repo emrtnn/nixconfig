@@ -112,7 +112,7 @@ window-rule {
 // Helium browser opacity
 window-rule {
     match app-id=r#"helium"#
-    opacity 0.97
+    opacity 1.0
 }
 
 // Video content: full opacity always (Prime Video)
