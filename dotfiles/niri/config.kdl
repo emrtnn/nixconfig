@@ -193,6 +193,10 @@ binds {
     Super+Period repeat=false { spawn "noctalia-shell" "ipc" "call" "launcher" "emoji"; }
     Super+R repeat=false { spawn "noctalia-shell" "ipc" "call" "plugin:screen-recorder" "toggle"; }
 
+    // Universal Copy/Paste
+    Super+C repeat=false { spawn "wtype" "-M" "ctrl" "-k" "Insert"; }
+    Super+V repeat=false { spawn "wtype" "-M" "shift" "-k" "Insert"; }
+
     // Web apps
     Super+X repeat=false { spawn "helium" "--app=https://x.com"; }
     Super+Shift+X repeat=false { spawn "helium" "--app=https://x.com/compose/post"; }
