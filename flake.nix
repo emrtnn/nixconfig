@@ -40,6 +40,16 @@
     overlays = [
       (final: prev: {
         helium = prev.callPackage ./pkgs/helium.nix {};
+        python313Packages = prev.python313Packages.overrideScope (pyFinal: pyPrev: {
+          picosvg = pyPrev.picosvg.overridePythonAttrs (old: {
+            patches = (old.patches or []) ++ [
+              (prev.fetchpatch {
+                url = "https://github.com/googlefonts/picosvg/commit/885ee64b75f526e938eb76e09fab7d93e946a355.patch";
+                hash = "sha256-fR3FfnEPHwSO1rMtmQEr1pyvByTx8T53FxSpuAKWIjw=";
+              })
+            ];
+          });
+        });
       })
     ];
   in {
