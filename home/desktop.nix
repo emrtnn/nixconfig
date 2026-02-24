@@ -56,6 +56,7 @@
     btop
     amp-cli
     wl-clipboard
+    wtype
 
     evince
     obsidian
