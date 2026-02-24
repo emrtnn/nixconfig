@@ -10,9 +10,6 @@
   programs.niri.enable = true;
 
   environment.systemPackages = with pkgs; [
-    swaylock
     swayidle
   ];
-
-  security.pam.services.swaylock = {};
 }

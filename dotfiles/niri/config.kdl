@@ -5,8 +5,9 @@ input {
             layout "us"
             variant "altgr-intl"
         }
-        repeat-delay 250
-        repeat-rate 35
+
+        repeat-delay 600
+        repeat-rate 25
     }
 
     mouse {
@@ -35,6 +36,7 @@ layout {
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
+        proportion 0.66666
         proportion 1.0
     }
 
@@ -43,7 +45,6 @@ layout {
     }
 
     border {
-        on
         width 3
         active-color "#d79921"
         inactive-color "#595959aa"
@@ -51,8 +52,8 @@ layout {
 
     shadow {
         on
-        softness 4
-        spread 3
+        softness 8
+        spread 2
         color "#1a1a1aee"
     }
 
@@ -63,7 +64,7 @@ layout {
         bottom 15
     }
 
-  background-color "transparent"
+    background-color "transparent"
 }
 
 // Cursor
@@ -94,76 +95,113 @@ animations {
 }
 
 // Window rules
-window-rule {
-    geometry-corner-radius 20
-    clip-to-geometry true
-}
 
+// Round corners for all windows
 window-rule {
-    match app-id=r#".*"#
+    geometry-corner-radius 1
+    clip-to-geometry true
     opacity 1.0
 }
 
+// Inactive window opacity
 window-rule {
-    match app-id=r#".*"#
-    match is-focused=false
+    match is-active=false
     opacity 0.95
+}
+
+// Helium browser opacity
+window-rule {
+    match app-id=r#"helium"#
+    opacity 0.97
+}
+
+// Video content: full opacity always (Prime Video)
+window-rule {
+    match app-id=r#"chrome-primevideo"#
+    opacity 1.0
+}
+
+// Swappy: open floating with focus
+window-rule {
+    match app-id=r#"^swappy$"#
+    open-floating true
+    open-focused true
+}
+
+// Localsend: open floating
+window-rule {
+    match app-id=r#"localsend"#
+    open-floating true
+}
+
+// Bitwarden: block from screen capture
+window-rule {
+    match app-id=r#"^Bitwarden$"#
+    block-out-from "screen-capture"
 }
 
 debug {
     honor-xdg-activation-with-invalid-serial
 }
 
+// Layer rules
 
+// Noctalia wallpaper in overview backdrop
 layer-rule {
-  match namespace="^noctalia-wallpaper*"
-  place-within-backdrop true
+    match namespace="^noctalia-wallpaper"
+    place-within-backdrop true
+}
+
+// Noctalia background panels: add shadow
+layer-rule {
+    match namespace="^noctalia-background"
+    shadow {
+        on
+    }
 }
 
 overview {
-  workspace-shadow {
-    off
-  }
+    workspace-shadow {
+        off
+    }
 }
 
-spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock -f" "timeout" "600" "niri msg action power-off-monitors" "before-sleep" "swaylock -f"
+// Idle and lock
+spawn-at-startup "swayidle" "-w" "timeout" "300" "noctalia-shell" "ipc" "call" "lockScreen" "lock" "timeout" "600" "niri" "msg" "action" "power-off-monitors" "before-sleep" "noctalia-shell" "ipc" "call" "lockScreen" "lock"
 
 // Keybindings
 binds {
     // Window management
     Super+Q { close-window; }
-    Super+Return { spawn "kitty"; }
-    Super+F { spawn "nautilus" "--new-window"; }
-    Super+Shift+F { spawn "kitty" "--class" "monad.yazi" "-e" "yazi"; }
-    Super+B { spawn "helium"; }
-    Super+Alt+B { spawn "helium" "--incognito"; }
-    Super+Shift+Slash { spawn "bitwarden"; }
-
-    // Copy/Paste
-    Super+C { spawn "wl-copy"; }
+    Super+Return repeat=false { spawn "kitty"; }
+    Super+F repeat=false { spawn "nautilus" "--new-window"; }
+    Super+Shift+F repeat=false { spawn "kitty" "--class" "monad.yazi" "-e" "yazi"; }
+    Super+B repeat=false { spawn "helium"; }
+    Super+Alt+B repeat=false { spawn "helium" "--incognito"; }
+    Super+Shift+Slash repeat=false { spawn "bitwarden"; }
 
     // Screenshots
-    Super+S { spawn "sh" "-c" "grim -g \"$(slurp -w 0)\" -t png - | tee >(wl-copy) | swappy -f -"; }
-    Super+Shift+S { spawn "sh" "-c" "grim -t png - | tee >(wl-copy) | swappy -f -"; }
-    Super+Shift+P { spawn "hyprpicker" "-a"; }
+    Super+S repeat=false { spawn "sh" "-c" "grim -g \"$(slurp -w 0)\" -t png - | tee >(wl-copy) | swappy -f -"; }
+    Super+Shift+S repeat=false { spawn "sh" "-c" "grim -t png - | tee >(wl-copy) | swappy -f -"; }
+    Super+Shift+P repeat=false { spawn "hyprpicker" "-a"; }
 
     // Noctalia
-    Super+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Super+Shift+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
-    Super+Comma { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
-    Super+Shift+Return { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
-    Super+Period { spawn "noctalia-shell" "ipc" "call" "launcher" "emoji"; }
-    Super+R { spawn "noctalia-shell" "ipc" "call" "plugin:screen-recorder" "toggle"; }
+    Super+Space repeat=false { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Super+Shift+V repeat=false { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Super+Comma repeat=false { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Super+Shift+Return repeat=false { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+    Super+Period repeat=false { spawn "noctalia-shell" "ipc" "call" "launcher" "emoji"; }
+    Super+R repeat=false { spawn "noctalia-shell" "ipc" "call" "plugin:screen-recorder" "toggle"; }
 
     // Web apps
-    Super+X { spawn "helium" "--app=https://x.com"; }
-    Super+Shift+X { spawn "helium" "--app=https://x.com/compose/post"; }
-    Super+W { spawn "helium" "--app=https://web.whatsapp.com"; }
-    Super+A { spawn "helium" "--app=https://gemini.google.com"; }
-    Super+E { spawn "thunderbird"; }
-    Super+Shift+C { spawn "helium" "--app=https://calendar.google.com"; }
-    Super+Y { spawn "helium" "--app=https://youtube.com"; }
-    Super+Shift+Y { spawn "google-chrome-stable" "--app=https://primevideo.com"; }
+    Super+X repeat=false { spawn "helium" "--app=https://x.com"; }
+    Super+Shift+X repeat=false { spawn "helium" "--app=https://x.com/compose/post"; }
+    Super+W repeat=false { spawn "helium" "--app=https://web.whatsapp.com"; }
+    Super+A repeat=false { spawn "helium" "--app=https://gemini.google.com"; }
+    Super+E repeat=false { spawn "thunderbird"; }
+    Super+Shift+C repeat=false { spawn "helium" "--app=https://calendar.google.com"; }
+    Super+Y repeat=false { spawn "helium" "--app=https://youtube.com"; }
+    Super+Shift+Y repeat=false { spawn "google-chrome-stable" "--app=https://primevideo.com"; }
 
     // Focus (column = left/right, window = up/down in niri's scrollable model)
     Super+H { focus-column-left; }
@@ -225,13 +263,4 @@ binds {
 
     // Consume window into/expel from column
     Super+O { consume-or-expel-window-left; }
-
-    // Quit niri
-    Super+Shift+E { quit; }
-
-    // Power off monitors
-    Super+Ctrl+P { power-off-monitors; }
-
-    // Toggle keyboard shortcuts inhibit
-    Super+Escape { toggle-keyboard-shortcuts-inhibit; }
 }
