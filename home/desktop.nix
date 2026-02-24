@@ -28,7 +28,6 @@
     ../modules/programs/vesktop.nix
     ../modules/programs/fzf.nix
     ../modules/desktop/swappy.nix
-    ../modules/desktop/hyprlock.nix
     ../modules/desktop/hypridle.nix
     ../modules/desktop/noctalia.nix
     ../modules/desktop/libreoffice.nix
@@ -159,10 +158,6 @@
     };
     "niri" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/niri";
-      recursive = true;
-    };
-    "swaylock" = {
-      source = ../dotfiles/swaylock;
       recursive = true;
     };
   };
