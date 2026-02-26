@@ -222,8 +222,8 @@ binds {
     // Resize
     Super+Alt+H { set-column-width "-10%"; }
     Super+Alt+L { set-column-width "+10%"; }
-    Super+Alt+K { set-window-height "-10%"; }
-    Super+Alt+J { set-window-height "+10%"; }
+    Super+Alt+K { set-window-height "+10%"; }
+    Super+Alt+J { set-window-height "-10%"; }
 
     // Column width presets
     Super+P { switch-preset-column-width; }
