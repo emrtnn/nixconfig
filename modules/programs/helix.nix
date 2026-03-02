@@ -31,6 +31,22 @@
       rust-analyzer
       rustfmt
 
+      # Astro
+      astro-language-server
+
+      # TOML
+      taplo
+
+      # Docker
+      dockerfile-language-server-nodejs
+      docker-compose-language-service
+
+      # Tailwind CSS
+      tailwindcss-language-server
+
+      # Emmet
+      emmet-language-server
+
       # Shell
       nodePackages.bash-language-server
       shfmt
@@ -226,6 +242,31 @@
           command = "tailwindcss-language-server";
           args = ["--stdio"];
         };
+
+        astro-ls = {
+          command = "astro-ls";
+          args = ["--stdio"];
+        };
+
+        taplo = {
+          command = "taplo";
+          args = ["lsp" "stdio"];
+        };
+
+        docker-langserver = {
+          command = "docker-langserver";
+          args = ["--stdio"];
+        };
+
+        docker-compose-langserver = {
+          command = "docker-compose-langserver";
+          args = ["--stdio"];
+        };
+
+        emmet-language-server = {
+          command = "emmet-language-server";
+          args = ["--stdio"];
+        };
       };
 
       language = [
@@ -395,7 +436,7 @@
 
         {
           name = "html";
-          language-servers = ["vscode-html-language-server"];
+          language-servers = ["vscode-html-language-server" "emmet-language-server"];
           auto-format = true;
           formatter = {
             command = "prettier";
@@ -456,6 +497,68 @@
           formatter = {
             command = "sql-formatter";
             args = ["--language" "postgresql"];
+          };
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
+
+        {
+          name = "astro";
+          language-servers = ["astro-ls"];
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "astro"];
+          };
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
+
+        {
+          name = "toml";
+          language-servers = ["taplo"];
+          auto-format = true;
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
+
+        {
+          name = "scss";
+          language-servers = ["vscode-css-language-server" "tailwindcss-ls"];
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "scss"];
+          };
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
+
+        {
+          name = "dockerfile";
+          language-servers = ["docker-langserver"];
+          auto-format = true;
+          indent = {
+            tab-width = 4;
+            unit = "    ";
+          };
+        }
+
+        {
+          name = "docker-compose";
+          language-servers = ["docker-compose-langserver" "yaml-language-server"];
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "yaml"];
           };
           indent = {
             tab-width = 2;
