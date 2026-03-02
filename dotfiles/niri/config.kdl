@@ -268,3 +268,10 @@ binds {
     // Consume window into/expel from column
     Super+O { consume-or-expel-window-left; }
 }
+
+// Gestures
+gestures {
+    hot-corners {
+        off
+    }
+}
