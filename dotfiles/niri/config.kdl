@@ -275,3 +275,8 @@ gestures {
         off
     }
 }
+
+// Skip important hotkeys popup at start
+hotkey-overlay {
+    skip-at-startup
+}
