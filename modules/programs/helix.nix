@@ -285,7 +285,7 @@
 
         {
           name = "typescript";
-          language-servers = ["typescript-language-server"];
+          language-servers = ["typescript-language-server" "tailwindcss-ls"];
           auto-format = true;
           formatter = {
             command = "biome";
@@ -299,7 +299,7 @@
 
         {
           name = "javascript";
-          language-servers = ["typescript-language-server"];
+          language-servers = ["typescript-language-server" "tailwindcss-ls"];
           auto-format = true;
           formatter = {
             command = "biome";
@@ -313,7 +313,7 @@
 
         {
           name = "tsx";
-          language-servers = ["typescript-language-server"];
+          language-servers = ["typescript-language-server" "tailwindcss-ls"];
           auto-format = true;
           formatter = {
             command = "biome";
@@ -327,7 +327,7 @@
 
         {
           name = "jsx";
-          language-servers = ["typescript-language-server"];
+          language-servers = ["typescript-language-server" "tailwindcss-ls"];
           auto-format = true;
           formatter = {
             command = "biome";
@@ -436,7 +436,7 @@
 
         {
           name = "html";
-          language-servers = ["vscode-html-language-server" "emmet-language-server"];
+          language-servers = ["vscode-html-language-server" "emmet-language-server" "tailwindcss-ls"];
           auto-format = true;
           formatter = {
             command = "prettier";
@@ -506,7 +506,7 @@
 
         {
           name = "astro";
-          language-servers = ["astro-ls"];
+          language-servers = ["astro-ls" "tailwindcss-ls"];
           auto-format = true;
           formatter = {
             command = "prettier";
