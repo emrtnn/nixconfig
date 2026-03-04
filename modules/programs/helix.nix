@@ -38,7 +38,7 @@
       taplo
 
       # Docker
-      dockerfile-language-server-nodejs
+      dockerfile-language-server
       docker-compose-language-service
 
       # Tailwind CSS
@@ -141,7 +141,7 @@
         statusline = {
           left = ["mode" "spinner" "spacer" "version-control" "spacer" "file-name" "read-only-indicator" "file-modification-indicator"];
           center = [];
-          right = ["diagnostics" "workspace-diagnostics" "position" "total-line-numbers" "position-percentage" "file-encoding" "file-type" "register" "selections" "selections"];
+          right = ["diagnostics" "workspace-diagnostics" "position" "total-line-numbers" "position-percentage" "file-encoding" "file-type" "register" "selections"];
           separator = "│";
           mode = {
             normal = "NORMAL";
@@ -313,7 +313,7 @@
 
         {
           name = "tsx";
-          language-servers = ["typescript-language-server" "tailwindcss-ls"];
+          language-servers = ["typescript-language-server" "tailwindcss-ls" "emmet-language-server"];
           auto-format = true;
           formatter = {
             command = "biome";
@@ -327,7 +327,7 @@
 
         {
           name = "jsx";
-          language-servers = ["typescript-language-server" "tailwindcss-ls"];
+          language-servers = ["typescript-language-server" "tailwindcss-ls" "emmet-language-server"];
           auto-format = true;
           formatter = {
             command = "biome";
@@ -506,7 +506,7 @@
 
         {
           name = "astro";
-          language-servers = ["astro-ls" "tailwindcss-ls"];
+          language-servers = ["astro-ls" "tailwindcss-ls" "emmet-language-server"];
           auto-format = true;
           formatter = {
             command = "prettier";
