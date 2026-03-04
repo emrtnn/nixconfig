@@ -46,7 +46,7 @@
       pfzf = "fzf --preview='bat --color=always {}'";
       nfzf = "hx $(fzf -m --preview='bat --color=always {}')";
 
-      gc = "git commit";
+      gc = "git commit -m";
       gp = "git push";
       ga = "git add";
       gs = "git status";
