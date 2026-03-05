@@ -201,7 +201,8 @@ binds {
     Super+X repeat=false { spawn "helium" "--app=https://x.com"; }
     Super+Shift+X repeat=false { spawn "helium" "--app=https://x.com/compose/post"; }
     Super+W repeat=false { spawn "helium" "--app=https://web.whatsapp.com"; }
-    Super+A repeat=false { spawn "helium" "--app=https://gemini.google.com"; }
+    Super+A repeat=false { spawn "helium" "--app=https://chatgpt.com"; }
+    Super+Shift+A repeat=false { spawn "helium" "--app=https://gemini.google.com"; }
     Super+E repeat=false { spawn "thunderbird"; }
     Super+Shift+C repeat=false { spawn "helium" "--app=https://calendar.google.com"; }
     Super+Y repeat=false { spawn "helium" "--app=https://youtube.com"; }
