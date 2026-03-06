@@ -30,6 +30,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    codex-cli-nix = {
+      url = "github:sadjow/codex-cli-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -40,6 +44,7 @@
     overlays = [
       (final: prev: {
         helium = prev.callPackage ./pkgs/helium.nix {};
+        codex = inputs.codex-cli-nix.packages.${prev.system}.default;
       })
     ];
   in {
