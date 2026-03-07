@@ -16,6 +16,7 @@
       systemd-boot.enable = false;
       limine = {
         enable = true;
+        maxGenerations = 3;
         extraEntries = ''
           /Windows 11
             protocol: efi_chainload
