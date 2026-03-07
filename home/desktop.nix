@@ -61,6 +61,7 @@
     evince
     obsidian
     gh
+    devenv
   ];
 
   home.sessionVariables = {
