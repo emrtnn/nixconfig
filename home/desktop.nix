@@ -60,6 +60,7 @@
     codex
     evince
     obsidian
+    gh
   ];
 
   home.sessionVariables = {
