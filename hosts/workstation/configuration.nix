@@ -237,7 +237,10 @@
       ];
 
       # Cachix
-      substituters = ["https://hyprland.cachix.org"];
+      substituters = [
+        "https://hyprland.cachix.org"
+        "https://devenv.cachix.org"
+      ];
 
       trusted-substituters = [
         "https://hyprland.cachix.org"
