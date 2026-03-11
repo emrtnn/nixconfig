@@ -16,7 +16,7 @@
 
       settings = {
         user = {
-          name = "impuremonad";
+          name = "emrtnn";
           email = "enriquemartin1402@gmail.com";
         };
         core = {
