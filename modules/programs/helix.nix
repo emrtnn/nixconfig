@@ -203,6 +203,11 @@
         vscode-html-language-server = {
           command = "vscode-html-language-server";
           args = ["--stdio"];
+          config = {
+            html = {
+              autoClosingTags = true;
+            };
+          };
         };
 
         vscode-css-language-server = {
