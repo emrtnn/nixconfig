@@ -48,6 +48,7 @@
 
       gc = "git commit -m";
       gco = "git checkout";
+      gb = "git branch";
       gp = "git push";
       ga = "git add";
       gs = "git status";
