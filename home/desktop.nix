@@ -62,6 +62,7 @@
     obsidian
     gh
     devenv
+    uv
   ];
 
   home.sessionVariables = {
