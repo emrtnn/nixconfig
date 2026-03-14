@@ -16,7 +16,9 @@
       systemd-boot.enable = false;
       limine = {
         enable = true;
-        maxGenerations = 3;
+        # This host has a 196M EFI partition, so keeping multiple initrds
+        # around under /boot/limine quickly exhausts the available space.
+        maxGenerations = 2;
         extraEntries = ''
           /Windows 11
             protocol: efi_chainload
