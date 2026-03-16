@@ -3,7 +3,12 @@
   inputs,
   config,
   ...
-}: {
+}: let
+  stablePkgs = import inputs.nixpkgs-stable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+  };
+in {
   home = {
     username = "impuremonad";
     homeDirectory = "/home/impuremonad";
@@ -46,7 +51,7 @@
     helium
     nautilus
     imv
-    bitwarden-desktop
+    stablePkgs.bitwarden-desktop
     grim
     slurp
     gpu-screen-recorder
