@@ -144,7 +144,7 @@ _: {
             {
               blacklist = [];
               chevronColor = "none";
-              colorizeIcons = true;
+              colorizeIcons = false;
               drawerEnabled = false;
               hidePassive = false;
               id = "Tray";
