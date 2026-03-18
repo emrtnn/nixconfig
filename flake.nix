@@ -61,6 +61,7 @@
             users.impuremonad = import ./home/desktop.nix;
             extraSpecialArgs = {inherit inputs;};
             backupFileExtension = "backup";
+            overwriteBackup = true;
           };
         }
       ];
@@ -79,6 +80,7 @@
             users.impuremonad = import ./home/desktop.nix;
             extraSpecialArgs = {inherit inputs;};
             backupFileExtension = "backup";
+            overwriteBackup = true;
           };
         }
       ];
