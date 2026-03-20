@@ -659,7 +659,7 @@ _: {
       };
 
       plugins = {
-        autoUpdate = false;
+        autoUpdate = true;
       };
 
       desktopWidgets = {
