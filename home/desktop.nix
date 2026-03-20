@@ -28,7 +28,6 @@ in {
     ../modules/programs/git.nix
     ../modules/programs/opencode.nix
     ../modules/programs/tmux.nix
-    ../modules/programs/codex.nix
     ../modules/programs/direnv.nix
     ../modules/programs/zsh.nix
     ../modules/programs/vesktop.nix
@@ -69,6 +68,7 @@ in {
     gh
     devenv
     uv
+    codex
   ];
 
   home.sessionVariables = {
