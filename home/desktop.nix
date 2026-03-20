@@ -69,6 +69,7 @@ in {
     devenv
     uv
     codex
+    unzip
   ];
 
   home.sessionVariables = {
