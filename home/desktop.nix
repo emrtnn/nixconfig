@@ -63,12 +63,12 @@ in {
     wl-clipboard
     wtype
     codex
+    pi-coding-agent
     evince
     obsidian
     gh
     devenv
     uv
-    codex
     unzip
   ];
 
