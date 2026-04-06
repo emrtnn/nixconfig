@@ -13,12 +13,12 @@
 
       # JS/TS/HTML/CSS/JSON/Markdown/YAML/Astro
       nodejs_22
-      nodePackages.typescript-language-server
-      nodePackages.typescript
+      typescript-language-server
+      typescript
       biome
-      nodePackages.prettier
-      nodePackages.vscode-langservers-extracted
-      nodePackages.yaml-language-server
+      prettier
+      vscode-langservers-extracted
+      yaml-language-server
 
       # Python
       pyright
@@ -48,7 +48,7 @@
       emmet-language-server
 
       # Shell
-      nodePackages.bash-language-server
+      bash-language-server
       shfmt
 
       # Lua
@@ -60,7 +60,7 @@
 
       # SQL
       sqls
-      nodePackages.sql-formatter
+      sql-formatter
 
       # Nushell (uses built-in --lsp)
       nushell

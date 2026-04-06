@@ -44,7 +44,7 @@
     overlays = [
       (final: prev: {
         helium = prev.callPackage ./pkgs/helium.nix {};
-        codex = inputs.codex-cli-nix.packages.${prev.system}.default;
+        codex = inputs.codex-cli-nix.packages.${prev.stdenv.hostPlatform.system}.default;
       })
     ];
   in {

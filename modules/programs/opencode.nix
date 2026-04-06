@@ -3,17 +3,12 @@
     enable = true;
 
     settings = {
-      theme = "gruvbox";
       autoupdate = true;
 
       permission = {
         edit = "ask";
         bash = "ask";
         webfetch = "allow";
-      };
-
-      keybinds = {
-        input_newline = "shift+return";
       };
 
       mcp = {
@@ -44,6 +39,14 @@
           };
           enabled = true;
         };
+      };
+    };
+
+    tui = {
+      theme = "gruvbox";
+
+      keybinds = {
+        input_newline = "shift+return";
       };
     };
   };
