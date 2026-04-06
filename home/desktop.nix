@@ -27,6 +27,7 @@ in {
     ../modules/programs/zoxide.nix
     ../modules/programs/git.nix
     ../modules/programs/opencode.nix
+    ../modules/programs/pi.nix
     ../modules/programs/tmux.nix
     ../modules/programs/direnv.nix
     ../modules/programs/zsh.nix
@@ -63,7 +64,6 @@ in {
     wl-clipboard
     wtype
     codex
-    pi-coding-agent
     evince
     obsidian
     gh
