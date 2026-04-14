@@ -75,6 +75,7 @@ in {
   home.sessionVariables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
     BROWSER = "helium";
+    CHROME_PATH = "${pkgs.google-chrome}/bin/google-chrome";
   };
 
   xdg = {
