@@ -69,6 +69,7 @@ in {
     gh
     devenv
     uv
+    python3
     unzip
   ];
 
