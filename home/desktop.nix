@@ -50,6 +50,7 @@ in {
     tree-sitter
     google-chrome
     helium
+    telegram-desktop
     nautilus
     imv
     stablePkgs.bitwarden-desktop
