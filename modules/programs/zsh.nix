@@ -41,6 +41,7 @@
 
     shellAliases = {
       ls = "eza";
+      l = "eza -lh";
       cat = "bat";
       grep = "rg";
       pfzf = "fzf --preview='bat --color=always {}'";
