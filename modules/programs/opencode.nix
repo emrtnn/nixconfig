@@ -2,6 +2,8 @@
   programs.opencode = {
     enable = true;
 
+    packages = pkgs.opencode;
+
     settings = {
       autoupdate = true;
 

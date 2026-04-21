@@ -1,5 +1,5 @@
 {
-  description = "Hyprland + Quickshell + Nixos";
+  description = "Niri + Quickshell + Nixos";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";

@@ -167,7 +167,7 @@ overview {
 }
 
 // Idle and lock
-spawn-at-startup "swayidle" "-w" "timeout" "300" "noctalia-shell" "ipc" "call" "lockScreen" "lock" "timeout" "600" "niri" "msg" "action" "power-off-monitors" "before-sleep" "noctalia-shell" "ipc" "call" "lockScreen" "lock"
+spawn-at-startup "swayidle" "-w" "timeout" "300" "noctalia-shell" "ipc" "call" "lockScreen" "lock" "timeout" "480" "loginctl" "lock-sessions" "timeout" "600" "systemctl" "suspend" "before-sleep" "noctalia-shell" "ipc" "call" "lockScreen" "lock"
 
 // Keybindings
 binds {
