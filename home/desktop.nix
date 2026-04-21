@@ -38,6 +38,7 @@ in {
     ../modules/desktop/noctalia.nix
     ../modules/desktop/libreoffice.nix
     ../modules/programs/thunderbird.nix
+    ../modules/programs/jujutsu.nix
   ];
 
   home.packages = with pkgs; [
