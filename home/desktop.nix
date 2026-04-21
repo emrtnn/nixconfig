@@ -34,7 +34,6 @@ in {
     ../modules/programs/vesktop.nix
     ../modules/programs/fzf.nix
     ../modules/desktop/swappy.nix
-    ../modules/desktop/hypridle.nix
     ../modules/desktop/noctalia.nix
     ../modules/desktop/libreoffice.nix
     ../modules/programs/thunderbird.nix
@@ -166,10 +165,6 @@ in {
   };
 
   xdg.configFile = {
-    "hypr" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/hypr";
-      recursive = true;
-    };
     "quickshell" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/quickshell";
       recursive = true;
