@@ -1,12 +1,15 @@
-_: {
+{pkgs, inputs, config, ...}: {
   programs.noctalia-shell = {
     enable = true;
 
-    package = null;
-
-    systemd.enable = false;
+    package = pkgs.niri;
 
     settings = {
+      spawn-at-startup = [
+        {
+          command = ["noctalia-shell"];
+        }
+      ];
       bar = {
         barType = "simple";
         position = "left";
