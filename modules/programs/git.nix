@@ -2,6 +2,7 @@
   programs = {
     delta = {
       enable = true;
+      enableJujutsuIntegration = true;
       options = {
         navigate = true;
         side-by-side = true;
