@@ -51,12 +51,20 @@
       gco = "git checkout";
       gb = "git branch";
       gp = "git push";
+      gcp = "git cherry-pick";
+      gt = "git tag";
       ga = "git add";
       gs = "git status";
       gl = "git log --graph --pretty=format:'%C(yellow)%h (%Creset%Cgreen%p%Creset%C(yellow))%Creset -%Cred%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --all";
       lg = "lazygit";
       gd = "git diff";
       gds = "git diff --staged";
+
+      jd = "jj desc";
+      jf = "jj git fetch";
+      jn = "jj new";
+      jp = "jj git push";
+      js = "jj st";
 
       nrs = "nixos-rebuild switch --flake";
       nb = "nix build";
