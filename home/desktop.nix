@@ -5,7 +5,7 @@
   ...
 }: let
   stablePkgs = import inputs.nixpkgs-stable {
-    system = pkgs.stdenv.hostPlatform.system;
+    inherit (pkgs.stdenv.hostPlatform) system;
     config.allowUnfree = true;
   };
 in {
@@ -38,7 +38,7 @@ in {
     ../modules/desktop/libreoffice.nix
     ../modules/programs/thunderbird.nix
     ../modules/programs/jujutsu.nix
-    ../modules/programs/vim.nix
+    ../modules/programs/nvim.nix
   ];
 
   home.packages = with pkgs; [
@@ -142,7 +142,7 @@ in {
       gtk-application-prefer-dark-theme = 1;
     };
     gtk4 = {
-      theme = config.gtk.theme;
+      inherit (config.gtk) theme;
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };
