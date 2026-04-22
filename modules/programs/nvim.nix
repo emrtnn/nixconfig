@@ -4,8 +4,6 @@
 
     settings = {
       vim = {
-        lineNumberMode = "relNumber";
-
         searchCase = "smart";
 
         undoFile.enable = true;
@@ -117,16 +115,12 @@
           enable = true;
           name = "gruvbox";
           style = "dark";
-          transparent = false;
         };
 
         treesitter = {
-          enable = true;
           highlight.enable = true;
           indent.enable = true;
           fold = false;
-          autotagHtml = true;
-          addDefaultGrammars = true;
 
           textobjects = {
             enable = true;
@@ -168,16 +162,12 @@
             update_in_insert = false;
             severity_sort = true;
           };
-          nvim-lint = {
-            enable = true;
-            lint_after_save = true;
-          };
+          nvim-lint.enable = true;
         };
 
         statusline.lualine = {
           enable = true;
           theme = "gruvbox_dark";
-          globalStatus = true;
           componentSeparator = {
             left = "|";
             right = "|";
@@ -212,6 +202,20 @@
               ''{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } }''
               # 3. Filename (Relative path)
               ''{ "filename", path = 1, symbols = { modified = "  ", readonly = "  ", unnamed = "" } }''
+              # 4. Current scope/breadcrumbs
+              ''
+                {
+                  function()
+                    local ok, navic = pcall(require, "nvim-navic")
+                    if not ok or not navic.is_available() then return "" end
+                    return navic.get_location()
+                  end,
+                  cond = function()
+                    local ok, navic = pcall(require, "nvim-navic")
+                    return ok and navic.is_available()
+                  end,
+                }
+              ''
             ];
 
             # --- SECTION X: Diff & LSP ---
@@ -333,14 +337,8 @@
 
         snippets.luasnip.enable = true;
 
-        autocomplete.nvim-cmp = {
+        autocomplete.blink-cmp = {
           enable = true;
-          sources = {
-            nvim_lsp = "[LSP]";
-            path = "[Path]";
-            luasnip = "[Snip]";
-            buffer = "[Buffer]";
-          };
           mappings = {
             complete = "<C-Space>";
             confirm = "<CR>";
@@ -350,50 +348,20 @@
             scrollDocsUp = "<C-b>";
             scrollDocsDown = "<C-f>";
           };
-          format = {
-            _type = "lua-inline";
-            expr = ''
-              function(entry, item)
-                local icons = {
-                  Text = "󰉿", Method = "󰆧", Function = "󰊕", Constructor = "",
-                  Field = "󰜢", Variable = "󰀫", Class = "󰠱", Interface = "",
-                  Module = "", Property = "󰜢", Unit = "󰑭", Value = "󰎠",
-                  Enum = "", Keyword = "󰌋", Snippet = "", Color = "󰏘",
-                  File = "󰈙", Reference = "󰈇", Folder = "󰉋", EnumMember = "",
-                  Constant = "󰏿", Struct = "󰙅", Event = "", Operator = "󰆕",
-                  TypeParameter = ""
-                }
-
-                if icons[item.kind] then
-                  item.kind = icons[item.kind] .. " " .. item.kind
-                end
-
-                local widths = { abbr = 40, menu = 30 }
-                for key, width in pairs(widths) do
-                  if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
-                    item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. "…"
-                  end
-                end
-
-                return item
-              end
-            '';
-          };
           setupOpts = {
-            experimental = {
-              ghost_text = true;
-            };
             completion = {
-              completeopt = "menu,menuone,noinsert";
-            };
-            window = {
-              completion = {
+              ghost_text.enabled = true;
+              menu = {
                 border = "rounded";
                 winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None";
               };
               documentation = {
-                border = "rounded";
-                winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None";
+                auto_show = true;
+                auto_show_delay_ms = 200;
+                window = {
+                  border = "rounded";
+                  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None";
+                };
               };
             };
           };
@@ -409,6 +377,7 @@
           enable = true;
           formatOnSave = true;
           inlayHints.enable = true;
+          presets.tailwindcss-language-server.enable = true;
           trouble = {
             enable = true;
             mappings = {
@@ -444,129 +413,38 @@
           enableFormat = true;
           enableDAP = true;
 
-          nix = {
+          nix.enable = true;
+          typescript = {
             enable = true;
-            format.enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-
-          ts = {
-            enable = true;
-            format.enable = true;
             format.type = ["biome" "prettier"];
-            lsp.enable = true;
-            treesitter.enable = true;
-            extraDiagnostics.enable = true;
           };
-
-          nu = {
-            enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-
-          tailwind = {
-            enable = true;
-            lsp.enable = true;
-          };
-
-          yaml = {
-            enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-
+          nu.enable = true;
+          yaml.enable = true;
           css = {
             enable = true;
-            format.enable = true;
             format.type = ["biome" "prettier"];
-            lsp.enable = true;
-            treesitter.enable = true;
           };
-
-          clang = {
-            enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-            dap.enable = true;
-          };
-
-          bash = {
-            enable = true;
-            format.enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-
+          clang.enable = true;
+          bash.enable = true;
           astro = {
             enable = true;
-            format.enable = true;
             format.type = ["biome" "prettier"];
-            extraDiagnostics.enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
           };
-
           markdown = {
             enable = true;
-            extensions = {
-              render-markdown-nvim = {
-                enable = true;
-              };
-            };
-            format.enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
+            extensions.render-markdown-nvim.enable = true;
           };
-
           html = {
             enable = true;
-            extraDiagnostics.enable = true;
-
-            format.enable = true;
-            lsp.enable = true;
-            treesitter = {
-              enable = true;
-              autotagHtml = true;
-            };
+            treesitter.autotagHtml = true;
           };
-
-          python = {
-            enable = true;
-            format.enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-            dap.enable = true;
-          };
-
-          qml = {
-            enable = true;
-            format.enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-
-          sql = {
-            enable = true;
-            format.enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-
-          json = {
-            enable = true;
-            format.enable = true;
-            lsp.enable = true;
-            treesitter.enable = true;
-          };
-
+          python.enable = true;
+          qml.enable = true;
+          sql.enable = true;
+          json.enable = true;
           lua = {
             enable = true;
-            format.enable = true;
-            lsp.enable = true;
             lsp.lazydev.enable = true;
-            treesitter.enable = true;
           };
         };
 
@@ -654,6 +532,7 @@
         debugger = {
           nvim-dap = {
             enable = true;
+            ui.enable = true;
           };
         };
 
@@ -757,20 +636,20 @@
           };
         };
 
+        visuals.fidget-nvim.enable = true;
+
         ui = {
+          breadcrumbs = {
+            enable = true;
+            lualine.winbar = {
+              enable = true;
+              alwaysRender = true;
+            };
+          };
+
           borders = {
             enable = true;
-            globalStyle = "rounded";
-            plugins = {
-              nvim-cmp = {
-                enable = true;
-                style = "rounded";
-              };
-              which-key = {
-                enable = true;
-                style = "rounded";
-              };
-            };
+            plugins.which-key.enable = true;
           };
 
           colorizer = {
