@@ -38,6 +38,7 @@ in {
     ../modules/desktop/libreoffice.nix
     ../modules/programs/thunderbird.nix
     ../modules/programs/jujutsu.nix
+    ../modules/programs/vim.nix
   ];
 
   home.packages = with pkgs; [

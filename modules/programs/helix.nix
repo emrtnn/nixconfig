@@ -5,7 +5,7 @@
 }: {
   programs.helix = {
     enable = true;
-    defaultEditor = true;
+    defaultEditor = false;
     extraPackages = with pkgs; [
       # Nix
       nil

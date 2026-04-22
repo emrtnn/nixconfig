@@ -16,8 +16,8 @@
     };
 
     environmentVariables = {
-      EDITOR = "hx";
-      VISUAL = "hx";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
       PROMPT_INDICATOR = " ";
       PROMPT_COMMAND_RIGHT = "''";
       PROMPT_MULTILINE_INDICATOR = "''";
@@ -128,7 +128,7 @@
           try {
               let selected_file = (fzf --preview="bat --color=always {}" | str trim)
               if ($selected_file != "" and ($selected_file | path exists)) {
-                  hx $selected_file
+                  nvim $selected_file
               } else {
                   print "No file selected or file doesn't exist"
               }
