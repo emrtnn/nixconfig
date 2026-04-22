@@ -45,7 +45,7 @@
       cat = "bat";
       grep = "rg";
       pfzf = "fzf --preview='bat --color=always {}'";
-      nfzf = "hx $(fzf -m --preview='bat --color=always {}')";
+      nfzf = "nvim $(fzf -m --preview='bat --color=always {}')";
 
       gc = "git commit -m";
       gco = "git checkout";
@@ -74,7 +74,8 @@
     };
 
     sessionVariables = {
-      EDITOR = "hx";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
     };
 
     initContent = ''

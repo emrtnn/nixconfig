@@ -21,7 +21,7 @@
           email = "enriquemartin1402@gmail.com";
         };
         core = {
-          editor = "hx";
+          editor = "nvim";
           autocrlf = "input";
           pager = "delta";
         };

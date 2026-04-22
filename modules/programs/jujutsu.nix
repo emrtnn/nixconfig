@@ -8,7 +8,7 @@
       };
       ui = {
         color = "always";
-        editor = "hx";
+        editor = "nvim";
         default-revset = "::";
       };
       merge = {
