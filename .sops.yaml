@@ -1,0 +1,7 @@
+keys:
+  - &arpano age16g9dlcg37wqn4mm54zx4rvxqdx5quexjdeu4g3xnqrpe89ejksqq7mxmrt
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+        - *arpano
