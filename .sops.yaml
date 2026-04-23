@@ -1,7 +1,9 @@
 keys:
   - &arpano age16g9dlcg37wqn4mm54zx4rvxqdx5quexjdeu4g3xnqrpe89ejksqq7mxmrt
+  - &monad age10jtyu2ar95c7r24ce02e0tz07fwucwu6dkmng8s72pqgy04t39wqsvvt3w
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
         - *arpano
+        - *monad
