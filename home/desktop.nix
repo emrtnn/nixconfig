@@ -23,7 +23,6 @@ in {
     ../modules/desktop/kitty.nix
     ../modules/programs/nushell.nix
     ../modules/programs/starship.nix
-    ../modules/programs/helix.nix
     ../modules/programs/yazi.nix
     ../modules/programs/zoxide.nix
     ../modules/programs/git.nix
