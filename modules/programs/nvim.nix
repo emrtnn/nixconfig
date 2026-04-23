@@ -203,19 +203,19 @@
               # 3. Filename (Relative path)
               ''{ "filename", path = 1, symbols = { modified = "  ", readonly = "  ", unnamed = "" } }''
               # 4. Current scope/breadcrumbs
-              ''
-                {
-                  function()
-                    local ok, navic = pcall(require, "nvim-navic")
-                    if not ok or not navic.is_available() then return "" end
-                    return navic.get_location()
-                  end,
-                  cond = function()
-                    local ok, navic = pcall(require, "nvim-navic")
-                    return ok and navic.is_available()
-                  end,
-                }
-              ''
+              # ''
+              #   {
+              #     function()
+              #       local ok, navic = pcall(require, "nvim-navic")
+              #       if not ok or not navic.is_available() then return "" end
+              #       return navic.get_location()
+              #     end,
+              #     cond = function()
+              #       local ok, navic = pcall(require, "nvim-navic")
+              #       return ok and navic.is_available()
+              #     end,
+              #   }
+              # ''
             ];
 
             # --- SECTION X: Diff & LSP ---

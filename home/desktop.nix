@@ -166,19 +166,22 @@ in {
   };
 
   xdg.configFile = {
-    "quickshell" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/quickshell";
-      recursive = true;
-    };
     "niri" = {
       source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/niri";
       recursive = true;
     };
   };
 
-  home.file."Pictures/Wallpapers" = {
-    source = ../wallpapers;
-    recursive = true;
+  home.file = {
+    "Pictures/Wallpapers" = {
+      source = ../wallpapers;
+      recursive = true;
+    };
+
+    ".pi" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/pi";
+      recursive = true;
+    };
   };
 
   home.file.".face".source = ../assets/.face;
