@@ -8,6 +8,7 @@
     ./fonts.nix
     inputs.noctalia.nixosModules.default
     inputs.silentSDDM.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
     ../../modules/desktop/niri.nix
   ];
 
@@ -230,4 +231,10 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/impuremonad/.config/sops/age/keys.txt";
+  };
 }

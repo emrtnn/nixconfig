@@ -18,6 +18,7 @@ in {
   imports = [
     inputs.nvf.homeManagerModules.default
     inputs.noctalia.homeModules.default
+    inputs.sops-nix.homeManagerModules.sops
     ../modules/programs/carapace.nix
     ../modules/desktop/kitty.nix
     ../modules/programs/nushell.nix
@@ -73,13 +74,9 @@ in {
     uv
     python3
     unzip
+    sops
+    age
   ];
-
-  home.sessionVariables = {
-    SHELL = "${pkgs.zsh}/bin/zsh";
-    BROWSER = "helium";
-    CHROME_PATH = "${pkgs.google-chrome}/bin/google-chrome";
-  };
 
   xdg = {
     enable = true;
@@ -185,4 +182,18 @@ in {
   };
 
   home.file.".face".source = ../assets/.face;
+
+  sops = {
+    defaultSopsFile = ../secrets/secrets.yaml;
+    age.keyFile = "/home/impuremonad/.config/sops/age/keys.txt";
+
+    secrets.brave_api_key = {};
+  };
+
+  home.sessionVariables = {
+    SHELL = "${pkgs.zsh}/bin/zsh";
+    BROWSER = "helium";
+    CHROME_PATH = "${pkgs.google-chrome}/bin/google-chrome";
+    BRAVE_API_KEY_FILE = "${config.home.homeDirectory}/.config/sops-nix/secrets/brave_api_key";
+  };
 }
