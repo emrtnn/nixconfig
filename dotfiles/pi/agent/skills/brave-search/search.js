@@ -4,6 +4,7 @@ import { Readability } from "@mozilla/readability";
 import { JSDOM } from "jsdom";
 import TurndownService from "turndown";
 import { gfm } from "turndown-plugin-gfm";
+import { readFileSync } from "fs";
 
 const args = process.argv.slice(2);
 
@@ -59,7 +60,11 @@ if (!query) {
   process.exit(1);
 }
 
-const apiKey = process.env.BRAVE_API_KEY;
+const apiKey =
+  process.env.BRAVE_API_KEY ??
+  (process.env.BRAVE_API_KEY_FILE
+    ? readFileSync(process.env.BRAVE_API_KEY_FILE, "utf8").trim()
+    : undefined);
 if (!apiKey) {
   console.error("Error: BRAVE_API_KEY environment variable is required.");
   console.error(
