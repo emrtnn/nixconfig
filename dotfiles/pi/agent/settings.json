@@ -1,0 +1,13 @@
+{
+  "lastChangelogVersion": "0.66.1",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4",
+  "defaultThinkingLevel": "high",
+  "theme": "gruvbox-dark-hard",
+  "transport": "sse",
+  "quietStartup": false,
+  "enableSkillCommands": true,
+  "packages": [
+    "git:github.com/earendil-works/pi-review"
+  ]
+}
