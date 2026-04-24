@@ -7,7 +7,5 @@
   "transport": "sse",
   "quietStartup": false,
   "enableSkillCommands": true,
-  "packages": [
-    "git:github.com/earendil-works/pi-review"
-  ]
+  "packages": ["git:github.com/earendil-works/pi-review"]
 }
