@@ -3,8 +3,7 @@
   fetchurl,
   appimageTools,
   stdenv,
-}:
-let
+}: let
   pname = "helium";
   version = "0.8.4.1";
 
