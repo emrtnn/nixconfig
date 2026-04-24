@@ -11,8 +11,4 @@
     enable = true;
     package = pkgs.niri;
   };
-
-  environment.systemPackages = with pkgs; [
-    swayidle
-  ];
 }
