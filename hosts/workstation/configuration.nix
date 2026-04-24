@@ -6,7 +6,6 @@
   imports = [
     ./hardware-configuration.nix
     ./fonts.nix
-    inputs.noctalia.nixosModules.default
     inputs.silentSDDM.nixosModules.default
     inputs.sops-nix.nixosModules.sops
     ../../modules/desktop/niri.nix
@@ -74,8 +73,6 @@
       enable = true;
       wayland.enable = true;
     };
-
-    noctalia-shell.enable = true;
 
     resolved = {
       enable = true;

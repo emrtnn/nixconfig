@@ -1,20 +1,11 @@
-{
-  pkgs,
-  inputs,
-  config,
-  ...
-}: {
+{...}: {
   programs.noctalia-shell = {
     enable = true;
-
-    package = pkgs.niri;
+    systemd.enable = false;
 
     settings = {
-      spawn-at-startup = [
-        {
-          command = ["noctalia-shell"];
-        }
-      ];
+      settingsVersion = 0;
+
       bar = {
         barType = "simple";
         position = "left";
@@ -28,7 +19,6 @@
         fontScale = 1;
         backgroundOpacity = 1;
         useSeparateOpacity = true;
-        floating = false;
         marginVertical = 4;
         marginHorizontal = 4;
         frameThickness = 8;
@@ -279,10 +269,6 @@
         panelBackgroundOpacity = 0.7;
         panelsAttachedToBar = false;
         settingsPanelMode = "attached";
-        wifiDetailsViewMode = "grid";
-        bluetoothDetailsViewMode = "grid";
-        networkPanelView = "ethernet";
-        bluetoothHideUnnamedDevices = false;
         boxBorderEnabled = true;
       };
 
@@ -366,7 +352,6 @@
         clipboardWatchImageCommand = "wl-paste --type image --watch cliphist store";
         position = "center";
         pinnedApps = [];
-        useApp2Unit = false;
         sortByMostUsed = true;
         terminalCommand = "kitty -e";
         customLaunchPrefixEnabled = false;
@@ -476,14 +461,13 @@
         deadOpacity = 0.6;
         animationSpeed = 1;
         sitOnFrame = false;
-        showFrameIndicator = true;
+        showDockIndicator = true;
       };
 
       network = {
-        wifiEnabled = false;
-        airplaneModeEnabled = false;
         bluetoothRssiPollingEnabled = true;
         bluetoothRssiPollIntervalMs = 10000;
+        networkPanelView = "ethernet";
         wifiDetailsViewMode = "grid";
         bluetoothDetailsViewMode = "grid";
         bluetoothHideUnnamedDevices = false;
@@ -589,7 +573,7 @@
       audio = {
         volumeStep = 5;
         volumeOverdrive = false;
-        cavaFrameRate = 30;
+        spectrumFrameRate = 30;
         visualizerType = "linear";
         mprisBlacklist = [];
         preferredPlayer = "mpv";
@@ -666,6 +650,14 @@
         session = "";
       };
 
+      idle = {
+        enabled = true;
+        screenOffTimeout = 480;
+        lockTimeout = 300;
+        suspendTimeout = 600;
+        fadeDuration = 5;
+      };
+
       plugins = {
         autoUpdate = true;
       };
@@ -706,7 +698,7 @@
       sources = [
         {
           enabled = true;
-          name = "Official Noctalia Plugins";
+          name = "Noctalia Plugins";
           url = "https://github.com/noctalia-dev/noctalia-plugins";
         }
       ];
@@ -721,7 +713,7 @@
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
         };
       };
-      version = 1;
+      version = 2;
     };
 
     pluginSettings = {
