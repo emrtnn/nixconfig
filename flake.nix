@@ -50,6 +50,8 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    pi-mono.url = "github:lukasl-dev/pi-mono.nix";
   };
 
   outputs = {
@@ -58,6 +60,7 @@
     ...
   } @ inputs: let
     overlays = [
+      inputs.pi-mono.overlays.default
       (final: prev: {
         codex = inputs.codex-cli-nix.packages.${prev.stdenv.hostPlatform.system}.default;
       })
