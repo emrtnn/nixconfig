@@ -50,7 +50,6 @@ in {
     tree
     tree-sitter
     google-chrome
-    helium
     telegram-desktop
     nautilus
     imv
@@ -75,6 +74,7 @@ in {
     unzip
     sops
     age
+    inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   xdg = {
