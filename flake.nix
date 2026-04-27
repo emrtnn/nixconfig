@@ -50,6 +50,11 @@
       url = "github:sadjow/codex-cli-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    helium-browser = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -59,7 +64,6 @@
   } @ inputs: let
     overlays = [
       (final: prev: {
-        helium = prev.callPackage ./pkgs/helium.nix {};
         codex = inputs.codex-cli-nix.packages.${prev.stdenv.hostPlatform.system}.default;
       })
     ];
