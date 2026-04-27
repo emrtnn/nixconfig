@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   imports = [
@@ -26,8 +27,13 @@
       "quiet"
       "splash"
       "boot.initrd.verbose=false"
+      "pcie_aspm=off"
     ];
 
+    kernelModules = ["r8125"];
+
+    blacklistedKernelModules = ["r8169"];
+    extraModulePackages = [config.boot.kernelPackages.r8125];
     initrd = {
       enable = true;
       systemd.enable = true;
