@@ -184,8 +184,8 @@
   powerManagement = {
     enable = true;
     resumeCommands = ''
-      ${pkgs.kmod}/bin/modprobe -r r8169
-      ${pkgs.kmod}/bin/modprobe r8169
+      ${pkgs.kmod}/bin/modprobe -r r8125
+      ${pkgs.kmod}/bin/modprobe r8125
       sleep 2
       systemctl restart NetworkManager.service
     '';
