@@ -41,11 +41,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    codex-cli-nix = {
-      url = "github:sadjow/codex-cli-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     helium-browser = {
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,9 +56,6 @@
   } @ inputs: let
     overlays = [
       inputs.pi-mono.overlays.default
-      (final: prev: {
-        codex = inputs.codex-cli-nix.packages.${prev.stdenv.hostPlatform.system}.default;
-      })
     ];
   in {
     nixosConfigurations.monad = nixpkgs.lib.nixosSystem {

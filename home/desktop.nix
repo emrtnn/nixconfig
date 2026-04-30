@@ -64,7 +64,6 @@ in {
     amp-cli
     wl-clipboard
     wtype
-    codex
     evince
     obsidian
     gh
