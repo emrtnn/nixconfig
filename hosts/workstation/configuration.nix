@@ -243,11 +243,13 @@
       extra-substituters = [
         "https://devenv.cachix.org"
         "https://noctalia.cachix.org"
+        "https://nix-community.cachix.org"
       ];
 
       extra-trusted-public-keys = [
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
         "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+        "nix-community.cachix.org-1:3B5RFUtFKFffUhE7hCVdE41L8K3jEgzCz7x47qK5rc="
       ];
     };
   };
