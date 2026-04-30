@@ -20,7 +20,6 @@ in {
     inputs.noctalia.homeModules.default
     inputs.sops-nix.homeManagerModules.sops
     ../modules/programs/carapace.nix
-    ../modules/desktop/kitty.nix
     ../modules/programs/nushell.nix
     ../modules/programs/starship.nix
     ../modules/programs/yazi.nix
@@ -39,6 +38,7 @@ in {
     ../modules/programs/thunderbird.nix
     ../modules/programs/jujutsu.nix
     ../modules/programs/nvim.nix
+    ../modules/programs/foot.nix
   ];
 
   home.packages = with pkgs; [

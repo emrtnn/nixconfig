@@ -173,9 +173,9 @@ spawn-at-startup "noctalia-shell"
 binds {
     // Window management
     Super+Q { close-window; }
-    Super+Return repeat=false { spawn "kitty"; }
+    Super+Return repeat=false { spawn "footclient"; }
     Super+F repeat=false { spawn "nautilus" "--new-window"; }
-    Super+Shift+F repeat=false { spawn "kitty" "--class" "monad.yazi" "-e" "yazi"; }
+    Super+Shift+F repeat=false { spawn "footclient" "--app-id" "monad.yazi" "-e" "yazi"; }
     Super+B repeat=false { spawn "helium"; }
     Super+Alt+B repeat=false { spawn "helium" "--incognito"; }
     Super+Shift+Slash repeat=false { spawn "bitwarden"; }

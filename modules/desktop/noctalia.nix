@@ -353,7 +353,7 @@
         position = "center";
         pinnedApps = [];
         sortByMostUsed = true;
-        terminalCommand = "kitty -e";
+        terminalCommand = "footclient -e";
         customLaunchPrefixEnabled = false;
         customLaunchPrefix = "";
         viewMode = "list";
@@ -725,7 +725,7 @@
         refreshInterval = 5000;
         showIpAddress = true;
         showPeerCount = true;
-        terminalCommand = "kitty";
+        terminalCommand = "footclient";
       };
       screen-recorder = {
         audioCodec = "opus";
