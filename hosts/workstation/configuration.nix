@@ -249,8 +249,16 @@
         "https://devenv.cachix.org"
       ];
 
+      extra-substituters = [
+        "https://noctalia.cachix.org"
+      ];
+
       trusted-public-keys = [
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      ];
+
+      extra-trusted-public-keys = [
+        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       ];
     };
   };
