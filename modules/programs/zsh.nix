@@ -60,11 +60,11 @@
       gd = "git diff";
       gds = "git diff --staged";
 
-      jd = "jj desc";
-      jf = "jj git fetch";
+      jl = "jj log -r 'all()'";
+      jd = "jj diff";
+      jdesc = "jj describe";
       jn = "jj new";
-      jp = "jj git push";
-      js = "jj st";
+      js = "jj state";
 
       nrs = "nixos-rebuild switch --flake";
       nb = "nix build";

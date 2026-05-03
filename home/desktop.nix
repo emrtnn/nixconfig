@@ -74,6 +74,7 @@ in {
     sops
     age
     inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    cachix
   ];
 
   xdg = {

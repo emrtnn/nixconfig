@@ -7,7 +7,7 @@
       main = {
         include = "${pkgs.foot.themes}/share/foot/themes/gruvbox-dark";
         shell = "${pkgs.zsh}/bin/zsh";
-        font = "JetBrainsMono Nerd Font Mono:size=13";
+        font = "JetBrainsMono Nerd Font Mono:size=15";
         font-bold = "JetBrainsMono Nerd Font Mono:style=Bold:size=13";
         font-italic = "JetBrainsMono Nerd Font Mono:style=Italic:size=13";
         font-bold-italic = "JetBrainsMono Nerd Font Mono:style=Bold Italic:size=13";
