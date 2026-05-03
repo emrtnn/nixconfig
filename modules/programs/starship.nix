@@ -1,4 +1,6 @@
-{inputs, ...}: {
+{pkgs, ...}: {
+  home.packages = [pkgs.jj-starship];
+
   programs.starship = {
     enable = true;
     enableNushellIntegration = true;
@@ -42,11 +44,20 @@
       pixi.symbol = "󰏗 ";
 
       # --- Git / Version Control ---
-      fossil_branch.symbol = " ";
-      git_branch.symbol = " ";
+      # jj-starship is a low-latency unified Git/Jujutsu module.
+      # It replaces Starship's built-in Git branch/status modules so colocated
+      # jj repos don't show duplicated VCS prompt segments.
+      git_branch.disabled = true;
+      git_status.disabled = true;
       git_commit.tag_symbol = "  ";
+      fossil_branch.symbol = " ";
       hg_branch.symbol = " ";
       pijul_channel.symbol = " ";
+      custom.jj = {
+        when = "jj-starship detect";
+        shell = ["jj-starship"];
+        format = "$output ";
+      };
 
       # --- Languages ---
       bun.symbol = " ";
