@@ -3,7 +3,7 @@
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "low",
-  "theme": "dark",
+  "theme": "gruvbox-dark-hard",
   "transport": "websocket-cached",
   "quietStartup": false,
   "enableSkillCommands": true,
