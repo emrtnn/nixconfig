@@ -86,7 +86,6 @@
 
     initContent = ''
       # Vi Mode
-      bindkey "^?" backward-delete-char
       autoload -U edit-command-line
       zle -N edit-command-line
       bindkey -M vicmd 'v' visual-mode
