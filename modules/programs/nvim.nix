@@ -377,6 +377,7 @@
           enable = true;
           formatOnSave = true;
           inlayHints.enable = true;
+          lspkind.enable = true;
           presets.tailwindcss-language-server.enable = true;
           trouble = {
             enable = true;
@@ -441,10 +442,15 @@
           python.enable = true;
           qml.enable = true;
           sql.enable = true;
+          zig.enable = true;
           json.enable = true;
           lua = {
             enable = true;
             lsp.lazydev.enable = true;
+          };
+          rust = {
+            enable = true;
+            extensions.crates-nvim.enable = true;
           };
         };
 
@@ -634,9 +640,14 @@
               };
             };
           };
+          undotree.enable = true;
+          grug-far-nvim.enable = true;
         };
 
-        visuals.fidget-nvim.enable = true;
+        visuals = {
+          nvim-web-devicons.enable = true;
+          fidget-nvim.enable = true;
+        };
 
         ui = {
           breadcrumbs = {
@@ -646,6 +657,8 @@
               alwaysRender = true;
             };
           };
+
+          noice.enable = true;
 
           borders = {
             enable = true;
