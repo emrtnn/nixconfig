@@ -64,7 +64,7 @@
       jd = "jj diff";
       jdesc = "jj describe";
       jn = "jj new";
-      js = "jj state";
+      js = "jj status";
 
       nrs = "nixos-rebuild switch --flake";
       nb = "nix build";
