@@ -167,25 +167,25 @@
 
         statusline.lualine = {
           enable = true;
-          theme = "gruvbox_dark";
+          theme = "gruvbox-material";
           componentSeparator = {
-            left = "|";
-            right = "|";
+            left = " ";
+            right = " ";
           };
           sectionSeparator = {
-            left = "";
-            right = "";
+            left = "";
+            right = "";
           };
 
           # --- SECTION A: Mode ---
           activeSection = {
             a = [
-              ''{ "mode", icons_enabled = true, separator = { left = "", right = "" }, right_padding = 2 }''
+              ''{ "mode", icons_enabled = true, right_padding = 2 }''
             ];
 
             # --- SECTION B: Branch ---
             b = [
-              ''{ "branch", icon = "", separator = { left = "", right = "" } }''
+              ''{ "branch", icon = "" }''
             ];
 
             # --- SECTION C: Diagnostics & File Info ---
@@ -199,7 +199,7 @@
                 }
               ''
               # 2. Filetype Icon (No text, just icon)
-              ''{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } }''
+              ''{ "filetype", icon_only = true, padding = { left = 1, right = 0 } }''
               # 3. Filename (Relative path)
               ''{ "filename", path = 1, symbols = { modified = "  ", readonly = "  ", unnamed = "" } }''
               # 4. Current scope/breadcrumbs
@@ -244,7 +244,7 @@
 
             # --- SECTION Y: Progress & Location ---
             y = [
-              ''{ "progress", separator = " ", padding = { left = 1, right = 0 } }''
+              ''{ "progress", padding = { left = 1, right = 0 } }''
               ''{ "location", padding = { left = 0, right = 1 } }''
             ];
 
@@ -253,7 +253,6 @@
               ''
                 {
                   function() return " " .. os.date("%R") end,
-                  separator = { right = "" },
                   left_padding = 2
                 }
               ''
