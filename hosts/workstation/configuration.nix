@@ -196,6 +196,7 @@
     sessionVariables.NIXOS_OZONE_WL = "1";
     systemPackages = with pkgs; [
       bash
+      zsh
       vim
       wget
       git
@@ -214,7 +215,7 @@
         "networkmanager"
         "wheel"
       ];
-      shell = pkgs.zsh;
+      shell = pkgs.nushell;
     };
   };
 

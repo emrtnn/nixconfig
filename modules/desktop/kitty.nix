@@ -8,7 +8,7 @@
       package = pkgs.nerd-fonts.jetbrains-mono;
     };
     settings = {
-      shell = "${pkgs.zsh}/bin/zsh";
+      shell = "${pkgs.nushell}/bin/nu";
 
       bold_font = "auto";
       italic_font = "auto";
