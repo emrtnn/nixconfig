@@ -1,18 +1,29 @@
-{inputs, ...}: {
+{...}: {
   programs.nushell = {
     enable = true;
 
     shellAliases = {
-      pfzf = "fzf --preview='bat --color=always {}'";
       cat = "bat";
-      gc = "git commit";
+      grep = "rg";
+
+      gc = "git commit -m";
+      gco = "git checkout";
+      gb = "git branch";
       gp = "git push";
+      gcp = "git cherry-pick";
+      gt = "git tag";
       ga = "git add";
       gs = "git status";
       gl = "git log --graph --pretty=format:'%C(yellow)%h (%Creset%Cgreen%p%Creset%C(yellow))%Creset -%Cred%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --all";
       lg = "lazygit";
       gd = "git diff";
       gds = "git diff --staged";
+
+      jl = "jj log -r 'all()'";
+      jd = "jj diff";
+      jdesc = "jj describe";
+      jn = "jj new";
+      js = "jj status";
     };
 
     environmentVariables = {
@@ -80,13 +91,7 @@
 
       # --- Hooks ---
       $env.config.hooks.pre_prompt = []
-      $env.config.hooks.pre_execution = [
-        {||
-          commandline
-          | str trim
-          | if ($in | is-not-empty) { print $"(ansi title)($in) — nu(char bel)" }
-        }
-      ]
+      $env.config.hooks.pre_execution = []
 
       $env.config.hooks.display_output = {||
         tee { table --expand | print }
@@ -104,13 +109,6 @@
         $input | nu-highlight
       }
 
-      def rcopy [] {
-        ls **/* | where type == file
-        | each { |it| $"($it.name)\n(open $it.name)\n" }
-        | str join "\n"
-        | wl-copy
-      }
-
       def "nu-keybind commandline-copy" []: nothing -> nothing {
         commandline
         | nu-highlight-default
@@ -123,7 +121,10 @@
         | clip copy --ansi
       }
 
-      # Your custom 'nfzf' function from alias.nu
+      def pfzf [] {
+        fzf --preview="bat --color=always {}"
+      }
+
       def nfzf [] {
           try {
               let selected_file = (fzf --preview="bat --color=always {}" | str trim)
@@ -135,6 +136,12 @@
           } catch {
               print "fzf was cancelled or failed"
           }
+      }
+
+      def restart-noctalia [] {
+          pkill -u "impuremonad" -x .quickshell-wra
+          sleep 0.5sec
+          niri msg action spawn -- noctalia-shell
       }
 
       # --- Keybindings ---
