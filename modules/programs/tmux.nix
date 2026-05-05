@@ -10,7 +10,7 @@
     historyLimit = 100000;
     terminal = "xterm-256color";
 
-    shell = "${pkgs.zsh}/bin/zsh";
+    shell = "${pkgs.nushell}/bin/nu";
 
     # --- Plugins ---
     plugins = with pkgs.tmuxPlugins; [
