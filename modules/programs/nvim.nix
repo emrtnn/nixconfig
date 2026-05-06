@@ -377,7 +377,10 @@
           formatOnSave = true;
           inlayHints.enable = true;
           lspkind.enable = true;
-          presets.tailwindcss-language-server.enable = true;
+          presets = {
+            tailwindcss-language-server.enable = true;
+            nushell.enable = true;
+          };
           trouble = {
             enable = true;
             mappings = {
