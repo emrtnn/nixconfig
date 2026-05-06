@@ -190,9 +190,10 @@ in {
   };
 
   home.sessionVariables = {
-    SHELL = "${pkgs.nushell}/bin/nu";
     BROWSER = "helium";
     CHROME_PATH = "${pkgs.google-chrome}/bin/google-chrome";
     BRAVE_API_KEY_FILE = "${config.home.homeDirectory}/.config/sops-nix/secrets/brave_api_key";
   };
+
+  systemd.user.sessionVariables = config.home.sessionVariables;
 }
