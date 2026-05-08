@@ -25,6 +25,4 @@
       };
     };
   };
-
-  programs.delta.enableJujutsuIntegration = true;
 }

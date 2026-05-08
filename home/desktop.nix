@@ -73,8 +73,9 @@ in {
     unzip
     sops
     age
-    inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     cachix
+    inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (callPackage ../modules/packages/hunk.nix {})
   ];
 
   xdg = {
