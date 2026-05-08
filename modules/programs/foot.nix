@@ -17,6 +17,11 @@
         blink = true;
       };
 
+      colors-dark = {
+        alpha = 0.95;
+        blur = true;
+      };
+
       mouse = {
         hide-when-typing = "yes";
       };
