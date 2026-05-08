@@ -1,16 +1,5 @@
 {...}: {
   programs = {
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        side-by-side = true;
-        line-numbers = true;
-        syntax-theme = "gruvbox-dark";
-        dark = true;
-      };
-    };
-
     git = {
       enable = true;
 
@@ -22,7 +11,7 @@
         core = {
           editor = "nvim";
           autocrlf = "input";
-          pager = "delta";
+          pager = "hunk pager";
         };
         color = {
           ui = "auto";

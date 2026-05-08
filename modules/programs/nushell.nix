@@ -20,10 +20,10 @@
       gds = "git diff --staged";
 
       jl = "jj log -r 'all()'";
-      jd = "jj diff";
       jdesc = "jj describe";
       jn = "jj new";
       js = "jj status";
+      jd = "hunk diff --mode stack";
     };
 
     environmentVariables = {
