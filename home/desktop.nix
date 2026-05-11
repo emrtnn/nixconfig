@@ -71,6 +71,7 @@ in {
     uv
     python3
     unzip
+    typora
     sops
     age
     cachix
