@@ -151,6 +151,10 @@
     zsh.enable = true;
     dconf.enable = true;
     ssh.startAgent = false;
+    localsend = {
+      enable = true;
+      openFirewall = true;
+    };
     silentSDDM = {
       enable = true;
       theme = "default";
