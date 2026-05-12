@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    libreoffice-fresh
+    libreoffice-qt-fresh
     hunspell
     hunspellDicts.es_ES
     hunspellDicts.en_US
