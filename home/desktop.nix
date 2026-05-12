@@ -76,7 +76,7 @@ in {
     age
     cachix
     inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    (callPackage ../modules/packages/hunk.nix {})
+    inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   xdg = {
