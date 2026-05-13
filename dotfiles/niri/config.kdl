@@ -136,6 +136,15 @@ window-rule {
     default-window-height { fixed 800; }
 }
 
+// Telegram: open floating
+window-rule {
+    match app-id=r#"^org\.telegram\.desktop$"#
+    open-floating true
+    open-focused true
+    default-column-width { fixed 600; }
+    default-window-height { fixed 1050; }
+}
+
 // Bitwarden: block from screen capture
 window-rule {
     match app-id=r#"^Bitwarden$"#
@@ -206,6 +215,7 @@ binds {
     Super+A repeat=false { spawn "helium" "--app=https://chatgpt.com"; }
     Super+Shift+A repeat=false { spawn "helium" "--app=https://gemini.google.com"; }
     Super+E repeat=false { spawn "thunderbird"; }
+    Super+Shift+T repeat=false { spawn "Telegram"; }
     Super+G repeat=false { spawn "helium" "--app=https://calendar.google.com"; }
     Super+Y repeat=false { spawn "helium" "--app=https://youtube.com"; }
     Super+N repeat=false { spawn "helium" "--app=https://notion.so"; }
