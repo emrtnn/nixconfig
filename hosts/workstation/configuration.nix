@@ -155,10 +155,10 @@
       theme = "default";
       profileIcons.impuremonad = ../../assets/.face;
     };
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
+    # hyprland = {
+    #   enable = true;
+    #   xwayland.enable = true;
+    # };
   };
 
   hardware = {
