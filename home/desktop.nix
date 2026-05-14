@@ -34,7 +34,7 @@ in {
     ../modules/programs/fzf.nix
     ../modules/desktop/swappy.nix
     ../modules/desktop/noctalia.nix
-    ../modules/desktop/libreoffice.nix
+    ../modules/programs/libreoffice.nix
     ../modules/programs/thunderbird.nix
     ../modules/programs/jujutsu.nix
     ../modules/programs/nvim.nix
