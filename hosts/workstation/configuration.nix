@@ -27,13 +27,8 @@
       "quiet"
       "splash"
       "boot.initrd.verbose=false"
-      "pcie_aspm=off"
     ];
 
-    kernelModules = ["r8125"];
-
-    blacklistedKernelModules = ["r8169"];
-    extraModulePackages = [config.boot.kernelPackages.r8125];
     initrd = {
       enable = true;
       systemd.enable = true;
@@ -160,6 +155,10 @@
       theme = "default";
       profileIcons.impuremonad = ../../assets/.face;
     };
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
   };
 
   hardware = {
@@ -249,12 +248,14 @@
         "https://devenv.cachix.org"
         "https://noctalia.cachix.org"
         "https://nix-community.cachix.org"
+        "https://hyprland.cachix.org"
       ];
 
       extra-trusted-public-keys = [
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
         "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
     };
   };
