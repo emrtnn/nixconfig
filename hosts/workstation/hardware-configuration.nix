@@ -45,6 +45,14 @@
 
   swapDevices = [];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = lib.mkForce {
+    system = "x86_64-linux";
+    gcc.arch = "znver5";
+    gcc.tune = "znver5";
+  };
+  services.scx = {
+    enable = true;
+    scheduler = "scx_bpfland";
+  };
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

@@ -251,6 +251,14 @@
         "flakes"
       ];
 
+      system-features = [
+        "nixos-test"
+        "benchmark"
+        "big-parallel"
+        "kvm"
+        "gccarch-znver5"
+      ];
+
       extra-substituters = [
         "https://devenv.cachix.org"
         "https://noctalia.cachix.org"
