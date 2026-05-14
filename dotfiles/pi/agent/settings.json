@@ -8,7 +8,8 @@
   "quietStartup": false,
   "enableSkillCommands": true,
   "packages": [
-    "git:github.com/earendil-works/pi-review"
+    "git:github.com/earendil-works/pi-review",
+    "npm:@ff-labs/pi-fff"
   ],
   "terminal": {
     "showTerminalProgress": false
