@@ -47,4 +47,8 @@ hl.config({
 		disable_hyprland_logo = true,
 		force_default_wallpaper = 0,
 	},
+	ecosystem = {
+		no_update_news = true,
+		no_donation_nag = true,
+	},
 })
