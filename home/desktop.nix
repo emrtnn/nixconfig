@@ -58,6 +58,12 @@ in {
     slurp
     gpu-screen-recorder
     hyprpicker
+    hyprshot
+    grimblast
+    brightnessctl
+    playerctl
+    qt5.qtwayland
+    qt6.qtwayland
     ffmpeg
     mpv
     btop
@@ -147,9 +153,6 @@ in {
     };
   };
 
-  # Disable niri-flake's config generation; we use an out-of-store symlink instead
-  programs.niri.config = null;
-
   services.gnome-keyring = {
     enable = true;
     components = [
@@ -161,13 +164,6 @@ in {
   services.cliphist = {
     enable = true;
     allowImages = true;
-  };
-
-  xdg.configFile = {
-    "niri" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/niri";
-      recursive = true;
-    };
   };
 
   home.file = {

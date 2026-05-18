@@ -8,7 +8,7 @@
     ./fonts.nix
     inputs.silentSDDM.nixosModules.default
     inputs.sops-nix.nixosModules.sops
-    ../../modules/desktop/niri.nix
+    ../../modules/desktop/hyprland.nix
   ];
 
   boot = {
