@@ -18,15 +18,27 @@ hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("noctalia-shell ipc call launche
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("noctalia-shell ipc call plugin:screen-recorder toggle"))
 
 -- Universal copy/paste from the Niri config.
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("wtype -M ctrl -k Insert"))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("wtype -M shift -k Insert"))
+hl.bind(
+	mainMod .. " + C",
+	hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert", window = "activewindow" }),
+	{ description = "Universal Copy" }
+)
+hl.bind(
+	mainMod .. " + V",
+	hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert", window = "activewindow" }),
+	{ description = "Universal paste" }
+)
+hl.bind(
+	mainMod .. " + X",
+	hl.dsp.send_shortcut({ mods = "CTRL", key = "X", window = "activewindow" }),
+	{ description = "Universal cut" }
+)
 
 -- Common app shortcuts from the Niri config.
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(app("helium")))
 hl.bind(mainMod .. " + ALT + B", hl.dsp.exec_cmd(app("helium --incognito")))
 hl.bind(mainMod .. " + SHIFT + Slash", hl.dsp.exec_cmd(app("bitwarden")))
-hl.bind(mainMod .. " + X", hl.dsp.exec_cmd(app("helium --app=https://x.com")))
-hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd(app("helium --app=https://x.com/compose/post")))
+hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd(app("helium --app=https://x.com")))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(app("helium --app=https://web.whatsapp.com")))
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(app("helium --app=https://chatgpt.com")))
 hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd(app("helium --app=https://gemini.google.com")))
