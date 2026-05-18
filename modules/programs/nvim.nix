@@ -219,9 +219,35 @@
               # ''
             ];
 
-            # --- SECTION X: Diff & LSP ---
+            # --- SECTION X: Macro, Diff & LSP ---
             x = [
-              # 1. Diff (Moved to Right)
+              # 1. Macro recording status
+              ''
+                {
+                  function()
+                    local recording_register = vim.fn.reg_recording()
+                    if recording_register == "" then return "" end
+                    return "󰑋 REC @" .. recording_register
+                  end,
+                  cond = function()
+                    return vim.fn.reg_recording() ~= ""
+                  end,
+                  init = function()
+                    if vim.g.lualine_macro_recording_autocmd then return end
+                    vim.g.lualine_macro_recording_autocmd = true
+                    vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
+                      callback = function()
+                        -- Defer so reg_recording() reflects the new recording state.
+                        vim.schedule(function()
+                          pcall(require("lualine").refresh, { place = { "statusline" } })
+                        end)
+                      end,
+                    })
+                  end,
+                  color = { fg = "#fb4934", gui = "bold" }
+                }
+              ''
+              # 2. Diff (Moved to Right)
               ''
                 {
                   "diff",
