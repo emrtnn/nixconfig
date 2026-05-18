@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }: {
   imports = [
@@ -9,7 +8,7 @@
     ./fonts.nix
     inputs.silentSDDM.nixosModules.default
     inputs.sops-nix.nixosModules.sops
-    ../../modules/desktop/niri.nix
+    ../../modules/desktop/hyprland.nix
   ];
 
   boot = {
@@ -155,10 +154,6 @@
       theme = "default";
       profileIcons.impuremonad = ../../assets/.face;
     };
-    # hyprland = {
-    #   enable = true;
-    #   xwayland.enable = true;
-    # };
   };
 
   hardware = {
