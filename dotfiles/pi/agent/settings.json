@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.75.3",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "defaultProvider": "openrouter",
+  "defaultModel": "minimax/minimax-m2.5:free",
   "defaultThinkingLevel": "high",
   "theme": "gruvbox-dark-hard",
   "transport": "websocket-cached",
