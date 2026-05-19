@@ -57,6 +57,11 @@ hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+-- For floating workspaces and floating windows in dwindle layouts
+hl.bind("SUPER + Tab", function()
+	hl.dispatch(hl.dsp.window.cycle_next()) -- Change focus to another window
+	hl.dispatch(hl.dsp.window.bring_to_top()) -- Bring it to the top
+end)
 
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.swap({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "right" }))
