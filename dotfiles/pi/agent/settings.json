@@ -2,7 +2,7 @@
   "lastChangelogVersion": "0.75.3",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "low",
+  "defaultThinkingLevel": "high",
   "theme": "gruvbox-dark-hard",
   "transport": "websocket-cached",
   "quietStartup": false,
