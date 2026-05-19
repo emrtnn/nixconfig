@@ -141,7 +141,7 @@
       def restart-noctalia [] {
           pkill -u "impuremonad" -x .quickshell-wra
           sleep 0.5sec
-          niri msg action spawn -- noctalia-shell
+          noctalia-shell -d
       }
 
       # --- Keybindings ---

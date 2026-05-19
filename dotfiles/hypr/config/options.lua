@@ -40,8 +40,9 @@ hl.config({
 		touchpad = { natural_scroll = true },
 	},
 	dwindle = {
-		preserve_split = true,
-		smart_split = true,
+		force_split = 2,
+		preserve_split = false,
+		smart_split = false,
 	},
 	misc = {
 		disable_hyprland_logo = true,
