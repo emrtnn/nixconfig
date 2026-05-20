@@ -1,7 +1,9 @@
 {pkgs, ...}: {
   programs.foot = {
     enable = true;
-    package = pkgs.foot;
+    package = pkgs.foot.override {
+      allowPgo = true;
+    };
     server.enable = true;
     settings = {
       main = {
