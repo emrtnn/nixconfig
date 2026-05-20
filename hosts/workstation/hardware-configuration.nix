@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -12,35 +11,36 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usbhid"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/mapper/cryptroot";
-    fsType = "btrfs";
-    options = ["subvol=@"];
+  boot = {
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usbhid"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
   };
+  boot.extraModulePackages = [];
 
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/9a62279a-9e9a-443f-b6a0-02f2a8e3c220";
 
-  fileSystems."/nix" = {
-    device = "/dev/mapper/cryptroot";
-    fsType = "btrfs";
-    options = ["subvol=@nix"];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/mapper/cryptroot";
-    fsType = "btrfs";
-    options = ["subvol=@"];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/368B-A37A";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
+  fileSystems = {
+    "/" = {
+      device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = ["subvol=@"];
+    };
+    "/nix" = {
+      device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = ["subvol=@nix"];
+    };
+    "/home" = {
+      device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = ["subvol=@"];
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/368B-A37A";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
   };
 
   swapDevices = [];
