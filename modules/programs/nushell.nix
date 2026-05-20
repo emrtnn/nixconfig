@@ -38,132 +38,203 @@
     };
 
     extraConfig = ''
-      # --- History & Behavior ---
-      $env.config.history.file_format = "sqlite"
-      $env.config.history.isolation = false
-      $env.config.history.max_size = 10_000_000
-      $env.config.history.sync_on_enter = true
+            # --- History & Behavior ---
+            $env.config.history.file_format = "sqlite"
+            $env.config.history.isolation = false
+            $env.config.history.max_size = 10_000_000
+            $env.config.history.sync_on_enter = true
 
-      $env.config.show_banner = false
-      $env.config.edit_mode = "vi"
-      $env.config.rm.always_trash = false
-      $env.config.recursion_limit = 100
+            $env.config.show_banner = false
+            $env.config.edit_mode = "vi"
+            $env.config.rm.always_trash = false
+            $env.config.recursion_limit = 100
 
-      # --- Completions ---
-      $env.config.completions.algorithm = "substring"
-      $env.config.completions.sort = "smart"
-      $env.config.completions.case_sensitive = false
-      $env.config.completions.quick = true
-      $env.config.completions.partial = true
-      $env.config.completions.use_ls_colors = true
+            # --- Completions ---
+            $env.config.completions.algorithm = "substring"
+            $env.config.completions.sort = "smart"
+            $env.config.completions.case_sensitive = false
+            $env.config.completions.quick = true
+            $env.config.completions.partial = true
+            $env.config.completions.use_ls_colors = true
 
-      # --- Terminal Features ---
-      $env.config.use_kitty_protocol = true
-      $env.config.bracketed_paste = true
-      $env.config.use_ansi_coloring = "auto"
-      $env.config.highlight_resolved_externals = true
+            # --- Terminal Features ---
+            $env.config.use_kitty_protocol = true
+            $env.config.bracketed_paste = true
+            $env.config.use_ansi_coloring = "auto"
+            $env.config.highlight_resolved_externals = true
 
-      $env.config.error_style = "fancy"
-      $env.config.display_errors.exit_code = false
-      $env.config.display_errors.termination_signal = true
-      $env.config.footer_mode = 25
+            $env.config.error_style = "fancy"
+            $env.config.display_errors.exit_code = false
+            $env.config.display_errors.termination_signal = true
+            $env.config.footer_mode = 25
 
-      # --- Table Settings ---
-      $env.config.table.mode = "single"
-      $env.config.table.index_mode = "always"
-      $env.config.table.show_empty = true
-      $env.config.table.padding.left = 1
-      $env.config.table.padding.right = 1
-      $env.config.table.trim.methodology = "wrapping"
-      $env.config.table.trim.wrapping_try_keep_words = true
-      $env.config.table.trim.truncating_suffix = "..."
-      $env.config.table.header_on_separator = true
-      $env.config.table.footer_inheritance = true
-      $env.config.table.missing_value_symbol = $"(ansi magenta_bold)nope(ansi reset)"
+            # --- Table Settings ---
+            $env.config.table.mode = "single"
+            $env.config.table.index_mode = "always"
+            $env.config.table.show_empty = true
+            $env.config.table.padding.left = 1
+            $env.config.table.padding.right = 1
+            $env.config.table.trim.methodology = "wrapping"
+            $env.config.table.trim.wrapping_try_keep_words = true
+            $env.config.table.trim.truncating_suffix = "..."
+            $env.config.table.header_on_separator = true
+            $env.config.table.footer_inheritance = true
+            $env.config.table.missing_value_symbol = $"(ansi magenta_bold)nope(ansi reset)"
 
-      # --- Formatting ---
-      $env.config.datetime_format.normal = $"(ansi blue_bold)%Y(ansi reset)(ansi yellow)-(ansi blue_bold)%m(ansi reset)(ansi yellow)-(ansi blue_bold)%d(ansi reset)(ansi black)T(ansi magenta_bold)%H(ansi reset)(ansi yellow):(ansi magenta_bold)%M(ansi reset)(ansi yellow):(ansi magenta_bold)%S(ansi reset)"
-      $env.config.filesize.unit = "metric"
-      $env.config.filesize.show_unit = true
-      $env.config.filesize.precision = 1
-      $env.config.float_precision = 2
-      $env.config.ls.use_ls_colors = true
+            # --- Formatting ---
+            $env.config.datetime_format.normal = $"(ansi blue_bold)%Y(ansi reset)(ansi yellow)-(ansi blue_bold)%m(ansi reset)(ansi yellow)-(ansi blue_bold)%d(ansi reset)(ansi black)T(ansi magenta_bold)%H(ansi reset)(ansi yellow):(ansi magenta_bold)%M(ansi reset)(ansi yellow):(ansi magenta_bold)%S(ansi reset)"
+            $env.config.filesize.unit = "metric"
+            $env.config.filesize.show_unit = true
+            $env.config.filesize.precision = 1
+            $env.config.float_precision = 2
+            $env.config.ls.use_ls_colors = true
 
-      # --- Hooks ---
-      $env.config.hooks.pre_prompt = []
-      $env.config.hooks.pre_execution = []
+            $env.config.hooks.display_output = {||
+              tee { table --expand | print }
+              | try { if $in != null { $env.last = $in } }
+            }
 
-      $env.config.hooks.display_output = {||
-        tee { table --expand | print }
-        | try { if $in != null { $env.last = $in } }
-      }
+            # --- Custom Functions ---
+            def _ []: nothing -> any {
+              $env.last?
+            }
 
-      # --- Custom Functions ---
-      def _ []: nothing -> any {
-        $env.last?
-      }
+            def nu-highlight-default [] {
+              let input = $in
+              $env.config.color_config = {}
+              $input | nu-highlight
+            }
 
-      def nu-highlight-default [] {
-        let input = $in
-        $env.config.color_config = {}
-        $input | nu-highlight
-      }
+            def "nu-keybind commandline-copy" []: nothing -> nothing {
+              commandline
+              | nu-highlight-default
+              | [
+                "```ansi"
+                $in
+                "```"
+              ]
+              | str join (char nl)
+              | clip copy --ansi
+            }
 
-      def "nu-keybind commandline-copy" []: nothing -> nothing {
-        commandline
-        | nu-highlight-default
-        | [
-          "```ansi"
-          $in
-          "```"
-        ]
-        | str join (char nl)
-        | clip copy --ansi
-      }
+            def pfzf [] {
+              fzf --preview="bat --color=always {}"
+            }
 
-      def pfzf [] {
-        fzf --preview="bat --color=always {}"
-      }
+            def nfzf [] {
+                try {
+                    let selected_file = (fzf --preview="bat --color=always {}" | str trim)
+                    if ($selected_file != "" and ($selected_file | path exists)) {
+                        nvim $selected_file
+                    } else {
+                        print "No file selected or file doesn't exist"
+                    }
+                } catch {
+                    print "fzf was cancelled or failed"
+                }
+            }
 
-      def nfzf [] {
-          try {
-              let selected_file = (fzf --preview="bat --color=always {}" | str trim)
-              if ($selected_file != "" and ($selected_file | path exists)) {
-                  nvim $selected_file
-              } else {
-                  print "No file selected or file doesn't exist"
+            def restart-noctalia [] {
+                pkill -u "impuremonad" -x .quickshell-wra
+                sleep 0.5sec
+                ^hyprctl dispatch "hl.dsp.exec_cmd('uwsm app -- noctalia-shell')"
+            }
+
+            # --- Keybindings ---
+            $env.config.keybindings ++= [
+              {
+                name: copy_color_commandline
+                modifier: control_alt
+                keycode: char_c
+                mode: [ emacs vi_insert vi_normal ]
+                event: {
+                  send: executehostcommand
+                  cmd: 'nu-keybind commandline-copy'
+                }
               }
-          } catch {
-              print "fzf was cancelled or failed"
-          }
-      }
+            ]
 
-      def restart-noctalia [] {
-          pkill -u "impuremonad" -x .quickshell-wra
-          sleep 0.5sec
-          ^hyprctl dispatch "hl.dsp.exec_cmd('uwsm app -- noctalia-shell')"
-      }
+            # --- Color Config ---
+            $env.config.color_config.bool = {|| if $in { "light_green_bold" } else { "light_red_bold" } }
+            $env.config.color_config.string = {|| if $in =~ "^(#|0x)[a-fA-F0-9]+$" { $in | str replace "0x" "#" } else { "white" } }
+            $env.config.color_config.row_index = "light_yellow_bold"
+            $env.config.color_config.header = "light_yellow_bold"
 
-      # --- Keybindings ---
-      $env.config.keybindings ++= [
-        {
-          name: copy_color_commandline
-          modifier: control_alt
-          keycode: char_c
-          mode: [ emacs vi_insert vi_normal ]
-          event: {
-            send: executehostcommand
-            cmd: 'nu-keybind commandline-copy'
-          }
-        }
-      ]
+            # --- Devenv Auto-Activation Hook ---
+            $env._DEVENV_HOOK_UNTRUSTED = ""
 
-      # --- Color Config ---
-      $env.config.color_config.bool = {|| if $in { "light_green_bold" } else { "light_red_bold" } }
-      $env.config.color_config.string = {|| if $in =~ "^(#|0x)[a-fA-F0-9]+$" { $in | str replace "0x" "#" } else { "white" } }
-      $env.config.color_config.row_index = "light_yellow_bold"
-      $env.config.color_config.header = "light_yellow_bold"
+            $env.config = ($env.config | upsert hooks.env_change.PWD (
+                ($env.config | get -o hooks.env_change.PWD | default []) | append {||
+                    # Inside devenv shell: exit when leaving the project directory
+                    if ("DEVENV_ROOT" in $env) {
+                        if not ($env.PWD == $env.DEVENV_ROOT or ($env.PWD | str starts-with ($env.DEVENV_ROOT + "/"))) {
+                            # Save target directory so the parent shell can cd there after exit
+                            $env.PWD | save --force ($env.DEVENV_ROOT + "/.devenv/exit-dir")
+                            exit
+                        }
+                        return
+                    }
 
+                    let result = (^devenv hook-should-activate | complete)
+
+                    if ($result.stderr | str trim) != "" {
+                        print -e $result.stderr
+                    }
+
+                    if $result.exit_code == 0 {
+                        let dir = ($result.stdout | str trim)
+                        if $dir != "" {
+                            do { cd $dir; ^devenv shell }
+                            $env._DEVENV_HOOK_UNTRUSTED = ""
+                            # If the devenv shell exited due to cd outside the project, follow the user there
+                            let exit_dir_file = ($dir + "/.devenv/exit-dir")
+                            if ($exit_dir_file | path exists) {
+                                let target_dir = (open $exit_dir_file | str trim)
+                                rm -f $exit_dir_file
+                                if ($target_dir | path exists) {
+                                    cd $target_dir
+                                }
+                            }
+                        } else {
+                            $env._DEVENV_HOOK_UNTRUSTED = ""
+                        }
+                    } else {
+                        $env._DEVENV_HOOK_UNTRUSTED = $env.PWD
+                    }
+                }
+            ))
+
+      # Retry activation on each prompt for untrusted directories (after 'devenv allow')
+            $env.config = ($env.config | upsert hooks.pre_prompt (
+                ($env.config | get -o hooks.pre_prompt | default []) | append {||
+                    let untrusted = ($env | get -o _DEVENV_HOOK_UNTRUSTED | default "")
+                    if $untrusted == "" {
+                        return
+                    }
+                    if ("DEVENV_ROOT" in $env) {
+                        return
+                    }
+
+                    let result = (^devenv hook-should-activate | complete)
+
+                    if $result.exit_code == 0 {
+                        let dir = ($result.stdout | str trim)
+                        if $dir != "" {
+                            do { cd $dir; ^devenv shell }
+                            $env._DEVENV_HOOK_UNTRUSTED = ""
+                            # If the devenv shell exited due to cd outside the project, follow the user there
+                            let exit_dir_file = ($dir + "/.devenv/exit-dir")
+                            if ($exit_dir_file | path exists) {
+                                let target_dir = (open $exit_dir_file | str trim)
+                                rm -f $exit_dir_file
+                                if ($target_dir | path exists) {
+                                    cd $target_dir
+                                }
+                            }
+                        }
+                    }
+                }
+            ))
     '';
   };
 }
