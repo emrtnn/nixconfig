@@ -28,7 +28,6 @@ in {
     ../modules/programs/opencode.nix
     ../modules/programs/pi.nix
     ../modules/programs/tmux.nix
-    ../modules/programs/direnv.nix
     ../modules/programs/zsh.nix
     ../modules/programs/vesktop.nix
     ../modules/programs/fzf.nix
