@@ -7,7 +7,7 @@ return {
 			{
 				"<leader>cf",
 				function()
-					require("conform").format({ async = true, lsp_format = "fallback" })
+					require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
 				end,
 				mode = { "n", "x" },
 				desc = "Format Buffer",
@@ -16,7 +16,7 @@ return {
 		opts = {
 			default_format_opts = {
 				timeout_ms = 3000,
-				async = true,
+				async = false,
 				quiet = false,
 				lsp_format = "fallback",
 			},
