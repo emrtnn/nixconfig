@@ -2,6 +2,7 @@ return {
 	-- 1. Modern Lua setup for Neovim config
 	{
 		"folke/lazydev.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		ft = "lua",
 		opts = {
 			library = {
