@@ -4,9 +4,9 @@ local keymap = vim.keymap.set
 vim.g.mapleader = " "
 
 -- Clipboard
-keymap({'n','v'}, '<leader>y', [["+y]])
-keymap({'n','v'}, '<leader>p', [["+p]])
-keymap({'n'}, '<leader>P', [["+P]])
+keymap({ "n", "v" }, "<leader>y", [["+y]])
+keymap({ "n", "v" }, "<leader>p", [["+p]])
+keymap({ "n" }, "<leader>P", [["+P]])
 
 -- Buffer Navigation
 keymap("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
