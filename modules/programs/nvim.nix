@@ -5,6 +5,8 @@
 }: {
   home.packages = with pkgs; [
     neovim
+    cargo
+    rustc
   ];
 
   xdg.configFile."nvim" = {
