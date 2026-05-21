@@ -16,7 +16,6 @@ in {
   };
 
   imports = [
-    inputs.nvf.homeManagerModules.default
     inputs.noctalia.homeModules.default
     inputs.sops-nix.homeManagerModules.sops
     ../modules/programs/carapace.nix
