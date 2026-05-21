@@ -1,12 +1,36 @@
 {
   pkgs,
-  config,
-  ...
+    config,
+    ...
 }: {
   home.packages = with pkgs; [
     neovim
+    # Python (The Astral Stack)
+    ruff
+    basedpyright
+
+    # Modern Web (Replaces Prettier/ESlint and tsserver)
+    biome
+    vtsls
+    astro-language-server
+    prettier # Keep prettier ONLY for Astro, Biome is still perfecting Astro support
+
+    # Nix (The Modern Stack)
+    nixd
+    alejandra
+
+    # C/C++
+    clang-tools
+
+    # Rust
+    rust-analyzer
     cargo
     rustc
+    rustfmt
+
+    # Lua
+    lua-language-server
+    stylua
   ];
 
   xdg.configFile."nvim" = {
