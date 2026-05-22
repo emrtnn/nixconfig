@@ -1,12 +1,12 @@
 return {
 	"folke/trouble.nvim",
 	opts = {
-    keys = {
-      ["<cr>"] = "jump_close",
-      ["o"] = "jump",
-    },
-    auto_close = true,
-    focus = true,
+		keys = {
+			["<cr>"] = "jump_close",
+			["o"] = "jump",
+		},
+		auto_close = true,
+		focus = true,
 		modes = {
 			-- Custom mode to make Trouble behave like a floating popup
 			diagnostics_float = {
