@@ -1,45 +1,32 @@
 return {
-	{
-		"nvimdev/dashboard-nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = function()
-			local logo = [[
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      dashboard = {
+        enabled = true,
+        preset = {
+          header = [[
        ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
        ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
        ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
        ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
        ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
        ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
-      ]]
-
-			logo = string.rep("\n", 10) .. logo .. "\n\n"
-
-			return {
-				theme = "doom",
-				hide = { statusline = true },
-				config = {
-					header = vim.split(logo, "\n"),
-					disable_move = true,
-					center = {
-						{ action = "lua require('fff').find_files()", desc = " Find Files", icon = " ", key = "f" },
-						{ action = "ene | startinsert", desc = " New File", icon = " ", key = "n" },
-						{ action = "lua require('fff').live_grep()", desc = " Find Text", icon = " ", key = "g" },
-						{ action = "Oil", desc = " File Explorer", icon = " ", key = "e" },
-						{ action = "Lazy", desc = " Lazy Plugins", icon = "󰒲 ", key = "l" },
-						{ action = "qa", desc = " Quit", icon = " ", key = "q" },
-					},
-					footer = function()
-						local stats = require("lazy").stats()
-						local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-						return {
-							"",
-							"",
-							"⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
-						}
-					end,
-				},
-			}
-		end,
-	},
+          ]],
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":lua require('fff').find_files()" },
+            { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":lua require('fff').live_grep()" },
+            { icon = " ", key = "e", desc = "File Explorer", action = ":Oil" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+      },
+      quickfile = { enabled = true },
+      bigfile = { enabled = true },
+    },
+  }
 }
