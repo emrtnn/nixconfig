@@ -1,5 +1,6 @@
 return {
 	"folke/trouble.nvim",
+	cmd = "Trouble",
 	opts = {
 		keys = {
 			["<cr>"] = "jump_close",
@@ -22,6 +23,24 @@ return {
 					relative = "editor",
 					border = "rounded",
 					title = " Diagnostics",
+					title_pos = "center",
+					position = { 0.5, 0.2 },
+					size = { width = 0.4, height = 0.8 },
+				},
+			},
+			todo_float = {
+				mode = "todo",
+				preview = {
+					type = "split",
+					relative = "win",
+					position = "right",
+					size = 0.7,
+				},
+				win = {
+					type = "float",
+					relative = "editor",
+					border = "rounded",
+					title = " Project Todos ",
 					title_pos = "center",
 					position = { 0.5, 0.2 },
 					size = { width = 0.4, height = 0.8 },
