@@ -5,7 +5,7 @@ return {
 		lazy = false,
 
 		-- The NixOS-specific build command. When lazy.nvim clones the repo,
-		-- it will run this command to compile the Rust binary natively for your system.
+		-- it will run this command to compile the Rust binary natively for NixOs.
 		build = "nix run .#release",
 		opts = {
 			debug = {
