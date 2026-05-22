@@ -1,23 +1,22 @@
 return {
-	-- 1. Modern Lua setup for Neovim config
-	{
-		"folke/lazydev.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		ft = "lua",
-		opts = {
-			library = {
-				{ path = "luvit-meta/library", words = { "vim%.uv" } },
-			},
-		},
-	},
-	{ "Bilal2453/luvit-meta", lazy = true },
-	-- 2. The Core LSP Configuration
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			-- Grab modern capabilities from blink.cmp
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+			vim.diagnostic.config({
+				virtual_text = false,
+				virtual_lines = true,
+				signs = true,
+				update_in_insert = false,
+				severity_sort = true,
+				float = {
+					border = "rounded",
+					source = true,
+				},
+			})
 
 			-- Global Autocommand that runs ONLY when an LSP attaches to a buffer
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -27,18 +26,33 @@ return {
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
+					map("]d", function()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, "Next diagnostic")
+					map("[d", function()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, "Previous diagnostic")
 					map("gd", vim.lsp.buf.definition, "Go to Definition")
 					map("gD", vim.lsp.buf.declaration, "Go to Declaration")
 					map("gr", vim.lsp.buf.references, "Go to References")
 					map("gI", vim.lsp.buf.implementation, "Go to Implementation")
-					map("K", vim.lsp.buf.hover, "Hover Documentation")
 					map("<leader>cr", vim.lsp.buf.rename, "Rename Symbol")
 					map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 					map("<leader>cd", vim.diagnostic.open_float, "Show Diagnostics")
+					-- I think this is now binded by Nvim >0.10 but I'll leave it here to make it more explicit
+					map("K", vim.lsp.buf.hover, "Hover Documentation")
 
 					-- Enable Native Inlay Hints
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+						-- Delay the enablement by 500ms so the viewport finishes rendering first
+						-- This fixes bug where hints not showing on initial viewport text
+						vim.defer_fn(function()
+							-- Double check the buffer is still valid before applying
+							if vim.api.nvim_buf_is_valid(event.buf) then
+								vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+							end
+						end, 500)
 						map("<leader>th", function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 						end, "Toggle Inlay Hints")
