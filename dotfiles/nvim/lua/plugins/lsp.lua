@@ -3,7 +3,6 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			-- Grab modern capabilities from blink.cmp
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			vim.diagnostic.config({
@@ -18,7 +17,6 @@ return {
 				},
 			})
 
-			-- Global Autocommand that runs ONLY when an LSP attaches to a buffer
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
 				callback = function(event)
@@ -60,8 +58,6 @@ return {
 				end,
 			})
 
-			-- --- THE NEW NATIVE LSP ENABLEMENT API --- --
-
 			-- C/C++
 			vim.lsp.config("clangd", { capabilities = capabilities })
 			vim.lsp.enable("clangd")
@@ -77,18 +73,45 @@ return {
 			})
 			vim.lsp.enable("rust_analyzer")
 
-			-- Modern Nix
+			-- Nix
 			vim.lsp.config("nixd", { capabilities = capabilities })
 			vim.lsp.enable("nixd")
 
-			-- Modern Web
-			vim.lsp.config("vtsls", { capabilities = capabilities })
+			-- Web
+			-- Typescript/Javascript
+			vim.lsp.config("vtsls", {
+				capabilities = capabilities,
+				settings = {
+					typescript = {
+						inlayHints = {
+							parameterNames = { enabled = "literals" },
+							parameterTypes = { enabled = true },
+							variableTypes = { enabled = true },
+							propertyDeclarationTypes = { enabled = true },
+							functionLikeReturnTypes = { enabled = true },
+							enumMemberValues = { enabled = true },
+						},
+					},
+					javascript = {
+						inlayHints = {
+							parameterNames = { enabled = "literals" },
+							parameterTypes = { enabled = true },
+							variableTypes = { enabled = true },
+							propertyDeclarationTypes = { enabled = true },
+							functionLikeReturnTypes = { enabled = true },
+							enumMemberValues = { enabled = true },
+						},
+					},
+				},
+			})
 			vim.lsp.enable("vtsls")
 
+			-- Astro
 			vim.lsp.config("astro", { capabilities = capabilities })
 			vim.lsp.enable("astro")
+			--- ---
 
-			-- Modern Python
+			-- Python
 			vim.lsp.config("pyright", {
 				capabilities = capabilities,
 				settings = {
