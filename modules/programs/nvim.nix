@@ -13,7 +13,7 @@
     biome
     vtsls
     astro-language-server
-    prettier # Keep prettier ONLY for Astro, Biome is still perfecting Astro support
+    prettier
 
     # Nix (The Modern Stack)
     nixd
@@ -23,6 +23,8 @@
     # C/C++
     clang-tools
     cmake-language-server
+    cmake-lint
+    cmake-format
 
     # Rust
     rust-analyzer
@@ -34,8 +36,7 @@
     lua-language-server
     stylua
 
-    # Docker
-    hadolint
+    # Docker hadolint
   ];
 
   xdg.configFile."nvim" = {
