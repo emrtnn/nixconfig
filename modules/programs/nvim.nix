@@ -1,7 +1,7 @@
 {
   pkgs,
-    config,
-    ...
+  config,
+  ...
 }: {
   home.packages = with pkgs; [
     neovim
@@ -21,6 +21,7 @@
 
     # C/C++
     clang-tools
+    cmake-language-server
 
     # Rust
     rust-analyzer
