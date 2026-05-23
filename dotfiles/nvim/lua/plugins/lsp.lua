@@ -60,7 +60,9 @@ return {
 
 			-- C/C++
 			vim.lsp.config("clangd", { capabilities = capabilities })
+			vim.lsp.config("neocmkae", { capabilities = capabilities })
 			vim.lsp.enable("clangd")
+			vim.lsp.enable("neocmake")
 
 			-- Rust
 			vim.lsp.config("rust_analyzer", {
