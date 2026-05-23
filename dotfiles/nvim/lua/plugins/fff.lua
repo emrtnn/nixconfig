@@ -15,6 +15,9 @@ return {
 			git = {
 				status_text_color = true,
 			},
+			hl = {
+				cursor = "FFFCursorLine",
+			},
 		},
 		keys = {
 			{

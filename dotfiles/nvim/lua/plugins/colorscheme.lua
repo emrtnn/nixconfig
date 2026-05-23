@@ -12,6 +12,7 @@ return {
 			vim.cmd.colorscheme("gruvbox-material")
 
 			vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#d79921" })
+			vim.api.nvim_set_hl(0, "FFFCursorLine", { bg = "#504945", fg = "#ebdbb2" })
 		end,
 	},
 }
