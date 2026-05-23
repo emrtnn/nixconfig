@@ -11,7 +11,7 @@ return {
 			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
 			{ "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
 			{ "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-			{ "<leader>bd", "<cmd>bdlete<cr>", desc = "Delete This Buffer" },
+			{ "<leader>bd", "<cmd>bdelete<cr>", desc = "Delete This Buffer" },
 		},
 		opts = {
 			options = {
