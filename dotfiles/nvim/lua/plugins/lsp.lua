@@ -42,6 +42,15 @@ return {
 
 					-- Enable Native Inlay Hints
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+					-- Language-specific keymaps
+					if client then
+						if client.name == "clangd" then
+							map("<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", "Switch Source/Header")
+						end
+					end
+
+					-- Inlay hints
 					if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
 						-- Delay the enablement by 500ms so the viewport finishes rendering first
 						-- This fixes bug where hints not showing on initial viewport text
@@ -59,9 +68,27 @@ return {
 			})
 
 			-- C/C++
-			vim.lsp.config("clangd", { capabilities = capabilities })
-			vim.lsp.config("neocmkae", { capabilities = capabilities })
+			vim.lsp.config("clangd", {
+				capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = { "utf-16" } }),
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--clang-tidy",
+					"--header-insertion=iwyu",
+					"--completion-style=detailed",
+					"--function-arg-placeholders",
+					"--fallback-style=llvm",
+				},
+				init_options = {
+					usePlaceholders = true,
+					completeUnimported = true,
+					clangdFileStatus = true,
+				},
+			})
+
 			vim.lsp.enable("clangd")
+
+			vim.lsp.config("neocmake", { capabilities = capabilities })
 			vim.lsp.enable("neocmake")
 
 			-- Rust
@@ -69,6 +96,12 @@ return {
 				capabilities = capabilities,
 				settings = {
 					["rust-analyzer"] = {
+						cargo = {
+							allFeatures = true,
+							loadOutDirsFromCheck = true,
+							buildScripts = { enable = true },
+						},
+						procMacro = { enable = true },
 						checkOnSave = { command = "clippy" },
 					},
 				},
@@ -142,6 +175,12 @@ return {
 				},
 			})
 			vim.lsp.enable("lua_ls")
+
+			-- Docker
+			vim.lsp.config("dockerls", { capabilities = capabilities })
+			vim.lsp.enable("dockerls")
+			vim.lsp.config("docker_compose_language_service", { capabilities = capabilities })
+			vim.lsp.enable("docker_compose_language_services")
 		end,
 	},
 }
