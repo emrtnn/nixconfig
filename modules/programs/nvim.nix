@@ -18,6 +18,7 @@
     # Nix (The Modern Stack)
     nixd
     alejandra
+    statix
 
     # C/C++
     clang-tools
@@ -32,6 +33,9 @@
     # Lua
     lua-language-server
     stylua
+
+    # Docker
+    hadolint
   ];
 
   xdg.configFile."nvim" = {
