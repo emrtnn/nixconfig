@@ -73,18 +73,10 @@ return {
 
 				c = { "clang-format" },
 				cpp = { "clang-format" },
-				cmake = { "cmake-fmt" },
 
 				rust = { "rustfmt" },
 
 				nix = { "alejandra" },
-			},
-			formatters = {
-				["cmake-fmt"] = {
-					command = "cmake-fmt",
-					args = { "$FILENAME" },
-					stdin = false,
-				},
 			},
 		},
 	},

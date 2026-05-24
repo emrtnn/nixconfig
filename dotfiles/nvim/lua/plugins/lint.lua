@@ -10,6 +10,7 @@ return {
 				nix = { "statix" },
 				cmake = { "cmakelint" },
 			},
+
 			---@type table<string,table>
 			linters = {},
 		},
