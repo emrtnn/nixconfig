@@ -6,7 +6,6 @@ return {
 			"saghen/blink.lib",
 			"rafamadriz/friendly-snippets",
 		},
-
 		build = function()
 			require("blink.cmp").build():wait(60000)
 		end,
@@ -36,6 +35,8 @@ return {
 			sources = { default = { "lsp", "path", "snippets", "buffer" } },
 
 			signature = { enabled = true, window = { border = "rounded" } },
+
+			fuzzy = { implementation = "rust" },
 		},
 	},
 }

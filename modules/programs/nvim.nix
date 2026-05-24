@@ -22,7 +22,7 @@
 
     # C/C++
     clang-tools
-    cmake-language-server
+    neocmakelsp
     cmake-lint
     cmake-format
 
