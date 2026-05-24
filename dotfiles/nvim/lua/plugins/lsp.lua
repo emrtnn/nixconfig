@@ -32,30 +32,24 @@ return {
 					end, "Previous diagnostic")
 					map("gd", vim.lsp.buf.definition, "Go to Definition")
 					map("gD", vim.lsp.buf.declaration, "Go to Declaration")
+
+					-- Optional: You can remove these if you decide to use the new Nvim native defaults
 					map("gr", vim.lsp.buf.references, "Go to References")
 					map("gI", vim.lsp.buf.implementation, "Go to Implementation")
 					map("<leader>cr", vim.lsp.buf.rename, "Rename Symbol")
 					map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 					map("<leader>cd", vim.diagnostic.open_float, "Show Diagnostics")
-					-- I think this is now binded by Nvim >0.10 but I'll leave it here to make it more explicit
-					map("K", vim.lsp.buf.hover, "Hover Documentation")
 
-					-- Enable Native Inlay Hints
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 					-- Language-specific keymaps
-					if client then
-						if client.name == "clangd" then
-							map("<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", "Switch Source/Header")
-						end
+					if client and client.name == "clangd" then
+						map("<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", "Switch Source/Header")
 					end
 
 					-- Inlay hints
 					if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-						-- Delay the enablement by 500ms so the viewport finishes rendering first
-						-- This fixes bug where hints not showing on initial viewport text
 						vim.defer_fn(function()
-							-- Double check the buffer is still valid before applying
 							if vim.api.nvim_buf_is_valid(event.buf) then
 								vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
 							end
@@ -67,8 +61,14 @@ return {
 				end,
 			})
 
+			-- Apply capabilities globally to ALL LSP clients
+			vim.lsp.config("*", {
+				capabilities = capabilities,
+			})
+
 			-- C/C++
 			vim.lsp.config("clangd", {
+				-- We still need to extend capabilities here because of offsetEncoding
 				capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = { "utf-16" } }),
 				cmd = {
 					"clangd",
@@ -85,15 +85,10 @@ return {
 					clangdFileStatus = true,
 				},
 			})
-
 			vim.lsp.enable("clangd")
-
-			vim.lsp.config("neocmake", { capabilities = capabilities })
-			vim.lsp.enable("neocmake")
 
 			-- Rust
 			vim.lsp.config("rust_analyzer", {
-				capabilities = capabilities,
 				settings = {
 					["rust-analyzer"] = {
 						cargo = {
@@ -106,16 +101,23 @@ return {
 					},
 				},
 			})
+
 			vim.lsp.enable("rust_analyzer")
 
-			-- Nix
-			vim.lsp.config("nixd", { capabilities = capabilities })
 			vim.lsp.enable("nixd")
 
+			vim.lsp.enable("astro")
+
+			vim.lsp.enable("ruff")
+
+			vim.lsp.enable("neocmake")
+
+			vim.lsp.enable("dockerls")
+
+			vim.lsp.enable("docker_compose_language_services")
+
 			-- Web
-			-- Typescript/Javascript
 			vim.lsp.config("vtsls", {
-				capabilities = capabilities,
 				settings = {
 					typescript = {
 						inlayHints = {
@@ -141,31 +143,16 @@ return {
 			})
 			vim.lsp.enable("vtsls")
 
-			-- Astro
-			vim.lsp.config("astro", { capabilities = capabilities })
-			vim.lsp.enable("astro")
-			--- ---
-
 			-- Python
 			vim.lsp.config("pyright", {
-				capabilities = capabilities,
 				settings = {
-					python = {
-						analysis = {
-							ignore = { "*" },
-							typeCheckingMode = "basic",
-						},
-					},
+					python = { analysis = { ignore = { "*" }, typeCheckingMode = "basic" } },
 				},
 			})
 			vim.lsp.enable("pyright")
 
-			vim.lsp.config("ruff", { capabilities = capabilities })
-			vim.lsp.enable("ruff")
-
 			-- Lua
 			vim.lsp.config("lua_ls", {
-				capabilities = capabilities,
 				settings = {
 					Lua = {
 						completion = { callSnippet = "Replace" },
@@ -175,12 +162,6 @@ return {
 				},
 			})
 			vim.lsp.enable("lua_ls")
-
-			-- Docker
-			vim.lsp.config("dockerls", { capabilities = capabilities })
-			vim.lsp.enable("dockerls")
-			vim.lsp.config("docker_compose_language_service", { capabilities = capabilities })
-			vim.lsp.enable("docker_compose_language_services")
 		end,
 	},
 }
