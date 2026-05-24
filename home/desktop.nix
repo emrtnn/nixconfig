@@ -69,7 +69,7 @@ in {
     wl-clipboard
     wtype
     evince
-    obsidian
+    logseq
     gh
     devenv
     uv
