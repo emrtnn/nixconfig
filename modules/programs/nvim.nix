@@ -37,6 +37,7 @@
     stylua
 
     # Docker hadolint
+    hadolint
   ];
 
   xdg.configFile."nvim" = {
