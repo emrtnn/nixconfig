@@ -652,9 +652,9 @@ _: {
 
       idle = {
         enabled = true;
-        screenOffTimeout = 480;
-        lockTimeout = 300;
-        suspendTimeout = 600;
+        screenOffTimeout = 300;
+        lockTimeout = 900;
+        suspendTimeout = 1800;
         fadeDuration = 5;
       };
 
