@@ -8,7 +8,6 @@ return {
 			linters_by_ft = {
 				dockerfile = { "hadolint" },
 				nix = { "statix" },
-				cmake = { "cmakelint" },
 			},
 
 			---@type table<string,table>

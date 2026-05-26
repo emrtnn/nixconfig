@@ -73,10 +73,26 @@ return {
 
 				c = { "clang-format" },
 				cpp = { "clang-format" },
+				cmake = { "cmake_format" },
 
 				rust = { "rustfmt" },
 
 				nix = { "alejandra" },
+			},
+			formatters = {
+				cmake_format = {
+					command = "cmake-format",
+					args = {
+						"--line-width",
+						"80",
+						"--tab-size",
+						"2",
+						"--use-tabchars",
+						"false",
+						"--max-prefix-chars",
+						"0",
+					},
+				},
 			},
 		},
 	},
