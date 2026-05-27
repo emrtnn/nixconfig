@@ -37,3 +37,6 @@ opt.splitright = true
 opt.updatetime = 200
 opt.timeoutlen = 300
 opt.virtualedit = "block"
+
+-- Windows
+vim.o.winborder = "rounded"
