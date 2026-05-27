@@ -80,6 +80,9 @@ return {
 				nix = { "alejandra" },
 			},
 			formatters = {
+				["clang-format"] = {
+					args = { "--style={BasedOnStyle: LLVM, PointerAlignment: Left}" },
+				},
 				cmake_format = {
 					command = "cmake-format",
 					args = {
