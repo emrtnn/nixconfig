@@ -28,4 +28,28 @@ return {
 			})
 		end,
 	},
+	{
+		"nvim-mini/mini.surround",
+		version = false,
+		keys = {
+			{ "gsa", mode = { "n", "x" }, desc = "Add surrounding" },
+			{ "gsd", desc = "Delete surrounding" },
+			{ "gsf", desc = "Find surrounding (right)" },
+			{ "gsF", desc = "Find surrounding (left)" },
+			{ "gsh", desc = "Highlight surrounding" },
+			{ "gsr", desc = "Replace surrounding" },
+			{ "gsn", desc = "Update surrounding search lines" },
+		},
+		opts = {
+			mappings = {
+				add = "gsa",
+				deete = "gsd",
+				find = "gsf",
+				find_eft = "gsF",
+				highlight = "gsh",
+				replace = "gsr",
+				update_n_lines = "gsn",
+			},
+		},
+	},
 }
