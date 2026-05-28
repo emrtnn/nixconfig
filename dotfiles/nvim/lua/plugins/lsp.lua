@@ -117,6 +117,9 @@ return {
 
 			vim.lsp.enable("docker_compose_language_services")
 
+			-- Zig
+			vim.lsp.enable("zls")
+
 			-- Web
 			vim.lsp.config("vtsls", {
 				settings = {
