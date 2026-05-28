@@ -75,6 +75,8 @@ return {
 				cpp = { "clang-format" },
 				cmake = { "cmake_format" },
 
+				zig = { "zigfmt" },
+
 				rust = { "rustfmt" },
 
 				nix = { "alejandra" },

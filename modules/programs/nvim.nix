@@ -32,6 +32,10 @@
     rustc
     rustfmt
 
+    # Zig
+    zig
+    zls
+
     # Lua
     lua-language-server
     stylua
