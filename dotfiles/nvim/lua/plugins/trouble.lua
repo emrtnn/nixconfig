@@ -48,12 +48,5 @@ return {
 			},
 		},
 	},
-	keys = {
-		{
-			"<leader>xx",
-			"<cmd>Trouble diagnostics_float toggle filter.buf=0<cr>",
-			desc = "Floating Diagnostics",
-		},
-		{ "<leader>xX", "<cmd>Trouble diagnostics_float toggle focus=true<cr>", desc = "Floating Diagnostics" },
-	},
+	keys = {},
 }
