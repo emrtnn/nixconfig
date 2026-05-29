@@ -21,13 +21,19 @@ return {
 			},
 			{
 				"<leader>xt",
-				"<cmd>Trouble todo_float toggle focus=true filter.buf=0<cr>",
-				desc = "Buffer Todo (Trouble)",
+				function()
+					require("fzf-lua").grep_curbuf({
+						prompt = "Buffer Todos> ",
+						search = "TODO|FIX|FIXME|HACK|WARN|PERF|NOTE|TEST",
+						no_esc = true,
+					})
+				end,
+				desc = "Buffer Todos",
 			},
 			{
 				"<leader>xT",
-				"<cmd>Trouble todo_float toggle focus=true<cr>",
-				desc = "Global Todo (Trouble)",
+				"<cmd>TodoFzfLua<cr>",
+				desc = "Project Todos",
 			},
 		},
 	},
