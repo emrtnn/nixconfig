@@ -1,10 +1,20 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.mangowm.nixosModules.mango
   ];
 
   programs.mango = {
     enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   home-manager.sharedModules = [
