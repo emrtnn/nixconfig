@@ -137,7 +137,7 @@ _: {
             def restart-noctalia [] {
                 pkill -u "impuremonad" -x .quickshell-wra
                 sleep 0.5sec
-                ^hyprctl dispatch "hl.dsp.exec_cmd('uwsm app -- noctalia-shell')"
+                noctalia-shell -d
             }
 
             # --- Keybindings ---

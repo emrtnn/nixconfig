@@ -71,7 +71,7 @@
       restart-noctalia = ''
         pkill -u "impuremonad" -x .quickshell-wra
         sleep 0.5
-        niri msg action spawn -- noctalia-shell
+        noctalia-shell -d
       '';
     };
 
