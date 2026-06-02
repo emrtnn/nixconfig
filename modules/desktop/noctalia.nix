@@ -197,6 +197,12 @@ _: {
               width = 10;
             }
             {
+              defaultSettings = {
+                monitorOrder = [];
+              };
+              id = "plugin:mangowc-layout-switcher";
+            }
+            {
               colorizeDistroLogo = false;
               colorizeSystemIcon = "primary";
               customIconPath = "/home/impuremonad/.face";
@@ -712,6 +718,10 @@ _: {
           enabled = true;
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
         };
+        mangowc-layout-switcher = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
       };
       version = 2;
     };
@@ -741,6 +751,9 @@ _: {
         showCursor = true;
         videoCodec = "h264";
         videoSource = "portal";
+      };
+      mangowc-layout-switcher = {
+        monitorOrder = [];
       };
     };
   };
