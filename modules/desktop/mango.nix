@@ -14,7 +14,9 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    wlr = {
+      enable = true;
+    };
   };
 
   home-manager.sharedModules = [
@@ -22,6 +24,11 @@
       xdg.configFile = {
         "mango" = {
           source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/mango";
+          recursive = true;
+        };
+
+        "xdg-desktop-portal" = {
+          source = "/home/impuremonad/nixconfig/dotfiles/xdg-desktop-portal";
           recursive = true;
         };
       };
