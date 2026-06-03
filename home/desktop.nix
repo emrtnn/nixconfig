@@ -144,7 +144,7 @@ in {
       gtk-application-prefer-dark-theme = 1;
     };
     gtk4 = {
-      inherit (config.gtk) theme;
+      inherit (config.gtk) theme iconTheme;
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };
