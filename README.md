@@ -7,12 +7,11 @@ A perpetually work-in-progress declarative configuration.
 ## What it has
 
 - **os**: nixos (unstable + stable pin)
-- **wm**: niri / hyprland (pick your favorite)
+- **wm**: mango / niri / hyprland (pick your favorite by changing one line)
 - **shell**: nushell & zsh + starship
 - **editor**: neovim (custom lua config)
 - **terminal**: foot
 - **browser**: helium
-- **theme**: adwaita-dark + papirus icons + bibata cursor
 - **secrets**: sops-nix + age
 
 ## Hosts
