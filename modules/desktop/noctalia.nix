@@ -359,7 +359,7 @@ _: {
         position = "center";
         pinnedApps = [];
         sortByMostUsed = true;
-        terminalCommand = "footclient -e";
+        terminalCommand = "footclient";
         customLaunchPrefixEnabled = false;
         customLaunchPrefix = "";
         viewMode = "list";

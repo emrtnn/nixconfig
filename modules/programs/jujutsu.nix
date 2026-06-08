@@ -14,7 +14,7 @@ _: {
 
       signing = {
         backend = "gpg";
-        key = "emrtnn@proton.me";
+        key = "69DC162B9056AD18D0955B957CA8313AADC4ADD4";
         sign-all = true;
         behavior = "own";
       };
