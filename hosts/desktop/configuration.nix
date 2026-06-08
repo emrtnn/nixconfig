@@ -147,6 +147,10 @@
     zsh.enable = true;
     dconf.enable = true;
     ssh.startAgent = false;
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-qt;
+    };
   };
 
   hardware = {
