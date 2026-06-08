@@ -154,6 +154,10 @@
       theme = "default";
       profileIcons.impuremonad = ../../assets/.face;
     };
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-qt;
+    };
   };
 
   hardware = {
