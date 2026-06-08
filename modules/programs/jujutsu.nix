@@ -5,13 +5,24 @@ _: {
     settings = {
       user = {
         name = "emrtnn";
-        email = "enriquemartin1402@gmail.com";
+        email = "emrtnn@proton.me";
+      };
+
+      aliases = {
+        logver = ["log" "--config" "ui.show-cryptographic-signatures=true"];
+      };
+
+      signing = {
+        backend = "gpg";
+        key = "emrtnn@proton.me";
+        sign-all = true;
+        behavior = "own";
       };
 
       ui = {
         color = "always";
         editor = "nvim";
-        default-revset = "::";
+        default-revset = "all()";
         diff-formatter = ":git";
       };
 
