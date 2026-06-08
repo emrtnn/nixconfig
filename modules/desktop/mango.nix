@@ -28,7 +28,7 @@
         };
 
         "xdg-desktop-portal" = {
-          source = "/home/impuremonad/nixconfig/dotfiles/xdg-desktop-portal";
+          source = ../../dotfiles/xdg-desktop-portal;
           recursive = true;
         };
       };
