@@ -51,7 +51,7 @@ in {
     telegram-desktop
     nautilus
     imv
-    stablePkgs.bitwarden-desktop
+    bitwarden-desktop
     grim
     slurp
     gpu-screen-recorder
