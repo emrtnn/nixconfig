@@ -77,7 +77,7 @@ in {
     typora
     sops
     age
-    pass
+    (pass.withExtensions (exts: [exts.pass-otp]))
     cachix
     inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.default
