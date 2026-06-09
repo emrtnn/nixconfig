@@ -21,7 +21,7 @@ _: {
       };
 
       bar = {
-        order = [ "widgets" ];
+        order = ["widgets"];
         widgets = {
           auto_hide = false;
           background_opacity = 1.0;
@@ -31,17 +31,17 @@ _: {
           capsule_fill = "surface_variant";
           capsule_opacity = 1.0;
           capsule_padding = 6.0;
-          center = [ "workspaces" "media" ];
+          center = ["workspaces" "media"];
           contact_shadow = false;
           enabled = true;
-          end = [ "tray" "notifications" "bluetooth" "volume" "control-center" "session" ];
+          end = ["tray" "notifications" "spacer_5" "bluetooth" "volume" "spacer_4" "control-center" "session"];
           font_weight = 500;
           layer = "top";
           margin_edge = 10;
           margin_ends = 150;
           padding = 14;
           panel_overlap = 1;
-          position = "left";
+          position = "top";
           radius = 0;
           radius_bottom_left = 18;
           radius_bottom_right = 18;
@@ -50,15 +50,15 @@ _: {
           reserve_space = true;
           scale = 1.0;
           shadow = true;
-          start = [ "date" "clock" "spacer_3" "group:g2" ];
-          thickness = 40;
+          start = ["date" "clock" "spacer_3" "group:g2"];
+          thickness = 35;
           widget_spacing = 6;
 
           capsule_group = [
             {
               fill = "surface_variant";
               id = "g2";
-              members = [ "cpu" "temp" "ram" ];
+              members = ["cpu" "temp" "ram"];
               opacity = 1.0;
               padding = 6.0;
             }
@@ -72,7 +72,7 @@ _: {
 
       brightness = {
         enable_ddcutil = false;
-        ignore_mmids = [ ];
+        ignore_mmids = [];
       };
 
       calendar = {
@@ -84,12 +84,12 @@ _: {
         sidebar = "compact";
         sidebar_section = "compact";
         shortcuts = [
-          { type = "wifi"; }
-          { type = "bluetooth"; }
-          { type = "caffeine"; }
-          { type = "nightlight"; }
-          { type = "notification"; }
-          { type = "power_profile"; }
+          {type = "wifi";}
+          {type = "bluetooth";}
+          {type = "caffeine";}
+          {type = "nightlight";}
+          {type = "notification";}
+          {type = "power_profile";}
         ];
       };
 
@@ -122,8 +122,8 @@ _: {
         main_axis_padding = 16;
         margin_edge = 8;
         margin_ends = 0;
-        monitors = [ ];
-        pinned = [ ];
+        monitors = [];
+        pinned = [];
         position = "bottom";
         radius = 16;
         radius_bottom_left = 16;
@@ -138,28 +138,28 @@ _: {
       };
 
       hooks = {
-        battery_charging = [ ];
-        battery_discharging = [ ];
-        battery_percentage_changed = [ ];
-        battery_plugged = [ ];
-        bluetooth_disabled = [ ];
-        bluetooth_enabled = [ ];
-        colors_changed = [ ];
-        logging_out = [ ];
-        power_profile_changed = [ ];
-        rebooting = [ ];
-        session_locked = [ ];
-        session_unlocked = [ ];
-        shutting_down = [ ];
-        started = [ ];
-        theme_mode_changed = [ ];
-        wallpaper_changed = [ ];
-        wifi_disabled = [ ];
-        wifi_enabled = [ ];
+        battery_charging = [];
+        battery_discharging = [];
+        battery_percentage_changed = [];
+        battery_plugged = [];
+        bluetooth_disabled = [];
+        bluetooth_enabled = [];
+        colors_changed = [];
+        logging_out = [];
+        power_profile_changed = [];
+        rebooting = [];
+        session_locked = [];
+        session_unlocked = [];
+        shutting_down = [];
+        started = [];
+        theme_mode_changed = [];
+        wallpaper_changed = [];
+        wifi_disabled = [];
+        wifi_enabled = [];
       };
 
       idle = {
-        behavior_order = [ "lock" "screen-off" "lock-and-suspend" ];
+        behavior_order = ["lock" "screen-off" "lock-and-suspend"];
         pre_action_fade_seconds = 2.0;
         behavior = {
           lock = {
@@ -187,12 +187,12 @@ _: {
       };
 
       keybinds = {
-        cancel = [ "Escape" ];
-        down = [ "Down" ];
-        left = [ "Left" ];
-        right = [ "Right" ];
-        up = [ "Up" ];
-        validate = [ "Return" "KP_Enter" ];
+        cancel = ["Escape"];
+        down = ["Down"];
+        left = ["Left"];
+        right = ["Right"];
+        up = ["Up"];
+        validate = ["Return" "KP_Enter"];
       };
 
       location = {
@@ -212,7 +212,7 @@ _: {
       lockscreen_widgets = {
         enabled = false;
         schema_version = 2;
-        widget_order = [ "lockscreen-login-box@DP-1" ];
+        widget_order = ["lockscreen-login-box@DP-1"];
         grid = {
           cell_size = 16;
           major_interval = 4;
@@ -228,7 +228,7 @@ _: {
             output = "DP-1";
             rotation = 0.0;
             type = "login_box";
-            settings = { };
+            settings = {};
           };
         };
       };
@@ -241,14 +241,14 @@ _: {
       };
 
       notification = {
-        allowed_urgencies = [ ];
+        allowed_urgencies = [];
         background_opacity = 0.97000002861022949;
-        blacklist = [ ];
+        blacklist = [];
         blacklist_allow_critical = true;
         collapse_on_dismiss = true;
         enable_daemon = true;
         layer = "top";
-        monitors = [ ];
+        monitors = [];
         offset_x = 20;
         offset_y = 8;
         position = "bottom_right";
@@ -259,7 +259,7 @@ _: {
 
       osd = {
         background_opacity = 0.97000002861022949;
-        monitors = [ ];
+        monitors = [];
         offset_x = 20;
         offset_y = 8;
         orientation = "horizontal";
@@ -313,7 +313,7 @@ _: {
         };
 
         mpris = {
-          blacklist = [ ];
+          blacklist = [];
         };
 
         panel = {
@@ -445,8 +445,8 @@ _: {
         source = "builtin";
         wallpaper_scheme = "m3-content";
         templates = {
-          builtin_ids = [ "btop" "gtk3" "gtk4" "qt" ];
-          community_ids = [ "pi-agent" "discord" "papirus-icons" "yazi" ];
+          builtin_ids = ["btop" "gtk3" "gtk4" "qt"];
+          community_ids = ["pi-agent" "discord" "papirus-icons" "yazi"];
           enable_builtin_templates = true;
           enable_community_templates = true;
         };
@@ -461,7 +461,7 @@ _: {
         fill_color = "";
         fill_mode = "stretch";
         per_monitor_directories = false;
-        transition = [ "fade" "wipe" "disc" "stripes" "zoom" "honeycomb" ];
+        transition = ["fade" "wipe" "disc" "stripes" "zoom" "honeycomb"];
         transition_duration = 1500.0;
         transition_on_startup = true;
 
@@ -550,6 +550,12 @@ _: {
           type = "spacer";
         };
         spacer_3 = {
+          type = "spacer";
+        };
+        spacer_4 = {
+          type = "spacer";
+        };
+        spacer_5 = {
           type = "spacer";
         };
         temp = {
