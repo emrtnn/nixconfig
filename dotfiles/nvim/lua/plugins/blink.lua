@@ -1,13 +1,13 @@
 return {
 	{
 		"saghen/blink.cmp",
-		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
 			"saghen/blink.lib",
 			"rafamadriz/friendly-snippets",
 		},
+		event = { "InsertEnter", "CmdlineEnter" },
 		build = function()
-			require("blink.cmp").build():wait(60000)
+			require("blink.cmp").build():pwait(60000)
 		end,
 
 		---@module 'blink.cmp'
@@ -38,5 +38,6 @@ return {
 
 			fuzzy = { implementation = "rust" },
 		},
+		opts_exnted = { "sources.default" },
 	},
 }
