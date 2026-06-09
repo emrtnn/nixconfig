@@ -37,7 +37,6 @@ hl.bind(
 -- Common app shortcuts from the Niri config.
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(app("helium")))
 hl.bind(mainMod .. " + ALT + B", hl.dsp.exec_cmd(app("helium --incognito")))
-hl.bind(mainMod .. " + SHIFT + Slash", hl.dsp.exec_cmd(app("bitwarden")))
 hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd(app("helium --app=https://x.com")))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(app("helium --app=https://web.whatsapp.com")))
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(app("helium --app=https://chatgpt.com")))
