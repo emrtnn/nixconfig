@@ -176,7 +176,7 @@ in {
     };
   };
 
-  home.file.".face".source = ../assets/.face;
+  home.file.".face.png".source = ../assets/.face;
 
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;
