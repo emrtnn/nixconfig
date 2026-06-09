@@ -14,4 +14,3 @@ hl.window_rule({
 	size = { 600, 1050 },
 	center = true,
 })
-hl.window_rule({ name = "bitwarden-private", match = { class = "^Bitwarden$" }, no_screen_share = true })
