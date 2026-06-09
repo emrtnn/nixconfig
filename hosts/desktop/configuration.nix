@@ -162,8 +162,12 @@
 
     nvidia = {
       modesetting.enable = true;
-      open = true;
-      powerManagement.enable = true;
+      open = false;
+      powerManagement = {
+        enable = false;
+        finegrained = false;
+      };
+      nvidiaSettings = true;
     };
   };
 
@@ -171,6 +175,8 @@
   environment = {
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
+      WLR_DRM_DEVICES = "/dev/dri/card1";
+      WLR_DRM_NO_ATOMIC = "1";
     };
 
     systemPackages = with pkgs; [
