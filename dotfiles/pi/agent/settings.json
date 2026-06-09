@@ -1,9 +1,9 @@
 {
-  "lastChangelogVersion": "0.78.0",
+  "lastChangelogVersion": "0.79.0",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "medium",
-  "theme": "gruvbox-dark-hard",
+  "defaultThinkingLevel": "minimal",
+  "theme": "noctalia",
   "transport": "websocket-cached",
   "quietStartup": false,
   "enableSkillCommands": true,
