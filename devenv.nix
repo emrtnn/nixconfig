@@ -6,7 +6,6 @@
     pkgs.deadnix
     pkgs.statix
   ];
-
   scripts = {
     fmt.exec = ''
       echo "Formatting Nix files..."
