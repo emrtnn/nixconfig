@@ -8,7 +8,7 @@
     keyMode = "vi";
     mouse = true;
     historyLimit = 100000;
-    terminal = "xterm-256color";
+    terminal = "tmux-256color";
 
     shell = "${pkgs.nushell}/bin/nu";
 
