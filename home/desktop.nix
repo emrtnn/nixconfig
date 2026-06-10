@@ -68,7 +68,7 @@ in {
     wl-clipboard
     wtype
     evince
-    logseq
+    (logseq.override {electron_39 = electron_40;})
     gh
     devenv
     uv
