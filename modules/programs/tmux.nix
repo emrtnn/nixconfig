@@ -86,6 +86,11 @@
 
     # --- Extra Configuration ---
     extraConfig = ''
+      # Allow image preview in Yazi (passthrough)
+      set -g allow-passthrough on
+      set -ga update-environment TERM
+      set -ga update-environment TERM_PROGRAM
+
       # Status & Visuals
       set -g status-position top
       set -g renumber-windows on
@@ -94,11 +99,6 @@
 
       # Prefix indicator: change session arrow color when prefix is active
       set -g status-left "#{?client_prefix,#[bg=#d65d0e]#[fg=#282828]#[bold] #S #[bg=#3c3836]#[fg=#d65d0e]#[nobold]#[noitalics]#[nounderscore],#[bg=#665c54]#[fg=#bdae93] #S #[bg=#3c3836]#[fg=#665c54]#[nobold]#[noitalics]#[nounderscore]} "
-
-      # Allow image preview in Yazi (passthrough)
-      set -g allow-passthrough on
-      set -ga update-environment TERM
-      set -ga update-environment TERM_PROGRAM
 
       # Keybindings
       unbind C-b
