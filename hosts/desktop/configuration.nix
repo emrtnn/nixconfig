@@ -139,14 +139,18 @@
   };
 
   programs = {
+    zsh.enable = true;
+    dconf.enable = true;
+    ssh.startAgent = false;
+    localsend = {
+      enable = true;
+      openFirewall = true;
+    };
     silentSDDM = {
       enable = true;
       theme = "default";
       profileIcons.impuremonad = ../../assets/.face;
     };
-    zsh.enable = true;
-    dconf.enable = true;
-    ssh.startAgent = false;
     gnupg.agent = {
       enable = true;
       pinentryPackage = pkgs.pinentry-curses;
@@ -162,7 +166,7 @@
 
     nvidia = {
       modesetting.enable = true;
-      open = false;
+      open = true;
       powerManagement = {
         enable = false;
         finegrained = false;
