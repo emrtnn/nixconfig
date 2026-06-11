@@ -6,7 +6,10 @@ return {
 
 		-- The NixOS-specific build command. When lazy.nvim clones the repo,
 		-- it will run this command to compile the Rust binary natively for NixOs.
-		build = "nix run .#release",
+		build = function()
+			-- downloads a prebuilt binary or falls back to cargo build
+			require("fff.download").download_or_build_binary()
+		end,
 		opts = {
 			debug = {
 				enabled = false,
@@ -29,13 +32,6 @@ return {
 			},
 			{
 				"<leader>fg",
-				function()
-					require("fff").live_grep()
-				end,
-				desc = "Live grep",
-			},
-			{
-				"<leader>fz",
 				function()
 					require("fff").live_grep({
 						grep = { modes = { "fuzzy", "plain" } },
