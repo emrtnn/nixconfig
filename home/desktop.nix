@@ -109,7 +109,7 @@ in {
         "image/svg+xml" = "imv.desktop";
         "image/bmp" = "imv.desktop";
         "image/avif" = "imv.desktop";
-        "application/pdf" = "org.gnome.Evince.desktop";
+        "application/pdf" = "onlyoffice-desktopeditors.desktop";
       };
     };
   };
