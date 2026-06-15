@@ -138,12 +138,6 @@ _: {
                 }
             }
 
-            def restart-noctalia [] {
-                pkill -u "impuremonad" -x .quickshell-wra
-                sleep 0.5sec
-                noctalia-shell -d
-            }
-
             # --- Keybindings ---
             $env.config.keybindings ++= [
               {

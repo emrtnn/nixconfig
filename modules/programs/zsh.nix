@@ -67,12 +67,6 @@
       nd = "nix develop";
       nr = "nix run";
       ns = "nix shell";
-
-      restart-noctalia = ''
-        pkill -u "impuremonad" -x .quickshell-wra
-        sleep 0.5
-        noctalia-shell -d
-      '';
     };
 
     sessionVariables = {
