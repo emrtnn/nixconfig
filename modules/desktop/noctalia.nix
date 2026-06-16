@@ -32,6 +32,7 @@ _: {
           capsule_opacity = 1.0;
           capsule_padding = 6.0;
           center = ["workspaces" "media"];
+          shadow = false;
           contact_shadow = false;
           enabled = true;
           end = ["tray" "notifications" "spacer_5" "bluetooth" "volume" "spacer_4" "control-center" "session"];
@@ -49,7 +50,6 @@ _: {
           radius_top_right = 18;
           reserve_space = true;
           scale = 1.0;
-          shadow = true;
           start = ["date" "clock" "spacer_3" "group:g2"];
           thickness = 35;
           widget_spacing = 6;
@@ -131,7 +131,7 @@ _: {
         radius_top_left = 16;
         radius_top_right = 16;
         reserve_space = false;
-        shadow = true;
+        shadow = false;
         show_dots = false;
         show_instance_count = true;
         show_running = true;
@@ -330,7 +330,7 @@ _: {
           open_near_click_session = false;
           open_near_click_wallpaper = false;
           session_placement = "attached";
-          shadow = true;
+          shadow = false;
           transparency_mode = "solid";
           wallpaper_placement = "attached";
         };
