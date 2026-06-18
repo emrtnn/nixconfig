@@ -165,11 +165,11 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+    };
 
-      extraPackages = with pkgs; [
-        rocmPackages.clr
-        rocmPackages.clr.icd
-      ];
+    amdgpu = {
+      initrd.enable = true;
+      opencl.enable = true;
     };
 
     enableRedistributableFirmware = true;
@@ -179,10 +179,6 @@
       powerOnBoot = true;
     };
   };
-
-  systemd.tmpfiles.rules = [
-    "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
-  ];
 
   powerManagement = {
     enable = true;
@@ -196,7 +192,6 @@
 
   # Hint Electron apps to use Wayland
   environment = {
-    sessionVariables.NIXOS_OZONE_WL = "1";
     systemPackages = with pkgs; [
       bash
       zsh
@@ -204,11 +199,20 @@
       wget
       git
       gcc
-      blender
-
+      rocmPackages.rocm-core
+      rocmPackages.clr
+      rocmPackages.clr.icd
       radeontop
       nvtopPackages.amd
     ];
+    variables = {
+      HIP_PATH = "${pkgs.rocmPackages.clr}";
+      ROCM_PATH = "${pkgs.rocmPackages.clr}";
+    };
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      HSA_OVERRIDE_GFX_VERSION = "11.0.0";
+    };
   };
 
   users = {
@@ -218,6 +222,8 @@
       extraGroups = [
         "networkmanager"
         "wheel"
+        "video"
+        "render"
       ];
       shell = pkgs.nushell;
     };
@@ -261,7 +267,10 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    rocmSupport = true;
+  };
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
