@@ -204,6 +204,7 @@
       wget
       git
       gcc
+      blender
 
       radeontop
       nvtopPackages.amd
