@@ -23,7 +23,7 @@ _: {
       jdesc = "jj describe";
       jn = "jj new";
       js = "jj status";
-      jd = "hunk diff --mode stack";
+      jd = "hunk diff --mode stack --theme zenburn";
     };
 
     environmentVariables = {
