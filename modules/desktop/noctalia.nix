@@ -324,6 +324,7 @@ _: {
           launcher_compact = false;
           launcher_placement = "centered";
           launcher_show_icons = true;
+          launcher_session_search = true;
           open_near_click_clipboard = false;
           open_near_click_control_center = false;
           open_near_click_launcher = false;
