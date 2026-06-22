@@ -61,6 +61,9 @@ in {
     playerctl
     qt5.qtwayland
     qt6.qtwayland
+    qt6Packages.qt6ct
+    adw-gtk3
+    nwg-look
     ffmpeg
     mpv
     btop
@@ -134,8 +137,8 @@ in {
   gtk = {
     enable = true;
     theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
     };
     iconTheme = {
       name = "Papirus-Dark";
