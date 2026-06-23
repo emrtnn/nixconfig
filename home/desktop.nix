@@ -33,7 +33,6 @@ in {
     ../modules/desktop/swappy.nix
     ../modules/desktop/noctalia.nix
     ../modules/programs/onlyoffice.nix
-    ../modules/programs/thunderbird.nix
     ../modules/programs/jujutsu.nix
     ../modules/programs/nvim.nix
     ../modules/programs/foot.nix
