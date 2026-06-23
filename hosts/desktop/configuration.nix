@@ -9,6 +9,7 @@
     inputs.silentSDDM.nixosModules.default
     inputs.sops-nix.nixosModules.sops
     ../../modules/desktop/mango.nix
+    ../../modules/gaming.nix
   ];
 
   boot = {
@@ -200,6 +201,9 @@
       extraGroups = [
         "networkmanager"
         "wheel"
+        "video"
+        "render"
+        "gamemode"
       ];
       shell = pkgs.nushell;
     };
