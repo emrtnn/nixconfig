@@ -21,7 +21,7 @@
       efi.canTouchEfiVariables = true;
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
 
     kernelParams = [
       "quiet"
@@ -48,8 +48,10 @@
     };
   };
 
-  zramSwap.memoryMax = {
+  zramSwap = {
     enable = true;
+    algorithm = "zstd";
+    memoryPercent = 100;
   };
 
   networking = {
