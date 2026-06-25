@@ -71,6 +71,7 @@ in {
     wtype
     evince
     (logseq.override {electron_39 = electron_40;})
+    (stablePkgs.logseq.override {electron_39 = electron_40;})
     gh
     devenv
     uv
