@@ -3,12 +3,7 @@
   inputs,
   config,
   ...
-}: let
-  stablePkgs = import inputs.nixpkgs-stable {
-    inherit (pkgs.stdenv.hostPlatform) system;
-    config.allowUnfree = true;
-  };
-in {
+}: {
   home = {
     username = "impuremonad";
     homeDirectory = "/home/impuremonad";
@@ -36,6 +31,7 @@ in {
     ../modules/programs/jujutsu.nix
     ../modules/programs/nvim.nix
     ../modules/programs/foot.nix
+    ../modules/programs/logseq-og.nix
   ];
 
   home.packages = with pkgs; [
@@ -70,8 +66,6 @@ in {
     wl-clipboard
     wtype
     evince
-    (logseq.override {electron_39 = electron_40;})
-    (stablePkgs.logseq.override {electron_39 = electron_40;})
     gh
     devenv
     uv
