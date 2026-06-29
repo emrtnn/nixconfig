@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  lib,
   ...
 }: {
   home = {
@@ -21,7 +22,6 @@
     ../modules/programs/git.nix
     ../modules/programs/opencode.nix
     ../modules/programs/pi.nix
-    ../modules/programs/tmux.nix
     ../modules/programs/zsh.nix
     ../modules/programs/vesktop.nix
     ../modules/programs/fzf.nix
@@ -79,10 +79,16 @@
     inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.default
     blender
+    herdr
   ];
 
   xdg = {
     enable = true;
+
+    configFile = {
+      "herdr/config.toml".source = ../dotfiles/herdr/config.toml;
+    };
+
     mimeApps = {
       enable = true;
       associations.added = {
@@ -175,6 +181,13 @@
   };
 
   home.file.".face.png".source = ../assets/.face;
+
+  home.activation.removeOldHerdrConfigSymlink = lib.hm.dag.entryBefore ["checkLinkTargets"] ''
+    herdr_config="${config.xdg.configHome}/herdr"
+    if [ -L "$herdr_config" ] && [ "$(readlink "$herdr_config")" = "/home/impuremonad/nixconfig/dotfiles/herdr" ]; then
+      rm "$herdr_config"
+    fi
+  '';
 
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;

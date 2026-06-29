@@ -12,6 +12,8 @@
     ../../modules/gaming.nix
   ];
 
+  system.boot.loader.kernelFile = "vmlinuz";
+
   boot = {
     loader = {
       systemd-boot.enable = false;

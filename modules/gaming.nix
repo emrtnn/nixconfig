@@ -30,9 +30,6 @@
       heroic
       umu-launcher
 
-      winetricks
-      protontricks
-
       mangohud
       gamescope
 
