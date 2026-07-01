@@ -1,6 +1,6 @@
 # ❄️Nixconfig
 
-> My personal nixos & home-manager dotfiles. 
+> Modular nixos & home-manager dotfiles. 
 
 A perpetually work-in-progress declarative configuration.
 

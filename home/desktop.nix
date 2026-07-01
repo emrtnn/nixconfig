@@ -8,7 +8,7 @@
   home = {
     username = "impuremonad";
     homeDirectory = "/home/impuremonad";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
   };
 
   imports = [
@@ -23,7 +23,6 @@
     ../modules/programs/opencode.nix
     ../modules/programs/pi.nix
     ../modules/programs/zsh.nix
-    ../modules/programs/vesktop.nix
     ../modules/programs/fzf.nix
     ../modules/desktop/swappy.nix
     ../modules/desktop/noctalia.nix
@@ -31,11 +30,12 @@
     ../modules/programs/jujutsu.nix
     ../modules/programs/nvim.nix
     ../modules/programs/foot.nix
-    ../modules/programs/logseq-og.nix
+    ../modules/programs/hunk.nix
   ];
 
   home.packages = with pkgs; [
     bat
+    # logseq
     lazygit
     ripgrep
     fd
@@ -77,7 +77,6 @@
     (pass.withExtensions (exts: [exts.pass-otp]))
     cachix
     inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.default
     blender
     herdr
   ];
