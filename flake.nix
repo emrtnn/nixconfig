@@ -51,7 +51,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pi-mono.url = "github:lukasl-dev/pi-mono.nix";
+    pi-mono = {
+      url = "github:lukasl-dev/pi-mono.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -59,14 +62,10 @@
     home-manager,
     ...
   } @ inputs: let
-    overlays = [
-      inputs.pi-mono.overlays.default
-    ];
   in {
     nixosConfigurations.monad = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        {nixpkgs.overlays = overlays;}
         ./hosts/desktop/configuration.nix
         home-manager.nixosModules.home-manager
         {
@@ -85,7 +84,6 @@
     nixosConfigurations.arpano = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        {nixpkgs.overlays = overlays;}
         ./hosts/workstation/configuration.nix
         home-manager.nixosModules.home-manager
         {
