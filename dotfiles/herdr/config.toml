@@ -107,7 +107,7 @@ navigate_pane_right = "l"     # right arrow always focuses the pane to the right
 [[keys.command]]
 key = "prefix+d"
 type = "pane"
-command = "hunk diff --mode stack --theme gruvbox-dark-medium"
+command = "hunk diff"
 
 [[keys.command]]
 key = "prefix+f"

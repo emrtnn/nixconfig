@@ -23,7 +23,6 @@ _: {
       jdesc = "jj describe";
       jn = "jj new";
       js = "jj status";
-      jd = "hunk diff --mode stack --theme gruvbox-dark-medium";
     };
 
     environmentVariables = {
