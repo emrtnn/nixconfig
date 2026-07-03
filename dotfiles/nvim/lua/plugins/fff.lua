@@ -31,7 +31,7 @@ return {
 				desc = "Find files",
 			},
 			{
-				"<leader>fg",
+				"<leader>f/",
 				function()
 					require("fff").live_grep({
 						grep = { modes = { "fuzzy", "plain" } },

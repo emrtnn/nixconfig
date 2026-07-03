@@ -1,4 +1,4 @@
-# ❄️Nixconfig
+# ❄️ Nixconfig
 
 > Modular nixos & home-manager dotfiles. 
 

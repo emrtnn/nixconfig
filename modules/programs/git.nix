@@ -11,7 +11,6 @@ _: {
         core = {
           editor = "nvim";
           autocrlf = "input";
-          pager = "hunk pager";
         };
         color = {
           ui = "auto";
