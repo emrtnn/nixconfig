@@ -79,6 +79,7 @@
     inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     blender
     herdr
+    vesktop
   ];
 
   xdg = {
