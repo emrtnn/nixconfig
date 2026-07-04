@@ -4,7 +4,9 @@
   config,
   lib,
   ...
-}: {
+}: let
+  stablePkgs = inputs.nixpkgs-stable;
+in {
   home = {
     username = "impuremonad";
     homeDirectory = "/home/impuremonad";
@@ -35,7 +37,7 @@
 
   home.packages = with pkgs; [
     bat
-    # logseq
+    logseq
     lazygit
     ripgrep
     fd

@@ -62,7 +62,12 @@
     home-manager,
     ...
   } @ inputs: let
-    overlays = [(final: prev: {pnpm_10_29_2 = final.pnpm_10;})];
+    overlays = [
+      (final: prev: {
+        pnpm_10_29_2 = final.pnpm_10;
+        electron_39 = final.electron_41;
+      })
+    ];
   in {
     nixosConfigurations.monad = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
