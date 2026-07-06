@@ -188,10 +188,10 @@ _: {
 
       keybinds = {
         cancel = ["Escape"];
-        down = ["Down"];
+        down = ["Ctrl+n"];
         left = ["Left"];
         right = ["Right"];
-        up = ["Up"];
+        up = ["Ctrl+p"];
         validate = ["Return" "KP_Enter"];
       };
 
@@ -568,6 +568,30 @@ _: {
           type = "workspaces";
         };
       };
+
+      plugins = [
+        {
+          enabled = true;
+          auto_update = true;
+          kind = "git";
+          location = "https://github.com/noctalia-dev/official-plugins";
+          name = "official";
+        }
+        {
+          auto_update = false;
+          enabled = true;
+          kind = "git";
+          location = "https://github.com/noctalia-dev/community-plugins";
+          name = "community";
+        }
+        {
+          auto_update = false;
+          enabled = true;
+          kind = "git";
+          location = "https://github.com/emrtnn/noctalia-pass-plugin";
+          name = "pass";
+        }
+      ];
     };
   };
 }
