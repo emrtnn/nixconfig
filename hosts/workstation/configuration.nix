@@ -202,6 +202,7 @@
       wget
       git
       gcc
+      cmake
       rocmPackages.rocm-core
       rocmPackages.clr
       rocmPackages.clr.icd

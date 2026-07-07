@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.3",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "defaultProvider": "openrouter",
+  "defaultModel": "qwen/qwen3-coder:free",
   "defaultThinkingLevel": "low",
   "theme": "noctalia",
   "transport": "websocket-cached",
