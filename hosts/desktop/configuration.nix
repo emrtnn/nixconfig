@@ -193,6 +193,7 @@
       wget
       git
       gcc
+      cmake
     ];
   };
 
