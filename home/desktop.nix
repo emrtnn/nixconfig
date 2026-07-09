@@ -57,6 +57,7 @@ in {
     brightnessctl
     playerctl
     qt5.qtwayland
+    duckdb
     qt6.qtwayland
     qt6Packages.qt6ct
     adw-gtk3
@@ -121,6 +122,7 @@ in {
   };
 
   home.pointerCursor = {
+    enable = true;
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
     size = 24;
