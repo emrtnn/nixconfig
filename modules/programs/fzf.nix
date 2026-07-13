@@ -1,7 +1,6 @@
 _: {
   programs.fzf = {
     enable = true;
-    enableZshIntegration = true;
     defaultOptions = [
       "--height=40%"
       "--layout=reverse"
@@ -12,13 +11,13 @@ _: {
       "--padding=1"
       "--no-mouse"
     ];
-    changeDirWidgetOptions = [
+    changeDirWidget.options = [
       "--preview 'tree -C {} | head -200'"
     ];
-    fileWidgetOptions = [
+    fileWidget.options = [
       "--preview 'bat -n --color=always {}' --preview-window=right:50%"
     ];
-    historyWidgetOptions = [
+    historyWidget.options = [
       "--sort --preview 'echo {}' --preview-window=down:3:hidden:wrap"
     ];
   };
