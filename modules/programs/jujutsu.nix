@@ -24,6 +24,7 @@ _: {
         editor = "nvim";
         default-revset = "all()";
         diff-formatter = ":git";
+        pager = ["hunk" "pager"];
       };
 
       merge = {

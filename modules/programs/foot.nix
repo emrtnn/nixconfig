@@ -8,7 +8,7 @@
     settings = {
       main = {
         include = "${pkgs.foot.themes}/share/foot/themes/gruvbox-dark";
-        shell = "${pkgs.nushell}/bin/nu";
+        shell = "${pkgs.zsh}/bin/zsh";
         font = "JetBrainsMono Nerd Font Mono:size=14";
         pad = "7x2";
         dpi-aware = true;
