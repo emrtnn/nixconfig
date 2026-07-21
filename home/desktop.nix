@@ -17,7 +17,6 @@ in {
     inputs.noctalia.homeModules.default
     inputs.sops-nix.homeManagerModules.sops
     ../modules/programs/carapace.nix
-    ../modules/programs/nushell.nix
     ../modules/programs/starship.nix
     ../modules/programs/yazi.nix
     ../modules/programs/zoxide.nix
@@ -25,6 +24,7 @@ in {
     ../modules/programs/opencode.nix
     ../modules/programs/pi.nix
     ../modules/programs/zsh.nix
+    ../modules/programs/nushell.nix
     ../modules/programs/fzf.nix
     ../modules/desktop/swappy.nix
     ../modules/desktop/noctalia.nix

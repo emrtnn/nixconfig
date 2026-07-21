@@ -234,7 +234,7 @@
         "render"
         "gamemode"
       ];
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
     };
   };
 

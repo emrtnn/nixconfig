@@ -56,11 +56,13 @@
       gd = "git diff";
       gds = "git diff --staged";
 
+      jj = "jj --no-pager";
       jl = "jj log -r 'all()'";
       jd = "jj diff";
       jdesc = "jj describe";
       jn = "jj new";
-      js = "jj status";
+      js = "jj status --no-pager";
+      jshow = "jj show --no-pager";
 
       nrs = "nixos-rebuild switch --flake";
       nb = "nix build";

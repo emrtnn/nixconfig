@@ -1033,9 +1033,9 @@
           "text"
         ],
         "cost": {
-          "input": 0.098,
-          "output": 0.196,
-          "cacheRead": 0.0196,
+          "input": 0.0938,
+          "output": 0.1876,
+          "cacheRead": 0.01876,
           "cacheWrite": 0
         },
         "contextWindow": 1048575,
@@ -1482,13 +1482,13 @@
           "image"
         ],
         "cost": {
-          "input": 0.22,
-          "output": 0.55,
-          "cacheRead": 0.12,
+          "input": 0.12,
+          "output": 0.37,
+          "cacheRead": 0,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 262144,
+        "maxTokens": 16384,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -1700,6 +1700,29 @@
         },
         "contextWindow": 256000,
         "maxTokens": 80000,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "thinkingFormat": "openrouter"
+        }
+      },
+      {
+        "id": "meituan/longcat-2.0",
+        "name": "Meituan: LongCat 2.0",
+        "api": "openai-completions",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "provider": "openrouter",
+        "reasoning": true,
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0.3,
+          "output": 1.2,
+          "cacheRead": 0.006,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048756,
+        "maxTokens": 262144,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -2515,9 +2538,9 @@
           "image"
         ],
         "cost": {
-          "input": 0.85,
-          "output": 3.8,
-          "cacheRead": 0.17,
+          "input": 0.82,
+          "output": 3.75,
+          "cacheRead": 0.16,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
@@ -2680,13 +2703,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.085,
-          "output": 0.4,
+          "input": 0.08,
+          "output": 0.45,
           "cacheRead": 0,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 16384,
+        "maxTokens": 4096,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -4896,13 +4919,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.1,
-          "output": 1.1,
-          "cacheRead": 0.07,
+          "input": 0.0975,
+          "output": 0.78,
+          "cacheRead": 0,
           "cacheWrite": 0
         },
-        "contextWindow": 262144,
-        "maxTokens": 262144,
+        "contextWindow": 131072,
+        "maxTokens": 32768,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -5609,13 +5632,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.2,
-          "output": 0.8,
-          "cacheRead": 0.05,
+          "input": 0.14,
+          "output": 0.58,
+          "cacheRead": 0.035,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 131072,
+        "maxTokens": 262144,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -5639,29 +5662,6 @@
         },
         "contextWindow": 262144,
         "maxTokens": 4096,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "thinkingFormat": "openrouter"
-        }
-      },
-      {
-        "id": "tencent/hy3:free",
-        "name": "Tencent: Hy3 (free)",
-        "api": "openai-completions",
-        "baseUrl": "https://openrouter.ai/api/v1",
-        "provider": "openrouter",
-        "reasoning": true,
-        "input": [
-          "text"
-        ],
-        "cost": {
-          "input": 0,
-          "output": 0,
-          "cacheRead": 0,
-          "cacheWrite": 0
-        },
-        "contextWindow": 262144,
-        "maxTokens": 262144,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -6123,9 +6123,9 @@
           "text"
         ],
         "cost": {
-          "input": 1.12,
-          "output": 3.52,
-          "cacheRead": 0.208,
+          "input": 0.9366,
+          "output": 2.9436,
+          "cacheRead": 0.17394,
           "cacheWrite": 0
         },
         "contextWindow": 1048576,
@@ -6403,7 +6403,7 @@
         }
       }
     ],
-    "checkedAt": 1784545517490
+    "checkedAt": 1784630583939
   },
   "openai-codex": {
     "models": [
@@ -6641,6 +6641,6 @@
         }
       }
     ],
-    "checkedAt": 1784545517718
+    "checkedAt": 1784630584113
   }
 }
