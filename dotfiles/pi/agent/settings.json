@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.80.7",
-  "defaultProvider": "openrouter",
-  "defaultModel": "openai/gpt-oss-20b:free",
+  "lastChangelogVersion": "0.80.8",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "low",
   "theme": "noctalia",
   "transport": "websocket-cached",
