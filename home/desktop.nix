@@ -37,7 +37,7 @@ in {
 
   home.packages = with pkgs; [
     bat
-    logseq
+    # logseq
     lazygit
     ripgrep
     fd
