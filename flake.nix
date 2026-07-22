@@ -61,19 +61,10 @@
     nixpkgs,
     home-manager,
     ...
-  } @ inputs: let
-    overlays = [
-      (final: prev: {
-        pnpm_10_29_2 = final.pnpm_10;
-        electron_39 = final.electron;
-        electron_40 = final.electron;
-      })
-    ];
-  in {
+  } @ inputs: {
     nixosConfigurations.monad = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        {nixpkgs.overlays = overlays;}
         ./hosts/desktop/configuration.nix
         home-manager.nixosModules.home-manager
         {
@@ -92,7 +83,6 @@
     nixosConfigurations.arpano = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        {nixpkgs.overlays = overlays;}
         ./hosts/workstation/configuration.nix
         home-manager.nixosModules.home-manager
         {
