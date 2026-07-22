@@ -42,7 +42,6 @@ in {
     ripgrep
     fd
     dnsutils
-    tree
     tree-sitter
     google-chrome
     telegram-desktop

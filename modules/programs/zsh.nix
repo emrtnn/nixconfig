@@ -20,6 +20,8 @@
       save = 10000;
       share = true;
       append = true;
+      ignoreAllDups = true;
+      extended = true;
       expireDuplicatesFirst = true;
       saveNoDups = true;
       findNoDups = true;
@@ -36,10 +38,13 @@
     defaultKeymap = "viins";
 
     shellAliases = {
+      # Eza
       ls = "eza";
-      l = "eza -lh";
+      l = "eza -l";
+      ll = "eza -lh";
+      lt = "eza --tree";
+
       cat = "bat";
-      grep = "rg";
       pfzf = "fzf --preview='bat --color=always {}'";
       nfzf = "nvim $(fzf -m --preview='bat --color=always {}')";
 
@@ -97,8 +102,35 @@
       zle -N zle-line-init
 
       # Ignore completion case
-      zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
+      zstyle ':completion:*' matcher-list \
+        'm:{a-z}={A-Za-z}' \
+        'r:|=*' \
+        'l:|=* r:|=*'
       zstyle ":completion:*" list-colors "\$\{(s.:.)LS_COLORS\}"
+      zstyle ":completion:*" menu select
+      zstyle ":completion:*" group-name
+      zstyle ":completion:*" verbose yes
+      zstyle ":completion:*:descriptions" format '%F{yellow}%d%f'
+      zstyle ":completion:*" use-cache on
+      zstyle ":completion:*" cache-path ${config.xdg.cacheHome}/zsh/zcompcache
+
+      setopt EXTENDED_GLOB
+      setopt GLOB_COMPLETE
+      setopt NUMERIC_GLOB_SORT
+      setopt GLOB_DOTS
+
+      setopt AUTO_PUSHD
+      setopt PUSHD_IGNORE_DUPS
+      setopt PUSHD_MINUS
+      setopt INTERACTIVE_COMMENTS
+      setopt NO_BEEP
+      setopt COMPLETE_IN_WORD
+      setopt ALWAYS_TO_END
+      setopt AUTO_MENU
+      setopt HIST_VERIFY
+      setopt AUTO_CD
+      setopt AUTO_PARAM_SLASH
+      setopt AUTO_REMOVE_SLASH
     '';
   };
 }
