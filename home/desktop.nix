@@ -186,13 +186,6 @@ in {
 
   home.file.".face.png".source = ../assets/.face;
 
-  home.activation.removeOldHerdrConfigSymlink = lib.hm.dag.entryBefore ["checkLinkTargets"] ''
-    herdr_config="${config.xdg.configHome}/herdr"
-    if [ -L "$herdr_config" ] && [ "$(readlink "$herdr_config")" = "/home/impuremonad/nixconfig/dotfiles/herdr" ]; then
-      rm "$herdr_config"
-    fi
-  '';
-
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;
     age.keyFile = "/home/impuremonad/.config/sops/age/keys.txt";
