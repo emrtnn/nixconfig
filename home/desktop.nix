@@ -2,10 +2,9 @@
   pkgs,
   inputs,
   config,
-  lib,
   ...
 }: let
-  stablePkgs = inputs.nixpkgs-stable;
+  stablePkgs = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
 in {
   home = {
     username = "impuremonad";
@@ -37,8 +36,8 @@ in {
 
   home.packages = with pkgs; [
     bat
-    # logseq
-    lazygit
+    (logseq.override {electron_39 = electron_41;})
+    # lazygit
     ripgrep
     fd
     dnsutils
