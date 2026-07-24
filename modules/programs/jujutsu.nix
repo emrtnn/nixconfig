@@ -23,8 +23,9 @@ _: {
         color = "always";
         editor = "nvim";
         default-revset = "all()";
-        diff-formatter = ":git";
         pager = ["hunk" "pager"];
+        diff-formatter = ":git";
+        paginate = "auto";
       };
 
       merge = {
