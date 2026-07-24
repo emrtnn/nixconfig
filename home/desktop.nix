@@ -35,9 +35,9 @@ in {
   ];
 
   home.packages = with pkgs; [
+    # logseq
     bat
-    (logseq.override {electron_39 = electron_41;})
-    # lazygit
+    lazygit
     ripgrep
     fd
     dnsutils
