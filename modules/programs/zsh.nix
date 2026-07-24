@@ -43,8 +43,8 @@
       l = "eza -l";
       ll = "eza -lh";
       lt = "eza --tree";
-
       cat = "bat";
+
       pfzf = "fzf --preview='bat --color=always {}'";
       nfzf = "nvim $(fzf -m --preview='bat --color=always {}')";
 
@@ -63,17 +63,11 @@
 
       jj = "jj --no-pager";
       jl = "jj log -r 'all()'";
-      jd = "jj diff";
+      jd = "hunk diff";
       jdesc = "jj describe";
       jn = "jj new";
       js = "jj status --no-pager";
       jshow = "jj show --no-pager";
-
-      nrs = "nixos-rebuild switch --flake";
-      nb = "nix build";
-      nd = "nix develop";
-      nr = "nix run";
-      ns = "nix shell";
     };
 
     sessionVariables = {
@@ -86,7 +80,12 @@
       autoload -U edit-command-line
       zle -N edit-command-line
       bindkey -M vicmd 'v' visual-mode
-      bindkey -M vicmd '^v' edit-command-line
+      bindkey -M vicmd '^o' edit-command-line
+      bindkey -M viins '^?' backward-delete-char
+
+      bindkey '^[[1;5C' forward-word
+      bindkey '^[[1;5D' backward-word
+      bindkey '^H' backward-kill-word
 
       # Cursor shape: blinking block for insert, static block for normal/visual
       _cursor_block_blink() { printf '\e[1 q'; }
@@ -107,30 +106,30 @@
         'r:|=*' \
         'l:|=* r:|=*'
       zstyle ":completion:*" list-colors "\$\{(s.:.)LS_COLORS\}"
-      zstyle ":completion:*" menu select
+      zstyle ":completion:*" menu yes select
       zstyle ":completion:*" group-name
       zstyle ":completion:*" verbose yes
       zstyle ":completion:*:descriptions" format '%F{yellow}%d%f'
       zstyle ":completion:*" use-cache on
       zstyle ":completion:*" cache-path ${config.xdg.cacheHome}/zsh/zcompcache
+      zstyle ':completion:*' squeeze-slashes true
+      zstyle ':completion:*' special-dirs true
 
-      setopt EXTENDED_GLOB
-      setopt GLOB_COMPLETE
       setopt NUMERIC_GLOB_SORT
       setopt GLOB_DOTS
 
       setopt AUTO_PUSHD
       setopt PUSHD_IGNORE_DUPS
       setopt PUSHD_MINUS
-      setopt INTERACTIVE_COMMENTS
+      setopt PUSHD_SILENT
       setopt NO_BEEP
       setopt COMPLETE_IN_WORD
       setopt ALWAYS_TO_END
-      setopt AUTO_MENU
       setopt HIST_VERIFY
       setopt AUTO_CD
       setopt AUTO_PARAM_SLASH
       setopt AUTO_REMOVE_SLASH
+      setopt AUTO_LIST
     '';
   };
 }
