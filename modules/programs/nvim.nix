@@ -8,6 +8,7 @@
     # Python (The Astral Stack)
     ruff
     basedpyright
+    tree-sitter
 
     # Modern Web (Replaces Prettier/ESlint and tsserver)
     biome
