@@ -61,7 +61,6 @@
       gd = "git diff";
       gds = "git diff --staged";
 
-      jj = "jj --no-pager";
       jl = "jj log -r 'all()'";
       jd = "hunk diff";
       jdesc = "jj describe";
