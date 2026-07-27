@@ -35,13 +35,12 @@ in {
   ];
 
   home.packages = with pkgs; [
-    # logseq
+    # logseq # Must wait until maintainer packages the v2 db logseq version
     bat
     lazygit
     ripgrep
     fd
     dnsutils
-    tree-sitter
     google-chrome
     telegram-desktop
     nautilus
