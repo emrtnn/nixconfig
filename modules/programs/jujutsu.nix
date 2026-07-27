@@ -23,7 +23,6 @@ _: {
         color = "always";
         editor = "nvim";
         default-revset = "all()";
-        pager = ["hunk" "pager"];
         diff-formatter = ":git";
         paginate = "auto";
       };
