@@ -35,7 +35,7 @@ in {
   ];
 
   home.packages = with pkgs; [
-    # logseq # Must wait until maintainer packages the v2 db logseq version
+    obsidian
     bat
     lazygit
     ripgrep
