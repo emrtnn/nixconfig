@@ -31,12 +31,13 @@ in {
     ../modules/programs/jujutsu.nix
     ../modules/programs/nvim.nix
     ../modules/programs/foot.nix
-    ../modules/programs/hunk.nix
   ];
 
   home.packages = with pkgs; [
     obsidian
     bat
+    tuicr
+    hunk
     lazygit
     ripgrep
     fd
@@ -87,6 +88,8 @@ in {
 
     configFile = {
       "herdr/config.toml".source = ../dotfiles/herdr/config.toml;
+      "hunk/config.toml".source = ../dotfiles/hunk/config.toml;
+      "tuicr/config.toml".source = ../dotfiles/tuicr/config.toml;
     };
 
     mimeApps = {
