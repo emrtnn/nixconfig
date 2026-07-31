@@ -20,7 +20,6 @@ in {
     ../modules/programs/yazi.nix
     ../modules/programs/zoxide.nix
     ../modules/programs/git.nix
-    ../modules/programs/opencode.nix
     ../modules/programs/pi.nix
     ../modules/programs/zsh.nix
     ../modules/programs/nushell.nix

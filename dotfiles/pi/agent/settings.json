@@ -3,7 +3,7 @@
   "defaultProvider": "anthropic",
   "defaultModel": "claude-opus-5",
   "defaultThinkingLevel": "high",
-  "theme": "noctalia",
+  "theme": "gruvbox-dark-hard",
   "transport": "websocket-cached",
   "quietStartup": false,
   "enableSkillCommands": true,
@@ -19,5 +19,6 @@
   "doubleEscapeAction": "tree",
   "warnings": {
     "anthropicExtraUsage": true
-  }
+  },
+  "treeFilterMode": "all"
 }
