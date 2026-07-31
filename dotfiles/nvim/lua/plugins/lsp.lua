@@ -105,6 +105,9 @@ return {
 
 			vim.lsp.enable("rust_analyzer")
 
+			vim.lsp.enable("solidity_ls")
+			vim.lsp.enable("solc")
+
 			vim.lsp.enable("nixd")
 
 			vim.lsp.enable("astro")

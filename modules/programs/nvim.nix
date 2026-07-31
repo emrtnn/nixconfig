@@ -5,6 +5,7 @@
 }: {
   home.packages = with pkgs; [
     neovim
+
     # Python (The Astral Stack)
     ruff
     basedpyright
@@ -36,6 +37,11 @@
     # Zig
     zig
     zls
+
+    # Solidity
+    solc
+    vscode-solidity-server
+    foundry
 
     # Lua
     lua-language-server
