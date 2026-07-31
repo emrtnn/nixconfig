@@ -318,7 +318,6 @@ _: {
         lang = "en";
         launch_apps_as_systemd_services = true;
         launch_apps_custom_command = "";
-        middle_click_opens_widget_settings = true;
         niri_overview_type_to_launch_enabled = false;
         offline_mode = false;
         password_style = "default";
@@ -554,7 +553,6 @@ _: {
           type = "volume";
         };
         keyboard_layout = {
-          cycle_command = "";
           hide_when_single_layout = false;
           type = "keyboard_layout";
         };

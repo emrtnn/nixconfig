@@ -76,9 +76,7 @@ in {
     sops
     age
     (pass.withExtensions (exts: [exts.pass-otp]))
-    cachix
     inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    blender
     herdr
     vesktop
   ];

@@ -32,6 +32,8 @@ return {
 					"python",
 					"query",
 					"regex",
+					"rust",
+					"solidity",
 					"toml",
 					"typescript",
 					"tsx",
