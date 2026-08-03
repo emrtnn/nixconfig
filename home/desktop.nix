@@ -41,6 +41,7 @@ in {
     ripgrep
     fd
     dnsutils
+    claude-code
     google-chrome
     telegram-desktop
     nautilus

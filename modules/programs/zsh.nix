@@ -86,6 +86,11 @@
       bindkey '^[[1;5D' backward-word
       bindkey '^H' backward-kill-word
 
+      # Shift+Tab cycles completions backwards
+      zmodload zsh/complist
+      bindkey '^[[Z' reverse-menu-complete
+      bindkey -M menuselect '^[[Z' reverse-menu-complete
+
       # Cursor shape: blinking block for insert, static block for normal/visual
       _cursor_block_blink() { printf '\e[1 q'; }
       _cursor_block_static() { printf '\e[2 q'; }
