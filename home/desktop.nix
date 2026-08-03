@@ -41,7 +41,6 @@ in {
     ripgrep
     fd
     dnsutils
-    claude-code
     google-chrome
     telegram-desktop
     nautilus
@@ -50,8 +49,6 @@ in {
     slurp
     gpu-screen-recorder
     hyprpicker
-    hyprshot
-    grimblast
     brightnessctl
     playerctl
     qt5.qtwayland
