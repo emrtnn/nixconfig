@@ -35,6 +35,7 @@ in {
   home.packages = with pkgs; [
     obsidian
     bat
+    glow
     tuicr
     hunk
     lazygit
@@ -86,6 +87,7 @@ in {
       "hunk/config.toml".source = ../dotfiles/hunk/config.toml;
       "tuicr/config.toml".source = ../dotfiles/tuicr/config.toml;
       "bat/config".source = ../dotfiles/bat/config;
+      "glow/glow.yml".source = ../dotfiles/glow/glow.yml;
     };
 
     mimeApps = {
