@@ -77,6 +77,7 @@ in {
     inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     herdr
     vesktop
+    stremio-linux-shell
   ];
 
   xdg = {

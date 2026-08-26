@@ -67,6 +67,7 @@
     firewall = {
       enable = true;
       trustedInterfaces = ["tailscale0"];
+      allowedTCPPorts = [12470];
       allowedUDPPorts = [41641];
     };
   };
