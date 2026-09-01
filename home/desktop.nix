@@ -78,6 +78,7 @@ in {
     herdr
     vesktop
     stremio-linux-shell
+    wireshark
   ];
 
   xdg = {
