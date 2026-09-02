@@ -85,6 +85,8 @@ _: {
       };
       calendar = {
         enabled = false;
+        event_date_format = "%A %e %B";
+        event_time_format = "%H:%M";
         refresh_minutes = 15;
       };
       control_center = {
@@ -95,8 +97,6 @@ _: {
         sidebar_section = "compact";
         width = 700;
         calendar = {
-          event_date_format = "%A %e %B";
-          event_time_format = "%H:%M";
           show_events_card = true;
           show_week_numbers = false;
         };
