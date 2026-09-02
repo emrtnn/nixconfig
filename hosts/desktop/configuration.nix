@@ -158,6 +158,11 @@
       enable = true;
       pinentryPackage = pkgs.pinentry-curses;
       enableSSHSupport = true;
+
+      settings = {
+        default-cache-ttl = 7200;
+        max-cache-ttl = 14400;
+      };
     };
   };
 
