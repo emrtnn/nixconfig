@@ -79,6 +79,7 @@ in {
     vesktop
     stremio-linux-shell
     wireshark
+    ninja
   ];
 
   xdg = {
