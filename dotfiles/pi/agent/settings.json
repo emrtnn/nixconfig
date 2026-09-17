@@ -22,5 +22,5 @@
     "anthropicExtraUsage": true
   },
   "treeFilterMode": "all",
-  "hideThinkingBlock": true
+  "hideThinkingBlock": false
 }
