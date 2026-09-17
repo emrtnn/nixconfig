@@ -62,7 +62,7 @@
       gds = "git diff --staged";
 
       jl = "jj log -r 'all()'";
-      jd = "hunk diff";
+      jd = "tuicr -r @";
       jdesc = "jj describe";
       jn = "jj new";
       js = "jj status --no-pager";
