@@ -69,10 +69,10 @@
       enable = true;
       dns = "systemd-resolved";
       wifi.powersave = false;
-      insertNameservers = ["1.1.1.1" "1.0.0.1"];
+      insertNameservers = ["9.9.9.9" "149.112.112.112"];
     };
 
-    nameservers = ["1.1.1.1" "1.0.0.1"];
+    nameservers = ["9.9.9.9" "149.112.112.112"];
     firewall = {
       enable = true;
       trustedInterfaces = ["tailscale0"];
@@ -85,10 +85,11 @@
       enable = true;
       settings = {
         Resolve = {
-          DNSSEC = "false";
+          DNSSEC = "true";
           Domains = ["~."];
-          FallbackDNS = ["1.1.1.1" "1.0.0.1"];
-          DNSOverTLS = "false";
+          DNS = ["9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net"];
+          FallbackDNS = ["9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net"];
+          DNSOverTLS = "true";
         };
       };
     };
