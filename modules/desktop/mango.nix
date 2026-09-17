@@ -1,19 +1,14 @@
 {
-  pkgs,
+  inputs,
   ...
 }: {
-  programs.mango = {
-    enable = true;
-  };
+  imports = [inputs.mangowm.nixosModules.mango];
 
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    wlr = {
-      enable = true;
-    };
-    extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-wlr];
-  };
+  programs.mango.enable = true;
+
+  # The upstream Mango module installs the GTK/wlr portals and Mango's
+  # systemd session target. Route xdg-open through those portals.
+  xdg.portal.xdgOpenUsePortal = true;
 
   home-manager.sharedModules = [
     ({config, ...}: {
@@ -23,10 +18,7 @@
           recursive = true;
         };
 
-        "xdg-desktop-portal" = {
-          source = ../../dotfiles/xdg-desktop-portal;
-          recursive = true;
-        };
+        "xdg-desktop-portal/mango-portals.conf".source = ../../dotfiles/xdg-desktop-portal/portals.conf;
       };
     })
   ];
