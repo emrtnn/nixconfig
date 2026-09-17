@@ -1,89 +1,119 @@
 return {
 	{
 		"mfussenegger/nvim-lint",
-		event = { "BufReadPost", "BufNewFile", "BufWritePost" },
-		opts = {
-			-- Event to trigger linters
-			events = { "BufWritePost", "BufReadPost", "InsertLeave" },
-			linters_by_ft = {
-				dockerfile = { "hadolint" },
-				nix = { "statix" },
+		event = { "BufReadPost", "BufNewFile" },
+		keys = {
+			{
+				"<leader>cl",
+				function()
+					require("lint").try_lint()
+				end,
+				desc = "Lint current buffer",
 			},
-
-			---@type table<string,table>
-			linters = {},
 		},
-		config = function(_, opts)
-			local M = {}
+		config = function()
 			local lint = require("lint")
 
-			-- Safely merge custom linter options from the opts table
-			for name, linter in pairs(opts.linters) do
-				local current = lint.linters[name] ---@type table
-				if type(linter) == "table" and type(current) == "table" then
-					lint.linters[name] = vim.tbl_deep_extend("force", current, linter)
-					if type(linter.prepend_args) == "table" then
-						lint.linters[name].args = lint.linters[name].args or {}
-						vim.list_extend(lint.linters[name].args, linter.prepend_args)
+			-- Biome's human-readable output changes as diagnostics gain notes, so
+			-- consume its stable Reviewdog JSON output instead.
+			local biomejs = lint.linters.biomejs
+			biomejs.args = { "lint", "--reporter=rdjson" }
+			biomejs.stream = "stdout"
+			biomejs.parser = function(output)
+				local ok, decoded = pcall(vim.json.decode, output)
+				if not ok then
+					return {}
+				end
+
+				local severities = {
+					ERROR = vim.diagnostic.severity.ERROR,
+					WARNING = vim.diagnostic.severity.WARN,
+					INFO = vim.diagnostic.severity.INFO,
+				}
+				local diagnostics = {}
+
+				for _, diagnostic in ipairs(decoded.diagnostics or {}) do
+					local range = diagnostic.location and diagnostic.location.range
+					if range and range.start then
+						table.insert(diagnostics, {
+							lnum = range.start.line - 1,
+							col = range.start.column - 1,
+							end_lnum = range["end"] and range["end"].line - 1,
+							end_col = range["end"] and range["end"].column - 1,
+							severity = severities[diagnostic.severity] or vim.diagnostic.severity.WARN,
+							message = diagnostic.message,
+							source = (decoded.source and decoded.source.name) or "Biome",
+							code = diagnostic.code and diagnostic.code.value,
+						})
 					end
-				else
-					lint.linters[name] = linter
 				end
-			end
-			lint.linters_by_ft = opts.linters_by_ft
 
-			-- Debounce function to prevent spawning too many linter processes
-			function M.debounce(ms, fn)
-				local timer = assert(vim.uv.new_timer(), "Failed to create timer")
-				return function(...)
-					local argv = { ... }
-					timer:start(ms, 0, function()
-						timer:stop()
-						vim.schedule_wrap(fn)(unpack(argv))
-					end)
-				end
+				return diagnostics
 			end
 
-			-- Custom linting logic to handle conditions and fallbacks
-			function M.lint()
-				-- Safely handle potential nil returns with `or {}`
-				local names = lint._resolve_linter_by_ft(vim.bo.filetype) or {}
-				names = vim.list_extend({}, names)
+			-- Keep analyzers already exposed by an LSP out of this table. In
+			-- particular, Ruff, Clippy, clang-tidy, Solhint, and Zig diagnostics
+			-- are provided by their respective language servers.
+			lint.linters_by_ft = {
+				astro = { "biomejs" },
+				css = { "biomejs" },
+				html = { "biomejs" },
+				javascript = { "biomejs" },
+				javascriptreact = { "biomejs" },
+				json = { "biomejs" },
+				jsonc = { "biomejs" },
+				typescript = { "biomejs" },
+				typescriptreact = { "biomejs" },
 
-				if #names == 0 then
-					vim.list_extend(names, lint.linters_by_ft["_"] or {})
-				end
+				c = { "cppcheck" },
+				cpp = { "cppcheck" },
+				cmake = { "cmakelint" },
 
-				vim.list_extend(names, lint.linters_by_ft["*"] or {})
+				nix = { "statix" },
+				sh = { "shellcheck" },
+				bash = { "shellcheck" },
+				dockerfile = { "hadolint" },
+			}
 
-				local ctx = { filename = vim.api.nvim_buf_get_name(0) }
-				ctx.dirname = vim.fn.fnamemodify(ctx.filename, ":h")
-
-				names = vim.tbl_filter(function(name)
-					-- Cast linter to any to suppress undefined field warnings for 'condition'
-					local linter = lint.linters[name] ---@type any
-					if not linter then
-						vim.notify("Linter not found: " .. name, vim.log.levels.WARN, { title = "nvim-lint" })
-					end
-					return linter and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))
-				end, names)
-
-				if #names > 0 then
-					lint.try_lint(names)
+			local function lint_buffer(opts)
+				if vim.bo.buftype == "" then
+					lint.try_lint(nil, opts)
 				end
 			end
 
-			-- Attach the debounced linting function to the specified events
-			vim.api.nvim_create_autocmd(opts.events, {
-				group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-				callback = M.debounce(100, M.lint),
+			local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
+
+			-- Run every analyzer when the on-disk contents are current.
+			vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
+				group = group,
+				callback = function()
+					lint_buffer()
+				end,
 			})
 
-			-- Manual trigger
-			vim.keymap.set("n", "<leader>cl", function()
-				M.lint()
-				vim.notify("Linting triggered", vim.log.levels.INFO)
-			end, { desc = "Trigger Linting" })
+			-- Between writes, only run analyzers which explicitly support stdin.
+			vim.api.nvim_create_autocmd("InsertLeave", {
+				group = group,
+				callback = function()
+					lint_buffer({ filter = "stdin" })
+				end,
+			})
+
+			-- The plugin is loaded by BufReadPost, so its autocmd cannot observe
+			-- that same event. Lint the initial buffer once setup has completed.
+			local initial_buffer = vim.api.nvim_get_current_buf()
+			vim.schedule(function()
+				if not vim.api.nvim_buf_is_valid(initial_buffer) then
+					return
+				end
+				vim.api.nvim_buf_call(initial_buffer, function()
+					if vim.fn.filereadable(vim.api.nvim_buf_get_name(0)) == 1 then
+						lint_buffer()
+					else
+						lint_buffer({ filter = "stdin" })
+					end
+				end)
+			end)
 		end,
 	},
 }
