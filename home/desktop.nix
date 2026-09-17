@@ -75,7 +75,7 @@ in {
     uv
     python3
     unzip
-    typora
+    tor-browser
     sops
     age
     (pass.withExtensions (exts: [exts.pass-otp]))
