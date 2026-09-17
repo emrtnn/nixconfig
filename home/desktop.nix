@@ -3,14 +3,7 @@
   inputs,
   config,
   ...
-}: let
-  stablePkgs = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
-  # TODO: Remove this workaround once sops-nix updates its Go builder.
-  sopsPkgs = pkgs.extend (_final: prev: {
-    buildGo125Module = prev.buildGoModule;
-  });
-  sopsPackage = (import inputs.sops-nix {pkgs = sopsPkgs;}).sops-install-secrets;
-in {
+}: {
   home = {
     username = "impuremonad";
     homeDirectory = "/home/impuremonad";
@@ -191,7 +184,6 @@ in {
   home.file.".face.png".source = ../assets/.face;
 
   sops = {
-    package = sopsPackage;
     defaultSopsFile = ../secrets/secrets.yaml;
     age.keyFile = "/home/impuremonad/.config/sops/age/keys.txt";
 
