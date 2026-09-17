@@ -43,9 +43,12 @@ return {
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-					-- Language-specific keymaps
+					-- Language-specific keymaps and capability ownership
 					if client and client.name == "clangd" then
 						map("<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", "Switch Source/Header")
+					elseif client and client.name == "ruff" then
+						-- Basedpyright provides the richer Python hover response.
+						client.server_capabilities.hoverProvider = false
 					end
 
 					-- Inlay hints
@@ -98,15 +101,18 @@ return {
 							buildScripts = { enable = true },
 						},
 						procMacro = { enable = true },
-						checkOnSave = { command = "clippy" },
+						check = { command = "clippy" },
 					},
 				},
 			})
 
 			vim.lsp.enable("rust_analyzer")
 
+			-- This server already publishes both solc and Solhint diagnostics.
+			vim.lsp.config("solidity_ls", {
+				settings = { solidity = { linter = "solhint" } },
+			})
 			vim.lsp.enable("solidity_ls")
-			vim.lsp.enable("solc")
 
 			vim.lsp.enable("nixd")
 
@@ -116,9 +122,29 @@ return {
 
 			vim.lsp.enable("neocmake")
 
+			-- Hadolint owns the overlapping Dockerfile best-practice diagnostics;
+			-- dockerls remains enabled for completion, navigation, and syntax errors.
+			vim.lsp.config("dockerls", {
+				settings = {
+					docker = {
+						languageserver = {
+							diagnostics = {
+								deprecatedMaintainer = "ignore",
+								directiveCasing = "ignore",
+								emptyContinuationLine = "ignore",
+								instructionCasing = "ignore",
+								instructionCmdMultiple = "ignore",
+								instructionEntrypointMultiple = "ignore",
+								instructionHealthcheckMultiple = "ignore",
+								instructionJSONInSingleQuotes = "ignore",
+							},
+						},
+					},
+				},
+			})
 			vim.lsp.enable("dockerls")
 
-			vim.lsp.enable("docker_compose_language_services")
+			vim.lsp.enable("docker_compose_language_service")
 
 			-- Zig
 			vim.lsp.enable("zls")
@@ -150,13 +176,27 @@ return {
 			})
 			vim.lsp.enable("vtsls")
 
-			-- Python
-			vim.lsp.config("pyright", {
+			-- Python: Ruff owns lint/name diagnostics and import organization;
+			-- Basedpyright remains active for type analysis and language features.
+			vim.lsp.config("basedpyright", {
 				settings = {
-					python = { analysis = { ignore = { "*" }, typeCheckingMode = "basic" } },
+					basedpyright = {
+						disableOrganizeImports = true,
+						analysis = {
+							typeCheckingMode = "basic",
+							diagnosticSeverityOverrides = {
+								reportDuplicateImport = "none",
+								reportRedeclaration = "none",
+								reportUnboundVariable = "none",
+								reportUndefinedVariable = "none",
+								reportUnusedImport = "none",
+								reportUnusedVariable = "none",
+							},
+						},
+					},
 				},
 			})
-			vim.lsp.enable("pyright")
+			vim.lsp.enable("basedpyright")
 
 			-- Lua
 			vim.lsp.config("lua_ls", {

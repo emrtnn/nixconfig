@@ -11,7 +11,7 @@
     basedpyright
     tree-sitter
 
-    # Modern Web (Replaces Prettier/ESlint and tsserver)
+    # Web: Biome lint/format + vtsls types; Prettier for Astro
     biome
     vtsls
     astro-language-server
@@ -22,8 +22,9 @@
     alejandra
     statix
 
-    # C/C++
+    # C/C++: clangd with its integrated clang-tidy checks
     clang-tools
+    cppcheck
     neocmakelsp
     cmake-lint
     cmake-format
@@ -33,6 +34,7 @@
     cargo
     rustc
     rustfmt
+    clippy
 
     # Zig
     zig
@@ -40,14 +42,19 @@
 
     # Solidity
     solc
-    vscode-solidity-server
+    vscode-solidity-server # Includes Solhint; no separate linter process needed.
     foundry
 
     # Lua
     lua-language-server
     stylua
 
-    # Docker hadolint
+    # Shell
+    shellcheck
+
+    # Docker: language services + Dockerfile/ShellCheck best-practice checks
+    dockerfile-language-server
+    docker-compose-language-service
     hadolint
   ];
 
