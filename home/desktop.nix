@@ -20,7 +20,6 @@
     ../modules/programs/git.nix
     ../modules/programs/pi.nix
     ../modules/programs/zsh.nix
-    ../modules/programs/nushell.nix
     ../modules/programs/fzf.nix
     ../modules/desktop/swappy.nix
     ../modules/desktop/noctalia.nix
@@ -28,6 +27,7 @@
     ../modules/programs/jujutsu.nix
     ../modules/programs/nvim.nix
     ../modules/programs/foot.nix
+    ../modules/programs/hacking.nix
   ];
 
   home.packages = with pkgs; [
@@ -75,9 +75,7 @@
     herdr
     vesktop
     stremio-linux-shell
-    wireshark
     ninja
-    nmap
   ];
 
   xdg = {
