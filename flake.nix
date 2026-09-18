@@ -50,6 +50,11 @@
       url = "github:lukasl-dev/pi-mono.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    oh-my-pi = {
+      url = "github:can1357/oh-my-pi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
