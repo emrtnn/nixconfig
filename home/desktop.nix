@@ -13,6 +13,7 @@
   imports = [
     inputs.noctalia.homeModules.default
     inputs.sops-nix.homeManagerModules.sops
+    inputs.oh-my-pi.homeManagerModules.default
     ../modules/programs/carapace.nix
     ../modules/programs/starship.nix
     ../modules/programs/yazi.nix
@@ -28,6 +29,7 @@
     ../modules/programs/nvim.nix
     ../modules/programs/foot.nix
     ../modules/programs/hacking.nix
+    ../modules/programs/oh-my-pi.nix
   ];
 
   home.packages = with pkgs; [
@@ -45,7 +47,6 @@
     imv
     grim
     slurp
-    gpu-screen-recorder
     hyprpicker
     brightnessctl
     playerctl
