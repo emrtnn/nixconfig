@@ -77,6 +77,7 @@
     stremio-linux-shell
     wireshark
     ninja
+    nmap
   ];
 
   xdg = {
