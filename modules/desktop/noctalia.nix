@@ -361,7 +361,7 @@ _: {
       plugin_settings = {};
       plugins = {
         auto_update = true;
-        enabled = ["emrtnn/pass" "noctalia/translator"];
+        enabled = ["emrtnn/pass" "noctalia/translator" "noctalia/screen_recorder"];
         source = [
           {
             enabled = true;
