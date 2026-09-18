@@ -146,6 +146,10 @@
     zsh.enable = true;
     dconf.enable = true;
     ssh.startAgent = false;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
     localsend = {
       enable = true;
       openFirewall = true;
@@ -217,6 +221,7 @@
         "video"
         "render"
         "gamemode"
+        "wireshark"
       ];
       shell = pkgs.zsh;
     };
