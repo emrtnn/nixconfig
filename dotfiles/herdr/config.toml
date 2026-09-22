@@ -111,8 +111,8 @@ command = "hunk diff"
 
 [[keys.command]]
 key = "prefix+f"
-type = "pane"
-command = "yazi"
+type = "shell"
+command = "footclient --no-wait --app-id monad.yazi -e yazi"
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
