@@ -4,7 +4,7 @@
     themeFile = "gruvbox-dark";
     font = {
       name = "JetBrainsMono Nerd Font Mono";
-      size = 13;
+      size = 14;
       package = pkgs.nerd-fonts.jetbrains-mono;
     };
     settings = {
@@ -14,13 +14,12 @@
       italic_font = "auto";
       bold_italic_font = "auto";
 
-      window_padding_width = 7;
-      window_padding_height = 4;
+      window_padding_width = "2 7";
       hide_window_decorations = "yes";
       show_window_resize_notification = "no";
       confirm_os_window_close = 0;
 
-      allow_remote_control = "yes";
+      allow_remote_control = "no";
 
       cursor_shape = "block";
       cursor_blink_interval = "0.4";
@@ -29,6 +28,8 @@
       cursor_trail_decay = "0.1 0.4";
       cursor_trail_start_threshold = 2;
       enable_audio_bell = "no";
+      scrollback_lines = 100000;
+      background_opacity = 0.95;
 
       tab_bar_edge = "bottom";
       tab_bar_style = "powerline";
@@ -36,7 +37,7 @@
       tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
     };
     keybindings = {
-      "ctrl+insert" = "copy_from_clipboard";
+      "ctrl+insert" = "copy_to_clipboard";
       "shift+insert" = "paste_from_clipboard";
     };
   };
