@@ -4,5 +4,9 @@
     burpsuite
     netcat-openbsd
     ffuf
+    inetutils
+    arp-scan
+    bc
+    tcpdump
   ];
 }
