@@ -3,20 +3,8 @@ _: {
     enable = true;
 
     settings = {
-      user = {
-        name = "emrtnn";
-        email = "emrtnn@proton.me";
-      };
-
       aliases = {
         logver = ["log" "--config" "ui.show-cryptographic-signatures=true"];
-      };
-
-      signing = {
-        backend = "gpg";
-        key = "197CB7FC535093C4";
-        sign-all = true;
-        behavior = "own";
       };
 
       ui = {

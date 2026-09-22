@@ -61,41 +61,42 @@
     nixpkgs,
     home-manager,
     ...
-  } @ inputs: {
-    nixosConfigurations.monad = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/desktop/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.impuremonad = import ./home/desktop.nix;
-            extraSpecialArgs = {inherit inputs;};
-            backupFileExtension = "backup";
-            overwriteBackup = true;
-          };
-        }
-      ];
+  } @ inputs: let
+    mkHost = {
+      nixosModule,
+      homeModule,
+    }:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          nixosModule
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.impuremonad = homeModule;
+              extraSpecialArgs = {inherit inputs;};
+              backupFileExtension = "backup";
+              overwriteBackup = true;
+            };
+          }
+        ];
+      };
+  in {
+    nixosConfigurations.monad = mkHost {
+      nixosModule = ./hosts/desktop/configuration.nix;
+      homeModule = ./hosts/desktop/home.nix;
     };
 
-    nixosConfigurations.arpano = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/workstation/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.impuremonad = import ./home/desktop.nix;
-            extraSpecialArgs = {inherit inputs;};
-            backupFileExtension = "backup";
-            overwriteBackup = true;
-          };
-        }
-      ];
+    nixosConfigurations.arpano = mkHost {
+      nixosModule = ./hosts/workstation/configuration.nix;
+      homeModule = ./hosts/workstation/home.nix;
+    };
+
+    nixosConfigurations.argos = mkHost {
+      nixosModule = ./hosts/argos/configuration.nix;
+      homeModule = ./hosts/argos/home.nix;
     };
   };
 }

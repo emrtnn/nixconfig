@@ -1,7 +1,4 @@
-{
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [inputs.mangowm.nixosModules.mango];
 
   programs = {
@@ -21,16 +18,5 @@
     wlr.settings.screencast.chooser_type = "none";
   };
 
-  home-manager.sharedModules = [
-    ({config, ...}: {
-      xdg.configFile = {
-        "mango" = {
-          source = config.lib.file.mkOutOfStoreSymlink "/home/impuremonad/nixconfig/dotfiles/mango";
-          recursive = true;
-        };
-
-        "xdg-desktop-portal/mango-portals.conf".source = ../../dotfiles/xdg-desktop-portal/portals.conf;
-      };
-    })
-  ];
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

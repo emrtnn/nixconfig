@@ -4,10 +4,6 @@ _: {
       enable = true;
 
       settings = {
-        user = {
-          name = "emrtnn";
-          email = "emrtnn@proton.me";
-        };
         core = {
           editor = "nvim";
           autocrlf = "input";
