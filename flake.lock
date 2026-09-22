@@ -294,11 +294,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1790059918,
-        "narHash": "sha256-o7azS0ibaWG4MGGZ+JZDsJe4JpCoPX78lTRuH+jioU4=",
+        "lastModified": 1790077061,
+        "narHash": "sha256-Q6D7R0UzNvv/uY8fGQIgIOslpbgLPAftjqTW8yePQd4=",
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "f5b77adb6240de046b680bf04bb0901a9ed3a7fa",
+        "rev": "4972b6ced4cebe342bc5f485921cad79c6a2e67e",
         "type": "github"
       },
       "original": {
@@ -540,11 +540,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1790040149,
-        "narHash": "sha256-hW4GHkSiiQ9qjfOaR4ARjPIiQvfRem3Nb+ZqrVkMWTM=",
+        "lastModified": 1790076146,
+        "narHash": "sha256-XMqDlKob+nN/xhuZnYWd9JAGagIdOYycV5RLhBnc2R8=",
         "owner": "can1357",
         "repo": "oh-my-pi",
-        "rev": "df624f56b0508c51067a70422606cac898ac2bcb",
+        "rev": "fd3f8e3c569b511611081e16b181b740a4c98599",
         "type": "github"
       },
       "original": {
