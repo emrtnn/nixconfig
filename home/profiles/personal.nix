@@ -7,7 +7,7 @@
     ../../modules/home/desktop/appearance.nix
     ../../modules/home/desktop/keyring.nix
     ../../modules/home/programs/hacking.nix
-    ../../modules/home/personal/apps.nix
+    ../../modules/home/personal/personal-apps.nix
     ../../modules/home/personal/agents.nix
     ../../modules/home/personal/credentials.nix
   ];

@@ -5,12 +5,12 @@
   ...
 }: {
   imports = [
-    ../base.nix
+    ../profiles/base.nix
     ../users/impuremonad.nix
     ../desktop/base.nix
-    ../security-lab.nix
     ../desktop/mango.nix
-    ../gaming.nix
+    ../profiles/gaming.nix
+    ../profiles/security-lab.nix
     # Match the shared fonts import depth so SilentSDDM's font directory keeps
     # its original precedence before the explicit desktop font collection.
     {imports = [inputs.silentSDDM.nixosModules.default];}
@@ -140,29 +140,5 @@
   system.autoUpgrade = {
     enable = true;
     dates = "weekly";
-  };
-
-  nix = {
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-
-    settings = {
-      extra-substituters = [
-        "https://devenv.cachix.org"
-        "https://noctalia.cachix.org"
-        "https://nix-community.cachix.org"
-        "https://hyprland.cachix.org"
-      ];
-
-      extra-trusted-public-keys = [
-        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      ];
-    };
   };
 }
