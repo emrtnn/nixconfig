@@ -33,6 +33,10 @@ default_shell = "zsh"
 # "current" for Herdr's process directory, or a fixed path such as "~/Projects".
 new_cwd = "follow"
 
+# Render pane images when the outer terminal supports Kitty graphics.
+# Server restart or client reattach is required after changing this.
+kitty_graphics = true
+
 [update]
 # Update channel used by background checks and `herdr update`.
 # Use "stable" for normal releases or "preview" for opt-in preview builds.
@@ -143,6 +147,15 @@ command = "footclient --no-wait --app-id monad.yazi -e yazi"
 # Pane apps like lazygit and btop can still receive mouse when they request it.
 mouse_capture = true
 
+# Share one-cell dividers between splits in both directions, without
+# extra gap or an outer frame. Keep split borders for pane labels.
+pane_borders = "auto"
+pane_gaps = false
+pane_outer_borders = false
+
+# Reclaim the scrollbar column for pane content.
+pane_scrollbars = false
+
 # Optional modifier that forwards right-click hold/drag gestures to pane apps instead of opening Herdr's pane menu.
 # Empty/off disables this. Shift is intentionally unsupported because terminals commonly reserve Shift+mouse.
 # right_click_passthrough_modifier = ""
@@ -162,18 +175,14 @@ mouse_capture = true
 # Set false to create tabs immediately with generated names.
 # prompt_new_tab_name = true
 
-# Show detected/reported agent labels in split pane borders when no manual pane name is set.
-# show_agent_labels_on_pane_borders = false
-
-# Agent panel scope: "current" or "all". Toggling it in the sidebar saves this setting.
-# agent_panel_scope = "all"
+# Show detected/reported agent labels in split dividers when no manual pane name is set.
+show_agent_labels_on_pane_borders = true
 
 # Accent color for highlights, borders, and navigation UI.
 # Accepts: hex (#89b4fa), named colors (cyan, blue, magenta), or rgb(r,g,b)
 # accent = "cyan"
 
 # Background notification popup delivery
-show_agent_labels_on_pane_borders = true
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts
@@ -221,15 +230,11 @@ resume_agents_on_restore = true
 [experimental]
 # Allow launching herdr from inside a herdr-managed pane.
 # allow_nested = false
-# Experimental local Kitty graphics rendering for attached clients.
-# Requires a Kitty graphics-compatible outer terminal.
-kitty_graphics = true
 # Save recent pane screen history across full server restarts.
 pane_history = false
-# While prefix mode is active, temporarily switch the macOS host input
-# source to an ASCII-capable keyboard layout so prefix commands register
-# even when a CJK IME is active, then restore the previous input source
-# when prefix mode exits. macOS only; best-effort. Default: false.
+# While prefix mode is active, temporarily switch the host input source
+# to ASCII input, then restore it on exit. Supported on macOS and for the
+# Korean IME on Windows; no effect on Linux. Default: false.
 # switch_ascii_input_source_in_prefix = false
 # Expose the focused pane's cursor to the outer terminal so macOS input
 # methods keep tracking the candidate window when TUIs paint their own
@@ -240,7 +245,8 @@ pane_history = false
 # matches one of these names. Empty means apply to any focused pane.
 # If the list contains no valid names, the reveal does not apply.
 # Accepted: pi, claude, codex, gemini, cursor, devin, cline, opencode,
-# copilot, kimi, kiro, droid, amp, grok, hermes, kilo, qodercli, qoder.
+# copilot, kimi, kiro, droid, amp, grok, hermes, kilo, qodercli, qoder,
+# qwen, qwen-code, letta, letta-code, maki.
 # cjk_ime_agents = []
 # Cursor shape rendered when reveal_hidden_cursor_for_cjk_ime is true.
 # Values: block, steady_block (default), underline, steady_underline, bar, steady_bar.
