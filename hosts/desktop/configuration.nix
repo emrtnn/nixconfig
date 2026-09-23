@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/profiles/personal.nix
+    ../../modules/nixos/virtualisation/docker.nix
   ];
 
   networking.hostName = "monad";
