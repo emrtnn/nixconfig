@@ -43,9 +43,9 @@ return {
 		opts = {
 			mappings = {
 				add = "gsa",
-				deete = "gsd",
+				delete = "gsd",
 				find = "gsf",
-				find_eft = "gsF",
+				find_left = "gsF",
 				highlight = "gsh",
 				replace = "gsr",
 				update_n_lines = "gsn",
