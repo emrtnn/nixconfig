@@ -7,7 +7,7 @@ _: {
     ../../modules/nixos/desktop/base.nix
     ../../modules/nixos/virtualisation/vmware-guest.nix
     ../../modules/nixos/virtualisation/docker.nix
-    ../../modules/nixos/desktop/awesome.nix
+    ../../modules/nixos/desktop/bspwm.nix
     ../../modules/nixos/profiles/security-lab.nix
   ];
 

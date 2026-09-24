@@ -6,6 +6,7 @@
       enable = true;
       package = pkgs.wireshark;
     };
+
     gnupg.agent = {
       enable = true;
       pinentryPackage = pkgs.pinentry-curses;
