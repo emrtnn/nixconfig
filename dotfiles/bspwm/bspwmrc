@@ -1,0 +1,11 @@
+# Home Manager applies the settings/rules, but its "primary" monitor name may
+# not exist (for example, Xephyr exposes only "default"). Initialize the
+# focused monitor only while its sole default desktop is still empty; never
+# reset an existing tree or replace an occupied desktop on WM reload.
+if [ "$(bspc query --desktops --names --monitor focused)" = Desktop ] &&
+   [[ -z "$(bspc query -N -d focused)" ]]; then
+    bspc monitor focused -d 1 2 3 4 5 6 7 8 9
+fi
+
+# Restart the owned foreground bar service on startup and on bspc wm -r.
+systemctl --user restart polybar.service
