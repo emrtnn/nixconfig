@@ -35,6 +35,7 @@
     git
     gcc
     cmake
+    e2fsprogs
   ]);
 
   nixpkgs.config.allowUnfree = true;
