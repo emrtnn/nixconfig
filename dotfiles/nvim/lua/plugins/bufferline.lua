@@ -25,7 +25,7 @@ return {
 				right_trunc_marker = " ",
 				diagnostics = "nvim_lsp",
 				color_icons = true,
-				separator_style = "slant", -- "slant" | "slope" | "thick" | "thin"
+				separator_style = "thin", -- "slant" | "slope" | "thick" | "thin"
 			},
 		},
 	},

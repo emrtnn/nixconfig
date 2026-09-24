@@ -1,0 +1,5 @@
+# Nmap 7.991 scan initiated Thu Sep 24 13:35:43 2026 as: nmap -Pn -n -sS -p- --open -T5 -vvv -oG openPorts 192.168.1.133
+# Ports scanned: TCP(65535;1-65535) UDP(0;) SCTP(0;) PROTOCOLS(0;)
+Host: 192.168.1.133 ()	Status: Up
+Host: 192.168.1.133 ()	Ports: 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 445/open/tcp//microsoft-ds///, 5040/open/tcp/////, 5357/open/tcp//wsdapi///, 7070/open/tcp//realserver///, 53300/open/tcp/////	Ignored State: filtered (65528)
+# Nmap done at Thu Sep 24 13:36:37 2026 -- 1 IP address (1 host up) scanned in 53.92 seconds
