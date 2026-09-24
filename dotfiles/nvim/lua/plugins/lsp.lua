@@ -150,6 +150,9 @@ return {
 			vim.lsp.enable("zls")
 
 			-- Web
+			vim.lsp.enable("yamlls")
+			vim.lsp.enable("jsonls")
+
 			vim.lsp.config("vtsls", {
 				settings = {
 					typescript = {

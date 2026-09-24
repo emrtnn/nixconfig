@@ -3,47 +3,71 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
 		build = ":TSUpdate",
-		event = { "BufReadPost", "BufNewFile" },
-		opts = function()
-			return {
-				indent = { enable = true },
-				highlight = { enable = true },
-				folds = { enable = true },
-				auto_install = true,
-				ensure_installed = {
-					"astro",
-					"bash",
-					"c",
-					"cpp",
-					"css",
-					"cmake",
-					"diff",
-					"dockerfile",
-					"html",
-					"javascript",
-					"jsdoc",
-					"json",
-					"lua",
-					"luadoc",
-					"luap",
-					"markdown",
-					"markdown_inline",
-					"nix",
-					"python",
-					"query",
-					"regex",
-					"rust",
-					"solidity",
-					"toml",
-					"typescript",
-					"tsx",
-					"vim",
-					"vimdoc",
-					"xml",
-					"yaml",
-					"zig",
-				},
+		lazy = false,
+		config = function()
+			local treesitter = require("nvim-treesitter")
+			local parsers = {
+				"astro",
+				"bash",
+				"c",
+				"cpp",
+				"css",
+				"cmake",
+				"diff",
+				"dockerfile",
+				"html",
+				"javascript",
+				"jsdoc",
+				"json",
+				"lua",
+				"luadoc",
+				"luap",
+				"markdown",
+				"markdown_inline",
+				"nix",
+				"python",
+				"query",
+				"regex",
+				"rust",
+				"solidity",
+				"toml",
+				"typescript",
+				"tsx",
+				"vim",
+				"vimdoc",
+				"xml",
+				"yaml",
+				"zig",
 			}
+
+			local function enable(buf)
+				local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
+				if not lang or not vim.treesitter.language.add(lang) then
+					return
+				end
+
+				vim.treesitter.start(buf, lang)
+				vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+				vim.wo.foldmethod = "expr"
+				vim.wo.foldlevel = 99
+			end
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(event)
+					enable(event.buf)
+				end,
+			})
+
+			treesitter.install(parsers):await(function()
+				vim.schedule(function()
+					for _, win in ipairs(vim.api.nvim_list_wins()) do
+						vim.api.nvim_win_call(win, function()
+							enable(vim.api.nvim_win_get_buf(win))
+						end)
+					end
+				end)
+			end)
 		end,
 	},
 	{
@@ -109,11 +133,11 @@ return {
 
 			map({ "n", "x", "o" }, "]C", function()
 				move.goto_next_end("@class.outer")
-			end, { desc = "Next class start" })
+			end, { desc = "Next class end" })
 
 			map({ "n", "x", "o" }, "[C", function()
 				move.goto_previous_end("@class.outer")
-			end, { desc = "Previous class start" })
+			end, { desc = "Previous class end" })
 		end,
 	},
 }

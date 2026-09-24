@@ -16,6 +16,8 @@
     vtsls
     astro-language-server
     prettier
+    yaml-language-server
+    vscode-langservers-extracted
 
     # Nix (The Modern Stack)
     nixd

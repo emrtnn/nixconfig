@@ -44,6 +44,7 @@
       ll = "eza -lh";
       lt = "eza --tree";
       cat = "bat";
+      grep = "rg";
 
       pfzf = "fzf --preview='bat --color=always {}'";
       nfzf = "nvim $(fzf -m --preview='bat --color=always {}')";
