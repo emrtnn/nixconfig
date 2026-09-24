@@ -10,11 +10,11 @@
       symbolPreset = "unicode";
       defaultThinkingLevel = "high";
       modelRoles = {
-        default = "openai-codex/gpt-6-sol:high";
+        default = "openai-codex/gpt-6-sol:xhigh";
         plan = "openai-codex/gpt-6-astra:xhigh";
-        smol = "openai-codex/gpt-5.6-terra";
+        smol = "openai-codex/gpt-6-luna:high";
         slow = "openai-codex/gpt-6-astra:high";
-        task = "openai-codex/gpt-6-sol:high";
+        task = "openai-codex/gpt-6-sol:max";
       };
       edit.mode = "hashline";
     };
