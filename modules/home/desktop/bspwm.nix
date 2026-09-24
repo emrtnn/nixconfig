@@ -1,5 +1,5 @@
 {
-  config,
+  lib,
   pkgs,
   ...
 }: let
@@ -72,14 +72,71 @@
       if [[ "$1" == *-edit ]]; then exec ksnip --edit "$file"; fi
     '';
   };
+  passWithOtp = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
+  target = pkgs.writeShellApplication {
+    name = "argos-target";
+    runtimeInputs = [pkgs.python3 pkgs.rofi pkgs.xclip];
+    text = ''exec ${pkgs.python3}/bin/python3 ${../../../dotfiles/argos/target.py} "$@"'';
+  };
+  network = pkgs.writeShellApplication {
+    name = "argos-network";
+    runtimeInputs = [pkgs.python3 pkgs.curl pkgs.iproute2];
+    text = ''exec ${pkgs.python3}/bin/python3 ${../../../dotfiles/argos/network.py} "$@"'';
+  };
+  menu = pkgs.writeShellApplication {
+    name = "argos-menu";
+    runtimeInputs = [pkgs.rofi pkgs.bspwm pkgs.systemd pkgs.pavucontrol pkgs.networkmanagerapplet pkgs.arandr passWithOtp target];
+    text = builtins.readFile ../../../dotfiles/argos/menu.sh;
+  };
+  polybarLauncher = pkgs.writeShellApplication {
+    name = "argos-polybar";
+    runtimeInputs = [pkgs.python3 pkgs.polybar pkgs.bspwm pkgs.xrandr pkgs.feh network target menu];
+    text = ''exec ${pkgs.python3}/bin/python3 ${../../../dotfiles/argos/polybar.py} "$@"'';
+  };
 in {
   imports = [../programs/kitty.nix];
 
   xsession = {
     enable = true;
-    windowManager.awesome.enable = true;
+    windowManager.bspwm = {
+      enable = true;
+      alwaysResetDesktops = false;
+      monitors.primary = ["1" "2" "3" "4" "5" "6" "7" "8" "9"];
+      settings = {
+        automatic_scheme = "longest_side";
+        split_ratio = 0.5;
+        window_gap = 8;
+        border_width = 3;
+        normal_border_color = "#595959";
+        focused_border_color = "#d79921";
+        focus_follows_pointer = true;
+        borderless_monocle = true;
+        top_padding = 8;
+        bottom_padding = 8;
+        left_padding = 8;
+        right_padding = 8;
+        pointer_modifier = "mod4";
+        pointer_action1 = "move";
+        pointer_action2 = "none";
+        pointer_action3 = "resize_corner";
+      };
+      rules = {
+        Ksnip = {
+          state = "floating";
+          center = true;
+        };
+        ksnip = {
+          state = "floating";
+          center = true;
+        };
+      };
+      extraConfig = builtins.readFile ../../../dotfiles/bspwm/bspwmrc;
+      startupPrograms = [];
+    };
     profileExtra = ''
-      export XDG_CURRENT_DESKTOP=awesome
+      export XDG_CURRENT_DESKTOP=bspwm
+      export XDG_SESSION_TYPE=x11
+      export SXHKD_SHELL=${pkgs.bash}/bin/bash
       ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_ID
     '';
     initExtra = ''
@@ -93,51 +150,26 @@ in {
   home.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
   programs.kitty.settings.linux_display_server = "x11";
 
-  xdg.configFile = {
-    "awesome/rc.lua".source = ../../../dotfiles/awesome/rc.lua;
-    "awesome/bindings.lua".source = ../../../dotfiles/awesome/bindings.lua;
-    "awesome/theme.lua".source = ../../../dotfiles/awesome/theme.lua;
-  };
-
   programs.rofi = {
     enable = true;
+    theme = ../../../dotfiles/rofi/argos.rasi;
     settings = {
       terminal = "kitty";
-      font = "GeistMono Nerd Font Mono 12";
+      font = "GeistMono Nerd Font Mono 10";
       "show-icons" = true;
-    };
-    theme = let
-      inherit (config.lib.formats.rasi) mkLiteral;
-    in {
-      "*" = {
-        background-color = mkLiteral "#282828";
-        text-color = mkLiteral "#ebdbb2";
-      };
-      window = {
-        width = mkLiteral "640px";
-        border = mkLiteral "3px";
-        border-color = mkLiteral "#d79921";
-        padding = mkLiteral "12px";
-      };
-      inputbar = {
-        padding = mkLiteral "8px";
-        spacing = mkLiteral "8px";
-        children = map mkLiteral ["prompt" "entry"];
-      };
-      listview = {
-        lines = 8;
-        spacing = mkLiteral "4px";
-        scrollbar = false;
-      };
-      element.padding = mkLiteral "7px";
-      "element selected.normal" = {
-        background-color = mkLiteral "#d79921";
-        text-color = mkLiteral "#201b14";
-      };
+      "case-sensitive" = false;
     };
   };
-
   services = {
+    sxhkd = {
+      enable = true;
+      extraConfig = builtins.readFile ../../../dotfiles/sxhkd/sxhkdrc;
+    };
+    polybar = {
+      enable = true;
+      config = ../../../dotfiles/polybar/config.ini;
+      script = "exec ${polybarLauncher}/bin/argos-polybar";
+    };
     copyq = {
       enable = true;
       # Nonempty settings would start the GUI during headless HM activation.
@@ -147,27 +179,64 @@ in {
       enable = true;
       backend = "xrender";
       activeOpacity = 1.0;
-      inactiveOpacity = 0.95;
+      inactiveOpacity = 1.0;
       shadow = true;
       shadowOffsets = [2 2];
+      shadowExclude = ["class_g = 'Polybar'" "window_type = 'dock'" "window_type = 'desktop'"];
       settings = {
         shadow-color = "#000000";
-        shadow-radius = 12;
+        shadow-radius = 14;
+        corner-radius = 8;
+        rounded-corners-exclude = [
+          "window_type = 'dock'"
+          "window_type = 'desktop'"
+          "class_g = 'Rofi'"
+          "_NET_WM_STATE@:32a *= '_NET_WM_STATE_FULLSCREEN'"
+        ];
       };
     };
-    network-manager-applet.enable = true;
+    dunst = {
+      enable = true;
+      settings = {
+        global = {
+          font = "GeistMono Nerd Font Mono 10";
+          frame_color = "#d79921";
+          foreground = "#ebdbb2";
+          background = "#282828";
+          corner_radius = 10;
+          origin = "top-right";
+          offset = "12x52";
+        };
+        urgency_critical = {
+          background = "#ad401f";
+          foreground = "#fbf1c7";
+        };
+      };
+    };
     polkit-gnome.enable = true;
     screen-locker = {
       enable = true;
       inactiveInterval = 10;
       xautolock.enable = false;
       xss-lock.extraOptions = ["--transfer-sleep-lock"];
-      lockCmd = "${pkgs.i3lock}/bin/i3lock --nofork -c 201b14";
+      lockCmd = "${pkgs.i3lock}/bin/i3lock --nofork -c 282828";
     };
+  };
+  systemd.user.services.polybar = {
+    Unit.PartOf = lib.mkForce ["graphical-session.target"];
+    Service = {
+      Type = lib.mkForce "simple";
+      KillMode = "control-group";
+    };
+    Install.WantedBy = lib.mkForce [];
   };
 
   home.packages = [
     screenshot
+    target
+    network
+    menu
+    polybarLauncher
     pkgs.scrot
     pkgs.ksnip
     pkgs.xclip
@@ -178,5 +247,8 @@ in {
     pkgs.pavucontrol
     pkgs.networkmanagerapplet
     pkgs.wireplumber
+    pkgs.feh
+    pkgs.google-chrome
+    pkgs.telegram-desktop
   ];
 }

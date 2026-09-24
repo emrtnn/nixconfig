@@ -8,5 +8,11 @@
     arp-scan
     bc
     tcpdump
+    thc-hydra
+    samba
+    smbmap
+    cifs-utils
+    netexec
+    wpscan
   ];
 }

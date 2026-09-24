@@ -15,7 +15,7 @@ hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("noctalia-shell ipc call laun
 hl.bind(mainMod .. " + comma", hl.dsp.exec_cmd("noctalia-shell ipc call settings toggle"))
 hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd("noctalia-shell ipc call controlCenter toggle"))
 hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("noctalia-shell ipc call launcher emoji"))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("noctalia-shell ipc call plugin:screen-recorder toggle"))
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("noctalia-shell ipc call plugin:screen-recorder toggle"))
 
 -- Universal copy/paste from the Niri config.
 hl.bind(
