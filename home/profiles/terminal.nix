@@ -27,6 +27,8 @@
     python3
     unzip
     ninja
+    file
+    jq
   ];
 
   xdg.configFile = {

@@ -14,5 +14,14 @@
     cifs-utils
     netexec
     wpscan
+    exploitdb
+    whatweb
+    wordlists
+    metasploit
+    gobuster
+    js-beautify
+    sqlmap
+    pspy
+    cewl
   ];
 }

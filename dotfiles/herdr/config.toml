@@ -19,6 +19,11 @@ name = "gruvbox"
 # red = "#ff6188"
 # green = "#a6e3a1"
 
+# Warm, bright split outlines: unfocused borders use overlay0; focused ones use accent.
+[theme.custom]
+overlay0 = "#d79921"
+accent = "#fabd2f"
+
 [terminal]
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
@@ -147,12 +152,11 @@ command = "footclient --no-wait --app-id monad.yazi -e yazi"
 # Pane apps like lazygit and btop can still receive mouse when they request it.
 mouse_capture = true
 
-# Share one-cell dividers between splits in both directions, without
-# extra gap or an outer frame. Keep split borders for pane labels.
+# Keep separate split borders with a one-cell dark lane between them.
+# No outer frame; the bright theme colors distinguish focused panes.
 pane_borders = "auto"
 pane_gaps = false
 pane_outer_borders = false
-
 # Reclaim the scrollbar column for pane content.
 pane_scrollbars = false
 
