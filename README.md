@@ -86,6 +86,16 @@ the same editor; Super+Alt+P and Controls → Passwords run the unchanged
 upstream `passmenu` through dmenu. Its normal 45-second clipboard expiry does
 not erase CopyQ history.
 
+CopyQ mirrors CLIPBOARD text to PRIMARY so Herdr's mouse/copy-mode selections
+can reach the VMware host. Herdr 0.9.1 writes through `xclip`, which does not
+provide the selection timestamp VMware uses to choose between CLIPBOARD and
+PRIMARY; CopyQ supplies a timestamped PRIMARY selection. Consequently,
+middle-click also pastes the latest copied text. Synchronization is configured
+when the CopyQ user service starts, not during headless Home Manager activation.
+To apply it to an already-running desktop without rebuilding:
+`copyq config copy_clipboard true`. Verify by selecting text in Herdr and
+pasting on the host; guest-side clipboard checks alone cannot prove host receipt.
+
 Before rebuilding **inside the actual guest**:
 
 1. Commit/push the configuration before cloning it; a clone needs all new modules.
