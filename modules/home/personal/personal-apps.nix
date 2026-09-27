@@ -3,7 +3,7 @@
 
   home.packages = with pkgs; [
     obsidian
-    google-chrome
+    firefox
     telegram-desktop
     mpv
     vesktop
