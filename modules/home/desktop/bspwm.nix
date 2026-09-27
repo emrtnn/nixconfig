@@ -222,6 +222,12 @@ in {
       lockCmd = "${pkgs.i3lock}/bin/i3lock --nofork -c 282828";
     };
   };
+  # VMware compares PRIMARY/CLIPBOARD timestamps; Herdr's xclip writer does
+  # not provide one. CopyQ owns the synchronized PRIMARY with a valid timestamp.
+  # Configure only after the GUI service starts, not during HM activation.
+  systemd.user.services.copyq.Service.ExecStartPost =
+    "${pkgs.copyq}/bin/copyq config copy_clipboard true";
+
   systemd.user.services.polybar = {
     Unit.PartOf = lib.mkForce ["graphical-session.target"];
     Service = {
