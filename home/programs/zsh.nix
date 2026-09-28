@@ -138,7 +138,7 @@
       zstyle ":completion:*" use-cache on
       zstyle ":completion:*" cache-path ${config.xdg.cacheHome}/zsh/zcompcache
       zstyle ':completion:*' squeeze-slashes true
-      zstyle ':completion:*' special-dirs true
+      zstyle ':completion:*' special-dirs false
 
       setopt NUMERIC_GLOB_SORT
       setopt GLOB_DOTS
