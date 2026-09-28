@@ -77,6 +77,24 @@
     };
 
     initContent = ''
+      # select by name and copy the target path without a newline.
+      wordlist-copy() {
+        local selected target
+        selected=$(
+          wordlists |
+            rg --color=never -oP '(?<=──).*(?= ->) -> .*' |
+            fzf --no-multi --with-nth=1
+        ) || return
+        [[ -n "$selected" ]] || return
+        target=''${selected#* -> }
+
+        if [[ -n "$WAYLAND_DISPLAY" ]]; then
+          printf '%s' "$target" | wl-copy
+        else
+          printf '%s' "$target" | xclip -selection clipboard
+        fi
+      }
+
       # Vi Mode
       autoload -U edit-command-line
       zle -N edit-command-line
