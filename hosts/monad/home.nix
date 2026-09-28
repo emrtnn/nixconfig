@@ -36,7 +36,6 @@
     ];
     file.".face.png".source = ../../assets/.face;
     sessionVariables = {
-      CHROME_PATH = "${pkgs.google-chrome}/bin/google-chrome";
       BRAVE_API_KEY_FILE = "${config.home.homeDirectory}/.config/sops-nix/secrets/brave_api_key";
     };
   };

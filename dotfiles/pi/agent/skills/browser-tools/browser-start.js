@@ -9,12 +9,13 @@ if (process.argv[2] && process.argv[2] !== "--profile") {
   console.log("Usage: browser-start.js [--profile]");
   console.log("\nOptions:");
   console.log(
-    "  --profile  Copy your default Chrome profile (cookies, logins)",
+    "  --profile  Copy your default Helium profile (cookies, logins)",
   );
   process.exit(1);
 }
 
 const SCRAPING_DIR = `${process.env.HOME}/.cache/browser-tools`;
+const PROFILE_DIR = `${process.env.XDG_CONFIG_HOME || `${process.env.HOME}/.config`}/net.imput.helium`;
 
 // Check if already running on :9222
 try {
@@ -23,7 +24,7 @@ try {
     defaultViewport: null,
   });
   await browser.disconnect();
-  console.log("✓ Chrome already running on :9222");
+  console.log("Helium already running on :9222");
   process.exit(0);
 } catch {}
 
@@ -50,14 +51,14 @@ if (useProfile) {
 			--exclude='*/Current Tabs' \
 			--exclude='*/Last Session' \
 			--exclude='*/Last Tabs' \
-			"${process.env.HOME}/Library/Application Support/Google/Chrome/" "${SCRAPING_DIR}/"`,
+			"${PROFILE_DIR}/" "${SCRAPING_DIR}/"`,
     { stdio: "pipe" },
   );
 }
 
-// Start Chrome with flags to force new instance
+// Start Helium with flags to force new instance
 spawn(
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  process.env.CHROME_PATH || "helium",
   [
     "--remote-debugging-port=9222",
     `--user-data-dir=${SCRAPING_DIR}`,
@@ -67,7 +68,7 @@ spawn(
   { detached: true, stdio: "ignore" },
 ).unref();
 
-// Wait for Chrome to be ready
+// Wait for Helium to be ready
 let connected = false;
 for (let i = 0; i < 30; i++) {
   try {
@@ -84,10 +85,10 @@ for (let i = 0; i < 30; i++) {
 }
 
 if (!connected) {
-  console.error("✗ Failed to connect to Chrome");
+  console.error("Failed to connect to Helium");
   process.exit(1);
 }
 
 console.log(
-  `✓ Chrome started on :9222${useProfile ? " with your profile" : ""}`,
+  `Helium started on :9222${useProfile ? " with your profile" : ""}`,
 );

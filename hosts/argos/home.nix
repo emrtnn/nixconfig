@@ -1,4 +1,8 @@
-{config, pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../home/development.nix
     ../../home/programs/helium.nix
@@ -26,8 +30,8 @@
       proton-vpn
       tor-browser
       tree
-      google-chrome
       telegram-desktop
+      firefox
     ];
     file.".face.png".source = ../../assets/.face;
     sessionVariables.BRAVE_API_KEY_FILE = "${config.home.homeDirectory}/.config/sops-nix/secrets/brave_api_key";

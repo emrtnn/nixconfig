@@ -6,7 +6,7 @@ description: Interactive browser automation via Chrome DevTools Protocol. Use wh
 # Browser Tools
 
 Chrome DevTools Protocol tools for agent-assisted web automation. These tools
-connect to Chrome running on `:9222` with remote debugging enabled.
+connect to Helium running on `:9222` with remote debugging enabled.
 
 ## Setup
 
@@ -14,18 +14,25 @@ Run once before first use:
 
 ```bash
 cd /home/impuremonad/.pi/agent/skills/browser-tools
-npm install
+PUPPETEER_SKIP_DOWNLOAD=true npm install
 ```
 
-## Start Chrome
+## Start Helium
 
 ```bash
 /home/impuremonad/.pi/agent/skills/browser-tools/browser-start.js              # Fresh profile
 /home/impuremonad/.pi/agent/skills/browser-tools/browser-start.js --profile    # Copy user's profile (cookies, logins)
 ```
 
-Launch Chrome with remote debugging on `:9222`. Use `--profile` to preserve
-user's authentication state.
+Launch Helium with remote debugging on `:9222`. The launcher uses `CHROME_PATH`
+(configured to the Nix-packaged Helium executable), or `helium` from `PATH`.
+`PUPPETEER_EXECUTABLE_PATH` also selects Helium for Puppeteer, and
+`PUPPETEER_SKIP_DOWNLOAD` prevents downloading a separate Chrome installation.
+
+Use `--profile` to copy authentication state from
+`${XDG_CONFIG_HOME:-$HOME/.config}/net.imput.helium` into the separate
+`~/.cache/browser-tools` automation profile. The normal browser profile is not
+used directly.
 
 ## Navigate
 
