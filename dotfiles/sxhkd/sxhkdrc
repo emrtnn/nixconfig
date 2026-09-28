@@ -48,7 +48,7 @@ super + g
 super + y
     helium --app=https://music.youtube.com
 super + shift + y
-    google-chrome-stable
+    helium
 
 # Directional focus, swap, and the next visible window on this desktop.
 super + h

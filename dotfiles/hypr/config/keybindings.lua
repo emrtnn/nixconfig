@@ -46,7 +46,7 @@ hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(app("Telegram")))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(app("helium --app=https://calendar.google.com")))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(app("helium --app=https://youtube.com")))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(app("helium --app=https://notion.so")))
-hl.bind(mainMod .. " + SHIFT + Y", hl.dsp.exec_cmd(app("google-chrome-stable --app=https://primevideo.com")))
+hl.bind(mainMod .. " + SHIFT + Y", hl.dsp.exec_cmd(app("helium --app=https://primevideo.com")))
 
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
