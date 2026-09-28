@@ -1,4 +1,4 @@
-_: {
+{pkgs}: {
   imports = [
     # Required: the file generated inside the actual installed VMware guest.
     ./hardware-configuration.nix
@@ -10,6 +10,15 @@ _: {
     ../../modules/nixos/desktop/bspwm.nix
     ../../modules/nixos/profiles/security-lab.nix
   ];
+
+  programs.gnupg.agent = {
+    enableSSHSupport = true;
+    settings = {
+      default-cache-ttl = 7200;
+      max-cache-ttl = 14400;
+      pinentryPackage = pkgs.pinentry-curses;
+    };
+  };
 
   # Fresh UEFI VMware installation; device mappings come only from hardware.
   boot.loader = {
