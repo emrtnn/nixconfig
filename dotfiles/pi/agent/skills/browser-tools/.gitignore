@@ -1,4 +1,4 @@
-# Headless Chrome profile (copy of user's Chrome profile)
+# Headless browser profile
 .headless-profile/
 
 # Node modules

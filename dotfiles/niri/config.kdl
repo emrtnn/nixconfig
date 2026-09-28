@@ -212,7 +212,7 @@ binds {
     Super+G repeat=false { spawn "helium" "--app=https://calendar.google.com"; }
     Super+Y repeat=false { spawn "helium" "--app=https://youtube.com"; }
     Super+N repeat=false { spawn "helium" "--app=https://notion.so"; }
-    Super+Shift+Y repeat=false { spawn "google-chrome-stable" "--app=https://primevideo.com"; }
+    Super+Shift+Y repeat=false { spawn "helium" "--app=https://primevideo.com"; }
 
     // Focus (column = left/right, window = up/down in niri's scrollable model)
     Super+H { focus-column-left; }

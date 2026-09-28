@@ -11,7 +11,7 @@ A perpetually work-in-progress declarative configuration.
 - **shell**: zsh + starship; Nushell remains opt-in
 - **editor**: neovim (custom lua config)
 - **terminal**: Foot on personal hosts; Kitty on Argos
-- **browser**: helium
+- **browser**: Helium (default) Firefox (secondary)
 - **secrets**: Home Manager sops-nix + age; each host declares its secret source and external key
 
 ## Hosts

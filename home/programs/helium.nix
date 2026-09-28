@@ -2,12 +2,17 @@
   inputs,
   pkgs,
   ...
-}: {
-  home.packages = [
-    inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ];
+}: let
+  helium = inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
+in {
+  home.packages = [helium];
 
-  home.sessionVariables.BROWSER = "helium";
+  home.sessionVariables = {
+    BROWSER = "helium";
+    CHROME_PATH = "${helium}/bin/helium";
+    PUPPETEER_EXECUTABLE_PATH = "${helium}/bin/helium";
+    PUPPETEER_SKIP_DOWNLOAD = "true";
+  };
 
   xdg.mimeApps = {
     enable = true;
