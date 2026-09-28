@@ -29,7 +29,6 @@
       playerctl
       proton-vpn
       tor-browser
-      tree
       telegram-desktop
       firefox
     ];
