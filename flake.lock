@@ -294,11 +294,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1790509945,
-        "narHash": "sha256-m2Uijb7tlyocc3whq5uAjHSK9Hw4k2EpFACy7leDqms=",
+        "lastModified": 1790577855,
+        "narHash": "sha256-aDjYwXuX+TKZya7UCNgv+O/chCYIbATHpAOKl9xaNdk=",
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "f81ab5f6c85636c64b553418681aa7dcbacde08a",
+        "rev": "c08ca4772d9eb4e0c95035e6012025fca69c6d81",
         "type": "github"
       },
       "original": {
@@ -480,11 +480,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1790450978,
-        "narHash": "sha256-GM0+sQwNfU1In6UEyBwpwjG3vX3g81kfKvcTlW2muL0=",
-        "rev": "5e2305d577ca00acbba631b05cb1094d172b29f3",
+        "lastModified": 1790533781,
+        "narHash": "sha256-hzJtu90JIQXnmgxKeP23CAx86G4L+dcQ+GHB1JK04qA=",
+        "rev": "cf5e76507c6e23b59f7e0ffcc7baa2a39ddd8442",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.10718.5e2305d577ca/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.10769.cf5e76507c6e/nixexprs.tar.zst"
       },
       "original": {
         "id": "nixpkgs",
@@ -515,11 +515,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790517835,
-        "narHash": "sha256-RfRxWi9PfJVSyoLrLj5mQ5vo24FjkgfBIi+UmE96zZo=",
+        "lastModified": 1790523212,
+        "narHash": "sha256-Z8SuI0YgAZaF0sumKPBF85PxPtTjpo8jvtphbgoITv8=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "ec704377180fc4ffe79322a14a6ae87e9f922cae",
+        "rev": "08c30392b1350b4f3d3fb77e23732560559f1638",
         "type": "github"
       },
       "original": {
@@ -540,11 +540,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1790520925,
-        "narHash": "sha256-kCU8B4zFlbIPwwEdLuD/Azi+B7wm+QAxhaq5kYyJWls=",
+        "lastModified": 1790577646,
+        "narHash": "sha256-xvWWfT+G1U3gylN6BGENPfeEqaMcEHiyJ3c8KRAu7+M=",
         "owner": "can1357",
         "repo": "oh-my-pi",
-        "rev": "b3c9f581403097b9a898c77d4253a31f8349f813",
+        "rev": "2e07c170b514df32f45b3e84cb8660c3ed86a93d",
         "type": "github"
       },
       "original": {
