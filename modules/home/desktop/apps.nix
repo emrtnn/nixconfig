@@ -5,6 +5,7 @@
     evince
     ffmpeg
     playerctl
+    proton-vpn
   ];
 
   xdg.mimeApps.defaultApplications = {
