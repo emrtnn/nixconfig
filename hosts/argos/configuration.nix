@@ -1,23 +1,45 @@
-{pkgs}: {
+{pkgs, ...}: {
   imports = [
     # Required: the file generated inside the actual installed VMware guest.
-    ./hardware-configuration.nix
-    ../../modules/nixos/profiles/base.nix
-    ../../modules/nixos/users/impuremonad.nix
-    ../../modules/nixos/desktop/base.nix
-    ../../modules/nixos/virtualisation/vmware-guest.nix
-    ../../modules/nixos/virtualisation/docker.nix
-    ../../modules/nixos/desktop/bspwm.nix
-    ../../modules/nixos/profiles/security-lab.nix
+    ./hardware-conf.nix
+    ../../base/base.nix
+    ../../nixos/desktop/session-support.nix
+    ../../nixos/desktop/fonts.nix
+    ../../nixos/audio/pipewire.nix
+    ../../nixos/security/gnome-keyring.nix
+    ../../nixos/programs/wireshark.nix
+    ../../nixos/virtualisation/docker.nix
+    ../../nixos/virtualisation/vmware-guest.nix
+    ../../nixos/desktop/bspwm.nix
   ];
 
+  home-manager.users.impuremonad = import ./home.nix;
+
+  users.users.impuremonad = {
+    isNormalUser = true;
+    description = "impuremonad";
+    shell = pkgs.zsh;
+    extraGroups = ["networkmanager" "wheel" "video" "render" "wireshark" "docker"];
+  };
+
+  programs.ssh.startAgent = false;
+
   programs.gnupg.agent = {
+    enable = true;
     enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-qt;
     settings = {
       default-cache-ttl = 7200;
       max-cache-ttl = 14400;
-      pinentryPackage = pkgs.pinentry-curses;
     };
+  };
+
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = false;
+    };
+    defaultSession = "none+bspwm";
   };
 
   # Fresh UEFI VMware installation; device mappings come only from hardware.
