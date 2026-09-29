@@ -1,124 +1,94 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  copyToClipboard = pkgs.writeShellScript "tmux-copy" ''
+    if [ -n "''${WAYLAND_DISPLAY:-}" ]; then
+      exec ${pkgs.wl-clipboard}/bin/wl-copy
+    else
+      exec ${pkgs.xclip}/bin/xclip -in -selection clipboard
+    fi
+  '';
+in {
   programs.tmux = {
     enable = true;
-
-    # --- Core Options ---
     prefix = "C-a";
     baseIndex = 1;
     keyMode = "vi";
+    customPaneNavigationAndResize = true;
+    resizeAmount = 3;
     mouse = true;
+    focusEvents = true;
+    escapeTime = 10;
     historyLimit = 100000;
     terminal = "tmux-256color";
-
     shell = "${pkgs.zsh}/bin/zsh";
 
-    # --- Plugins ---
     plugins = with pkgs.tmuxPlugins; [
-      sensible
-      yank
-      tmux-fzf
+      # Ctrl+h/j/k/l crosses Neovim splits and tmux panes without a prefix.
+      vim-tmux-navigator
       {
-        plugin = mkTmuxPlugin {
-          pluginName = "smart-splits";
-          version = "v2.0.5";
-          rtpFilePath = "smart-splits.tmux";
-          src = pkgs.fetchFromGitHub {
-            owner = "mrjones2014";
-            repo = "smart-splits.nvim";
-            rev = "v2.0.5";
-            sha256 = "sha256-EqnSGTyADvIpHxN3jZxwetENdqv/XUossUzrEvLHHMk=";
-          };
-        };
-
-        # 2. Configure using the official docs variables
+        plugin = gruvbox;
         extraConfig = ''
-          set -g @smart-splits_move_left_key  'C-h'
-          set -g @smart-splits_move_down_key  'C-j'
-          set -g @smart-splits_move_up_key    'C-k'
-          set -g @smart-splits_move_right_key 'C-l'
-
-          set -g @smart-splits_resize_left_key  'M-h'
-          set -g @smart-splits_resize_down_key  'M-j'
-          set -g @smart-splits_resize_up_key    'M-k'
-          set -g @smart-splits_resize_right_key 'M-l'
-
-          set -g @smart-splits_resize_step_size '3'
-        '';
-      }
-      {
-        plugin = tmux-floax;
-        extraConfig = ''
-          set -g @floax-bind 'p'
-          set -g @floax-width '80%'
-          set -g @floax-height '80%'
-          set -g @floax-text-color 'default'
-          set -g @floax-change-path 'true'
-        '';
-      }
-      {
-        plugin = tmux-sessionx;
-        extraConfig = ''
-          set -g @sessionx-bind 'o'
-          set -g @sessionx-window-height '85%'
-          set -g @sessionx-window-width '75%'
-        '';
-      }
-      {
-        plugin = fzf-tmux-url;
-        extraConfig = ''
-          set -g @fzf-url-open "helium"
-          set -g @fzf-url-bind 'u'
+          set -g @tmux-gruvbox 'dark'
+          set -g @tmux-gruvbox-left-status-a '#{?client_prefix,PREFIX ,}#S'
         '';
       }
       {
         plugin = resurrect;
-        extraConfig = "set -g @resurrect-processes 'ssh'";
+        extraConfig = ''
+          # Restore layouts and working directories, not SSH or agent commands.
+          set -g @resurrect-processes 'false'
+          set -g @resurrect-capture-pane-contents 'off'
+        '';
       }
       {
+        # Keep last: continuum adds its autosave hook to the theme's status-right.
         plugin = continuum;
-        extraConfig = "set -g @continuum-restore 'on'";
-      }
-      {
-        plugin = gruvbox;
-        extraConfig = "set -g @tmux-gruvbox 'dark'";
+        extraConfig = ''
+          set -g @continuum-save-interval '5'
+          set -g @continuum-restore 'on'
+        '';
       }
     ];
 
-    # --- Extra Configuration ---
     extraConfig = ''
-      # Allow image preview in Yazi (passthrough)
-      set -g allow-passthrough on
-      set -ga update-environment TERM
-      set -ga update-environment TERM_PROGRAM
-
-      # Status & Visuals
-      set -g status-position top
       set -g renumber-windows on
+      set -g status-position top
+      set -g status-interval 5
+      set -g display-time 1500
+
+      # Foot/Kitty capabilities, focus reporting, and Yazi image passthrough.
+      set -as terminal-features ',xterm-kitty:RGB:extkeys,foot*:RGB:extkeys'
       set -g extended-keys on
       set -g extended-keys-format csi-u
+      set -g allow-passthrough on
+      set -ga update-environment ' WAYLAND_DISPLAY XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS TERM_PROGRAM'
 
-      # Prefix indicator: change session arrow color when prefix is active
-      set -g status-left "#{?client_prefix,#[bg=#d65d0e]#[fg=#282828]#[bold] #S #[bg=#3c3836]#[fg=#d65d0e]#[nobold]#[noitalics]#[nounderscore],#[bg=#665c54]#[fg=#bdae93] #S #[bg=#3c3836]#[fg=#665c54]#[nobold]#[noitalics]#[nounderscore]} "
+      # Warm, distinct borders make the focused pane obvious in busy layouts.
+      set -g pane-border-style 'fg=#d79921'
+      set -g pane-active-border-style 'fg=#fabd2f,bold'
+      set -g pane-border-status top
+      set -g pane-border-format ' #{pane_index}: #{pane_current_command} #{?pane_active,*,} '
+      set -g monitor-bell on
+      set -g bell-action other
+      set -g visual-bell off
 
-      # Keybindings
-      unbind C-b
-      bind-key C-a send-prefix
+      # Keep tmux's native session/window pickers (prefix+s / prefix+w).
+      # New windows and both native and mnemonic splits follow the current pane.
+      bind c new-window -c '#{pane_current_path}'
+      bind '"' split-window -v -c '#{pane_current_path}'
+      bind % split-window -h -c '#{pane_current_path}'
+      bind - split-window -v -c '#{pane_current_path}'
+      bind | split-window -h -c '#{pane_current_path}'
+      bind r source-file ~/.config/tmux/tmux.conf \; display-message 'tmux configuration reloaded'
 
-      bind ^X lock-server
-      bind c new-window -c "#{pane_current_path}"
-      bind ^D detach
-      bind * list-clients
-      bind ^W choose-window
-
-      # Splits and Navigation
-      bind S choose-session
-      bind s split-window -v -c "#{pane_current_path}"
-      bind v split-window -h -c "#{pane_current_path}"
-      bind h select-pane -L
-      bind j select-pane -D
-      bind k select-pane -U
-      bind l select-pane -R
-      bind ^C kill-pane
+      # Native vi copy mode; both keyboard and mouse copy to CLIPBOARD on X11.
+      # Choose the backend at copy time, rather than by installed executables.
+      set -s set-clipboard external
+      set -s copy-command '${copyToClipboard}'
+      bind -T copy-mode-vi v send-keys -X begin-selection
+      bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
+      bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel
+      bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
     '';
   };
 }
