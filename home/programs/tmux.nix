@@ -78,6 +78,7 @@ in {
       bind % split-window -h -c '#{pane_current_path}'
       bind - split-window -v -c '#{pane_current_path}'
       bind | split-window -h -c '#{pane_current_path}'
+      bind p display-popup -E -w 80% -h 80% -d '#{pane_current_path}'
       bind r source-file ~/.config/tmux/tmux.conf \; display-message 'tmux configuration reloaded'
 
       # Native vi copy mode; both keyboard and mouse copy to CLIPBOARD on X11.
