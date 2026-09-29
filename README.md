@@ -60,7 +60,7 @@ Home Manager shell/editor/VCS utilities. It declares no account, desktop,
 secrets, signing policy, Docker, gaming or coding-agent suite. Hosts declare
 their account and access groups, GPG/SSH-agent policy, author identity, signing,
 secret locations, application choices and machine-specific desktop settings.
-Development tools and Pi/OMP/Herdr are explicitly selected by every host.
+Development tools and Pi/OMP/tmux are explicitly selected by every host.
 
 Monad and Arpano independently select Mango, Foot/Noctalia/Swappy, gaming,
 OnlyOffice PDF handling and signed Jujutsu. Argos selects VMware, BSPWM/Kitty,
@@ -90,16 +90,6 @@ bubble to copy its canonical IP, or right-click to edit it. Super+Alt+T opens
 the same editor; Super+Alt+P and Controls → Passwords run the unchanged
 upstream `passmenu` through dmenu. Its normal 45-second clipboard expiry does
 not erase CopyQ history.
-
-CopyQ mirrors CLIPBOARD text to PRIMARY so Herdr's mouse/copy-mode selections
-can reach the VMware host. Herdr 0.9.1 writes through `xclip`, which does not
-provide the selection timestamp VMware uses to choose between CLIPBOARD and
-PRIMARY; CopyQ supplies a timestamped PRIMARY selection. Consequently,
-middle-click also pastes the latest copied text. Synchronization is configured
-when the CopyQ user service starts, not during headless Home Manager activation.
-To apply it to an already-running desktop without rebuilding:
-`copyq config copy_clipboard true`. Verify by selecting text in Herdr and
-pasting on the host; guest-side clipboard checks alone cannot prove host receipt.
 
 Before rebuilding **inside the actual guest**:
 
