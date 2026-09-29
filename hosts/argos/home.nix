@@ -12,7 +12,7 @@
     ../../home/programs/hacking.nix
     ../../home/programs/pi.nix
     ../../home/programs/oh-my-pi.nix
-    ../../home/programs/herdr.nix
+    ../../home/programs/tmux.nix
     ../../home/security/sops.nix
     ../../home/security/password-store.nix
     ../../home/desktop/bspwm.nix
