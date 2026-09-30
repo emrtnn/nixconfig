@@ -45,6 +45,7 @@
   # Fresh UEFI VMware installation; device mappings come only from hardware.
   boot.loader = {
     systemd-boot.enable = true;
+    systemd-boot.configurationLimit = 5;
     efi.canTouchEfiVariables = true;
   };
 

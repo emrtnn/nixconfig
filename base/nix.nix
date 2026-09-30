@@ -2,6 +2,10 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
+    optimise = {
+      automatic = true;
+      dates = ["weekly"];
+    };
     gc = {
       automatic = true;
       dates = "weekly";
@@ -13,7 +17,6 @@
         "nix-command"
         "flakes"
       ];
-      auto-optimise-store = true;
       extra-substituters = [
         "https://devenv.cachix.org"
         "https://noctalia.cachix.org"
