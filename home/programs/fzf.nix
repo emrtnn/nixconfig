@@ -10,6 +10,8 @@ _: {
       "--margin=1"
       "--padding=1"
       "--no-mouse"
+      # Scroll previews by a page using vi-style forward/backward keys.
+      "--bind=ctrl-f:preview-page-down,ctrl-b:preview-page-up"
     ];
     changeDirWidget.options = [
       "--preview 'tree -C {} | head -200'"

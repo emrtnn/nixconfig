@@ -74,12 +74,13 @@ in {
       # Keep tmux's native session/window pickers (prefix+s / prefix+w).
       # New windows and both native and mnemonic splits follow the current pane.
       bind c new-window -c '#{pane_current_path}'
-      bind '"' split-window -v -c '#{pane_current_path}'
-      bind % split-window -h -c '#{pane_current_path}'
-      bind - split-window -v -c '#{pane_current_path}'
-      bind | split-window -h -c '#{pane_current_path}'
+      bind v split-window -h -c '#{pane_current_path}'
+      bind s split-window -v -c '#{pane_current_path}'
       bind p display-popup -E -w 80% -h 80% -d '#{pane_current_path}'
       bind r source-file ~/.config/tmux/tmux.conf \; display-message 'tmux configuration reloaded'
+
+      # Bind 'e' to sessions tree explorer since its default keybind was 's'
+      bind e choose-tree -s
 
       # Native vi copy mode; both keyboard and mouse copy to CLIPBOARD on X11.
       # Choose the backend at copy time, rather than by installed executables.
