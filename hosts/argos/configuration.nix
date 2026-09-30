@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
     # Required: the file generated inside the actual installed VMware guest.
-    ./hardware-conf.nix
+    ./hardware-configuration.nix
     ../../base/base.nix
     ../../nixos/desktop/session-support.nix
     ../../nixos/desktop/fonts.nix
@@ -55,7 +55,12 @@
   networking = {
     hostName = "argos";
     networkmanager.enable = true;
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+    };
+    extraHosts = ''
+      10.129.10.222 unika.htb
+    '';
   };
 
   # Retain the installer-created password database; no declarative credentials.
