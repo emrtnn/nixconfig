@@ -26,5 +26,6 @@
     hashcat
     john
     evil-winrm
+    openssl
   ];
 }
