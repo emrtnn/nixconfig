@@ -15,6 +15,7 @@
     ../../nixos/boot/quiet-boot.nix
     ../../nixos/system/zram.nix
     ../../nixos/networking/quad9.nix
+    ../../nixos/networking/openvpn.nix
     ../../nixos/services/openssh.nix
     ../../nixos/services/tailscale.nix
     ../../nixos/programs/localsend.nix
@@ -34,8 +35,10 @@
 
   networking = {
     hostName = "arpano";
-    firewall.enable = true;
     networkmanager.wifi.powersave = false;
+    firewall = {
+      enable = true;
+    };
   };
 
   programs = {

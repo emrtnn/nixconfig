@@ -8,6 +8,7 @@
     ../../nixos/audio/pipewire.nix
     ../../nixos/security/gnome-keyring.nix
     ../../nixos/programs/wireshark.nix
+    ../../nixos/networking/openvpn.nix
     ../../nixos/virtualisation/docker.nix
     ../../nixos/virtualisation/vmware-guest.nix
     ../../nixos/desktop/bspwm.nix
