@@ -57,6 +57,7 @@
     networkmanager.enable = true;
     firewall = {
       enable = true;
+      allowedTCPPorts = [80 443];
     };
     extraHosts = ''
       10.129.10.222 unika.htb
