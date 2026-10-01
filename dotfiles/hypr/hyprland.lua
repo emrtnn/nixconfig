@@ -1,5 +1,5 @@
 terminal = "foot"
-file_manager = "nautilus"
+file_manager = "dolphin"
 mainMod = "SUPER"
 
 function app(cmd)
