@@ -179,7 +179,7 @@ binds {
     // Window management
     Super+Q { close-window; }
     Super+Return repeat=false { spawn "footclient"; }
-    Super+F repeat=false { spawn "nautilus" "--new-window"; }
+    Super+F repeat=false { spawn "dolphin" "--new-window"; }
     Super+Shift+F repeat=false { spawn "footclient" "--app-id" "monad.yazi" "-e" "yazi"; }
     Super+B repeat=false { spawn "helium"; }
     Super+Alt+B repeat=false { spawn "helium" "--incognito"; }

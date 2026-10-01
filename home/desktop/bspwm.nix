@@ -147,7 +147,6 @@ in {
     '';
   };
 
-  home.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
   programs.kitty.settings.linux_display_server = "x11";
 
   programs.rofi = {
