@@ -23,5 +23,8 @@
     sqlmap
     pspy
     cewl
+    hashcat
+    john
+    evil-winrm
   ];
 }
