@@ -19,6 +19,11 @@
     yaml-language-server
     vscode-langservers-extracted
 
+    # PHP: PHPactor language services + PHP-CS-Fixer formatting
+    php
+    phpactor
+    phpPackages.php-cs-fixer
+
     # Nix (The Modern Stack)
     nixd
     alejandra

@@ -63,6 +63,8 @@ return {
 
 				python = { "ruff_format", "ruff_fix", "ruff_organize_imports" },
 
+				php = { "php_cs_fixer" },
+
 				javascript = { "biome" },
 				typescript = { "biome" },
 				javascriptreact = { "biome" },

@@ -120,6 +120,8 @@ return {
 
 			vim.lsp.enable("ruff")
 
+			vim.lsp.enable("phpactor")
+
 			vim.lsp.enable("neocmake")
 
 			-- Hadolint owns the overlapping Dockerfile best-practice diagnostics;
