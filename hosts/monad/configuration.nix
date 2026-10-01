@@ -40,7 +40,7 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-curses;
+      pinentryPackage = pkgs.pinentry-qt;
       settings = {
         default-cache-ttl = 7200;
         max-cache-ttl = 14400;
