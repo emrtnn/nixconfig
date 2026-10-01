@@ -39,6 +39,9 @@
     firewall = {
       enable = true;
     };
+    extraHosts = ''
+      10.129.11.129 thetoppers.htb
+    '';
   };
 
   programs = {
