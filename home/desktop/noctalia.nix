@@ -1,8 +1,11 @@
-{inputs, ...}: {
-  imports = [inputs.noctalia.homeModules.default];
-
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.noctalia = {
     enable = true;
+    package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
     systemd.enable = false;
 
     settings = {
