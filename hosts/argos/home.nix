@@ -6,6 +6,7 @@
   imports = [
     ../../home/development.nix
     ../../home/programs/helium.nix
+    ../../home/programs/dolphin.nix
     ../../home/programs/imv.nix
     ../../home/desktop/appearance.nix
     ../../home/desktop/wallpapers.nix
@@ -23,7 +24,6 @@
     homeDirectory = "/home/impuremonad";
     stateVersion = "26.05";
     packages = with pkgs; [
-      nautilus
       evince
       ffmpeg
       playerctl

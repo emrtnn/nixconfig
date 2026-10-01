@@ -1,10 +1,10 @@
 # Session and applications
 super + Return
     kitty
-super + f
-    kitty --class monad.yazi -e yazi
 super + shift + f
-    nautilus --new-window
+    kitty --class monad.yazi -e yazi
+super  + f
+    dolphin --new-window
 super + space
     rofi -show drun
 super + comma
