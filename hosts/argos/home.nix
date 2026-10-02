@@ -12,7 +12,6 @@
     ../../home/desktop/wallpapers.nix
     ../../home/programs/hacking.nix
     ../../home/programs/pi.nix
-    ../../home/programs/oh-my-pi.nix
     ../../home/programs/tmux.nix
     ../../home/security/sops.nix
     ../../home/security/password-store.nix
