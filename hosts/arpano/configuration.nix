@@ -38,9 +38,9 @@
     networkmanager.wifi.powersave = false;
     firewall = {
       enable = true;
+      allowedTCPPorts = [80 443];
     };
     extraHosts = ''
-      10.129.11.129 thetoppers.htb
     '';
   };
 
