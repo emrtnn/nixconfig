@@ -75,7 +75,7 @@ def set_padding(output, pixels, required):
 
 
 def set_wallpaper():
-    wallpaper = Path.home() / "Pictures/Wallpapers/riots.png"
+    wallpaper = Path.home() / "Pictures/Wallpapers/white_lines.jpeg"
     if not wallpaper.is_file():
         print(
             f"argos-polybar: wallpaper missing: {wallpaper}",

@@ -45,9 +45,17 @@
     name = "emrtnn";
     email = "emrtnn@proton.me";
   };
-  programs.jujutsu.settings.user = {
-    name = "emrtnn";
-    email = "emrtnn@proton.me";
+  programs.jujutsu.settings = {
+    user = {
+      name = "emrtnn";
+      email = "emrtnn@proton.me";
+    };
+    signing = {
+      backend = "gpg";
+      key = "197CB7FC535093C4";
+      sign-all = true;
+      behavior = "own";
+    };
   };
 
   xdg.mimeApps.defaultApplications."application/pdf" = "org.gnome.Evince.desktop";

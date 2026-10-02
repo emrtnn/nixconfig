@@ -179,7 +179,7 @@ in {
       enable = true;
       backend = "xrender";
       activeOpacity = 1.0;
-      inactiveOpacity = 1.0;
+      inactiveOpacity = 0.98;
       shadow = true;
       shadowOffsets = [2 2];
       shadowExclude = ["class_g = 'Polybar'" "window_type = 'dock'" "window_type = 'desktop'"];

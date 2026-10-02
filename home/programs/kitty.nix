@@ -35,7 +35,7 @@
       cursor_trail_start_threshold = 2;
       enable_audio_bell = "no";
       scrollback_lines = 100000;
-      background_opacity = 0.95;
+      background_opacity = 1;
 
       tab_bar_edge = "bottom";
       tab_bar_style = "powerline";
