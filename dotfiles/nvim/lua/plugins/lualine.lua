@@ -3,7 +3,9 @@ return {
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		opts = {
-			theme = "gruvbox-material",
+			options = {
+				theme = "oxocarbon",
+			},
 			globalstatus = true,
 			sections = {
 				lualine_c = {

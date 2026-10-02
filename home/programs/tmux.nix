@@ -25,13 +25,6 @@ in {
       # Ctrl+h/j/k/l crosses Neovim splits and tmux panes without a prefix.
       vim-tmux-navigator
       {
-        plugin = gruvbox;
-        extraConfig = ''
-          set -g @tmux-gruvbox 'dark'
-          set -g @tmux-gruvbox-left-status-a '#{?client_prefix,PREFIX ,}#S'
-        '';
-      }
-      {
         plugin = resurrect;
         extraConfig = ''
           # Restore layouts and working directories, not SSH or agent commands.
@@ -40,9 +33,12 @@ in {
         '';
       }
       {
-        # Keep last: continuum adds its autosave hook to the theme's status-right.
+        # Keep last: continuum adds its autosave hook to status-right.
         plugin = continuum;
         extraConfig = ''
+          # Home Manager loads plugins before the main extraConfig. Initialize
+          # status-right here so continuum's autosave hook survives.
+          set -g status-right '#[fg=#3ddbd9,bg=#262626] #H #[fg=#dde1e6,bg=#161616] %Y-%m-%d #[fg=#78a9ff]%H:%M '
           set -g @continuum-save-interval '5'
           set -g @continuum-restore 'on'
         '';
@@ -62,9 +58,28 @@ in {
       set -g allow-passthrough on
       set -ga update-environment ' WAYLAND_DISPLAY XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS TERM_PROGRAM'
 
-      # Warm, distinct borders make the focused pane obvious in busy layouts.
-      set -g pane-border-style 'fg=#d79921'
-      set -g pane-active-border-style 'fg=#fabd2f,bold'
+      # Native Oxocarbon styling; status-right is initialized before continuum.
+      set -g status-style 'bg=#161616,fg=#f2f4f8'
+      set -g status-left-length 60
+      set -g status-right-length 100
+      set -g status-left '#[fg=#161616,bg=#{?client_prefix,#be95ff,#3ddbd9},bold] #{?client_prefix,PREFIX ,}#S#[default] '
+      set -g window-status-style 'bg=#262626,fg=#dde1e6'
+      set -g window-status-format ' #I:#W#{?window_flags, #F,} '
+      set -g window-status-current-style 'bg=#78a9ff,fg=#161616,bold'
+      set -g window-status-current-format ' #I:#W#{?window_flags, #F,} '
+      set -g window-status-activity-style 'bg=#262626,fg=#42be65'
+      set -g window-status-bell-style 'bg=#ee5396,fg=#161616,bold'
+      set -g window-status-last-style 'fg=#be95ff'
+      set -g window-status-separator ' '
+      set -g message-style 'bg=#262626,fg=#f2f4f8'
+      set -g message-command-style 'bg=#262626,fg=#3ddbd9'
+      set -g mode-style 'bg=#393939,fg=#f2f4f8'
+      set -g clock-mode-colour '#78a9ff'
+      set -g menu-style 'bg=#262626,fg=#f2f4f8'
+      set -g menu-selected-style 'bg=#393939,fg=#3ddbd9,bold'
+      set -g menu-border-style 'fg=#525252'
+      set -g pane-border-style 'fg=#525252'
+      set -g pane-active-border-style 'fg=#78a9ff,bold'
       set -g pane-border-status top
       set -g pane-border-format ' #{pane_index}: #{pane_current_command} #{?pane_active,*,} '
       set -g monitor-bell on

@@ -1,10 +1,10 @@
 * {
-    background: #282828;
-    surface: #3c3836;
-    foreground: #ebdbb2;
-    muted: #a89984;
-    accent: #d79921;
-    urgent: #ad401f;
+    background: #161616;
+    surface: #262626;
+    foreground: #f2f4f8;
+    muted: #8d8d8d;
+    accent: #78a9ff;
+    urgent: #ee5396;
     font: "GeistMono Nerd Font Mono 10";
     background-color: @surface;
     text-color: @foreground;
@@ -63,5 +63,5 @@ element selected.normal, element selected.active {
 
 element selected.urgent {
     background-color: @urgent;
-    text-color: #fbf1c7;
+    text-color: @background;
 }

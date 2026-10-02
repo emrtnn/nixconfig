@@ -24,7 +24,7 @@ controls() {
     Network) nm-connection-editor ;;
     Displays) arandr ;;
     Passwords)
-      passmenu -i -l 10 -p Passwords -fn 'GeistMono Nerd Font Mono-10' -nb '#282828' -nf '#ebdbb2' -sb '#d79921' -sf '#282828'
+      passmenu -i -l 10 -p Passwords -fn 'GeistMono Nerd Font Mono-10' -nb '#161616' -nf '#f2f4f8' -sb '#78a9ff' -sf '#161616'
       ;;
     Target) argos-target menu ;;
     Power) argos-menu power ;;
