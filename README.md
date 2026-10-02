@@ -20,6 +20,34 @@ A perpetually work-in-progress declarative configuration.
 - **arpano:** x86_64 AMD workstation (`hosts/arpano`)
 - **argos:** VMware lab guest with bspwm/X11 (`hosts/argos`); hardware configuration must come from that guest
 
+## Theme: Oxocarbon dark
+
+The theme is configured per application; there is no global theming framework.
+`home/themes/oxocarbon.nix` holds the [official dark palette](https://github.com/nyoom-engineering/base16-oxocarbon)
+for native Nix themes. Existing fonts, transparency, layouts and keybindings are retained.
+
+| Application | Integration |
+| --- | --- |
+| Neovim / lualine | Official [`oxocarbon.nvim`](https://github.com/nyoom-engineering/oxocarbon.nvim), pinned in `dotfiles/nvim/lazy-lock.json` |
+| Kitty / Foot / Helix | Commit- and hash-pinned community ports linked by the [upstream ports catalog](https://github.com/nyoom-engineering/oxocarbon), fetched by each program module |
+| bat | Pinned Carbonizer TextMate theme; Home Manager rebuilds bat's theme cache at activation |
+| Yazi / tuicr | Native Nix-defined UI themes and the same TextMate theme for code previews |
+| Dolphin / Qt | Generated `OxocarbonDark.colors` and a matching qt6ct palette in `home/programs/dolphin.nix` |
+| Herdr | All custom color tokens merged in `home/programs/herdr.nix`; non-theme preferences remain in `dotfiles/herdr/config.toml` |
+| tmux | Native styling in `home/programs/tmux.nix`; avoids the upstream port's tmux 3.5 incompatibility and preserves Continuum's autosave hook |
+| Noctalia | Existing Oxocarbon community palette; GTK, btop and enabled community templates follow it |
+| Desktop accents | Mango, BSPWM, opt-in Niri/Hyprland, Dunst, Polybar, Rofi, password menus and i3lock |
+
+Noctalia downloads its community palette on first use and caches it for offline use.
+Its Qt and Yazi templates are disabled because those files are owned by Home Manager.
+The custom Argos Rofi/Polybar layouts are preserved rather than replaced by a theme's demo layout.
+Helix and Herdr remain opt-in; this does not enable additional applications on any host.
+
+After a normal host rebuild, restart the affected applications (or log out/in for
+the desktop). Neovim's existing Lazy setup installs the newly selected plugin;
+its config is linked directly to this checkout and can take effect before rebuilding.
+Reload tmux with prefix + `r`. No wallpaper or icon-pack replacement is required.
+
 ## Use it
 
 ```bash

@@ -5,24 +5,7 @@
 # Missing also shows onboarding; set false after you've chosen.
 onboarding = false
 
-[theme]
-# Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
-#                  gruvbox, one-dark, solarized, kanagawa, rose-pine,
-#                  vesper
-name = "gruvbox"
-
-# Override individual color tokens on top of the base theme.
-# Accepts: hex (#rrggbb), named colors, rgb(r,g,b), or panel_bg = "reset"
-# [theme.custom]
-# panel_bg = "reset"
-# accent = "#f5c2e7"
-# red = "#ff6188"
-# green = "#a6e3a1"
-
-# Warm, bright split outlines: unfocused borders use overlay0; focused ones use accent.
-[theme.custom]
-overlay0 = "#d79921"
-accent = "#fabd2f"
+# The Oxocarbon theme is merged in by home/programs/herdr.nix.
 
 [terminal]
 # Executable used for new interactive panes.

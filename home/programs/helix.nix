@@ -3,6 +3,12 @@
   lib,
   ...
 }: {
+  # Community port linked by Oxocarbon; not bundled with the pinned Helix.
+  xdg.configFile."helix/themes/oxocarbon.toml".source = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/neoangelism/oxocarbon-helix/9a3351cc6953ae41e8d81d9ba8f0d69eac3c19f2/oxocarbon.toml";
+    hash = "sha256-4bH7Ov7gTwg1fB4OwfdSpTl0O4mOEyks8K0U7PSN5e0=";
+  };
+
   programs.helix = {
     enable = true;
     defaultEditor = false;
@@ -70,7 +76,7 @@
     ];
 
     settings = {
-      theme = "gruvbox";
+      theme = "oxocarbon";
 
       editor = {
         line-number = "relative";

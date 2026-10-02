@@ -1,4 +1,4 @@
-theme = "gruvbox-dark"
+theme = "oxocarbon-dark"
 
 diff_view = "side-by-side"
 ignore_whitespace = false
@@ -21,7 +21,7 @@ comment_types = [
   { id = "suggestion", definition = "possible improvements", color = "yellow" },
   { id = "issue", definition = "problems to fix", color = "red" },
   { id = "praise", definition = "positive feedback", color = "green" },
-  { id = "nit", label = "nitpick", definition = "small optional tweaks", color = "#d19a66" },
+  { id = "nit", label = "nitpick", definition = "small optional tweaks", color = "#be95ff" },
 ]
 
 [forge]

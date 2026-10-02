@@ -1,19 +1,23 @@
 return {
 	{
-		"sainnhe/gruvbox-material",
+		"nyoom-engineering/oxocarbon.nvim",
+		-- Upstream ships compiled Lua; do not rebuild its rockspec with LuaRocks/Fennel.
+		build = false,
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.g.gruvbox_material_background = "medium"
-			vim.g.gruvbox_material_foreground = "original"
-			vim.g.gruvbox_material_better_performance = 1
-			vim.g.gruvbox_material_enable_italic = true
-			vim.g.gruvbox_material_enable_bold = true
-			vim.g.gruvbox_material_transparent_background = 1
-			vim.cmd.colorscheme("gruvbox-material")
+			vim.opt.background = "dark"
+			vim.cmd.colorscheme("oxocarbon")
 
-			vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#d79921" })
-			vim.api.nvim_set_hl(0, "FFFCursorLine", { bg = "#504945", fg = "#ebdbb2" })
+			-- Keep the main editing background transparent without changing theme foregrounds.
+			for _, group in ipairs({ "Normal", "NormalNC", "SignColumn" }) do
+				local highlight = vim.api.nvim_get_hl(0, { name = group, link = false })
+				highlight.bg = nil
+				vim.api.nvim_set_hl(0, group, highlight)
+			end
+
+			vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#78a9ff" })
+			vim.api.nvim_set_hl(0, "FFFCursorLine", { bg = "#393939", fg = "#f2f4f8" })
 		end,
 	},
 }

@@ -550,16 +550,17 @@
         };
       };
       theme = {
-        builtin = "Gruvbox";
+        builtin = "Noctalia";
         community_palette = "Oxocarbon";
         custom_palette = "";
         mode = "dark";
         pure_black_dark = false;
-        source = "builtin";
+        source = "community";
         wallpaper_scheme = "m3-content";
         templates = {
-          builtin_ids = ["btop" "gtk3" "gtk4" "qt"];
-          community_ids = ["pi-agent" "discord" "papirus-icons" "yazi"];
+          # Qt and Yazi are owned by their Home Manager modules, not templates.
+          builtin_ids = ["btop" "gtk3" "gtk4"];
+          community_ids = ["pi-agent" "discord" "papirus-icons"];
           enable_builtin_templates = true;
           enable_community_templates = true;
         };

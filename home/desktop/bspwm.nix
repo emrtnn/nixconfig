@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: let
+  c = import ../themes/oxocarbon.nix;
   screenshot = pkgs.writeShellApplication {
     name = "nixconfig-screenshot";
     runtimeInputs = [pkgs.coreutils pkgs.scrot pkgs.xclip pkgs.ksnip pkgs.xset];
@@ -107,8 +108,8 @@ in {
         split_ratio = 0.5;
         window_gap = 8;
         border_width = 3;
-        normal_border_color = "#595959";
-        focused_border_color = "#d79921";
+        normal_border_color = c.base03;
+        focused_border_color = c.base09;
         focus_follows_pointer = true;
         borderless_monocle = true;
         top_padding = 8;
@@ -199,16 +200,17 @@ in {
       settings = {
         global = {
           font = "GeistMono Nerd Font Mono 10";
-          frame_color = "#d79921";
-          foreground = "#ebdbb2";
-          background = "#282828";
+          frame_color = c.base09;
+          foreground = c.base05;
+          background = c.base00;
           corner_radius = 10;
           origin = "top-right";
           offset = "12x52";
         };
         urgency_critical = {
-          background = "#ad401f";
-          foreground = "#fbf1c7";
+          background = c.base0A;
+          foreground = c.base00;
+          frame_color = c.base0A;
         };
       };
     };
@@ -218,14 +220,13 @@ in {
       inactiveInterval = 10;
       xautolock.enable = false;
       xss-lock.extraOptions = ["--transfer-sleep-lock"];
-      lockCmd = "${pkgs.i3lock}/bin/i3lock --nofork -c 282828";
+      lockCmd = "${pkgs.i3lock}/bin/i3lock --nofork -c ${lib.removePrefix "#" c.base00}";
     };
   };
   # VMware compares PRIMARY/CLIPBOARD timestamps; Herdr's xclip writer does
   # not provide one. CopyQ owns the synchronized PRIMARY with a valid timestamp.
   # Configure only after the GUI service starts, not during HM activation.
-  systemd.user.services.copyq.Service.ExecStartPost =
-    "${pkgs.copyq}/bin/copyq config copy_clipboard true";
+  systemd.user.services.copyq.Service.ExecStartPost = "${pkgs.copyq}/bin/copyq config copy_clipboard true";
 
   systemd.user.services.polybar = {
     Unit.PartOf = lib.mkForce ["graphical-session.target"];
