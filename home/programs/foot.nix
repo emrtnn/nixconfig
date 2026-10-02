@@ -29,8 +29,8 @@ in {
       };
 
       colors-dark = {
-        alpha = 0.95;
-        blur = true;
+        alpha = 1;
+        blur = false;
       };
 
       mouse = {

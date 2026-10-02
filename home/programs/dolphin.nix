@@ -137,8 +137,8 @@ in {
           BrowseThroughArchives = true;
         };
         IconsMode = {
-          IconSize = 64;
-          PreviewSize = 96;
+          IconSize = 48;
+          PreviewSize = 64;
         };
         PreviewSettings.Plugins = "directorythumbnail,imagethumbnail,jpegthumbnail,svgthumbnail,ffmpegthumbs,gsthumbnail";
         UiSettings.ColorScheme = "Oxocarbon Dark";
