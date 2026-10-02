@@ -39,6 +39,8 @@
     keybindings = {
       "ctrl+insert" = "copy_to_clipboard";
       "shift+insert" = "paste_from_clipboard";
+      # Preserve Shift+Enter through tmux instead of sending plain Return.
+      "shift+enter" = "send_text all \\x1b[13;2u";
     };
   };
 }
