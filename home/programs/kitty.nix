@@ -1,7 +1,13 @@
 {pkgs, ...}: {
   programs.kitty = {
     enable = true;
-    themeFile = "gruvbox-dark";
+    # Oxocarbon is not in the pinned kitty-themes collection.
+    extraConfig = ''
+      include ${pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/Oxocarbon-Theme/kitty/07b0081fdb1a5acf4a868d70e8305c35aa872e58/oxocarbon_dark.conf";
+        hash = "sha256-QXicP0qXlqQTwnQEHYmeQYEhnhUz0e4W9yOEVZ8eddI=";
+      }}
+    '';
     font = {
       name = "JetBrainsMono Nerd Font Mono";
       size = 14;
