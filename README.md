@@ -100,8 +100,8 @@ Before rebuilding **inside the actual guest**:
 3. Create the `impuremonad` user with a login password during installation.
    Passwords remain mutable; this repository supplies no guest password.
 4. Clone into `/home/impuremonad/nixconfig`. Keep the checkout there: Neovim still
-   uses the existing mutable `dotfiles/nvim` link. Clone tracked source rather
-   than copying live `.pi` state from a personal checkout.
+   uses the existing mutable `dotfiles/nvim` link. Initialize Pi separately;
+   its configuration and runtime state are not included in this checkout.
 5. Check `system.stateVersion` against the freshly installed system's
    `/etc/nixos/configuration.nix`. Argos currently declares `"26.11"` for a fresh
    installation of that release. If installing another release, retain that
