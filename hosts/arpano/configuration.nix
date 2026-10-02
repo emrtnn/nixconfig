@@ -41,6 +41,8 @@
       allowedTCPPorts = [80 443];
     };
     extraHosts = ''
+      10.129.153.25 management.htb
+      10.129.153.25 sso.management.htb
     '';
   };
 
