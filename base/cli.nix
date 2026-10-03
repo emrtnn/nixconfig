@@ -17,6 +17,7 @@
     wget
     git
     gcc
+    gnumake
     cmake
     e2fsprogs
   ]);
