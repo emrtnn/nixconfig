@@ -9,6 +9,7 @@
     ../../nixos/security/gnome-keyring.nix
     ../../nixos/programs/wireshark.nix
     ../../nixos/networking/openvpn.nix
+    ../../nixos/networking/tor.nix
     ../../nixos/virtualisation/docker.nix
     ../../nixos/virtualisation/vmware-guest.nix
     ../../nixos/desktop/bspwm.nix
@@ -60,7 +61,7 @@
       allowedTCPPorts = [80 443];
     };
     extraHosts = ''
-      10.129.10.222 unika.htb
+      10.129.229.66 2million.htb
     '';
   };
 
