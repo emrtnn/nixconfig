@@ -6,7 +6,7 @@ A perpetually work-in-progress declarative configuration.
 
 ## What it has
 
-- **os**: nixos (unstable)
+- **os**: nixos (unstable) _with separated stable pin_
 - **wm**: Mango on personal hosts; bspwm/X11 with sxhkd on Argos; Niri and Hyprland remain opt-in modules
 - **shell**: zsh + starship; Nushell remains opt-in
 - **editor**: neovim (custom lua config)
@@ -18,35 +18,9 @@ A perpetually work-in-progress declarative configuration.
 
 - **monad:** x86_64 NVIDIA desktop (`hosts/monad`)
 - **arpano:** x86_64 AMD workstation (`hosts/arpano`)
-- **argos:** VMware lab guest with bspwm/X11 (`hosts/argos`); hardware configuration must come from that guest
+- **argos:** VMware lab guest with bspwm/X11 (`hosts/argos`); 
 
-## Theme: Oxocarbon dark
-
-The theme is configured per application; there is no global theming framework.
-`home/themes/oxocarbon.nix` holds the [official dark palette](https://github.com/nyoom-engineering/base16-oxocarbon)
-for native Nix themes. Existing fonts, transparency, layouts and keybindings are retained.
-
-| Application | Integration |
-| --- | --- |
-| Neovim / lualine | Official [`oxocarbon.nvim`](https://github.com/nyoom-engineering/oxocarbon.nvim), pinned in `dotfiles/nvim/lazy-lock.json` |
-| Kitty / Foot / Helix | Commit- and hash-pinned community ports linked by the [upstream ports catalog](https://github.com/nyoom-engineering/oxocarbon), fetched by each program module |
-| bat | Pinned Carbonizer TextMate theme; Home Manager rebuilds bat's theme cache at activation |
-| Yazi / tuicr | Native Nix-defined UI themes and the same TextMate theme for code previews |
-| Dolphin / Qt | Generated `OxocarbonDark.colors` and a matching qt6ct palette in `home/programs/dolphin.nix` |
-| Herdr | All custom color tokens merged in `home/programs/herdr.nix`; non-theme preferences remain in `dotfiles/herdr/config.toml` |
-| tmux | Native styling in `home/programs/tmux.nix`; avoids the upstream port's tmux 3.5 incompatibility and preserves Continuum's autosave hook |
-| Noctalia | Existing Oxocarbon community palette; GTK, btop and enabled community templates follow it |
-| Desktop accents | Mango, BSPWM, opt-in Niri/Hyprland, Dunst, Polybar, Rofi, password menus and i3lock |
-
-Noctalia downloads its community palette on first use and caches it for offline use.
-Its Qt and Yazi templates are disabled because those files are owned by Home Manager.
-The custom Argos Rofi/Polybar layouts are preserved rather than replaced by a theme's demo layout.
-Helix and Herdr remain opt-in; this does not enable additional applications on any host.
-
-After a normal host rebuild, restart the affected applications (or log out/in for
-the desktop). Neovim's existing Lazy setup installs the newly selected plugin;
-its config is linked directly to this checkout and can take effect before rebuilding.
-Reload tmux with prefix + `r`. No wallpaper or icon-pack replacement is required.
+> IMPORTANT: Argos hardware configuration must come from that guest and replace the dummy one in `hosts/argos/hardware-configuration.nix`
 
 ## Use it
 
@@ -69,7 +43,7 @@ sudo nixos-rebuild switch --flake .#argos
 ├── dotfiles/                 # application configs; Argos's X11 configs are store-backed
 ├── home/                     # reusable Home Manager programs, desktops and security tools
 ├── hosts/
-│   ├── monad/                # configuration.nix + home.nix + hardware-conf.nix
+│   ├── monad/                # configuration.nix + home.nix + hardware-configuration.nix
 │   ├── arpano/               # independent AMD workstation composition
 │   └── argos/                # independent VMware guest composition
 ├── nixos/                    # reusable system services, desktops and optional features
@@ -90,75 +64,73 @@ their account and access groups, GPG/SSH-agent policy, author identity, signing,
 secret locations, application choices and machine-specific desktop settings.
 Development tools and Pi/OMP/tmux are explicitly selected by every host.
 
-Monad and Arpano independently select Mango, Foot/Noctalia/Swappy, gaming,
-OnlyOffice PDF handling and signed Jujutsu. Argos selects VMware, BSPWM/Kitty,
-Evince PDF handling and unsigned Jujutsu. All retain Docker, Wireshark/hacking
-tools and the Brave API secret. Niri, Hyprland, Nushell, Helix, tmux and Fastfetch
-remain available but unselected.
-
 The age key stays outside the repository at
 `/home/impuremonad/.config/sops/age/keys.txt`. Builds do not decrypt secrets or
 replace account passwords. No unused system-level SOPS defaults are declared.
 
-## Argos: fresh VMware installation
+# Networking
 
-Argos selects VMware guest support, Xorg, SDDM, bspwm, PipeWire,
-NetworkManager, a firewall, and explicitly selected user applications,
-agents and credentials. Its existing `hardware-conf.nix` comes from the
-installed guest; neither personal host's hardware configuration is suitable.
+## Tor Network
 
-The X11 desktop uses nine named bspwm desktops, sxhkd, four separate Polybar
-bubbles, Rofi, Kitty, Helium, CopyQ, Picom, Dunst, Scrot/Ksnip, and i3lock.
-The network bubble toggles between ipify's public IPv4 and the local source
-address selected by `ip route get`; it is not a pentest target detector.
-`argos-target set <IP> [label]`, `get`, `show`, `copy`, `clear`, and `menu`
-manage the explicitly chosen pentest target in
-`${XDG_STATE_HOME:-$HOME/.local/state}/argos/target.json`. Click the target
-bubble to copy its canonical IP, or right-click to edit it. Super+Alt+T opens
-the same editor; Super+Alt+P and Controls → Passwords run the unchanged
-upstream `passmenu` through dmenu. Its normal 45-second clipboard expiry does
-not erase CopyQ history.
+`nixos/networking/tor.nix` installs Tor Browser, ProxyChains-NG (`proxychains4`)
+and `torsocks`. NixOS manages `tor.service` and generates `/etc/proxychains.conf`—do not
+edit either configuration by hand.
 
-Before rebuilding **inside the actual guest**:
+The system Tor daemon is a **client only**, listening on `127.0.0.1:9050`.
+It does not run a relay/exit node, expose a control port, open firewall ports,
+change system DNS, or transparently route the machine's traffic. ProxyChains
+uses a strict, single SOCKS5 hop with proxied DNS; intercepted connections fail
+if Tor is unavailable rather than falling back to a direct connection. Its
+NixOS default loopback exception remains in place for local services.
 
-1. Commit/push the configuration before cloning it; a clone needs all new modules.
-2. Install an x86_64 NixOS guest with UEFI, Secure Boot disabled, and its EFI
-   system partition mounted at `/boot`. Argos selects systemd-boot, not the
-   personal hosts' Limine configuration.
-3. Create the `impuremonad` user with a login password during installation.
-   Passwords remain mutable; this repository supplies no guest password.
-4. Clone into `/home/impuremonad/nixconfig`. Keep the checkout there: Neovim still
-   uses the existing mutable `dotfiles/nvim` link. Initialize Pi separately;
-   its configuration and runtime state are not included in this checkout.
-5. Check `system.stateVersion` against the freshly installed system's
-   `/etc/nixos/configuration.nix`. Argos currently declares `"26.11"` for a fresh
-   installation of that release. If installing another release, retain that
-   installation's state version instead; this is not a package-version selector.
+#### Wait for "Bootstrapped 100%" before testing.
+systemctl status tor
+journalctl -u tor -b --no-pager
 
-Then, from the guest checkout:
+#### Browsing: launch directly, not through proxychains/torsocks.
+tor-browser
 
-```bash
-cd /home/impuremonad/nixconfig
-# Only on a new guest without its generated hardware file:
-sudo nixos-generate-config --show-hardware-config > hosts/argos/hardware-conf.nix
-git add hosts/argos/hardware-conf.nix
-# Build first without changing the installed system.
-sudo env NIX_CONFIG='experimental-features = nix-command flakes' \
-  nixos-rebuild build --flake .#argos
+#### CLI: explicitly select the declarative config, avoiding per-user overrides.
+proxychains4 -f /etc/proxychains.conf curl https://check.torproject.org/api/ip
 
-# Activate only after that guest build succeeds.
-sudo env NIX_CONFIG='experimental-features = nix-command flakes' \
-  nixos-rebuild switch --flake .#argos
-```
+#### Tor-specific wrapper (default endpoint is 127.0.0.1:9050).
+torsocks curl https://check.torproject.org/api/ip
 
-The `git add` matters: a local Git-backed flake excludes untracked hardware
-files. Never replace an existing guest-generated hardware file with another
-host's root/EFI UUIDs, storage modules, or architecture.
+#### Prefer native SOCKS support when available; socks5h resolves names via Tor.
 
-After the first switch, flakes are enabled by the shared base module, so
-normal rebuilds use `sudo nixos-rebuild switch --flake .#argos`. At a safe
-logout boundary, select bspwm in SDDM and verify X11 session variables, the
-four bubbles, workspace movement, target copy, public/local toggling, screen
-lock, GPG graphical unlock, PipeWire keys, and VMware resolution changes.
-Keep previous Nix generations for rollback; an isolated X11 smoke or build
-does not prove the interactive VMware login.
+> IMPORTANT: the 'h' is crucial or you'll send the IP to the proxy, with the 'h' the proxy itself will resolve the DNS
+
+curl --proxy socks5h://127.0.0.1:9050 https://check.torproject.org/api/ip
+
+### Limits
+These wrappers are not a VPN, sandbox, or kill switch. They rely on
+library interception and cannot reliably cover static binaries, raw sockets,
+privileged programs, or applications with their own networking implementations.
+Tor carries TCP, not UDP/ICMP: do not expect ping, SYN/UDP scans, or arbitrary
+security tools to work through it. The daemon enables `SafeSocks` to reject
+potentially unsafe locally resolved requests (including some IP-only requests);
+use hostnames and remote DNS rather than disabling that protection. This cannot
+undo a DNS lookup an application already made. Avoid torrents, keep HTTPS enabled,
+and do not assume Tor conceals personal logins or application identifiers. Private
+VPN lab targets should use the lab VPN directly, not public Tor exits; only test
+systems you have permission to assess.
+
+# Themes
+
+## Oxocarbon dark
+
+The theme is configured per application; there is no global theming framework.
+`home/themes/oxocarbon.nix` holds the [official dark palette](https://github.com/nyoom-engineering/base16-oxocarbon)
+for native Nix themes. Existing fonts, transparency, layouts and keybindings are retained.
+
+| Application | Integration |
+| --- | --- |
+| Neovim / lualine | Official [`oxocarbon.nvim`](https://github.com/nyoom-engineering/oxocarbon.nvim), pinned in `dotfiles/nvim/lazy-lock.json` |
+| Kitty / Foot / Helix | Commit- and hash-pinned community ports linked by the [upstream ports catalog](https://github.com/nyoom-engineering/oxocarbon), fetched by each program module |
+| bat | Pinned Carbonizer TextMate theme; Home Manager rebuilds bat's theme cache at activation |
+| Yazi / tuicr | Native Nix-defined UI themes and the same TextMate theme for code previews |
+| Dolphin / Qt | Generated `OxocarbonDark.colors` and a matching qt6ct palette in `home/programs/dolphin.nix` |
+| Herdr | All custom color tokens merged in `home/programs/herdr.nix`; non-theme preferences remain in `dotfiles/herdr/config.toml` |
+| tmux | Native styling in `home/programs/tmux.nix`; avoids the upstream port's tmux 3.5 incompatibility and preserves Continuum's autosave hook |
+| Noctalia | Existing Oxocarbon community palette; GTK, btop and enabled community templates follow it |
+| Desktop accents | Mango, BSPWM, opt-in Niri/Hyprland, Dunst, Polybar, Rofi, password menus and i3lock |
