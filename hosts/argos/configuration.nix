@@ -10,6 +10,7 @@
     ../../nixos/programs/wireshark.nix
     ../../nixos/networking/openvpn.nix
     ../../nixos/networking/tor.nix
+    ../../nixos/networking/proxychains.nix
     ../../nixos/virtualisation/docker.nix
     ../../nixos/virtualisation/vmware-guest.nix
     ../../nixos/desktop/bspwm.nix

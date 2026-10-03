@@ -17,6 +17,7 @@
     ../../nixos/networking/quad9.nix
     ../../nixos/networking/openvpn.nix
     ../../nixos/networking/tor.nix
+    ../../nixos/networking/proxychains.nix
     ../../nixos/services/openssh.nix
     ../../nixos/services/tailscale.nix
     ../../nixos/programs/localsend.nix
