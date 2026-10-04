@@ -12,7 +12,6 @@
     samba
     smbmap
     cifs-utils
-    netexec
     wpscan
     exploitdb
     whatweb
