@@ -5,6 +5,8 @@
 }: {
   programs.zsh.enable = true;
 
+  programs.nix-ld.enable = true;
+
   services.locate = {
     enable = true;
     package = pkgs.plocate;
