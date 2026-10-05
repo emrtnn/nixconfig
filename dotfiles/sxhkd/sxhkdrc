@@ -36,9 +36,7 @@ super + shift + x
 super + w
     helium --app=https://web.whatsapp.com
 super + a
-    helium --app=https://chatgpt.com
-super + shift + a
-    helium --app=https://gemini.google.com
+    helium --app=https://claude.ai
 super + e
     helium --app=https://mail.proton.me
 super + shift + t
