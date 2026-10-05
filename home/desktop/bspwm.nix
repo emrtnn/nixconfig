@@ -81,7 +81,7 @@
   };
   network = pkgs.writeShellApplication {
     name = "argos-network";
-    runtimeInputs = [pkgs.python3 pkgs.curl pkgs.iproute2];
+    runtimeInputs = [pkgs.python3 pkgs.curl pkgs.iproute2 pkgs.xclip];
     text = ''exec ${pkgs.python3}/bin/python3 ${../../dotfiles/argos/network.py} "$@"'';
   };
   menu = pkgs.writeShellApplication {
