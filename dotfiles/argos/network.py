@@ -32,6 +32,8 @@ CURL_COMMAND = (
     PUBLIC_URL,
 )
 ROUTE_COMMAND = ("ip", "-j", "-4", "route", "get", "1.1.1.1")
+VPN_INTERFACE = "tun0"
+VPN_COMMAND = ("ip", "-j", "-4", "addr", "show", "dev", VPN_INTERFACE)
 
 
 def mode_path():
@@ -117,6 +119,27 @@ def route_result(data):
         return ipv4(source) if isinstance(source, str) else None
     except (ValueError, TypeError, IndexError, KeyError):
         return None
+
+
+def vpn_address():
+    try:
+        result = subprocess.run(
+            VPN_COMMAND, capture_output=True, timeout=1, check=False
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    if result.returncode != 0:
+        return None
+    try:
+        for link in json.loads(result.stdout):
+            for address in link.get("addr_info", ()):
+                if address.get("family") == "inet":
+                    local = ipv4(address.get("local"))
+                    if local:
+                        return local
+    except (ValueError, TypeError, AttributeError):
+        pass
+    return None
 
 
 def stop_child(child):
@@ -224,8 +247,29 @@ def watch(path):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="argos-network")
-    parser.add_argument("command", choices=("watch", "toggle"))
+    parser.add_argument("command", choices=("watch", "toggle", "vpn", "vpn-copy"))
     args = parser.parse_args(argv)
+    if args.command == "vpn":
+        address = vpn_address()
+        print(f"VPN {address or 'down'}")
+        return 0
+    if args.command == "vpn-copy":
+        address = vpn_address()
+        if address is None:
+            return 1
+        try:
+            subprocess.run(
+                ["xclip", "-selection", "clipboard"],
+                input=address,
+                text=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                check=True,
+            )
+        except (OSError, subprocess.CalledProcessError) as error:
+            print(f"argos-network: {error}", file=sys.stderr)
+            return 1
+        return 0
     try:
         path = mode_path()
         if args.command == "toggle":

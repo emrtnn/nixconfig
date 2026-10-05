@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Keep four detached Polybar windows on the active primary XRandR monitor."""
+"""Keep five detached Polybar windows on the active primary XRandR monitor."""
 
 import os
 import re
@@ -17,7 +17,7 @@ MONITOR_LINE = re.compile(
     r"(?P<width>\d+)/\d+x(?P<height>\d+)/\d+"
     r"(?P<x>[+-]\d+)(?P<y>[+-]\d+)\s+(?P<outputs>\S+)\s*$"
 )
-BAR_WIDTHS = {"network": 176, "workspaces": 216, "target": 208, "power": 40}
+BAR_WIDTHS = {"network": 176, "vpn": 160, "workspaces": 216, "target": 208, "power": 40}
 MONITOR_EVENTS = ("monitor_add", "monitor_remove", "monitor_geometry", "monitor_swap")
 
 
@@ -53,6 +53,7 @@ def bar_layout(width):
     power_x = width - margin - widths["power"]
     positions = {
         "network": margin,
+        "vpn": margin + widths["network"] + gap,
         "workspaces": (width - widths["workspaces"]) // 2,
         "target": power_x - gap - widths["target"],
         "power": power_x,
