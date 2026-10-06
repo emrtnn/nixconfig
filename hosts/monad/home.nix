@@ -31,7 +31,7 @@
       proton-vpn
       tor-browser
       obsidian
-      firefox
+      librewolf
       telegram-desktop
       mpv
       vesktop
