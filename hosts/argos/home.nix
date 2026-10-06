@@ -30,6 +30,7 @@
       tor-browser
       telegram-desktop
       librewolf
+      signal-desktop
     ];
     file.".face.png".source = ../../assets/.face;
     sessionVariables.BRAVE_API_KEY_FILE = "${config.home.homeDirectory}/.config/sops-nix/secrets/brave_api_key";
@@ -58,5 +59,11 @@
     };
   };
 
-  xdg.mimeApps.defaultApplications."application/pdf" = "org.gnome.Evince.desktop";
+  xdg.mimeApps.defaultApplications = {
+    "application/pdf" = "org.gnome.Evince.desktop";
+    "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
+    "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
+    "x-scheme-handler/sgnl" = "signal.desktop";
+    "x-scheme-handler/signalcaptcha" = "signal.desktop";
+  };
 }
