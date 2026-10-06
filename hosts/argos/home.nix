@@ -29,7 +29,7 @@
       proton-vpn
       tor-browser
       telegram-desktop
-      firefox
+      librewolf
     ];
     file.".face.png".source = ../../assets/.face;
     sessionVariables.BRAVE_API_KEY_FILE = "${config.home.homeDirectory}/.config/sops-nix/secrets/brave_api_key";

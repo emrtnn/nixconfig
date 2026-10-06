@@ -62,7 +62,7 @@
       allowedTCPPorts = [80 443];
     };
     extraHosts = ''
-      10.129.229.66 2million.htb
+      10.129.158.16 nexus.htb
     '';
   };
 
