@@ -42,8 +42,12 @@
       enable = true;
       allowedTCPPorts = [80 443];
     };
+    # Lab hosts. /etc/hosts is a writable copy (see environment.etc.hosts.mode),
+    # so ad-hoc entries can be added with `sudo` and are reset on rebuild.
     extraHosts = ''
-      10.129.156.250 reactor.htb
+      10.129.158.16 nexus.htb
+      10.129.158.16 git.nexus.htb
+      10.129.158.16 billing.nexus.htb
     '';
   };
 
@@ -117,6 +121,10 @@
   };
 
   environment = {
+    # Copy /etc/hosts instead of symlinking to the read-only store,
+    # so it can be edited at runtime (overwritten on next rebuild).
+    etc.hosts.mode = "0644";
+
     systemPackages = lib.mkAfter (with pkgs; [
       rocmPackages.rocm-core
       rocmPackages.clr

@@ -61,10 +61,16 @@
       enable = true;
       allowedTCPPorts = [80 443];
     };
+    # Lab hosts. /etc/hosts is a writable copy (see environment.etc.hosts.mode),
+    # so ad-hoc entries can be added with `sudo` and are reset on rebuild.
     extraHosts = ''
       10.129.158.16 nexus.htb
     '';
   };
+
+  # Copy /etc/hosts instead of symlinking to the read-only store,
+  # so it can be edited at runtime (overwritten on next rebuild).
+  environment.etc.hosts.mode = "0644";
 
   # Retain the installer-created password database; no declarative credentials.
   users.mutableUsers = true;
