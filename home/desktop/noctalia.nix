@@ -16,9 +16,7 @@
       audio = {
         enable_overdrive = false;
         enable_sounds = false;
-        notification_sound = "";
         sound_volume = 0.5;
-        volume_change_sound = "";
       };
       backdrop = {
         blur_intensity = 0.5;
@@ -160,7 +158,6 @@
         main_axis_padding = 16;
         margin_edge = 8;
         margin_ends = 0;
-        monitors = [];
         pinned = [];
         position = "bottom";
         radius = 16;
@@ -559,8 +556,8 @@
         wallpaper_scheme = "m3-content";
         templates = {
           # Qt and Yazi are owned by their Home Manager modules, not templates.
-          builtin_ids = ["btop" "gtk3" "gtk4"];
-          community_ids = ["pi-agent" "discord" "papirus-icons"];
+          builtin_ids = ["btop" "gtk3" "gtk4" "qt"];
+          community_ids = ["discord" "papirus-icons" "bat"];
           enable_builtin_templates = true;
           enable_community_templates = true;
         };
