@@ -27,5 +27,6 @@
     evil-winrm
     openssl
     python3Packages.impacket
+    exiftool
   ];
 }
