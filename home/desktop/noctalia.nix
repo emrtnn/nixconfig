@@ -59,7 +59,7 @@
           shadow = false;
           show_on_workspace_switch = true;
           smart_auto_hide = false;
-          start = ["date" "clock" "spacer_3" "group:g2"];
+          start = ["date" "clock" "spacer_3" "group:g2" "spacer_6" "recorder" "spacer_7" "widget" "widget_2"];
           thickness = 35;
           widget_spacing = 6;
           dead_zone = {};
@@ -317,7 +317,7 @@
       plugin_settings = {};
       plugins = {
         auto_update = true;
-        enabled = ["emrtnn/pass" "noctalia/translator" "noctalia/screen_recorder"];
+        enabled = ["emrtnn/pass" "noctalia/translator" "noctalia/screen_recorder" "3ri4ng0ld/ip-monitor"];
       };
       shell = {
         app_icon_color = "on_surface";
@@ -645,6 +645,10 @@
           stat = "ram_pct";
           type = "sysmon";
         };
+        recorder = {
+          capsule = true;
+          type = "noctalia/screen_recorder:recorder";
+        };
         spacer = {
           interactive = false;
           type = "spacer";
@@ -661,9 +665,31 @@
         spacer_5 = {
           type = "spacer";
         };
+        spacer_6 = {
+          length = 8;
+          type = "spacer";
+        };
+        spacer_7 = {
+          type = "spacer";
+        };
         temp = {
           stat = "cpu_temp";
           type = "sysmon";
+        };
+        # 3ri4ng0ld/ip-monitor: local LAN IP and VPN (tun0) IP.
+        widget = {
+          capsule = true;
+          glyph_color = "primary";
+          iface = "enp195s0";
+          type = "3ri4ng0ld/ip-monitor:widget";
+        };
+        widget_2 = {
+          capsule = true;
+          capsule_padding = 8;
+          glyph = "box";
+          glyph_color = "secondary";
+          iface = "tun0";
+          type = "3ri4ng0ld/ip-monitor:widget";
         };
         workspaces = {
           hide_when_empty = true;
