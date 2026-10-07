@@ -13,6 +13,7 @@ A perpetually work-in-progress declarative configuration.
 - **terminal**: Foot on personal hosts; Kitty on Argos
 - **browser**: Helium (default) Firefox (secondary)
 - **secrets**: Home Manager sops-nix + age; each host declares its secret source and external key
+- **signing**: jj + git commits signed with each host's `~/.ssh/id_ed25519` through gcr-ssh-agent; `gpg` is Sequoia's Chameleon on top of GnuPG's agent
 
 ## Hosts
 
@@ -67,6 +68,30 @@ Development tools and Pi/OMP/tmux are explicitly selected by every host.
 The age key stays outside the repository at
 `/home/impuremonad/.config/sops/age/keys.txt`. Builds do not decrypt secrets or
 replace account passwords. No unused system-level SOPS defaults are declared.
+
+# Keys and signing
+
+`nixos/security/ssh-agent.nix` runs gcr-ssh-agent: it serves every key in
+`~/.ssh` and asks for passphrases graphically. `nixos/security/gnupg.nix` keeps
+GnuPG's agent (pinentry-qt, passphrase cache) for OpenPGP only and puts
+Sequoia's Chameleon first on `PATH` as `gpg`/`gpg2`, which `pass` uses. Commands the
+Chameleon lacks (`--edit-key`, `--quick-set-expire`, ...) remain available as
+`gpg-g10code`; `sq` is installed too. Certificates imported with the Chameleon
+land in `~/.local/share/pgp.cert.d`, which GnuPG does not read; sync them with
+`gpg --export | gpg-g10code --import`.
+
+`home/security/ssh-signing.nix` signs with `~/.ssh/id_ed25519.pub`. Before
+the first rebuild on a host:
+
+```bash
+ssh-keygen -t ed25519 -C "$(hostname)"   # with a passphrase
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname)" --type authentication
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname)" --type signing
+```
+
+then add an `emrtnn@proton.me <public key>` line to `allowedSigners` in
+`home/security/ssh-signing.nix`, so every host can verify the others' signatures. Signing keys need the
+`admin:ssh_signing_key` scope: `gh auth refresh -h github.com -s admin:ssh_signing_key`.
 
 # Networking
 

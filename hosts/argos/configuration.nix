@@ -7,6 +7,8 @@
     ../../nixos/desktop/fonts.nix
     ../../nixos/audio/pipewire.nix
     ../../nixos/security/gnome-keyring.nix
+    ../../nixos/security/ssh-agent.nix
+    ../../nixos/security/gnupg.nix
     ../../nixos/programs/wireshark.nix
     ../../nixos/networking/openvpn.nix
     ../../nixos/networking/tor.nix
@@ -23,18 +25,6 @@
     description = "impuremonad";
     shell = pkgs.zsh;
     extraGroups = ["networkmanager" "wheel" "video" "render" "wireshark" "docker"];
-  };
-
-  programs.ssh.startAgent = false;
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-qt;
-    settings = {
-      default-cache-ttl = 7200;
-      max-cache-ttl = 14400;
-    };
   };
 
   services.displayManager = {
