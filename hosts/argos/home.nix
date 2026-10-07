@@ -15,6 +15,7 @@
     ../../home/programs/tmux.nix
     ../../home/security/sops.nix
     ../../home/security/password-store.nix
+    ../../home/security/ssh-signing.nix
     ../../home/desktop/bspwm.nix
   ];
 
@@ -46,17 +47,9 @@
     name = "emrtnn";
     email = "emrtnn@proton.me";
   };
-  programs.jujutsu.settings = {
-    user = {
-      name = "emrtnn";
-      email = "emrtnn@proton.me";
-    };
-    signing = {
-      backend = "gpg";
-      key = "197CB7FC535093C4";
-      sign-all = true;
-      behavior = "own";
-    };
+  programs.jujutsu.settings.user = {
+    name = "emrtnn";
+    email = "emrtnn@proton.me";
   };
 
   xdg.mimeApps.defaultApplications = {

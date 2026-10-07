@@ -6,6 +6,8 @@
     ../../nixos/desktop/fonts.nix
     ../../nixos/audio/pipewire.nix
     ../../nixos/security/gnome-keyring.nix
+    ../../nixos/security/ssh-agent.nix
+    ../../nixos/security/gnupg.nix
     ../../nixos/programs/wireshark.nix
     ../../nixos/virtualisation/docker.nix
     ../../nixos/boot/quiet-boot.nix
@@ -37,19 +39,7 @@
     networkmanager.wifi.powersave = false;
   };
 
-  programs = {
-    ssh.startAgent = false;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-qt;
-      settings = {
-        default-cache-ttl = 7200;
-        max-cache-ttl = 14400;
-      };
-    };
-    silentSDDM.profileIcons.impuremonad = ../../assets/.face;
-  };
+  programs.silentSDDM.profileIcons.impuremonad = ../../assets/.face;
 
   boot = {
     loader = {
