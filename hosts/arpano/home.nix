@@ -14,7 +14,7 @@
     ../../home/programs/pi.nix
     ../../home/programs/tmux.nix
     ../../home/security/sops.nix
-    ../../home/security/password-store.nix
+    ../../home/security/keepass.nix
     ../../home/security/ssh-signing.nix
     ../../home/programs/onlyoffice.nix
     ../../home/desktop/mango.nix
@@ -31,7 +31,7 @@
       proton-vpn
       tor-browser
       obsidian
-      librewolf
+      (librewolf.override {nativeMessagingHosts = [keepassxc];})
       telegram-desktop
       mpv
       vesktop

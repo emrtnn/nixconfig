@@ -73,7 +73,6 @@
       if [[ "$1" == *-edit ]]; then exec ksnip --edit "$file"; fi
     '';
   };
-  passWithOtp = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
   target = pkgs.writeShellApplication {
     name = "argos-target";
     runtimeInputs = [pkgs.python3 pkgs.rofi pkgs.xclip];
@@ -86,7 +85,7 @@
   };
   menu = pkgs.writeShellApplication {
     name = "argos-menu";
-    runtimeInputs = [pkgs.rofi pkgs.bspwm pkgs.systemd pkgs.pavucontrol pkgs.networkmanagerapplet pkgs.arandr passWithOtp target];
+    runtimeInputs = [pkgs.rofi pkgs.bspwm pkgs.systemd pkgs.pavucontrol pkgs.networkmanagerapplet pkgs.arandr pkgs.keepassxc target];
     text = builtins.readFile ../../dotfiles/argos/menu.sh;
   };
   polybarLauncher = pkgs.writeShellApplication {

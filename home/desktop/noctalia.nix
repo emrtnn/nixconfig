@@ -317,7 +317,7 @@
       plugin_settings = {};
       plugins = {
         auto_update = true;
-        enabled = ["emrtnn/pass" "noctalia/translator" "noctalia/screen_recorder" "3ri4ng0ld/ip-monitor"];
+        enabled = ["noctalia/translator" "noctalia/screen_recorder" "3ri4ng0ld/ip-monitor"];
       };
       shell = {
         app_icon_color = "on_surface";

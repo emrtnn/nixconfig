@@ -23,9 +23,7 @@ controls() {
     Audio) pavucontrol ;;
     Network) nm-connection-editor ;;
     Displays) arandr ;;
-    Passwords)
-      passmenu -i -l 10 -p Passwords -fn 'GeistMono Nerd Font Mono-10' -nb '#161616' -nf '#f2f4f8' -sb '#78a9ff' -sf '#161616'
-      ;;
+    Passwords) keepassxc ;;
     Target) argos-target menu ;;
     Power) argos-menu power ;;
     *) return 0 ;;

@@ -14,7 +14,7 @@
     ../../home/programs/pi.nix
     ../../home/programs/tmux.nix
     ../../home/security/sops.nix
-    ../../home/security/password-store.nix
+    ../../home/security/keepass.nix
     ../../home/security/ssh-signing.nix
     ../../home/desktop/bspwm.nix
   ];
@@ -30,7 +30,7 @@
       proton-vpn
       tor-browser
       telegram-desktop
-      librewolf
+      (librewolf.override {nativeMessagingHosts = [keepassxc];})
       signal-desktop
     ];
     file.".face.png".source = ../../assets/.face;
