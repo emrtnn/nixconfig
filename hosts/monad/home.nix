@@ -49,23 +49,26 @@
     secrets.brave_api_key = {};
   };
 
-  programs.git.settings.user = {
-    name = "emrtnn";
-    email = "emrtnn@proton.me";
-  };
-  programs.jujutsu.settings.user = {
-    name = "emrtnn";
-    email = "emrtnn@proton.me";
-  };
-
-  programs.noctalia.settings = {
-    location = {
-      address = "Granada, Spain";
-      auto_locate = false;
-      custom_schedule = false;
-      sunrise = "";
-      sunset = "";
+  programs = {
+    git.settings.user = {
+      name = "emrtnn";
+      email = "emrtnn@proton.me";
     };
+    jujutsu.settings.user = {
+      name = "emrtnn";
+      email = "emrtnn@proton.me";
+    };
+
+    noctalia.settings = {
+      location = {
+        address = "Granada, Spain";
+        auto_locate = false;
+        custom_schedule = false;
+        sunrise = "";
+        sunset = "";
+      };
+    };
+
     lockscreen_widgets = {
       enabled = true;
       schema_version = 2;
