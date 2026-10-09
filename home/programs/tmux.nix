@@ -93,6 +93,7 @@ in {
       bind s split-window -v -c '#{pane_current_path}'
       bind p display-popup -E -w 80% -h 80% -d '#{pane_current_path}'
       bind r source-file ~/.config/tmux/tmux.conf \; display-message 'tmux configuration reloaded'
+      bind x kill-pane
 
       # Bind 'e' to sessions tree explorer since its default keybind was 's'
       bind e choose-tree -s

@@ -43,15 +43,8 @@
     networkmanager.wifi.powersave = false;
     firewall = {
       enable = true;
-      allowedTCPPorts = [80 443];
+      allowedTCPPorts = [80 443 4444];
     };
-    # Lab hosts. /etc/hosts is a writable copy (see environment.etc.hosts.mode),
-    # so ad-hoc entries can be added with `sudo` and are reset on rebuild.
-    extraHosts = ''
-      10.129.158.16 nexus.htb
-      10.129.158.16 git.nexus.htb
-      10.129.158.16 billing.nexus.htb
-    '';
   };
 
   programs.silentSDDM.profileIcons.impuremonad = ../../assets/.face;
