@@ -17,7 +17,6 @@
     whatweb
     wordlists
     metasploit
-    gobuster
     js-beautify
     sqlmap
     pspy
@@ -28,5 +27,7 @@
     openssl
     python3Packages.impacket
     exiftool
+    padbuster
+    metasploit
   ];
 }
