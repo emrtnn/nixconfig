@@ -3,7 +3,7 @@
     git = {
       enable = true;
 
-      # Every commit is signed with the host's SSH key (served by gcr-ssh-agent).
+      # Every commit is signed with the host's SSH key from ~/.ssh/id_ed25519.
       signing = {
         format = "ssh";
         key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
@@ -12,6 +12,7 @@
         # Written to ~/.config/git/allowed_signers, which jj reads too.
         allowedSigners = ''
           emrtnn@proton.me ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINq9LHmDASE2/Wn0/cqtS4HNOB5m4r26QeD7pgZiX8di arpano
+          emrtnn@proton.me ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFnuJ+p8b8WEZEMKFr/399lyyTqU2xJIEuljT+fBMyJy monad
         '';
       };
 

@@ -13,7 +13,7 @@
     ../../nixos/security/ssh-agent.nix
     ../../nixos/programs/wireshark.nix
     ../../nixos/virtualisation/docker.nix
-    ../../nixos/boot/quiet-boot.nix
+    ../../nixos/boot/plymouth.nix
     ../../nixos/system/zram.nix
     ../../nixos/networking/quad9.nix
     ../../nixos/networking/openvpn.nix
@@ -55,6 +55,19 @@
       limine.enable = true;
       efi.canTouchEfiVariables = true;
     };
+
+    # Quiet, splash-screen boot driving the Plymouth theme.
+    kernelParams = lib.mkBefore [
+      "quiet"
+      "splash"
+      "boot.initrd.verbose=false"
+    ];
+    initrd = {
+      enable = true;
+      systemd.enable = true;
+      verbose = false;
+    };
+    consoleLogLevel = 0;
   };
 
   services = {
