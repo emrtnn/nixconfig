@@ -12,56 +12,63 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/mapper/cryptroot";
-    fsType = "btrfs";
-    options = ["subvol=@"];
+  boot = {
+    initrd = {
+      availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+      kernelModules = [];
+      luks.devices."cryptroot" = {
+        device = "/dev/disk/by-uuid/3e312bff-651d-4ac0-91a2-89165825e544";
+        allowDiscards = true;
+      };
+    };
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
   };
-
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/3e312bff-651d-4ac0-91a2-89165825e544";
-  boot.initrd.luks.devices."cryptroot".allowDiscards = true;
 
   services.fstrim.enable = true;
 
-  fileSystems."/home" = {
-    device = "/dev/mapper/cryptroot";
-    fsType = "btrfs";
-    options = ["subvol=@home"];
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = ["subvol=@" "compress=zstd" "noatime"];
+    };
 
-  fileSystems."/nix" = {
-    device = "/dev/mapper/cryptroot";
-    fsType = "btrfs";
-    options = ["subvol=@nix"];
-  };
+    "/home" = {
+      device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = ["subvol=@home" "compress=zstd" "noatime"];
+    };
 
-  fileSystems."/var/log" = {
-    device = "/dev/mapper/cryptroot";
-    fsType = "btrfs";
-    options = ["subvol=@log"];
-  };
+    "/nix" = {
+      device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = ["subvol=@nix" "compress=zstd" "noatime"];
+    };
 
-  fileSystems."/swap" = {
-    device = "/dev/mapper/cryptroot";
-    fsType = "btrfs";
-    options = ["subvol=@swap"];
-  };
+    "/var/log" = {
+      device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = ["subvol=@log" "compress=zstd" "noatime"];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/12CE-A600";
-    fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
+    "/swap" = {
+      device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = ["subvol=@swap" "compress=zstd" "noatime" "nofail"];
+    };
 
-  fileSystems."/data" = {
-    device = "/dev/mapper/data";
-    fsType = "btrfs";
-    options = ["subvol=@data" "compress=zstd" "noatime" "nofail"];
+    "/boot" = {
+      device = "/dev/disk/by-uuid/12CE-A600";
+      fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077"];
+    };
+
+    "/data" = {
+      device = "/dev/mapper/data";
+      fsType = "btrfs";
+      options = ["subvol=@data" "compress=zstd" "noatime" "nofail"];
+    };
   };
 
   environment.etc.crypttab.text = ''
