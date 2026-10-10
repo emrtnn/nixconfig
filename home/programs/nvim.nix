@@ -36,6 +36,9 @@
     cmake-lint
     cmake-format
 
+    # Debugging: GDB's native DAP interpreter backs nvim-dap (includes gdbserver)
+    gdb
+
     # Rust
     rust-analyzer
     cargo
