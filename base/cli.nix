@@ -22,5 +22,6 @@
     gnumake
     cmake
     e2fsprogs
+    parted
   ]);
 }
