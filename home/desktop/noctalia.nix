@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  osConfig,
   ...
 }: {
   programs.noctalia = {
@@ -680,7 +681,10 @@
         widget = {
           capsule = true;
           glyph_color = "primary";
-          iface = "enp195s0";
+          iface =
+            if osConfig.networking.hostName == "monad"
+            then "enp6s0"
+            else "enp195s0";
           type = "3ri4ng0ld/ip-monitor:widget";
         };
         widget_2 = {
