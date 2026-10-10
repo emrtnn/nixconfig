@@ -1,9 +1,15 @@
 _: {
-  # OpenSSH's native agent, managed by NixOS. Starts the agent on login and
-  # exports SSH_AUTH_SOCK for the session. Replaces the old gcr-ssh-agent setup.
-  programs.ssh.startAgent = true;
+  # Keyring-backed SSH agent: GNOME Keyring stores the key passphrase and
+  # unlocks it at login, so git commit/push/ssh never re-prompt.
+  services.gnome.gcr-ssh-agent.enable = true;
 
-  # gnome-keyring enables gcr-ssh-agent by default, which conflicts with the
-  # native agent (only one SSH agent allowed). Turn it off.
-  services.gnome.gcr-ssh-agent.enable = false;
+  # Make sure the native OpenSSH agent stays off on every host (it starts empty
+  # each boot and would prompt for the passphrase on every signed commit).
+  programs.ssh.startAgent = false;
+
+  environment.extraInit = ''
+    if [ -z "$SSH_AUTH_SOCK" ]; then
+      export SSH_AUTH_SOCK="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/gcr/ssh"
+    fi
+  '';
 }

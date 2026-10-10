@@ -3,7 +3,7 @@
     git = {
       enable = true;
 
-      # Every commit is signed with the host's SSH key from ~/.ssh/id_ed25519.
+      # Every commit is signed with the host's SSH key (served by gcr-ssh-agent).
       signing = {
         format = "ssh";
         key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
