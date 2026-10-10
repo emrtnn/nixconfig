@@ -43,6 +43,7 @@ hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(app("helium --app=https://chatgpt.com
 hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd(app("helium --app=https://gemini.google.com")))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(app("thunderbird")))
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(app("Telegram")))
+hl.bind(mainMod .. " + ALT + P", hl.dsp.exec_cmd(app("keepassxc")))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(app("helium --app=https://calendar.google.com")))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(app("helium --app=https://youtube.com")))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(app("helium --app=https://notion.so")))

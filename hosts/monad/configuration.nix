@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./hardware-conf.nix
+    ./hardware-configuration.nix
     ../../base/base.nix
     ../../nixos/desktop/session-support.nix
     ../../nixos/desktop/fonts.nix
@@ -14,7 +14,7 @@
     ../../nixos/security/ssh-agent.nix
     ../../nixos/programs/wireshark.nix
     ../../nixos/virtualisation/docker.nix
-    ../../nixos/boot/quiet-boot.nix
+    ../../nixos/boot/plymouth.nix
     ../../nixos/system/zram.nix
     ../../nixos/networking/quad9.nix
     ../../nixos/networking/openvpn.nix
@@ -58,6 +58,18 @@
       limine.enable = true;
       efi.canTouchEfiVariables = true;
     };
+
+    kernelParams = lib.mkBefore [
+      "quiet"
+      "splash"
+    ];
+
+    initrd = {
+      enable = true;
+      systemd.enable = true;
+      verbose = false;
+    };
+    consoleLogLevel = 0;
   };
 
   services = {

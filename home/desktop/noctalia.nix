@@ -316,7 +316,7 @@
       };
       plugin_settings = {};
       plugins = {
-        auto_update = true;
+        auto_update = "all";
         enabled = ["noctalia/translator" "noctalia/screen_recorder" "3ri4ng0ld/ip-monitor"];
       };
       shell = {
