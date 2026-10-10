@@ -14,7 +14,7 @@
     ../../home/programs/pi.nix
     ../../home/programs/tmux.nix
     ../../home/security/sops.nix
-    ../../home/security/password-store.nix
+    ../../home/security/keepass.nix
     ../../home/security/ssh-signing.nix
     ../../home/programs/onlyoffice.nix
     ../../home/desktop/mango.nix
@@ -31,7 +31,7 @@
       proton-vpn
       tor-browser
       obsidian
-      librewolf
+      (librewolf.override {nativeMessagingHosts = [keepassxc];})
       telegram-desktop
       mpv
       vesktop
@@ -49,26 +49,23 @@
     secrets.brave_api_key = {};
   };
 
-  programs = {
-    git.settings.user = {
-      name = "emrtnn";
-      email = "emrtnn@proton.me";
-    };
-    jujutsu.settings.user = {
-      name = "emrtnn";
-      email = "emrtnn@proton.me";
-    };
+  programs.git.settings.user = {
+    name = "emrtnn";
+    email = "emrtnn@proton.me";
+  };
+  programs.jujutsu.settings.user = {
+    name = "emrtnn";
+    email = "emrtnn@proton.me";
+  };
 
-    noctalia.settings = {
-      location = {
-        address = "Granada, Spain";
-        auto_locate = false;
-        custom_schedule = false;
-        sunrise = "";
-        sunset = "";
-      };
+  programs.noctalia.settings = {
+    location = {
+      address = "Granada, Spain";
+      auto_locate = false;
+      custom_schedule = false;
+      sunrise = "";
+      sunset = "";
     };
-
     lockscreen_widgets = {
       enabled = true;
       schema_version = 2;
