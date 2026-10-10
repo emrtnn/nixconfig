@@ -177,7 +177,7 @@ super + button4
 super + button5
     bspc desktop -f next.local.occupied
 
-# Screenshots, password store, and persistent pentest target.
+# Screenshots and persistent pentest target.
 super + s
     nixconfig-screenshot region-edit
 super + shift + s
@@ -186,8 +186,6 @@ Print
     nixconfig-screenshot region-copy
 shift + Print
     nixconfig-screenshot full-save
-super + alt + p
-    passmenu -i -l 10 -p Passwords -fn 'GeistMono Nerd Font Mono-10' -nb '#161616' -nf '#f2f4f8' -sb '#78a9ff' -sf '#161616'
 super + alt + t
     argos-target menu
 

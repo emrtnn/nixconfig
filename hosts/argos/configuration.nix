@@ -8,7 +8,6 @@
     ../../nixos/audio/pipewire.nix
     ../../nixos/security/gnome-keyring.nix
     ../../nixos/security/ssh-agent.nix
-    ../../nixos/security/gnupg.nix
     ../../nixos/programs/wireshark.nix
     ../../nixos/networking/openvpn.nix
     ../../nixos/networking/tor.nix

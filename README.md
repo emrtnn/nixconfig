@@ -13,7 +13,8 @@ A perpetually work-in-progress declarative configuration.
 - **terminal**: Foot on personal hosts; Kitty on Argos
 - **browser**: Helium (default) Firefox (secondary)
 - **secrets**: Home Manager sops-nix + age; each host declares its secret source and external key
-- **signing**: jj + git commits signed with each host's `~/.ssh/id_ed25519` through gcr-ssh-agent; `gpg` is Sequoia's Chameleon on top of GnuPG's agent
+- **signing**: jj + git commits signed with each host's `~/.ssh/id_ed25519` through gcr-ssh-agent
+- OpenPGP is Sequoia's `sq`, no GnuPG
 
 ## Hosts
 
@@ -59,10 +60,10 @@ The flake factory receives only that single system entry point; it does not
 discover hosts, infer hardware, or independently select a user composition.
 
 `base/base.nix` provides Nix settings, locale, system CLI utilities and shared
-Home Manager shell/editor/VCS utilities. It declares no account, desktop,
-secrets, signing policy, Docker, gaming or coding-agent suite. Hosts declare
-their account and access groups, GPG/SSH-agent policy, author identity, signing,
-secret locations, application choices and machine-specific desktop settings.
+Home Manager shell/editor/VCS utilities, including SSH commit signing for Git
+and jj. It declares no account, desktop, secrets, Docker, gaming or
+coding-agent suite. Hosts declare their account and access groups,
+OpenPGP/SSH-agent policy, author identity, secret locations, application choices and machine-specific desktop settings.
 Development tools and Pi/OMP/tmux are explicitly selected by every host.
 
 The age key stays outside the repository at
@@ -72,26 +73,17 @@ replace account passwords. No unused system-level SOPS defaults are declared.
 # Keys and signing
 
 `nixos/security/ssh-agent.nix` runs gcr-ssh-agent: it serves every key in
-`~/.ssh` and asks for passphrases graphically. `nixos/security/gnupg.nix` keeps
-GnuPG's agent (pinentry-qt, passphrase cache) for OpenPGP only and puts
-Sequoia's Chameleon first on `PATH` as `gpg`/`gpg2`, which `pass` uses. Commands the
-Chameleon lacks (`--edit-key`, `--quick-set-expire`, ...) remain available as
-`gpg-g10code`; `sq` is installed too. Certificates imported with the Chameleon
-land in `~/.local/share/pgp.cert.d`, which GnuPG does not read; sync them with
-`gpg --export | gpg-g10code --import`.
+`~/.ssh` and asks for passphrases graphically.
 
-`home/security/ssh-signing.nix` signs with `~/.ssh/id_ed25519.pub`. Before
-the first rebuild on a host:
+OpenPGP is handled by Sequoia's `sq` alone (`home/security/sequoia.nix`); GnuPG
+and `gpg-agent` are not installed. Certificates live in `~/.local/share/pgp.cert.d`
+and secret keys in sq's key store, `~/.local/share/sequoia/keystore`, which asks
+for key passwords on the terminal. `~/.config/sequoia/sq/config.toml` is generated
+from Nix: new keys and password-only encryption use RFC 9580 (v6), which GnuPG
+cannot read. Run `sq config inspect paths` to see the files in use.
 
-```bash
-ssh-keygen -t ed25519 -C "$(hostname)"   # with a passphrase
-gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname)" --type authentication
-gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname)" --type signing
-```
-
-then add an `emrtnn@proton.me <public key>` line to `allowedSigners` in
-`home/security/ssh-signing.nix`, so every host can verify the others' signatures. Signing keys need the
-`admin:ssh_signing_key` scope: `gh auth refresh -h github.com -s admin:ssh_signing_key`.
+Git (`home/programs/git.nix`) and jj (`home/programs/jujutsu.nix`) sign every
+commit with `~/.ssh/id_ed25519.pub`. Before the first rebuild on a host:
 
 # Networking
 
@@ -158,4 +150,4 @@ for native Nix themes. Existing fonts, transparency, layouts and keybindings are
 | Herdr | All custom color tokens merged in `home/programs/herdr.nix`; non-theme preferences remain in `dotfiles/herdr/config.toml` |
 | tmux | Native styling in `home/programs/tmux.nix`; avoids the upstream port's tmux 3.5 incompatibility and preserves Continuum's autosave hook |
 | Noctalia | Existing Oxocarbon community palette; GTK, btop and enabled community templates follow it |
-| Desktop accents | Mango, BSPWM, opt-in Niri/Hyprland, Dunst, Polybar, Rofi, password menus and i3lock |
+| Desktop accents | Mango, BSPWM, opt-in Niri/Hyprland, Dunst, Polybar, Rofi and i3lock |

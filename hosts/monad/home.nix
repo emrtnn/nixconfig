@@ -15,7 +15,6 @@
     ../../home/programs/tmux.nix
     ../../home/security/sops.nix
     ../../home/security/keepass.nix
-    ../../home/security/ssh-signing.nix
     ../../home/programs/onlyoffice.nix
     ../../home/desktop/mango.nix
   ];
@@ -36,6 +35,7 @@
       mpv
       vesktop
       stremio-linux-shell
+      sequoia-sq
     ];
     file.".face.png".source = ../../assets/.face;
     sessionVariables = {
