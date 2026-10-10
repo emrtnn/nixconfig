@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-conf.nix
     ../../base/base.nix
@@ -16,6 +21,7 @@
     ../../nixos/networking/openvpn.nix
     ../../nixos/networking/tor.nix
     ../../nixos/networking/proxychains.nix
+    ../../nixos/networking/syncthing.nix
     ../../nixos/services/openssh.nix
     ../../nixos/services/tailscale.nix
     ../../nixos/programs/localsend.nix
@@ -35,31 +41,24 @@
 
   networking = {
     hostName = "monad";
-    firewall.enable = true;
     networkmanager.wifi.powersave = false;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [80 443 4444];
+    };
   };
 
   programs.silentSDDM.profileIcons.impuremonad = ../../assets/.face;
 
   boot = {
+    # Zen kernel: desktop-tuned scheduler/latency, good fit for a Ryzen 5 3600
+    # gaming desktop. The NVIDIA module is built against it automatically.
+    kernelPackages = pkgs.linuxPackages_zen;
     loader = {
       systemd-boot.enable = false;
+      limine.enable = true;
       efi.canTouchEfiVariables = true;
-      limine = {
-        enable = true;
-        # This host has a 196M EFI partition, so keeping multiple initrds
-        # around under /boot/limine quickly exhausts the available space.
-        maxGenerations = 2;
-        extraEntries = ''
-          /Windows 11
-            protocol: efi_chainload
-            image_path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
-        '';
-      };
     };
-
-    kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = ["nvidia-drm.modeset=1"];
   };
 
   services = {
@@ -72,21 +71,40 @@
   };
 
   hardware = {
+    # Ryzen 5 3600 (Zen 2)
     cpu.amd.updateMicrocode = true;
+
+    enableRedistributableFirmware = true;
+
+    # RTX 2070 Super (Turing): supported by NVIDIA's open kernel modules.
     nvidia = {
-      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       open = true;
-      powerManagement = {
-        enable = false;
-        finegrained = false;
-      };
+      modesetting.enable = true; # also sets nvidia-drm.modeset=1 / fbdev=1
+      # Saves VRAM to /tmp on suspend so the session survives resume.
+      powerManagement.enable = true;
+      # Fine-grained (RTD3) is only for PRIME laptops.
+      powerManagement.finegrained = false;
       nvidiaSettings = true;
     };
+
+    # VA-API -> NVDEC for hardware video decode (browsers, mpv).
+    graphics.extraPackages = [pkgs.nvidia-vaapi-driver];
   };
 
-  environment.sessionVariables = {
-    WLR_DRM_DEVICES = "/dev/dri/card1";
-    WLR_DRM_NO_ATOMIC = "1";
+  environment = {
+    # Copy /etc/hosts instead of symlinking to the read-only store,
+    # so it can be edited at runtime (overwritten on next rebuild).
+    etc.hosts.mode = "0644";
+
+    systemPackages = lib.mkAfter (with pkgs; [
+      nvtopPackages.nvidia
+    ]);
+
+    sessionVariables = {
+      LIBVA_DRIVER_NAME = "nvidia";
+      NVD_BACKEND = "direct";
+    };
   };
 
   system = {
