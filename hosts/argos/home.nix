@@ -15,7 +15,6 @@
     ../../home/programs/tmux.nix
     ../../home/security/sops.nix
     ../../home/security/keepass.nix
-    ../../home/security/ssh-signing.nix
     ../../home/desktop/bspwm.nix
   ];
 
@@ -32,6 +31,7 @@
       telegram-desktop
       (librewolf.override {nativeMessagingHosts = [keepassxc];})
       signal-desktop
+      sequoia-sq
     ];
     file.".face.png".source = ../../assets/.face;
     sessionVariables.BRAVE_API_KEY_FILE = "${config.home.homeDirectory}/.config/sops-nix/secrets/brave_api_key";

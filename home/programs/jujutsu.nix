@@ -1,4 +1,4 @@
-_: {
+{config, ...}: {
   programs.jujutsu = {
     enable = true;
 
@@ -22,6 +22,14 @@ _: {
       git = {
         default-branch = "master";
         colocate = true;
+      };
+
+      # Same SSH key and allowed signers as Git (home/programs/git.nix).
+      signing = {
+        backend = "ssh";
+        behavior = "own";
+        inherit (config.programs.git.signing) key;
+        backends.ssh.allowed-signers = "${config.xdg.configHome}/git/allowed_signers";
       };
     };
   };

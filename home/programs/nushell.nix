@@ -36,10 +36,6 @@ _: {
       CARAPACE_BRIDGES = "'zsh,fish,bash,inshellisense'";
     };
 
-    extraEnv = ''
-      $env.GPG_TTY = (tty)
-    '';
-
     extraConfig = ''
       # --- History & Behavior ---
       $env.config.history.file_format = "sqlite"
