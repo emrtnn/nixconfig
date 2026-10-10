@@ -343,7 +343,7 @@
         niri_overview_type_to_launch_enabled = false;
         offline_mode = false;
         password_style = "default";
-        polkit_agent = false;
+        polkit_agent = true;
         popup_borders = true;
         popup_shadows = false;
         screen_time_enabled = false;
