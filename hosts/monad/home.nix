@@ -36,6 +36,8 @@
       vesktop
       stremio-linux-shell
       sequoia-sq
+      blender
+      blender
     ];
     file.".face.png".source = ../../assets/.face;
     sessionVariables = {
