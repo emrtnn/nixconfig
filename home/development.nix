@@ -7,5 +7,6 @@
     valgrind
     man-pages
     man-pages-posix
+    gdb
   ];
 }
