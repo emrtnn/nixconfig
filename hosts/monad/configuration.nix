@@ -35,7 +35,7 @@
     isNormalUser = true;
     description = "impuremonad";
     shell = pkgs.zsh;
-    extraGroups = ["networkmanager" "wheel" "video" "render" "wireshark" "docker" "gamemode"];
+    extraGroups = ["networkmanager" "wheel" "video" "render" "wireshark" "docker"];
   };
 
   networking = {
