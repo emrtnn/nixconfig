@@ -121,9 +121,9 @@ window-rule {
     opacity 1.0
 }
 
-// Swappy: open floating with focus
+// Satty: open floating with focus
 window-rule {
-    match app-id=r#"^swappy$"#
+    match app-id=r#"^com\.gabm\.satty$"#
     open-floating true
     open-focused true
 }
@@ -185,8 +185,8 @@ binds {
     Super+Alt+B repeat=false { spawn "helium" "--incognito"; }
 
     // Screenshots
-    Super+S repeat=false { spawn "sh" "-c" "grim -g \"$(slurp -w 0)\" -t png - | tee >(wl-copy) | swappy -f -"; }
-    Super+Shift+S repeat=false { spawn "sh" "-c" "grim -t png - | tee >(wl-copy) | swappy -f -"; }
+    Super+S repeat=false { spawn "sh" "-c" "grim -g \"$(slurp -w 0)\" -t png - | tee >(wl-copy) | satty -f -"; }
+    Super+Shift+S repeat=false { spawn "sh" "-c" "grim -t png - | tee >(wl-copy) | satty -f -"; }
     Super+Shift+P repeat=false { spawn "hyprpicker" "-a"; }
 
     // Noctalia

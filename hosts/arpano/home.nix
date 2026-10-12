@@ -7,7 +7,7 @@
     ../../home/development.nix
     ../../home/programs/helium.nix
     ../../home/programs/dolphin.nix
-    ../../home/programs/imv.nix
+    ../../home/programs/gwenview.nix
     ../../home/desktop/appearance.nix
     ../../home/desktop/wallpapers.nix
     ../../home/programs/hacking.nix

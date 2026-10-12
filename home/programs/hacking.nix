@@ -34,5 +34,6 @@
     exiftool
     padbuster
     metasploit
+    sslscan
   ];
 }

@@ -6,7 +6,7 @@
   imports = [
     ../programs/foot.nix
     ./noctalia.nix
-    ./swappy.nix
+    ./satty.nix
   ];
 
   home.packages = with pkgs; [

@@ -1,5 +1,5 @@
 hl.window_rule({ name = "suppress-maximize", match = { class = ".*" }, suppress_event = "maximize" })
-hl.window_rule({ name = "swappy-floating", match = { class = "^swappy$" }, float = true, center = true })
+hl.window_rule({ name = "satty-floating", match = { class = "^com\\.gabm\\.satty$" }, float = true, center = true })
 hl.window_rule({
 	name = "localsend-floating",
 	match = { class = "localsend" },
