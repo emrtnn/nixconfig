@@ -84,7 +84,8 @@
         selected=$(
           wordlists |
             rg --color=never -oP '(?<=──).*(?= ->) -> .*' |
-            fzf --no-multi --with-nth=1 --preview="{bat --color always {}}"
+            fzf --no-multi --delimiter=' -> ' --with-nth=1 \
+            --preview='bat --color=always --style=numbers --line-range=:500 {2}'
         ) || return
         [[ -n "$selected" ]] || return
         target=''${selected#* -> }
