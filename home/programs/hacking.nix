@@ -1,4 +1,9 @@
 {pkgs, ...}: {
+  # Java/Swing (Burp Suite) on non-reparenting compositors such as mango:
+  # without this, AWT mis-handles dialogs, which can leave invisible modal
+  # windows that freeze the main window.
+  home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
+
   home.packages = with pkgs; [
     nmap
     burpsuite

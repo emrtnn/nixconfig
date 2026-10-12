@@ -36,11 +36,11 @@
           capsule_opacity = 1.0;
           capsule_padding = 6.0;
           capsule_thickness = 0.75999999046325684;
-          center = ["workspaces" "media"];
+          center = ["workspaces"];
           concave_edge_corners = true;
           contact_shadow = false;
           enabled = true;
-          end = ["tray" "notifications" "spacer_5" "bluetooth" "volume" "spacer_4" "control-center" "session"];
+          end = ["media" "spacer_8" "tray" "notifications" "spacer_5" "bluetooth" "volume" "spacer_4" "control-center" "session"];
           font_weight = 500;
           hover_highlight = true;
           layer = "top";
@@ -671,6 +671,11 @@
           type = "spacer";
         };
         spacer_7 = {
+          length = 60;
+          type = "spacer";
+        };
+        spacer_8 = {
+          length = 60;
           type = "spacer";
         };
         temp = {
