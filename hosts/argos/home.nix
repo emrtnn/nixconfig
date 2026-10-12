@@ -26,7 +26,6 @@
       evince
       ffmpeg
       playerctl
-      proton-vpn
       tor-browser
       telegram-desktop
       (librewolf.override {nativeMessagingHosts = [keepassxc];})

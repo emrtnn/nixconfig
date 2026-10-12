@@ -35,5 +35,6 @@
     padbuster
     metasploit
     sslscan
+    imagemagick
   ];
 }

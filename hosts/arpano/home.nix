@@ -27,7 +27,6 @@
       evince
       ffmpeg
       playerctl
-      proton-vpn
       tor-browser
       obsidian
       (librewolf.override {nativeMessagingHosts = [keepassxc];})

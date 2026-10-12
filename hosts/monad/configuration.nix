@@ -82,30 +82,23 @@
   };
 
   hardware = {
-    # Ryzen 5 3600 (Zen 2)
     cpu.amd.updateMicrocode = true;
 
     enableRedistributableFirmware = true;
 
-    # RTX 2070 Super (Turing): supported by NVIDIA's open kernel modules.
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       open = true;
       modesetting.enable = true; # also sets nvidia-drm.modeset=1 / fbdev=1
-      # Saves VRAM to /tmp on suspend so the session survives resume.
       powerManagement.enable = true;
-      # Fine-grained (RTD3) is only for PRIME laptops.
       powerManagement.finegrained = false;
       nvidiaSettings = true;
     };
 
-    # VA-API -> NVDEC for hardware video decode (browsers, mpv).
     graphics.extraPackages = [pkgs.nvidia-vaapi-driver];
   };
 
   environment = {
-    # Copy /etc/hosts instead of symlinking to the read-only store,
-    # so it can be edited at runtime (overwritten on next rebuild).
     etc.hosts.mode = "0644";
 
     systemPackages = lib.mkAfter (with pkgs; [
