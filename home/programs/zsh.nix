@@ -52,6 +52,8 @@
       nfzf = "nvim $(fzf -m --preview='bat --color=always {}')";
 
       gc = "git commit -m";
+      gl = "git plog";
+      gsignver = "git plog --show-signature";
       gco = "git checkout";
       gb = "git branch";
       gp = "git push";
@@ -59,9 +61,8 @@
       gt = "git tag";
       ga = "git add";
       gs = "git status";
-      gl = "git log --graph --pretty=format:'%C(yellow)%h (%Creset%Cgreen%p%Creset%C(yellow))%Creset -%Cred%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --all";
       lg = "lazygit";
-      gd = "git diff";
+      gd = "tuicr";
       gds = "git diff --staged";
 
       jl = "jj log -r 'all()'";
