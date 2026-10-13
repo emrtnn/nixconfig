@@ -9,5 +9,6 @@
     man-pages-posix
     gdb
     gef
+    pkg-config
   ];
 }
