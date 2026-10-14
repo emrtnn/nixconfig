@@ -18,7 +18,7 @@ in {
       main = {
         include = "${theme}";
         shell = "${pkgs.zsh}/bin/zsh";
-        font = "JetBrainsMono Nerd Font Mono:size=14";
+        font = "Iosevka Nerd Font Mono:size=16";
         pad = "7x2";
         dpi-aware = true;
       };

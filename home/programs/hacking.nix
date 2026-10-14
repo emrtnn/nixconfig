@@ -36,5 +36,6 @@
     metasploit
     sslscan
     imagemagick
+    hashid
   ];
 }
