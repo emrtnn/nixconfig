@@ -86,6 +86,16 @@
     if config.programs.foot.enable
     then "${lib.getExe config.programs.foot.package} --app-id monad.yazi -e"
     else "${lib.getExe config.programs.kitty.package} --class monad.yazi -e";
+  kdeTerminal =
+    if config.programs.foot.enable
+    then {
+      app = "foot";
+      service = "foot.desktop";
+    }
+    else {
+      app = "kitty";
+      service = "kitty.desktop";
+    };
 in {
   home.packages = with pkgs.kdePackages; [
     dolphin
@@ -93,7 +103,6 @@ in {
     kio-fuse
     ffmpegthumbs
     kdegraphics-thumbnailers
-    konsole
   ];
 
   # Retain qt6ct on both Mango and bspwm; no Plasma session is required.
@@ -122,7 +131,11 @@ in {
     # Dolphin must still be able to save tabs, window geometry and panel layout.
     kde.settings = {
       kdeglobals = {
-        General.ColorScheme = "OxocarbonDark";
+        General = {
+          ColorScheme = "OxocarbonDark";
+          TerminalApplication = kdeTerminal.app;
+          TerminalService = kdeTerminal.service;
+        };
         Icons.Theme = "Papirus-Dark";
         KDE.SingleClick = false;
       };
