@@ -6,6 +6,7 @@
   imports = [
     ../../home/development.nix
     ../../home/programs/helium.nix
+    ../../home/programs/librewolf.nix
     ../../home/programs/dolphin.nix
     ../../home/programs/gwenview.nix
     ../../home/desktop/appearance.nix

@@ -1,0 +1,373 @@
+/* ==========================================================================
+ * LibreWolf · Oxocarbon TUI — userContent.css  (internal about: pages)
+ *
+ * Re-skins about:preferences, about:config, about:addons, about:profiles,
+ * about:newtab, error pages… by overriding Firefox's design tokens.
+ * Palette: ~/nixconfig/home/themes/oxocarbon.nix (base16-oxocarbon dark).
+ *
+ * Managed by ~/nixconfig (home/programs/librewolf.nix): copied into every
+ * LibreWolf profile on switch.  Edit dotfiles/librewolf/chrome/ there;
+ * edits made in a profile are overwritten.
+ *
+ * about:blank and about:srcdoc are excluded on purpose: websites build
+ * iframes (editors, embeds) on them and must not inherit these colours.
+ * Reader view and DevTools keep their own themes.
+ * ========================================================================== */
+
+@-moz-document regexp("^about:(?!blank|srcdoc|reader|devtools).*") {
+
+  /* ---- palette & roles ---------------------------------------------------- */
+  :root {
+    --oxo-bg:      #161616;  /* base00 */
+    --oxo-surface: #262626;  /* base01 */
+    --oxo-raised:  #393939;  /* base02 */
+    --oxo-line:    #525252;  /* base03 */
+    --oxo-muted:   #8d8d8d;
+    --oxo-fg-dim:  #dde1e6;  /* base04 */
+    --oxo-fg:      #f2f4f8;  /* base05 */
+    --oxo-white:   #ffffff;  /* base06 */
+    --oxo-teal:    #08bdba;  /* base07 */
+    --oxo-cyan:    #3ddbd9;  /* base08 */
+    --oxo-blue:    #78a9ff;  /* base09 */
+    --oxo-red:     #ee5396;  /* base0A */
+    --oxo-sky:     #33b1ff;  /* base0B */
+    --oxo-pink:    #ff7eb6;  /* base0C */
+    --oxo-green:   #42be65;  /* base0D */
+    --oxo-purple:  #be95ff;  /* base0E */
+    --oxo-light:   #82cfff;  /* base0F */
+    --oxo-stripe:  color-mix(in srgb, var(--oxo-surface) 55%, var(--oxo-bg));
+
+    --oxo-accent:    var(--oxo-blue);
+    --oxo-on-accent: var(--oxo-bg);
+    --oxo-font: "Iosevka Nerd Font Mono", "Iosevka Nerd Font", "JetBrainsMono Nerd Font Mono", monospace;
+
+    color-scheme: dark !important;
+    scrollbar-color: var(--oxo-line) var(--oxo-bg) !important;
+  }
+
+  /* ---- global: monospace, square, flat ------------------------------------ */
+  * {
+    font-family: var(--oxo-font) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  ::selection {
+    background-color: var(--oxo-raised) !important;
+    color: var(--oxo-white) !important;
+  }
+
+  html, body {
+    background-color: var(--oxo-bg) !important;
+    color: var(--oxo-fg) !important;
+  }
+
+  /* ---- design tokens -------------------------------------------------------
+   * Set on every element (*) because components re-declare tokens on their
+   * shadow hosts; user !important beats those author rules. */
+  * {
+    /* palette ramps → oxocarbon (no warm hues in oxocarbon: pinks stand in) */
+    --color-blue-05: var(--oxo-light) !important;  --color-blue-10: var(--oxo-light) !important;
+    --color-blue-20: var(--oxo-light) !important;  --color-blue-30: var(--oxo-blue) !important;
+    --color-blue-40: var(--oxo-blue) !important;   --color-blue-50: var(--oxo-blue) !important;
+    --color-blue-60: var(--oxo-blue) !important;   --color-blue-70: var(--oxo-sky) !important;
+    --color-blue-80: var(--oxo-sky) !important;    --color-blue-90: var(--oxo-sky) !important;
+    --color-cyan-10: var(--oxo-cyan) !important;   --color-cyan-20: var(--oxo-cyan) !important;
+    --color-cyan-30: var(--oxo-cyan) !important;   --color-cyan-40: var(--oxo-cyan) !important;
+    --color-cyan-50: var(--oxo-teal) !important;   --color-cyan-60: var(--oxo-teal) !important;
+    --color-cyan-70: var(--oxo-teal) !important;   --color-cyan-80: var(--oxo-teal) !important;
+    --color-green-05: var(--oxo-green) !important; --color-green-10: var(--oxo-green) !important;
+    --color-green-20: var(--oxo-green) !important; --color-green-30: var(--oxo-green) !important;
+    --color-green-40: var(--oxo-green) !important; --color-green-50: var(--oxo-green) !important;
+    --color-green-60: var(--oxo-green) !important; --color-green-70: var(--oxo-green) !important;
+    --color-green-80: var(--oxo-green) !important;
+    --color-red-05: var(--oxo-red) !important;     --color-red-10: var(--oxo-red) !important;
+    --color-red-20: var(--oxo-red) !important;     --color-red-30: var(--oxo-red) !important;
+    --color-red-40: var(--oxo-red) !important;     --color-red-50: var(--oxo-red) !important;
+    --color-red-60: var(--oxo-red) !important;     --color-red-70: var(--oxo-red) !important;
+    --color-red-80: var(--oxo-red) !important;
+    --color-pink-10: var(--oxo-pink) !important;   --color-pink-20: var(--oxo-pink) !important;
+    --color-pink-30: var(--oxo-pink) !important;   --color-pink-40: var(--oxo-pink) !important;
+    --color-pink-50: var(--oxo-pink) !important;   --color-pink-60: var(--oxo-pink) !important;
+    --color-pink-70: var(--oxo-pink) !important;
+    --color-orange-10: var(--oxo-pink) !important; --color-orange-20: var(--oxo-pink) !important;
+    --color-orange-30: var(--oxo-pink) !important; --color-orange-40: var(--oxo-pink) !important;
+    --color-orange-50: var(--oxo-pink) !important; --color-orange-60: var(--oxo-pink) !important;
+    --color-orange-70: var(--oxo-pink) !important;
+    --color-yellow-10: var(--oxo-pink) !important; --color-yellow-20: var(--oxo-pink) !important;
+    --color-yellow-30: var(--oxo-pink) !important; --color-yellow-40: var(--oxo-pink) !important;
+    --color-yellow-50: var(--oxo-pink) !important; --color-yellow-60: var(--oxo-pink) !important;
+    --color-purple-10: var(--oxo-purple) !important; --color-purple-20: var(--oxo-purple) !important;
+    --color-purple-30: var(--oxo-purple) !important; --color-purple-40: var(--oxo-purple) !important;
+    --color-purple-50: var(--oxo-purple) !important; --color-purple-60: var(--oxo-purple) !important;
+    --color-purple-70: var(--oxo-purple) !important;
+    --color-violet-10: var(--oxo-purple) !important; --color-violet-20: var(--oxo-purple) !important;
+    --color-violet-30: var(--oxo-purple) !important; --color-violet-40: var(--oxo-purple) !important;
+    --color-violet-50: var(--oxo-purple) !important; --color-violet-60: var(--oxo-purple) !important;
+    --color-violet-70: var(--oxo-purple) !important;
+
+    /* accents & links */
+    --color-accent-primary:          var(--oxo-accent) !important;
+    --color-accent-primary-hover:    var(--oxo-light) !important;
+    --color-accent-primary-active:   var(--oxo-sky) !important;
+    --color-accent-primary-selected: var(--oxo-accent) !important;
+    --color-accent-attention:        var(--oxo-green) !important;
+    --link-color:          var(--oxo-accent) !important;
+    --link-color-hover:    var(--oxo-light) !important;
+    --link-color-active:   var(--oxo-sky) !important;
+    --link-color-visited:  var(--oxo-purple) !important;
+    --focus-outline-color: var(--oxo-accent) !important;
+    --focus-outline:       1px solid var(--oxo-accent) !important;
+
+    /* surfaces */
+    --background-color-canvas:         var(--oxo-bg) !important;
+    --background-color-box:            var(--oxo-bg) !important;
+    --background-color-box-info:       var(--oxo-surface) !important;
+    --background-color-information:    var(--oxo-surface) !important;
+    --background-color-success:        var(--oxo-surface) !important;
+    --background-color-warning:        var(--oxo-surface) !important;
+    --background-color-critical:       var(--oxo-surface) !important;
+    --background-color-list-item-hover: var(--oxo-surface) !important;
+    --background-color-overlay:        color-mix(in srgb, var(--oxo-bg) 80%, transparent) !important;
+    --background-color-dimmed:         var(--oxo-surface) !important;
+    --background-color-dimmed-further: var(--oxo-raised) !important;
+
+    /* text */
+    --text-color:                         var(--oxo-fg) !important;
+    --text-color-deemphasized:            var(--oxo-muted) !important;
+    --text-color-disabled:                var(--oxo-line) !important;
+    --text-color-error:                   var(--oxo-red) !important;
+    --text-color-list-item-hover:         var(--oxo-white) !important;
+    --text-color-accent-primary-selected: var(--oxo-on-accent) !important;
+
+    /* borders */
+    --border-color:                    var(--oxo-raised) !important;
+    --border-color-deemphasized:       var(--oxo-surface) !important;
+    --border-color-interactive:        var(--oxo-line) !important;
+    --border-color-interactive-hover:  var(--oxo-muted) !important;
+    --border-color-interactive-active: var(--oxo-accent) !important;
+    --border-color-selected:           var(--oxo-accent) !important;
+    --border-color-error:              var(--oxo-red) !important;
+
+    /* icons */
+    --icon-color:             var(--oxo-fg-dim) !important;
+    --icon-color-information: var(--oxo-accent) !important;
+    --icon-color-success:     var(--oxo-green) !important;
+    --icon-color-warning:     var(--oxo-pink) !important;
+    --icon-color-critical:    var(--oxo-red) !important;
+
+    /* boxes / cards (bordered panes, like a TUI) */
+    --card-background-color: var(--oxo-bg) !important;
+    --card-border-color:     var(--oxo-raised) !important;
+    --card-border:           1px solid var(--oxo-raised) !important;
+    --box-border-color:      var(--oxo-raised) !important;
+    --box-button-background-color:        var(--oxo-bg) !important;
+    --box-button-background-color-hover:  var(--oxo-surface) !important;
+    --box-button-background-color-active: var(--oxo-raised) !important;
+
+    /* buttons — hover is TUI "reverse video": accent block, dark text */
+    --button-border:                    1px solid var(--oxo-raised) !important;
+    --button-background-color:          var(--oxo-surface) !important;
+    --button-background-color-hover:    var(--oxo-accent) !important;
+    --button-background-color-active:   var(--oxo-sky) !important;
+    --button-background-color-selected: var(--oxo-raised) !important;
+    --button-text-color:                var(--oxo-fg) !important;
+    --button-text-color-hover:          var(--oxo-on-accent) !important;
+    --button-text-color-active:         var(--oxo-on-accent) !important;
+    --button-border-color:              var(--oxo-raised) !important;
+    --button-border-color-hover:        var(--oxo-accent) !important;
+    --button-border-color-active:       var(--oxo-sky) !important;
+    --button-background-color-ghost-hover:  var(--oxo-surface) !important;
+    --button-background-color-ghost-active: var(--oxo-raised) !important;
+    --button-background-color-primary:        var(--oxo-accent) !important;
+    --button-background-color-primary-hover:  var(--oxo-light) !important;
+    --button-background-color-primary-active: var(--oxo-sky) !important;
+    --button-text-color-primary:        var(--oxo-on-accent) !important;
+    --button-text-color-primary-hover:  var(--oxo-on-accent) !important;
+    --button-text-color-primary-active: var(--oxo-on-accent) !important;
+    --button-border-color-primary:      transparent !important;
+    --button-background-color-destructive:       var(--oxo-red) !important;
+    --button-background-color-destructive-hover: var(--oxo-pink) !important;
+    --button-text-color-destructive:             var(--oxo-on-accent) !important;
+
+    /* inputs, toggles, checkboxes */
+    --input-text-background-color: var(--oxo-surface) !important;
+    --input-text-color:            var(--oxo-fg) !important;
+    --input-text-border-color:     var(--oxo-raised) !important;
+    --input-border-color:          var(--oxo-line) !important;
+    --toggle-background-color:          var(--oxo-surface) !important;
+    --toggle-background-color-hover:    var(--oxo-raised) !important;
+    --toggle-border-color:              var(--oxo-line) !important;
+    --toggle-dot-background-color:      var(--oxo-muted) !important;
+    --toggle-dot-background-color-hover: var(--oxo-fg-dim) !important;
+    --toggle-background-color-pressed:  var(--oxo-accent) !important;
+    --toggle-background-color-pressed-hover: var(--oxo-light) !important;
+    --toggle-dot-background-color-on-pressed: var(--oxo-on-accent) !important;
+
+    /* side navigation (about:preferences, about:addons, …) */
+    --page-nav-button-background-color:          transparent !important;
+    --page-nav-button-text-color:                var(--oxo-fg-dim) !important;
+    --page-nav-button-text-color-hover:          var(--oxo-white) !important;
+    --page-nav-button-background-color-hover:    var(--oxo-surface) !important;
+    --page-nav-button-background-color-active:   var(--oxo-raised) !important;
+    --page-nav-button-background-color-selected: var(--oxo-accent) !important;
+    --page-nav-button-text-color-selected:       var(--oxo-on-accent) !important;
+    --page-nav-button-indicator-background-color: transparent !important;
+    --page-nav-border-color:      var(--oxo-raised) !important;
+    --page-nav-hr-background-color: var(--oxo-raised) !important;
+
+    /* tables (about:config, about:support, about:profiles…) */
+    --table-background-color:               var(--oxo-bg) !important;
+    --table-border-color:                   var(--oxo-raised) !important;
+    --table-header-background-color:        var(--oxo-surface) !important;
+    --table-header-text-color:              var(--oxo-fg) !important;
+    --table-row-background-color:           var(--oxo-bg) !important;
+    --table-row-background-color-alternate: var(--oxo-stripe) !important;
+
+    /* popups & menus inside pages */
+    --panel-background-color:      var(--oxo-bg) !important;
+    --panel-text-color:            var(--oxo-fg) !important;
+    --panel-border-color:          var(--oxo-line) !important;
+    --panel-list-background-color: var(--oxo-bg) !important;
+    --panel-list-border-color:     var(--oxo-line) !important;
+    --popup-background-color:      var(--oxo-bg) !important;
+    --popup-border-color:          var(--oxo-line) !important;
+
+    /* legacy in-content tokens still used by some pages */
+    --in-content-page-background:  var(--oxo-bg) !important;
+    --in-content-page-color:       var(--oxo-fg) !important;
+    --in-content-box-background:   var(--oxo-bg) !important;
+    --in-content-box-border-color: var(--oxo-raised) !important;
+    --in-content-border-color:     var(--oxo-raised) !important;
+    --in-content-item-hover:       var(--oxo-surface) !important;
+    --in-content-item-selected:    var(--oxo-accent) !important;
+    --in-content-item-selected-text: var(--oxo-on-accent) !important;
+    --in-content-primary-button-background: var(--oxo-accent) !important;
+    --in-content-primary-button-text-color: var(--oxo-on-accent) !important;
+    --in-content-accent-color:     var(--oxo-accent) !important;
+  }
+
+  /* ---- widgets ------------------------------------------------------------ */
+  a, .text-link {
+    color: var(--oxo-accent) !important;
+  }
+
+  a:hover, .text-link:hover {
+    color: var(--oxo-light) !important;
+  }
+
+  input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"]),
+  textarea,
+  select {
+    background-color: var(--oxo-surface) !important;
+    color: var(--oxo-fg) !important;
+    border: 1px solid var(--oxo-raised) !important;
+  }
+
+  input:not([type="checkbox"], [type="radio"]):focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    border-color: var(--oxo-accent) !important;
+    outline: none !important;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    accent-color: var(--oxo-accent) !important;
+  }
+
+  hr {
+    border-color: var(--oxo-raised) !important;
+    background-color: var(--oxo-raised) !important;
+  }
+
+  /* Selected side-nav entry: solid accent bar with dark text */
+  button[role="tab"][selected],
+  .category[selected],
+  richlistitem[selected] {
+    background-color: var(--oxo-accent) !important;
+    color: var(--oxo-on-accent) !important;
+  }
+
+  button[role="tab"][selected] .page-nav-icon,
+  .category[selected] .category-icon {
+    fill: var(--oxo-on-accent) !important;
+  }
+
+  /* Side-nav entries that are links (support pages, add-ons…) look like
+   * the other entries instead of hyperlinks. */
+  a.moz-page-nav-link,
+  .sidebar-footer-link {
+    color: var(--oxo-fg-dim) !important;
+  }
+
+  a.moz-page-nav-link:hover,
+  .sidebar-footer-link:hover {
+    color: var(--oxo-white) !important;
+  }
+
+  /* ---- about:config -------------------------------------------------------- */
+  #prefs tr:hover > :is(th, td) {
+    background-color: var(--oxo-raised) !important;
+  }
+
+  #prefs tr.has-user-value > th {
+    color: var(--oxo-accent) !important;
+    font-weight: bold !important;
+  }
+
+  /* ---- about:addons -------------------------------------------------------- */
+  addon-card .card,
+  .addon.card {
+    background-color: var(--oxo-bg) !important;
+    border: 1px solid var(--oxo-raised) !important;
+  }
+
+  addon-card .card:hover {
+    border-color: var(--oxo-accent) !important;
+  }
+
+  /* ---- new tab / home ------------------------------------------------------- */
+  :root {
+    --newtab-background-color:           var(--oxo-bg) !important;
+    --newtab-background-color-secondary: var(--oxo-surface) !important;
+    --newtab-text-primary-color:         var(--oxo-fg) !important;
+    --newtab-text-secondary-color:       var(--oxo-muted) !important;
+    --newtab-primary-action-background:  var(--oxo-accent) !important;
+    --newtab-primary-element-text-color: var(--oxo-on-accent) !important;
+    --newtab-element-hover-color:        var(--oxo-surface) !important;
+    --newtab-element-active-color:       var(--oxo-raised) !important;
+    --newtab-border-color:               var(--oxo-raised) !important;
+    --newtab-button-background:          var(--oxo-surface) !important;
+    --newtab-button-hover-background:    var(--oxo-raised) !important;
+    --newtab-wallpaper-color:            var(--oxo-bg) !important;
+  }
+
+  .search-handoff-button,
+  .search-wrapper input,
+  .top-site-outer .tile {
+    background-color: var(--oxo-surface) !important;
+    border: 1px solid var(--oxo-raised) !important;
+    color: var(--oxo-fg) !important;
+  }
+
+  .search-wrapper input:focus,
+  .search-handoff-button:focus-visible {
+    border-color: var(--oxo-accent) !important;
+  }
+
+  .top-site-outer:hover .tile {
+    border-color: var(--oxo-accent) !important;
+  }
+}
+
+/* ---- optional: square corners on every website ------------------------------
+ * The video does this with the Stylus extension.  It works here without an
+ * extension, but any site can detect it (getComputedStyle), which makes you
+ * more fingerprintable — so it is opt-in.  Remove the comment markers to use.
+ *
+ * @-moz-document regexp("^(https?|file):.*") {
+ *   *, *::before, *::after { border-radius: 0 !important; }
+ * }
+ */

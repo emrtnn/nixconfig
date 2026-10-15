@@ -1,0 +1,511 @@
+/* ==========================================================================
+ * LibreWolf · Oxocarbon TUI — userChrome.css  (browser UI)
+ *
+ * Flat, square, monospace chrome in the spirit of a terminal UI.
+ * Palette: ~/nixconfig/home/themes/oxocarbon.nix (base16-oxocarbon dark).
+ * Accent follows the desktop: mango focus_color / tmux active = base09.
+ *
+ * Managed by ~/nixconfig (home/programs/librewolf.nix): copied into every
+ * LibreWolf profile on switch, together with the prefs it needs.  Edit
+ * dotfiles/librewolf/chrome/ there; edits made in a profile are overwritten.
+ * Restart LibreWolf after a change.  To live-test, enable the Browser
+ * Toolbox prefs in that module first (off by default), then Ctrl+Shift+Alt+I.
+ * ========================================================================== */
+
+/* ---- 1. Palette & knobs ------------------------------------------------- */
+:root {
+  --oxo-bg:      #161616;  /* base00 */
+  --oxo-surface: #262626;  /* base01 */
+  --oxo-raised:  #393939;  /* base02 */
+  --oxo-line:    #525252;  /* base03 */
+  --oxo-muted:   #8d8d8d;  /* Carbon gray 50 */
+  --oxo-fg-dim:  #dde1e6;  /* base04 */
+  --oxo-fg:      #f2f4f8;  /* base05 */
+  --oxo-white:   #ffffff;  /* base06 */
+  --oxo-teal:    #08bdba;  /* base07 */
+  --oxo-cyan:    #3ddbd9;  /* base08 */
+  --oxo-blue:    #78a9ff;  /* base09 */
+  --oxo-red:     #ee5396;  /* base0A */
+  --oxo-sky:     #33b1ff;  /* base0B */
+  --oxo-pink:    #ff7eb6;  /* base0C */
+  --oxo-green:   #42be65;  /* base0D */
+  --oxo-purple:  #be95ff;  /* base0E */
+  --oxo-light:   #82cfff;  /* base0F */
+
+  --oxo-accent:    var(--oxo-blue);
+  --oxo-accent-2:  var(--oxo-cyan);
+  --oxo-on-accent: var(--oxo-bg);
+
+  --oxo-font: "Iosevka Nerd Font Mono", "Iosevka Nerd Font", "JetBrainsMono Nerd Font Mono", monospace;
+  --oxo-font-size: 14px;
+  --oxo-border: 1px solid var(--oxo-raised);
+}
+
+/* ---- 2. Global: monospace, square, flat --------------------------------- */
+* {
+  font-family: var(--oxo-font) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+:root {
+  font-size: var(--oxo-font-size) !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--oxo-line) transparent;
+}
+
+::selection {
+  background-color: var(--oxo-raised) !important;
+  color: var(--oxo-white) !important;
+}
+
+/* ---- 3. Design-token overrides ------------------------------------------ */
+/* Firefox (Nova) builds the UI from CSS custom properties; overriding them
+ * re-skins most widgets at once.  The few shadow hosts that re-declare
+ * tokens (menupopup, panel, moz-button, …) are listed explicitly. */
+:root,
+menupopup, panel, panel-list, moz-button, moz-button-group, menulist,
+arrowscrollbox, moz-message-bar, moz-badge, moz-checkbox {
+  /* accents */
+  --color-accent-primary:          var(--oxo-accent) !important;
+  --color-accent-primary-hover:    var(--oxo-light) !important;
+  --color-accent-primary-active:   var(--oxo-sky) !important;
+  --color-accent-primary-selected: var(--oxo-accent) !important;
+  --color-accent-attention:        var(--oxo-green) !important;
+  --focus-outline-color:           var(--oxo-accent) !important;
+  --focus-outline:                 1px solid var(--oxo-accent) !important;
+  --focus-outline-offset:          -1px !important;
+  --link-color:                    var(--oxo-accent) !important;
+  --link-color-hover:              var(--oxo-light) !important;
+  --link-color-active:             var(--oxo-sky) !important;
+
+  /* surfaces & text */
+  --background-color-canvas:       var(--oxo-bg) !important;
+  --background-color-box:          var(--oxo-bg) !important;
+  --text-color:                    var(--oxo-fg) !important;
+  --text-color-deemphasized:       var(--oxo-muted) !important;
+  --border-color:                  var(--oxo-raised) !important;
+  --border-color-deemphasized:     var(--oxo-surface) !important;
+  --border-color-interactive:      var(--oxo-line) !important;
+  --border-color-selected:         var(--oxo-accent) !important;
+
+  /* toolbox / toolbars */
+  --toolbox-background-color:            var(--oxo-bg) !important;
+  --toolbox-background-color-inactive:   var(--oxo-bg) !important;
+  --toolbox-text-color:                  var(--oxo-fg) !important;
+  --toolbox-text-color-inactive:         var(--oxo-fg-dim) !important;
+  --toolbar-background-color:            var(--oxo-bg) !important;
+  --toolbar-text-color:                  var(--oxo-fg) !important;
+  --toolbarseparator-color:              var(--oxo-raised) !important;
+  --toolbarbutton-icon-fill:             var(--oxo-fg-dim) !important;
+  --toolbarbutton-icon-fill-attention:   var(--oxo-accent) !important;
+  --toolbarbutton-background-color-hover:  var(--oxo-surface) !important;
+  --toolbarbutton-background-color-active: var(--oxo-raised) !important;
+  --toolbarbutton-border-radius:         0 !important;
+  --toolbarbutton-badge-background-color: var(--oxo-red) !important;
+  --chrome-content-separator-color:      var(--oxo-raised) !important;
+  --tabs-navbar-separator-color:         var(--oxo-raised) !important;
+  --content-area-shadow:                 none !important;
+
+  /* address bar */
+  --toolbar-field-background-color:        var(--oxo-surface) !important;
+  --toolbar-field-background-color-focus:  var(--oxo-bg) !important;
+  --toolbar-field-text-color:              var(--oxo-fg) !important;
+  --toolbar-field-text-color-focus:        var(--oxo-fg) !important;
+  --toolbar-field-border-color:            var(--oxo-raised) !important;
+  --toolbar-field-border-color-focus:      var(--oxo-accent) !important;
+  --urlbar-background-color:               var(--oxo-surface) !important;
+  --urlbar-background-color-focus:         var(--oxo-bg) !important;
+  --urlbar-border-radius:                  0 !important;
+  --urlbar-box-background-color:           var(--oxo-raised) !important;
+  --urlbar-box-background-color-hover:     var(--oxo-line) !important;
+  --urlbar-box-background-color-active:    var(--oxo-line) !important;
+  --urlbar-box-background-color-focus:     var(--oxo-raised) !important;
+  --urlbar-box-text-color:                 var(--oxo-fg) !important;
+  --urlbar-icon-fill-opacity:              1 !important;
+  --urlbarview-background-color-hover:     var(--oxo-surface) !important;
+  --urlbarview-background-color-selected:  var(--oxo-raised) !important;
+  --urlbarview-text-color-selected:        var(--oxo-white) !important;
+  --urlbarview-text-color-secondary:       var(--oxo-muted) !important;
+  --urlbarview-text-color-action:          var(--oxo-accent-2) !important;
+  --urlbarview-separator-color:            var(--oxo-raised) !important;
+  --urlbarview-border-radius:              0 !important;
+
+  /* tabs */
+  --tab-background-color:              transparent !important;
+  --tab-background-color-hover:        var(--oxo-surface) !important;
+  --tab-background-color-selected:     var(--oxo-surface) !important;
+  --tab-text-color:                    var(--oxo-fg-dim) !important;
+  --tab-text-color-hover:              var(--oxo-fg) !important;
+  --tab-text-color-selected:           var(--oxo-white) !important;
+  --tab-border-color:                  transparent !important;
+  --tab-border-color-hover:            transparent !important;
+  --tab-border-color-selected:         var(--oxo-accent) !important;
+  --tab-border-color-selected-leading: var(--oxo-accent) !important;
+  --tab-border-color-selected-trailing: var(--oxo-accent) !important;
+  --tab-border-color-accent:           linear-gradient(var(--oxo-accent), var(--oxo-accent)) !important;
+  --tab-box-shadow-selected:           none !important;
+  --tab-border-radius:                 0 !important;
+  --tab-loading-fill:                  var(--oxo-accent) !important;
+  --tab-attention-dot-color:           var(--oxo-green) !important;
+  --tab-close-button-background-color-hover: var(--oxo-raised) !important;
+  /* tab-group colours → oxocarbon */
+  --tab-group-blue:   var(--oxo-blue) !important;
+  --tab-group-cyan:   var(--oxo-cyan) !important;
+  --tab-group-green:  var(--oxo-green) !important;
+  --tab-group-purple: var(--oxo-purple) !important;
+  --tab-group-pink:   var(--oxo-pink) !important;
+  --tab-group-red:    var(--oxo-red) !important;
+  --tab-group-orange: var(--oxo-light) !important;
+  --tab-group-yellow: var(--oxo-teal) !important;
+  --tab-group-gray:   var(--oxo-muted) !important;
+
+  /* sidebar */
+  --sidebar-background-color:  var(--oxo-bg) !important;
+  --sidebar-text-color:        var(--oxo-fg) !important;
+  --sidebar-border-color:      var(--oxo-raised) !important;
+  --sidebar-box-background:    var(--oxo-bg) !important;
+  --sidebar-box-color:         var(--oxo-fg) !important;
+  --sidebar-box-border:        none !important;
+
+  /* panels, menus, popups */
+  --panel-background-color:    var(--oxo-bg) !important;
+  --panel-text-color:          var(--oxo-fg) !important;
+  --panel-border-color:        var(--oxo-line) !important;
+  --panel-separator-color:     var(--oxo-raised) !important;
+  --panel-border-radius:       0 !important;
+  --panel-box-shadow:          none !important;
+  --panel-menuitem-border-radius: 0 !important;
+  --menuitem-border-radius:    0 !important;
+  --panel-icon-fill:           var(--oxo-fg-dim) !important;
+  --popup-background-color:    var(--oxo-bg) !important;
+  --popup-border-color:        var(--oxo-line) !important;
+  --popup-border-radius:       0 !important;
+  --popup-box-shadow:          none !important;
+  --panel-list-background-color: var(--oxo-bg) !important;
+  --panel-list-border-color:   var(--oxo-line) !important;
+  --panel-list-text-color:     var(--oxo-fg) !important;
+
+  /* buttons & inputs */
+  --button-border-radius:                0 !important;
+  --button-background-color:             var(--oxo-surface) !important;
+  --button-background-color-hover:       var(--oxo-raised) !important;
+  --button-background-color-active:      var(--oxo-line) !important;
+  --button-text-color:                   var(--oxo-fg) !important;
+  --button-border-color:                 var(--oxo-raised) !important;
+  --button-background-color-ghost-hover: var(--oxo-surface) !important;
+  --button-background-color-ghost-active: var(--oxo-raised) !important;
+  --button-background-color-primary:        var(--oxo-accent) !important;
+  --button-background-color-primary-hover:  var(--oxo-light) !important;
+  --button-background-color-primary-active: var(--oxo-sky) !important;
+  --button-text-color-primary:              var(--oxo-on-accent) !important;
+  --button-text-color-primary-hover:        var(--oxo-on-accent) !important;
+  --button-text-color-primary-active:       var(--oxo-on-accent) !important;
+  --button-border-color-primary:            transparent !important;
+  --input-text-background-color: var(--oxo-surface) !important;
+  --input-text-color:            var(--oxo-fg) !important;
+  --input-border-color:          var(--oxo-line) !important;
+}
+
+/* ---- 4. Layout: navbar is the only thing on top ------------------------- */
+/* Hide the horizontal tab strip only while tabs live in the sidebar, so
+ * switching back to horizontal tabs never leaves you tab-less. */
+#TabsToolbar:not(:has(#tabbrowser-tabs)) {
+  display: none !important;
+}
+
+/* Sidebar panels (history, bookmarks, extension sidebars): no title bar. */
+#sidebar-header,
+#sidebar-panel-header,
+sidebar-panel-header {
+  display: none !important;
+}
+
+#sidebar-box {
+  padding-inline-start: 0 !important;
+  background-color: var(--oxo-bg) !important;
+}
+
+#navigator-toolbox {
+  background-color: var(--oxo-bg) !important;
+  border-bottom: var(--oxo-border) !important;
+}
+
+#nav-bar {
+  background: var(--oxo-bg) !important;
+  border: none !important;
+  padding-block: 2px !important;
+}
+
+#PersonalToolbar {
+  background: var(--oxo-bg) !important;
+  border-top: var(--oxo-border) !important;
+}
+
+/* Flat, square toolbar buttons with a subtle hover block. */
+:is(#nav-bar, #PersonalToolbar) .toolbarbutton-1 > :is(.toolbarbutton-icon, .toolbarbutton-badge-stack, .toolbarbutton-text) {
+  border-radius: 0 !important;
+}
+
+#tabbrowser-tabbox,
+#tabbrowser-tabpanels {
+  background-color: var(--oxo-bg) !important;
+}
+
+/* ---- 5. Address bar ------------------------------------------------------ */
+#urlbar .urlbar-background {
+  background-color: var(--oxo-surface) !important;
+  border: 1px solid var(--oxo-raised) !important;
+  outline: none !important;
+}
+
+#urlbar:is([focused], [open]) .urlbar-background {
+  background-color: var(--oxo-bg) !important;
+  border-color: var(--oxo-accent) !important;
+}
+
+#urlbar .urlbar-input {
+  color: var(--oxo-fg) !important;
+}
+
+#urlbar .urlbar-input::placeholder {
+  color: var(--oxo-muted) !important;
+  opacity: 1 !important;
+}
+
+/* Results list: a plain bordered box, selection = highlighted line. */
+.urlbarView {
+  border-top: var(--oxo-border) !important;
+}
+
+#urlbar[open] .urlbarView-background {
+  background-color: var(--oxo-bg) !important;
+  border: 1px solid var(--oxo-line) !important;
+}
+
+.urlbarView-row[selected] > .urlbarView-row-inner,
+.urlbarView-row-inner[selected] {
+  background-color: var(--oxo-raised) !important;
+  box-shadow: inset 2px 0 0 var(--oxo-accent) !important;
+}
+
+.urlbarView-url,
+.urlbarView-action {
+  color: var(--oxo-accent-2) !important;
+}
+
+.urlbarView-row[selected] :is(.urlbarView-url, .urlbarView-action) {
+  color: var(--oxo-accent-2) !important;
+}
+
+/* ---- 6. Vertical tabs ----------------------------------------------------- */
+#vertical-tabs,
+#sidebar-main,
+sidebar-main {
+  background-color: var(--oxo-bg) !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab {
+  padding-block: 0 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tab-background {
+  margin-block: 1px !important;
+  border: 1px solid transparent !important;
+  outline: none !important;
+  background: transparent !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected], [multiselected]) {
+  background: var(--oxo-surface) !important;
+}
+
+/* Active tab: a boxed line in the accent colour, like a focused pane. */
+#tabbrowser-tabs .tab-background:is([selected], [multiselected]) {
+  background: var(--oxo-surface) !important;
+  border: 1px solid var(--oxo-accent) !important;
+  outline: none !important;
+}
+
+#tabbrowser-tabs .tab-background[multiselected]:not([selected]) {
+  border-style: dashed !important;
+}
+
+.tabbrowser-tab .tab-label {
+  color: var(--oxo-fg-dim) !important;
+}
+
+.tabbrowser-tab:is([selected], [visuallyselected]) .tab-label {
+  color: var(--oxo-white) !important;
+}
+
+.tabbrowser-tab[pending] .tab-label,
+.tabbrowser-tab[discarded] .tab-label {
+  color: var(--oxo-muted) !important;
+  font-style: italic !important;
+}
+
+.tabbrowser-tab:is([soundplaying], [muted]) .tab-label {
+  color: var(--oxo-accent-2) !important;
+}
+
+/* Close button only when it's useful. */
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:not(:hover, [selected]) .tab-close-button {
+  visibility: hidden !important;
+}
+
+.tab-close-button:hover {
+  background-color: var(--oxo-raised) !important;
+  fill: var(--oxo-red) !important;
+}
+
+/* "+ New Tab" row */
+#tabs-newtab-button,
+#vertical-tabs-newtab-button {
+  color: var(--oxo-muted) !important;
+}
+
+#tabs-newtab-button:hover,
+#vertical-tabs-newtab-button:hover {
+  color: var(--oxo-fg) !important;
+}
+
+/* Container (identity) colour line stays visible but thin. */
+.tab-context-line {
+  height: 2px !important;
+}
+
+/* Bottom launcher (settings / history / bookmarks icons): a status-line
+ * style rule above it.  (Selector lives inside sidebar-main's shadow DOM.) */
+.wrapper > .buttons-wrapper {
+  border-top: var(--oxo-border) !important;
+}
+
+/* ...and the button group fills the whole bar, buttons spread edge to edge.
+ * [orientation="horizontal"] is the expanded vertical-tabs launcher; the
+ * collapsed icon strip (vertical) keeps Firefox's own layout. */
+.buttons-wrapper > .tools-and-extensions[orientation="horizontal"] {
+  flex: 1 1 auto !important;
+  justify-content: space-between !important;
+}
+
+/* ---- 7. Menus, panels, popups, tooltips ----------------------------------- */
+menupopup,
+panel {
+  --panel-background: var(--oxo-bg) !important;
+  --panel-color: var(--oxo-fg) !important;
+  --panel-border-color: var(--oxo-line) !important;
+  --panel-shadow: none !important;
+  --panel-shadow-margin: 0 !important;
+  --panel-border-radius: 0 !important;
+}
+
+menupopup::part(content),
+panel::part(content) {
+  background-color: var(--oxo-bg) !important;
+  color: var(--oxo-fg) !important;
+  border: 1px solid var(--oxo-line) !important;
+}
+
+menu,
+menuitem {
+  color: var(--oxo-fg) !important;
+}
+
+:is(menu, menuitem)[_moz-menuactive]:not([disabled]) {
+  background-color: var(--oxo-raised) !important;
+  color: var(--oxo-white) !important;
+}
+
+:is(menu, menuitem)[disabled] {
+  color: var(--oxo-line) !important;
+}
+
+menuseparator,
+toolbarseparator {
+  border-color: var(--oxo-raised) !important;
+}
+
+/* App menu / panel buttons */
+.subviewbutton:not([disabled]):hover,
+.subviewbutton:not([disabled])[open],
+.subviewbutton:focus-visible {
+  background-color: var(--oxo-raised) !important;
+  color: var(--oxo-white) !important;
+}
+
+.panel-header,
+.panel-footer {
+  border-color: var(--oxo-raised) !important;
+}
+
+tooltip {
+  appearance: none !important;
+  background-color: var(--oxo-surface) !important;
+  color: var(--oxo-fg) !important;
+  border: 1px solid var(--oxo-line) !important;
+  padding: 2px 6px !important;
+}
+
+/* ---- 8. Odds and ends ------------------------------------------------------ */
+/* Link-hover / loading status in the corner of the page. */
+#statuspanel-label {
+  background-color: var(--oxo-surface) !important;
+  color: var(--oxo-fg-dim) !important;
+  border: 1px solid var(--oxo-line) !important;
+}
+
+/* Find bar */
+findbar {
+  background-color: var(--oxo-bg) !important;
+  color: var(--oxo-fg) !important;
+  border-top: var(--oxo-border) !important;
+}
+
+findbar .findbar-textbox {
+  background-color: var(--oxo-surface) !important;
+  color: var(--oxo-fg) !important;
+  border: 1px solid var(--oxo-raised) !important;
+  outline: none !important;
+}
+
+findbar .findbar-textbox:focus {
+  border-color: var(--oxo-accent) !important;
+}
+
+findbar .findbar-textbox[status="notfound"] {
+  border-color: var(--oxo-red) !important;
+}
+
+/* Pane rules: exactly one 1px line between panes, like tmux borders.
+ * Panes draw them; splitters stay invisible but keep their grab area. */
+#tabbrowser-tabpanels .browserContainer {
+  border: none !important;
+}
+
+#sidebar-container,
+#sidebar-box {
+  border: none !important;
+  border-inline-end: var(--oxo-border) !important;
+}
+
+:is(#sidebar-container, #sidebar-box)[sidebar-positionend] {
+  border-inline-end: none !important;
+  border-inline-start: var(--oxo-border) !important;
+}
+
+.sidebar-splitter,
+#sidebar-splitter,
+#sidebar-launcher-splitter {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Notification bars (e.g. "LibreWolf prevented this site…"). */
+.infobar,
+notification-message {
+  background-color: var(--oxo-surface) !important;
+  color: var(--oxo-fg) !important;
+  border-bottom: var(--oxo-border) !important;
+}
