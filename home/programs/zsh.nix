@@ -79,6 +79,10 @@
     };
 
     initContent = ''
+      # Export API keys from sops secret files (read at runtime, never stored in the nix store)
+      [[ -r "$EXA_API_KEY_FILE" ]] && export EXA_API_KEY="$(<"$EXA_API_KEY_FILE")"
+      [[ -r "$BRAVE_API_KEY_FILE" ]] && export BRAVE_API_KEY="$(<"$BRAVE_API_KEY_FILE")"
+
       # select by name and copy the target path without a newline.
       wordlist-copy() {
         local selected target
