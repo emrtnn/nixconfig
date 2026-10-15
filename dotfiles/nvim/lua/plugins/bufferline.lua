@@ -14,6 +14,12 @@ return {
 			{ "<leader>bd", "<cmd>bdelete<cr>", desc = "Delete This Buffer" },
 		},
 		opts = {
+			-- Caelus: the current buffer is marked in the orange accent.
+			highlights = {
+				indicator_selected = { fg = "#ef934d" },
+				buffer_selected = { fg = "#f4decd", bold = true, italic = false },
+				modified_selected = { fg = "#ef934d" },
+			},
 			options = {
 				indicator = {
 					style = "icon",

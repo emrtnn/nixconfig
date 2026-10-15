@@ -4,7 +4,7 @@ return {
 		event = "VeryLazy",
 		opts = {
 			options = {
-				theme = "oxocarbon",
+				theme = "caelus",
 			},
 			globalstatus = true,
 			sections = {

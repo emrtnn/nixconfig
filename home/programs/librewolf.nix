@@ -1,4 +1,4 @@
-# LibreWolf: default browser, Oxocarbon "TUI" theme (dotfiles/librewolf/chrome)
+# LibreWolf: default browser, Caelus "TUI" theme (dotfiles/librewolf/chrome)
 # and the prefs it needs, shared by every host. The package itself stays in
 # the hosts' home.nix (wrapped with KeePassXC's native messaging host).
 #

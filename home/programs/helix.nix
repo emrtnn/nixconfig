@@ -2,15 +2,229 @@
   pkgs,
   lib,
   ...
-}: {
-  # Community port linked by Oxocarbon; not bundled with the pinned Helix.
-  xdg.configFile."helix/themes/oxocarbon.toml".source = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/neoangelism/oxocarbon-helix/9a3351cc6953ae41e8d81d9ba8f0d69eac3c19f2/oxocarbon.toml";
-    hash = "sha256-4bH7Ov7gTwg1fB4OwfdSpTl0O4mOEyks8K0U7PSN5e0=";
-  };
-
+}: let
+  c = import ../themes/caelus.nix;
+in {
   programs.helix = {
     enable = true;
+    # Same syntax roles as dotfiles/nvim/colors/caelus.lua.
+    themes.caelus = {
+      "ui.background" = {};
+      "ui.text" = c.fg;
+      "ui.text.focus" = {
+        fg = c.fg;
+        modifiers = ["bold"];
+      };
+      "ui.text.inactive" = c.gray6;
+      "ui.text.directory" = c.blue;
+      "ui.cursor" = {
+        fg = c.bg;
+        bg = c.gray8;
+      };
+      "ui.cursor.primary" = {
+        fg = c.bg;
+        bg = c.orange;
+      };
+      "ui.cursor.match" = {
+        fg = c.orange;
+        bg = c.gray2;
+        modifiers = ["bold"];
+      };
+      "ui.cursorline.primary" = {bg = c.gray1;};
+      "ui.selection" = {bg = c.gray2;};
+      "ui.selection.primary" = {bg = c.gray3;};
+      "ui.linenr" = c.gray4;
+      "ui.linenr.selected" = {
+        fg = c.orange;
+        modifiers = ["bold"];
+      };
+      "ui.gutter" = {};
+      "ui.statusline" = {
+        fg = c.gray9;
+        bg = c.gray0;
+      };
+      "ui.statusline.inactive" = {
+        fg = c.gray5;
+        bg = c.gray0;
+      };
+      "ui.statusline.normal" = {
+        fg = c.bg;
+        bg = c.orange;
+        modifiers = ["bold"];
+      };
+      "ui.statusline.insert" = {
+        fg = c.bg;
+        bg = c.green;
+        modifiers = ["bold"];
+      };
+      "ui.statusline.select" = {
+        fg = c.bg;
+        bg = c.magenta;
+        modifiers = ["bold"];
+      };
+      "ui.statusline.separator" = c.gray3;
+      "ui.bufferline" = {
+        fg = c.gray7;
+        bg = c.gray0;
+      };
+      "ui.bufferline.active" = {
+        fg = c.bg;
+        bg = c.orange;
+        modifiers = ["bold"];
+      };
+      "ui.bufferline.background" = {bg = c.gray0;};
+      "ui.popup" = {
+        fg = c.fg;
+        bg = c.gray0;
+      };
+      "ui.popup.info" = {
+        fg = c.fg;
+        bg = c.gray0;
+      };
+      "ui.window" = c.gray3;
+      "ui.help" = {
+        fg = c.fg;
+        bg = c.gray0;
+      };
+      "ui.menu" = {
+        fg = c.fg;
+        bg = c.gray1;
+      };
+      "ui.menu.selected" = {
+        fg = c.bg;
+        bg = c.orange;
+        modifiers = ["bold"];
+      };
+      "ui.menu.scroll" = {
+        fg = c.gray4;
+        bg = c.gray2;
+      };
+      "ui.picker.header" = {
+        fg = c.orange;
+        modifiers = ["bold"];
+      };
+      "ui.virtual" = c.gray3;
+      "ui.virtual.whitespace" = c.gray2;
+      "ui.virtual.indent-guide" = c.gray2;
+      "ui.virtual.ruler" = {bg = c.gray1;};
+      "ui.virtual.inlay-hint" = {
+        fg = c.gray5;
+        modifiers = ["italic"];
+      };
+      "ui.virtual.jump-label" = {
+        fg = c.bg;
+        bg = c.orange;
+        modifiers = ["bold"];
+      };
+      "ui.highlight" = {bg = c.gray2;};
+
+      comment = {
+        fg = c.gray6;
+        modifiers = ["italic"];
+      };
+      keyword = c.orange;
+      "keyword.directive" = c.orangeLight;
+      "keyword.control.import" = c.orangeLight;
+      "keyword.control.return" = {
+        fg = c.orange;
+        modifiers = ["italic"];
+      };
+      operator = c.gray8;
+      punctuation = c.gray8;
+      "punctuation.special" = c.orangeLight;
+      function = c.yellow;
+      "function.builtin" = {
+        fg = c.yellow;
+        modifiers = ["italic"];
+      };
+      "function.macro" = c.orangeLight;
+      type = c.cyan;
+      "type.builtin" = {
+        fg = c.cyan;
+        modifiers = ["italic"];
+      };
+      constructor = c.cyan;
+      attribute = c.cyan;
+      string = c.green;
+      "string.regexp" = c.orangeLight;
+      "string.special" = c.orangeLight;
+      "string.special.url" = {
+        fg = c.blue;
+        modifiers = ["underlined"];
+      };
+      "constant.character.escape" = c.orangeLight;
+      constant = c.magenta;
+      "constant.numeric" = c.magenta;
+      "constant.builtin" = {
+        fg = c.magenta;
+        modifiers = ["bold"];
+      };
+      variable = c.fg;
+      "variable.builtin" = c.redLight;
+      "variable.parameter" = {
+        fg = c.gray9;
+        modifiers = ["italic"];
+      };
+      "variable.other.member" = c.blueLight;
+      namespace = c.blue;
+      label = c.orange;
+      tag = c.orange;
+      special = c.orangeLight;
+
+      "markup.heading" = {
+        fg = c.orange;
+        modifiers = ["bold"];
+      };
+      "markup.list" = c.orange;
+      "markup.bold" = {modifiers = ["bold"];};
+      "markup.italic" = {modifiers = ["italic"];};
+      "markup.strikethrough" = {modifiers = ["crossed_out"];};
+      "markup.link.url" = {
+        fg = c.blue;
+        modifiers = ["underlined"];
+      };
+      "markup.link.text" = c.blueLight;
+      "markup.quote" = {
+        fg = c.gray7;
+        modifiers = ["italic"];
+      };
+      "markup.raw" = c.green;
+
+      "diff.plus" = c.green;
+      "diff.minus" = c.red;
+      "diff.delta" = c.yellow;
+
+      error = c.red;
+      warning = c.yellow;
+      info = c.blue;
+      hint = c.cyan;
+      "diagnostic.error" = {
+        underline = {
+          color = c.red;
+          style = "curl";
+        };
+      };
+      "diagnostic.warning" = {
+        underline = {
+          color = c.yellow;
+          style = "curl";
+        };
+      };
+      "diagnostic.info" = {
+        underline = {
+          color = c.blue;
+          style = "curl";
+        };
+      };
+      "diagnostic.hint" = {
+        underline = {
+          color = c.cyan;
+          style = "curl";
+        };
+      };
+      "diagnostic.unnecessary" = {modifiers = ["dim"];};
+      "diagnostic.deprecated" = {modifiers = ["crossed_out"];};
+    };
     defaultEditor = false;
     extraPackages = with pkgs; [
       # Nix
@@ -76,7 +290,7 @@
     ];
 
     settings = {
-      theme = "oxocarbon";
+      theme = "caelus";
 
       editor = {
         line-number = "relative";

@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  c = import ../themes/oxocarbon.nix;
+  c = import ../themes/caelus.nix;
   screenshot = pkgs.writeShellApplication {
     name = "nixconfig-screenshot";
     runtimeInputs = [pkgs.coreutils pkgs.scrot pkgs.xclip pkgs.ksnip pkgs.xset];
@@ -107,8 +107,8 @@ in {
         split_ratio = 0.5;
         window_gap = 8;
         border_width = 3;
-        normal_border_color = c.base03;
-        focused_border_color = c.base09;
+        normal_border_color = c.gray3;
+        focused_border_color = c.orange;
         focus_follows_pointer = true;
         borderless_monocle = true;
         top_padding = 8;
@@ -199,17 +199,17 @@ in {
       settings = {
         global = {
           font = "GeistMono Nerd Font Mono 10";
-          frame_color = c.base09;
-          foreground = c.base05;
-          background = c.base00;
+          frame_color = c.orange;
+          foreground = c.fg;
+          background = c.bg;
           corner_radius = 10;
           origin = "top-right";
           offset = "12x52";
         };
         urgency_critical = {
-          background = c.base0A;
-          foreground = c.base00;
-          frame_color = c.base0A;
+          background = c.red;
+          foreground = c.bg;
+          frame_color = c.red;
         };
       };
     };
@@ -219,7 +219,7 @@ in {
       inactiveInterval = 10;
       xautolock.enable = false;
       xss-lock.extraOptions = ["--transfer-sleep-lock"];
-      lockCmd = "${pkgs.i3lock}/bin/i3lock --nofork -c ${lib.removePrefix "#" c.base00}";
+      lockCmd = "${pkgs.i3lock}/bin/i3lock --nofork -c ${lib.removePrefix "#" c.bg}";
     };
   };
   # VMware compares PRIMARY/CLIPBOARD timestamps; Herdr's xclip writer does

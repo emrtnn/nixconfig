@@ -3,6 +3,10 @@ require("config.options")
 require("config.keymaps")
 require("config.autocmds")
 
+-- Local colorscheme (colors/caelus.lua); applied before plugins so they derive
+-- their highlights from it.
+vim.cmd.colorscheme("caelus")
+
 -- Lazyvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -33,7 +37,7 @@ require("lazy").setup({
 		version = false, -- always use the latest git commit
 		-- version = "*", -- try installing the latest stable version for plugins that support semver
 	},
-	install = { colorscheme = { "tokyonight", "habamax" } },
+	install = { colorscheme = { "caelus", "habamax" } },
 	checker = {
 		enabled = true, -- check for plugin updates periodically
 		notify = false, -- notify on update

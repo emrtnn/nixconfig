@@ -5,23 +5,23 @@
   ...
 }: let
   ini = pkgs.formats.ini {};
-  # Oxocarbon dark, shared by KDE's color scheme and the Qt platform palette.
-  c = import ../themes/oxocarbon.nix;
+  # Caelus, shared by KDE's color scheme and the Qt platform palette.
+  c = import ../themes/caelus.nix;
   rgb = hex: lib.concatMapStringsSep "," (offset: toString (lib.fromHexString (builtins.substring offset 2 hex))) [1 3 5];
   colors = builtins.mapAttrs (_: rgb) {
-    bg = c.base00;
-    bg1 = c.base01;
-    bg2 = c.base02;
-    fg = c.base05;
-    fg0 = c.base06;
-    gray = c.muted;
-    red = c.base0A;
-    green = c.base0D;
-    accent = c.base09;
-    blue = c.base0B;
-    purple = c.base0E;
-    aqua = c.base08;
-    neutral = c.base0F;
+    bg = c.bg;
+    bg1 = c.gray1;
+    bg2 = c.gray3;
+    fg = c.fg;
+    fg0 = c.fg;
+    gray = c.gray6;
+    red = c.red;
+    green = c.green;
+    accent = c.orange;
+    blue = c.blue;
+    purple = c.magenta;
+    aqua = c.orangeLight;
+    neutral = c.yellow;
   };
   colorSet = background: {
     BackgroundNormal = background;
@@ -38,7 +38,7 @@
     DecorationHover = colors.aqua;
   };
   kdeColors = {
-    General.Name = "Oxocarbon Dark";
+    General.Name = "Caelus";
     "ColorEffects:Inactive".Enable = false;
     "Colors:View" = colorSet colors.bg;
     "Colors:Window" = colorSet colors.bg;
@@ -75,7 +75,7 @@
       gray
       accent
     ]));
-  palette = ini.generate "oxocarbon-dark-qt.conf" {
+  palette = ini.generate "caelus-qt.conf" {
     ColorScheme = {
       active_colors = qtPalette colors.fg;
       inactive_colors = qtPalette colors.fg;
@@ -132,7 +132,7 @@ in {
     kde.settings = {
       kdeglobals = {
         General = {
-          ColorScheme = "OxocarbonDark";
+          ColorScheme = "Caelus";
           TerminalApplication = kdeTerminal.app;
           TerminalService = kdeTerminal.service;
         };
@@ -154,7 +154,7 @@ in {
           PreviewSize = 64;
         };
         PreviewSettings.Plugins = "directorythumbnail,imagethumbnail,jpegthumbnail,svgthumbnail,ffmpegthumbs,gsthumbnail";
-        UiSettings.ColorScheme = "Oxocarbon Dark";
+        UiSettings.ColorScheme = "Caelus";
       };
     };
   };
@@ -165,7 +165,7 @@ in {
       defaultApplications."inode/directory" = ["org.kde.dolphin.desktop"];
     };
     dataFile = {
-      "color-schemes/OxocarbonDark.colors".source = ini.generate "OxocarbonDark.colors" kdeColors;
+      "color-schemes/Caelus.colors".source = ini.generate "Caelus.colors" kdeColors;
       "kio/servicemenus/open-in-yazi.desktop" = {
         executable = true;
         text = ''

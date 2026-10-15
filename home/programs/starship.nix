@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  c = import ../themes/caelus.nix;
+in {
   home.packages = [pkgs.jj-starship];
 
   programs.starship = {
@@ -9,9 +11,26 @@
       add_newline = true;
       command_timeout = 200;
 
+      # --- Colors ---
+      # Caelus truecolor palette. Its names shadow the ANSI ones, so modules
+      # left on their default styles ("bold cyan", "yellow", …) follow it too.
+      # jj-starship prints plain ANSI colors and follows the terminal palette.
+      palette = "caelus";
+      palettes.caelus = {
+        inherit (c) orange red green yellow blue cyan fg;
+        purple = c.magenta;
+        magenta = c.magenta;
+        white = c.fg;
+        muted = c.gray6;
+      };
+      directory.style = "bold orange";
+      cmd_duration.style = "bold yellow";
+      nix_shell.style = "bold blue";
+      os.style = "muted";
+
       # --- Character ---
       character = {
-        success_symbol = "[➜ ](bold green)";
+        success_symbol = "[➜ ](bold orange)";
         error_symbol = "[✗ ](bold red)";
         vimcmd_symbol = "[❮](bold green)";
         vimcmd_visual_symbol = "[❮](bold yellow)";

@@ -1,4 +1,5 @@
 {pkgs, ...}: let
+  c = import ../themes/caelus.nix;
   copyToClipboard = pkgs.writeShellScript "tmux-copy" ''
     if [ -n "''${WAYLAND_DISPLAY:-}" ]; then
       exec ${pkgs.wl-clipboard}/bin/wl-copy
@@ -38,7 +39,7 @@ in {
         extraConfig = ''
           # Home Manager loads plugins before the main extraConfig. Initialize
           # status-right here so continuum's autosave hook survives.
-          set -g status-right '#[fg=#3ddbd9,bg=#262626] #H #[fg=#dde1e6,bg=#161616] %Y-%m-%d #[fg=#78a9ff]%H:%M '
+          set -g status-right '#[fg=${c.gray9},bg=${c.gray2}] #H #[fg=${c.gray7},bg=${c.gray0}] %Y-%m-%d #[fg=${c.orange}]%H:%M '
           set -g @continuum-save-interval '5'
           set -g @continuum-restore 'on'
         '';
@@ -58,28 +59,28 @@ in {
       set -g allow-passthrough on
       set -ga update-environment ' WAYLAND_DISPLAY XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS TERM_PROGRAM'
 
-      # Native Oxocarbon styling; status-right is initialized before continuum.
-      set -g status-style 'bg=#161616,fg=#f2f4f8'
+      # Native Caelus styling; status-right is initialized before continuum.
+      set -g status-style 'bg=${c.gray0},fg=${c.fg}'
       set -g status-left-length 60
       set -g status-right-length 100
-      set -g status-left '#[fg=#161616,bg=#{?client_prefix,#be95ff,#3ddbd9},bold] #{?client_prefix,PREFIX ,}#S#[default] '
-      set -g window-status-style 'bg=#262626,fg=#dde1e6'
+      set -g status-left '#[fg=${c.bg},bg=#{?client_prefix,${c.yellow},${c.orange}},bold] #{?client_prefix,PREFIX ,}#S#[default] '
+      set -g window-status-style 'bg=${c.gray1},fg=${c.gray7}'
       set -g window-status-format ' #I:#W#{?window_flags, #F,} '
-      set -g window-status-current-style 'bg=#78a9ff,fg=#161616,bold'
+      set -g window-status-current-style 'bg=${c.orange},fg=${c.bg},bold'
       set -g window-status-current-format ' #I:#W#{?window_flags, #F,} '
-      set -g window-status-activity-style 'bg=#262626,fg=#42be65'
-      set -g window-status-bell-style 'bg=#ee5396,fg=#161616,bold'
-      set -g window-status-last-style 'fg=#be95ff'
+      set -g window-status-activity-style 'bg=${c.gray1},fg=${c.green}'
+      set -g window-status-bell-style 'bg=${c.red},fg=${c.bg},bold'
+      set -g window-status-last-style 'fg=${c.orangeLight}'
       set -g window-status-separator ' '
-      set -g message-style 'bg=#262626,fg=#f2f4f8'
-      set -g message-command-style 'bg=#262626,fg=#3ddbd9'
-      set -g mode-style 'bg=#393939,fg=#f2f4f8'
-      set -g clock-mode-colour '#78a9ff'
-      set -g menu-style 'bg=#262626,fg=#f2f4f8'
-      set -g menu-selected-style 'bg=#393939,fg=#3ddbd9,bold'
-      set -g menu-border-style 'fg=#525252'
-      set -g pane-border-style 'fg=#525252'
-      set -g pane-active-border-style 'fg=#78a9ff,bold'
+      set -g message-style 'bg=${c.gray1},fg=${c.fg}'
+      set -g message-command-style 'bg=${c.gray1},fg=${c.orange}'
+      set -g mode-style 'bg=${c.gray3},fg=${c.fg}'
+      set -g clock-mode-colour '${c.orange}'
+      set -g menu-style 'bg=${c.gray1},fg=${c.fg}'
+      set -g menu-selected-style 'bg=${c.orange},fg=${c.bg},bold'
+      set -g menu-border-style 'fg=${c.gray4}'
+      set -g pane-border-style 'fg=${c.gray3}'
+      set -g pane-active-border-style 'fg=${c.orange},bold'
       set -g pane-border-status top
       set -g pane-border-format ' #{pane_index}: #{pane_current_command} #{?pane_active,*,} '
       set -g monitor-bell on

@@ -1,239 +1,239 @@
 {pkgs, ...}: let
-  c = import ../themes/oxocarbon.nix;
+  c = import ../themes/caelus.nix;
   selected = {
-    fg = c.base00;
-    bg = c.base09;
+    fg = c.bg;
+    bg = c.orange;
     bold = true;
   };
-  border = {fg = c.base09;};
+  border = {fg = c.orange;};
 in {
   programs.yazi = {
     enable = true;
     shellWrapperName = "y";
 
-    # No maintained Oxocarbon flavor was found; keep this native theme local.
+    # Native Caelus theme generated from home/themes/caelus.nix.
     theme = {
       app.overall = {
-        fg = c.base05;
-        bg = c.base00;
+        inherit (c) fg;
+        inherit (c) bg;
       };
       mgr = {
-        cwd.fg = c.base08;
+        cwd.fg = c.orange;
         find_keyword = {
-          fg = c.base0C;
+          fg = c.magenta;
           bold = true;
           underline = true;
         };
         find_position = {
-          fg = c.base0E;
+          fg = c.yellow;
           bold = true;
         };
         marker_copied = {
-          fg = c.base0D;
-          bg = c.base0D;
+          fg = c.green;
+          bg = c.green;
         };
         marker_cut = {
-          fg = c.base0A;
-          bg = c.base0A;
+          fg = c.red;
+          bg = c.red;
         };
         marker_marked = {
-          fg = c.base08;
-          bg = c.base08;
+          fg = c.cyan;
+          bg = c.cyan;
         };
         marker_selected = {
-          fg = c.base09;
-          bg = c.base09;
+          fg = c.orange;
+          bg = c.orange;
         };
         count_copied = {
-          fg = c.base00;
-          bg = c.base0D;
+          fg = c.bg;
+          bg = c.green;
         };
         count_cut = {
-          fg = c.base00;
-          bg = c.base0A;
+          fg = c.bg;
+          bg = c.red;
         };
         count_selected = {
-          fg = c.base00;
-          bg = c.base09;
+          fg = c.bg;
+          bg = c.orange;
         };
-        border_style.fg = c.base03;
-        syntect_theme = "${import ../themes/oxocarbon-tmtheme.nix {inherit pkgs;}}";
+        border_style.fg = c.gray3;
+        syntect_theme = "${import ../themes/caelus-tmtheme.nix {inherit pkgs;}}";
       };
       tabs = {
         active = selected;
         inactive = {
-          fg = c.base04;
-          bg = c.base01;
+          fg = c.gray9;
+          bg = c.gray1;
         };
       };
       mode = {
         normal_main = selected;
         normal_alt = {
-          fg = c.base09;
-          bg = c.base01;
+          fg = c.orange;
+          bg = c.gray1;
         };
         select_main = {
-          fg = c.base00;
-          bg = c.base0D;
+          fg = c.bg;
+          bg = c.green;
           bold = true;
         };
         select_alt = {
-          fg = c.base0D;
-          bg = c.base01;
+          fg = c.green;
+          bg = c.gray1;
         };
         unset_main = {
-          fg = c.base00;
-          bg = c.base0C;
+          fg = c.bg;
+          bg = c.magenta;
           bold = true;
         };
         unset_alt = {
-          fg = c.base0C;
-          bg = c.base01;
+          fg = c.magenta;
+          bg = c.gray1;
         };
       };
       indicator = {
         parent = {
-          fg = c.base05;
-          bg = c.base02;
+          inherit (c) fg;
+          bg = c.gray2;
         };
         current = {
-          fg = c.base05;
-          bg = c.base02;
+          inherit (c) fg;
+          bg = c.gray2;
           bold = true;
         };
         preview = {
-          fg = c.base09;
+          fg = c.orange;
           underline = true;
         };
       };
       status = {
         overall = {
-          fg = c.base04;
-          bg = c.base01;
+          fg = c.gray9;
+          bg = c.gray1;
         };
-        perm_sep.fg = c.muted;
-        perm_type.fg = c.base0E;
-        perm_read.fg = c.base0F;
-        perm_write.fg = c.base0A;
-        perm_exec.fg = c.base0D;
+        perm_sep.fg = c.gray6;
+        perm_type.fg = c.blue;
+        perm_read.fg = c.yellow;
+        perm_write.fg = c.red;
+        perm_exec.fg = c.green;
         progress_label = {
-          fg = c.base05;
+          inherit (c) fg;
           bold = true;
         };
         progress_normal = {
-          fg = c.base09;
-          bg = c.base02;
+          fg = c.orange;
+          bg = c.gray2;
         };
         progress_error = {
-          fg = c.base0A;
-          bg = c.base02;
+          fg = c.red;
+          bg = c.gray2;
         };
       };
       which = {
         inherit border;
-        cand.fg = c.base08;
-        rest.fg = c.muted;
-        desc.fg = c.base04;
-        separator_style.fg = c.base03;
+        cand.fg = c.cyan;
+        rest.fg = c.gray6;
+        desc.fg = c.gray9;
+        separator_style.fg = c.gray3;
       };
       confirm = {
         inherit border;
-        title.fg = c.base09;
+        title.fg = c.orange;
         btn_yes = selected;
         btn_no = {
-          fg = c.base04;
-          bg = c.base01;
+          fg = c.gray9;
+          bg = c.gray1;
         };
       };
       spot = {
         inherit border;
-        title.fg = c.base09;
-        tbl_col.fg = c.base08;
+        title.fg = c.orange;
+        tbl_col.fg = c.cyan;
         tbl_cell = selected;
       };
       notify = {
-        title_info.fg = c.base0D;
-        title_warn.fg = c.base0F;
-        title_error.fg = c.base0A;
+        title_info.fg = c.green;
+        title_warn.fg = c.yellow;
+        title_error.fg = c.red;
       };
       pick = {
         inherit border;
         active = selected;
-        inactive.fg = c.base04;
+        inactive.fg = c.gray9;
       };
       input = {
         inherit border;
-        title.fg = c.base09;
-        value.fg = c.base05;
-        selected = selected;
+        title.fg = c.orange;
+        value.fg = c.fg;
+        inherit selected;
       };
       cmp = {
         inherit border;
         active = selected;
-        inactive.fg = c.base04;
+        inactive.fg = c.gray9;
       };
       tasks = {
         inherit border;
-        title.fg = c.base09;
+        title.fg = c.orange;
         hovered = selected;
       };
       help = {
         inherit border;
-        chord.fg = c.base08;
-        action.fg = c.base04;
+        chord.fg = c.cyan;
+        action.fg = c.gray9;
         hovered = selected;
       };
       filetype.rules = [
         {
           mime = "**/image/*";
-          fg = c.base0E;
+          fg = c.yellow;
         }
         {
           mime = "**/{audio,video}/*";
-          fg = c.base0C;
+          fg = c.magenta;
         }
         {
           mime = "**/application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}";
-          fg = c.base0A;
+          fg = c.red;
         }
         {
           mime = "**/application/{pdf,doc,rtf}";
-          fg = c.base08;
+          fg = c.cyan;
         }
         {
           mime = "vfs/{absent,stale}";
-          fg = c.muted;
+          fg = c.gray6;
         }
         {
           url = "*";
           is = "orphan";
-          fg = c.base00;
-          bg = c.base0A;
+          fg = c.bg;
+          bg = c.red;
         }
         {
           url = "*";
           is = "exec";
-          fg = c.base0D;
+          fg = c.green;
         }
         {
           url = "*";
           is = "dummy";
-          fg = c.base00;
-          bg = c.base0A;
+          fg = c.bg;
+          bg = c.red;
         }
         {
           url = "*/";
           is = "dummy";
-          fg = c.base00;
-          bg = c.base0A;
+          fg = c.bg;
+          bg = c.red;
         }
         {
           url = "*/";
-          fg = c.base09;
+          fg = c.blue;
         }
         {
           url = "*";
-          fg = c.base04;
+          fg = c.gray9;
         }
       ];
     };

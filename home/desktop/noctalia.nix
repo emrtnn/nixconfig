@@ -3,7 +3,44 @@
   pkgs,
   osConfig,
   ...
-}: {
+}: let
+  c = import ../themes/caelus.nix;
+  names = ["black" "red" "green" "yellow" "blue" "magenta" "cyan" "white"];
+  ansi = colors: builtins.listToAttrs (pkgs.lib.zipListsWith pkgs.lib.nameValuePair names colors);
+  # Noctalia custom palette; with no "light" variant the dark one is used for both.
+  palette = {
+    dark = {
+      mPrimary = c.orange;
+      mOnPrimary = c.bg;
+      mSecondary = c.yellow;
+      mOnSecondary = c.bg;
+      mTertiary = c.yellow;
+      mOnTertiary = c.bg;
+      mError = c.red;
+      mOnError = c.bg;
+      mSurface = c.bg;
+      mOnSurface = c.fg;
+      mSurfaceVariant = c.gray1;
+      mOnSurfaceVariant = c.gray7;
+      mOutline = c.gray3;
+      mShadow = "#000000";
+      mHover = c.fg;
+      mOnHover = c.gray2;
+      terminal = {
+        background = c.bg;
+        foreground = c.fg;
+        cursor = c.orange;
+        cursorText = c.bg;
+        selectionBg = c.orange;
+        selectionFg = c.bg;
+        normal = ansi c.terminal.normal;
+        bright = ansi c.terminal.bright;
+      };
+    };
+  };
+in {
+  xdg.configFile."noctalia/palettes/Caelus.json".text = builtins.toJSON palette;
+
   programs.noctalia = {
     enable = true;
     package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -549,11 +586,12 @@
       };
       theme = {
         builtin = "Noctalia";
-        community_palette = "Oxocarbon";
-        custom_palette = "";
+        community_palette = "";
+        # home/themes/caelus.nix, written to palettes/Caelus.json above.
+        custom_palette = "Caelus";
         mode = "dark";
         pure_black_dark = false;
-        source = "community";
+        source = "custom";
         wallpaper_scheme = "m3-content";
         templates = {
           # Qt and Yazi are owned by their Home Manager modules, not templates.

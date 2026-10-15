@@ -1,5 +1,5 @@
 {config, ...}: let
-  c = import ../themes/oxocarbon.nix;
+  c = import ../themes/caelus.nix;
 in {
   programs.satty = {
     enable = true;
@@ -24,13 +24,13 @@ in {
       };
 
       color-palette.palette = map (hex: "${hex}ff") [
-        c.base0A # red
-        c.base0C # pink
-        c.base09 # blue
-        c.base08 # cyan
-        c.base0D # green
-        c.base0E # purple
-        c.base05 # white
+        c.orange
+        c.red
+        c.yellow
+        c.green
+        c.blue
+        c.magenta
+        c.fg
       ];
     };
   };

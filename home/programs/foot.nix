@@ -1,12 +1,12 @@
-{pkgs, ...}: let
-  upstreamTheme = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/Oxocarbon-Theme/foot/7a9f6de36a2ccc9c9d29066b9ba1f69002c65a0a/oxocarbon-dark.ini";
-    hash = "sha256-4+FLGCs/uYn48Zvm5cVPR/+lkwRNlRTdpnT7p+ePlXw=";
-  };
-  # Adapt the upstream port to Foot's current section name.
-  theme = pkgs.runCommand "oxocarbon-foot.ini" {} ''
-    substitute ${upstreamTheme} "$out" --replace-fail '[colors]' '[colors-dark]'
-  '';
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  c = import ../themes/caelus.nix;
+  hex = lib.removePrefix "#";
+  # regular0..7 / bright0..7 from the shared ANSI palette.
+  ansi = prefix: colors: lib.listToAttrs (lib.imap0 (i: color: lib.nameValuePair "${prefix}${toString i}" (hex color)) colors);
 in {
   programs.foot = {
     enable = true;
@@ -16,7 +16,6 @@ in {
     server.enable = true;
     settings = {
       main = {
-        include = "${theme}";
         shell = "${pkgs.zsh}/bin/zsh";
         font = "Iosevka Nerd Font Mono:size=16";
         pad = "7x2";
@@ -28,10 +27,22 @@ in {
         blink = true;
       };
 
-      colors-dark = {
-        alpha = 1;
-        blur = false;
-      };
+      # Caelus colors, generated from home/themes/caelus.nix (same as Kitty).
+      colors-dark =
+        {
+          alpha = 1;
+          blur = false;
+          foreground = hex c.fg;
+          background = hex c.bg;
+          selection-foreground = hex c.bg;
+          selection-background = hex c.orange;
+          cursor = "${hex c.bg} ${hex c.orange}";
+          urls = hex c.blue;
+          search-box-no-match = "${hex c.bg} ${hex c.red}";
+          search-box-match = "${hex c.bg} ${hex c.orange}";
+        }
+        // ansi "regular" c.terminal.normal
+        // ansi "bright" c.terminal.bright;
 
       mouse = {
         hide-when-typing = "yes";
