@@ -229,7 +229,8 @@ in {
         }
         {
           url = "*/";
-          fg = c.blue;
+          fg = c.orange;
+          bold = true;
         }
         {
           url = "*";
