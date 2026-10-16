@@ -18,7 +18,7 @@
       MinimizeToTray = true;
       MinimizeOnClose = true;
     };
-    Security.LockDatabaseIdleSeconds = 7200;
+    Security.LockDatabaseIdleSeconds = 14400;
     Browser = {
       Enabled = true;
       UpdateBinaryPath = false;
