@@ -47,8 +47,10 @@
         modules = [nixosModule];
       };
   in {
-    nixosConfigurations.monad = mkHost ./hosts/monad/configuration.nix;
-    nixosConfigurations.arpano = mkHost ./hosts/arpano/configuration.nix;
-    nixosConfigurations.argos = mkHost ./hosts/argos/configuration.nix;
+    nixosConfigurations = {
+      monad = mkHost ./hosts/monad/configuration.nix;
+      arpano = mkHost ./hosts/arpano/configuration.nix;
+      argos = mkHost ./hosts/argos/configuration.nix;
+    };
   };
 }
