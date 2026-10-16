@@ -54,6 +54,7 @@
     secrets = {
       brave_api_key = {};
       exa_api_key = {};
+      anthropic_api_key = {};
     };
   };
 

@@ -40,7 +40,11 @@
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     age.keyFile = "/home/impuremonad/.config/sops/age/keys.txt";
-    secrets.brave_api_key = {};
+    secrets = {
+      brave_api_key = {};
+      exa_api_key = {};
+      anthropic_api_key = {};
+    };
   };
 
   programs.git.settings.user = {

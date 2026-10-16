@@ -44,6 +44,7 @@
     sessionVariables = {
       BRAVE_API_KEY_FILE = "${config.sops.secrets.brave_api_key.path}";
       EXA_API_KEY_FILE = "${config.sops.secrets.exa_api_key.path}";
+      ANTHROPIC_API_KEY_FILE = "${config.sops.secrets.anthropic_api_key.path}";
     };
   };
 
@@ -53,6 +54,7 @@
     secrets = {
       brave_api_key = {};
       exa_api_key = {};
+      anthropic_api_key = {};
     };
   };
 
