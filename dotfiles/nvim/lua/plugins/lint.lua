@@ -76,7 +76,7 @@ return {
 			}
 
 			local function lint_buffer(opts)
-				if vim.bo.buftype == "" then
+				if vim.bo.buftype == "" and not vim.b.has_conflicts then
 					lint.try_lint(nil, opts)
 				end
 			end

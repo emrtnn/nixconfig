@@ -62,7 +62,7 @@
       ga = "git add";
       gs = "git status";
       lg = "lazygit";
-      gd = "tuicr -r HEAD";
+      gd = "tuicr";
       gds = "git diff --staged";
 
       jl = "jj log -r 'all()'";

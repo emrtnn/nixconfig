@@ -10,6 +10,36 @@ create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Silence diagnostics in buffers with merge conflict markers. Parsers and
+-- linters choke on them and flood the buffer with errors and virtual lines.
+local function has_conflict_markers(buf)
+	for _, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
+		if line:find("^<<<<<<< ") or line:find("^>>>>>>> ") then
+			return true
+		end
+	end
+	return false
+end
+
+create_autocmd({ "BufReadPost", "BufWritePost", "InsertLeave", "TextChanged" }, {
+	group = vim.api.nvim_create_augroup("UserConflictDiagnostics", { clear = true }),
+	callback = function(event)
+		local buf = event.buf
+		if vim.bo[buf].buftype ~= "" then
+			return
+		end
+		local conflicted = has_conflict_markers(buf)
+		if conflicted == (vim.b[buf].has_conflicts or false) then
+			return
+		end
+		vim.b[buf].has_conflicts = conflicted
+		vim.diagnostic.enable(not conflicted, { bufnr = buf })
+		if conflicted then
+			vim.notify("Conflict markers found: diagnostics disabled for this buffer", vim.log.levels.INFO)
+		end
+	end,
+})
+
 -- Go to the last known cursor position when reopening a file
 create_autocmd("BufReadPost", {
 	callback = function(event)
