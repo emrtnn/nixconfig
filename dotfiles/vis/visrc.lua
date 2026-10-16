@@ -22,11 +22,40 @@ vis:map(vis.modes.VISUAL, " y", '"+y')
 vis:map(vis.modes.NORMAL, " p", '"+p')
 vis:map(vis.modes.NORMAL, " P", '"+P')
 
+-- File explorer: yazi as a picker (same as C-y in ../../home/programs/helix.nix).
+-- The first chosen file replaces the current window (if it has no unsaved
+-- changes), any others open in new windows.
+local function shquote(s) return "'" .. s:gsub("'", "'\\''") .. "'" end
+local function visquote(s) return "'" .. s:gsub("'", "\\'") .. "'" end
+
+local function explore()
+	local chooser = os.tmpname()
+	local file = vis.win and vis.win.file
+	local start = (file and file.path) or "."
+	vis:command(string.format("!yazi %s --chooser-file=%s", shquote(start), shquote(chooser)))
+	-- vis:command() reports success even when :e refuses, so check up front.
+	local replace = not (file and file.modified)
+	for path in io.lines(chooser) do
+		if path ~= "" then
+			vis:command((replace and "e " or "open ") .. visquote(path))
+			replace = false
+		end
+	end
+	os.remove(chooser)
+	vis:redraw()
+end
+
+vis:command_register("explore", function() explore() return true end, "Pick files with yazi")
+
 local autoclose = require("plugins/vis-autoclose")
 local completefilename = require("plugins/complete-filename")
 
 -- LSP: same servers as ../nvim/lua/plugins/lsp.lua (one per vis syntax)
 local lsp = require("plugins/vis-lspc")
+
+-- After vis-lspc, which binds <Space>e to diagnostics.
+vis:map(vis.modes.NORMAL, " f", explore, "File explorer (yazi)")
+
 local ls = lsp.ls_map
 
 local clangd = {
