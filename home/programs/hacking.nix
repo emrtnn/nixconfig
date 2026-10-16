@@ -37,5 +37,6 @@
     sslscan
     imagemagick
     hashid
+    openldap
   ];
 }
