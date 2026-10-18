@@ -53,7 +53,6 @@
 
       gc = "git commit";
       gl = "git plog";
-      gsignver = "git plog --show-signature";
       gco = "git checkout";
       gb = "git branch";
       gp = "git push";

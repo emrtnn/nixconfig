@@ -14,6 +14,7 @@
     ../../nixos/security/ssh-agent.nix
     ../../nixos/programs/wireshark.nix
     ../../nixos/virtualisation/docker.nix
+    ../../nixos/virtualisation/libvirt.nix
     ../../nixos/boot/plymouth.nix
     ../../nixos/system/zram.nix
     ../../nixos/networking/quad9.nix
