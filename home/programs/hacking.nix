@@ -37,6 +37,8 @@
     sslscan
     imagemagick
     hashid
+    ghidra
     openldap
+    binwalk
   ];
 }
