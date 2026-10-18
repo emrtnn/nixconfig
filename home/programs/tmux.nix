@@ -23,8 +23,6 @@ in {
     shell = "${pkgs.zsh}/bin/zsh";
 
     plugins = with pkgs.tmuxPlugins; [
-      # Ctrl+h/j/k/l crosses Neovim splits and tmux panes without a prefix.
-      vim-tmux-navigator
       {
         plugin = resurrect;
         extraConfig = ''
@@ -86,6 +84,23 @@ in {
       set -g monitor-bell on
       set -g bell-action other
       set -g visual-bell off
+
+      # smart-splits.nvim (backend-tmux): Ctrl+h/j/k/l moves and Alt+h/j/k/l
+      # resizes across Neovim splits and tmux panes without a prefix. Neovim
+      # marks its pane with @pane-is-vim; at the edge, select-pane wraps
+      # (matches smart-splits' default move.at_edge = 'wrap').
+      bind -n C-h if -F '#{@pane-is-vim}' { send-keys C-h } { select-pane -L }
+      bind -n C-j if -F '#{@pane-is-vim}' { send-keys C-j } { select-pane -D }
+      bind -n C-k if -F '#{@pane-is-vim}' { send-keys C-k } { select-pane -U }
+      bind -n C-l if -F '#{@pane-is-vim}' { send-keys C-l } { select-pane -R }
+      bind -n M-h if -F '#{@pane-is-vim}' { send-keys M-h } { resize-pane -L 3 }
+      bind -n M-j if -F '#{@pane-is-vim}' { send-keys M-j } { resize-pane -D 3 }
+      bind -n M-k if -F '#{@pane-is-vim}' { send-keys M-k } { resize-pane -U 3 }
+      bind -n M-l if -F '#{@pane-is-vim}' { send-keys M-l } { resize-pane -R 3 }
+      bind -T copy-mode-vi C-h select-pane -L
+      bind -T copy-mode-vi C-j select-pane -D
+      bind -T copy-mode-vi C-k select-pane -U
+      bind -T copy-mode-vi C-l select-pane -R
 
       # Keep tmux's native session/window pickers (prefix+s / prefix+w).
       # New windows and both native and mnemonic splits follow the current pane.

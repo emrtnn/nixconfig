@@ -3,7 +3,7 @@ local create_autocmd = vim.api.nvim_create_autocmd
 -- Highlight line on yank
 create_autocmd("TextYankPost", {
 	callback = function()
-		vim.highlight.on_yank({
+		vim.hl.on_yank({
 			higroup = "IncSearch",
 			timeout = 300,
 		})
@@ -12,13 +12,12 @@ create_autocmd("TextYankPost", {
 
 -- Silence diagnostics in buffers with merge conflict markers. Parsers and
 -- linters choke on them and flood the buffer with errors and virtual lines.
+-- search() scans in C and stops at the first hit, instead of copying every
+-- line into Lua on each TextChanged. Matches Git and Jujutsu markers.
 local function has_conflict_markers(buf)
-	for _, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
-		if line:find("^<<<<<<< ") or line:find("^>>>>>>> ") then
-			return true
-		end
-	end
-	return false
+	return vim.api.nvim_buf_call(buf, function()
+		return vim.fn.search([[^\(<<<<<<<\|>>>>>>>\) ]], "nw") > 0
+	end)
 end
 
 create_autocmd({ "BufReadPost", "BufWritePost", "InsertLeave", "TextChanged" }, {
@@ -45,10 +44,10 @@ create_autocmd("BufReadPost", {
 	callback = function(event)
 		local exclude = { "gitcommit" }
 		local buf = event.buf
-		if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+		if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].last_loc_restored then
 			return
 		end
-		vim.b[buf].lazyvim_last_loc = true
+		vim.b[buf].last_loc_restored = true
 		local mark = vim.api.nvim_buf_get_mark(buf, '"')
 		local lcount = vim.api.nvim_buf_line_count(buf)
 		if mark[1] > 0 and mark[1] <= lcount then

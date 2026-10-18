@@ -1,8 +1,10 @@
 return {
 	{
 		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		event = { "BufReadPre", "BufNewFile" },
+		-- Highlighting only: attach after the first draw (setup() covers the
+		-- windows that are already open). Plenary is only needed by the
+		-- :TodoQuickFix/:TodoTelescope search commands, which are unused here.
+		event = "VeryLazy",
 		opts = {},
 		keys = {
 			{
@@ -22,17 +24,15 @@ return {
 			{
 				"<leader>xt",
 				function()
-					require("fzf-lua").grep_curbuf({
-						prompt = "Buffer Todos> ",
-						search = "TODO|FIX|FIXME|HACK|WARN|PERF|NOTE|TEST",
-						no_esc = true,
-					})
+					Snacks.picker.todo_comments({ dirs = { vim.api.nvim_buf_get_name(0) }, title = "Buffer Todos" })
 				end,
 				desc = "Buffer Todos",
 			},
 			{
 				"<leader>xT",
-				"<cmd>TodoFzfLua<cr>",
+				function()
+					Snacks.picker.todo_comments()
+				end,
 				desc = "Project Todos",
 			},
 		},

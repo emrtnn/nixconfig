@@ -375,13 +375,6 @@ local groups = {
 	WhichKeyValue = { fg = c.gray6 },
 	WhichKeyBorder = { link = "FloatBorder" },
 	WhichKeyNormal = { link = "NormalFloat" },
-	-- fzf-lua
-	FzfLuaBorder = { link = "FloatBorder" },
-	FzfLuaTitle = { link = "FloatTitle" },
-	FzfLuaCursorLine = { link = "FFFCursorLine" },
-	FzfLuaSearch = { fg = c.orange, bold = true },
-	FzfLuaHeaderBind = { fg = c.orange },
-	FzfLuaHeaderText = { fg = c.gray7 },
 	-- snacks
 	SnacksIndent = { fg = c.gray2 },
 	SnacksIndentScope = { fg = c.orange },
@@ -392,14 +385,10 @@ local groups = {
 	SnacksDashboardFooter = { fg = c.gray6 },
 	SnacksPickerMatch = { fg = c.orange, bold = true },
 	SnacksPickerDir = { fg = c.gray6 },
+	SnacksPickerListCursorLine = { link = "FFFCursorLine" }, -- same selection as fff
 	SnacksNotifierBorderInfo = { fg = c.blue },
 	SnacksNotifierBorderWarn = { fg = c.yellow },
 	SnacksNotifierBorderError = { fg = c.red },
-	-- trouble
-	TroubleNormal = { fg = c.fg, bg = c.none },
-	TroubleNormalNC = { link = "TroubleNormal" },
-	TroubleText = { fg = c.fg },
-	TroubleCount = { fg = c.orange, bg = c.gray2 },
 	-- todo-comments (signs and keywords follow the diagnostic colors)
 	TodoBgTODO = { link = "@comment.todo" },
 	TodoFgTODO = { fg = c.orange },
@@ -413,9 +402,6 @@ local groups = {
 	OilMove = { fg = c.yellow },
 	OilCopy = { fg = c.cyan },
 	OilChange = { fg = c.orange },
-	-- fidget
-	FidgetTitle = { fg = c.orange, bold = true },
-	FidgetTask = { fg = c.gray6 },
 	-- lazy.nvim
 	LazyH1 = { fg = c.bg, bg = c.orange, bold = true },
 	LazyButton = { fg = c.fg, bg = c.gray1 },
@@ -423,8 +409,6 @@ local groups = {
 	LazySpecial = { fg = c.orange },
 	LazyProgressDone = { fg = c.orange },
 	LazyProgressTodo = { fg = c.gray3 },
-	-- smear-cursor reads the Cursor group; keep it orange.
-	SmearCursor = { fg = c.orange },
 }
 
 for name, spec in pairs(groups) do

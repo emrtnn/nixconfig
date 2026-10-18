@@ -34,7 +34,7 @@ return {
 				"<leader>f/",
 				function()
 					require("fff").live_grep({
-						grep = { modes = { "fuzzy", "plain" } },
+						grep = { modes = { "fuzzy", "plain", "regex" } },
 					})
 				end,
 				desc = "Live fuzzy grep",

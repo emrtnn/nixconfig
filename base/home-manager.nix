@@ -22,7 +22,6 @@
       ../home/programs/fzf.nix
       ../home/programs/jujutsu.nix
       ../home/programs/nvim.nix
-      ../home/programs/vis.nix
     ];
   };
 }

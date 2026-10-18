@@ -1,6 +1,5 @@
-# Language servers, formatters and compilers shared by the editors.
-# Data only: home/programs/nvim.nix installs every group, home/programs/vis.nix
-# puts the groups it supports on vis's PATH. Add a tool here once for both.
+# Language servers, formatters and compilers for the editor.
+# Data only: home/programs/nvim.nix installs every group.
 pkgs:
 with pkgs; {
   # Python (The Astral Stack)
@@ -33,13 +32,14 @@ with pkgs; {
     statix
   ];
 
-  # C/C++: clangd with its integrated clang-tidy checks
+  # C/C++: clangd with its integrated clang-tidy checks; CMake formatted by
+  # gersemi (cmake-format is unmaintained) and linted by cmakelint
   c = [
     clang-tools
     cppcheck
     neocmakelsp
     cmake-lint
-    cmake-format
+    gersemi
   ];
 
   rust = [
@@ -66,8 +66,11 @@ with pkgs; {
     stylua
   ];
 
+  # Shell: bash-language-server runs ShellCheck itself; shfmt formats
   shell = [
+    bash-language-server
     shellcheck
+    shfmt
   ];
 
   # Docker: language services + Dockerfile/ShellCheck best-practice checks

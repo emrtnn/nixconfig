@@ -75,7 +75,10 @@ return {
 
 				c = { "clang-format" },
 				cpp = { "clang-format" },
-				cmake = { "cmake_format" },
+				cmake = { "gersemi" },
+
+				sh = { "shfmt" },
+				bash = { "shfmt" },
 
 				zig = { "zigfmt" },
 
@@ -89,18 +92,15 @@ return {
 				["clang-format"] = {
 					args = { "--style={BasedOnStyle: LLVM, PointerAlignment: Left}" },
 				},
-				cmake_format = {
-					command = "cmake-format",
-					args = {
-						"--line-width",
-						"80",
-						"--tab-size",
-						"2",
-						"--use-tabchars",
-						"false",
-						"--max-prefix-chars",
-						"0",
-					},
+				-- 2-space indent (gersemi defaults to 4) unless the project has a
+				-- .gersemirc; command-line flags would override it.
+				gersemi = {
+					prepend_args = function(_, ctx)
+						if vim.fs.find(".gersemirc", { path = ctx.dirname, upward = true })[1] then
+							return {}
+						end
+						return { "--indent", "2" }
+					end,
 				},
 			},
 		},

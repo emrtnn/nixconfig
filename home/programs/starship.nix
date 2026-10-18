@@ -31,7 +31,7 @@ in {
       # --- Character ---
       character = {
         success_symbol = "[➜ ](bold orange)";
-        error_symbol = "[✗ ](bold red)";
+        error_symbol = "[✗  ](bold red)";
         vimcmd_symbol = "[❮](bold green)";
         vimcmd_visual_symbol = "[❮](bold yellow)";
         vimcmd_replace_symbol = "[❮](bold purple)";

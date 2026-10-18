@@ -51,7 +51,7 @@
       pfzf = "fzf --preview='bat --color=always {}'";
       nfzf = "nvim $(fzf -m --preview='bat --color=always {}')";
 
-      gc = "git commit -m";
+      gc = "git commit";
       gl = "git plog";
       gsignver = "git plog --show-signature";
       gco = "git checkout";
