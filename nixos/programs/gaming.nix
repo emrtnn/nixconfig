@@ -2,8 +2,6 @@
   programs = {
     steam = {
       enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
       gamescopeSession.enable = true;
       protontricks.enable = true;
       extest.enable = true;
@@ -59,8 +57,6 @@
         ];
       })
       umu-launcher
-
-      gamescope
 
       vulkan-tools
       mesa-demos
