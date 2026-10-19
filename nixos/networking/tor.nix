@@ -18,9 +18,12 @@
     };
     settings = {
       ClientOnly = true;
-      # Reject SOCKS requests that could have resolved DNS outside Tor. This
-      # also rejects some IP-only requests; pass hostnames through the proxy.
-      SafeSocks = true;
+      # SafeSocks would reject IP-only SOCKS requests. It is a global option,
+      # and Telegram always connects to its DCs by raw IP, so it must be off.
+      # Apps that resolve hostnames should still use socks5h / torsocks.
+      SafeSocks = false;
+      # Warn (don't reject) when an app hands Tor a bare IP.
+      WarnUnsafeSocks = false;
     };
   };
 }
