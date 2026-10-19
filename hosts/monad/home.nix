@@ -34,7 +34,6 @@
       telegram-desktop
       mpv
       vesktop
-      stremio-linux-shell
       sequoia-sq
       signal-desktop
     ];

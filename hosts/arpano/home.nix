@@ -32,9 +32,9 @@
       obsidian
       (librewolf.override {nativeMessagingHosts = [keepassxc];})
       telegram-desktop
+      signal-desktop
       mpv
       vesktop
-      stremio-linux-shell
       sequoia-sq
       blender
     ];
