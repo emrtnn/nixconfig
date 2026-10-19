@@ -102,6 +102,8 @@ in {
       bind -T copy-mode-vi C-k select-pane -U
       bind -T copy-mode-vi C-l select-pane -R
 
+      bind C-l send-keys C-l
+
       # Keep tmux's native session/window pickers (prefix+s / prefix+w).
       # New windows and both native and mnemonic splits follow the current pane.
       bind c new-window -c '#{pane_current_path}'
