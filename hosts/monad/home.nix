@@ -33,6 +33,7 @@
       (librewolf.override {nativeMessagingHosts = [keepassxc];})
       telegram-desktop
       mpv
+      iptvnator
       vesktop
       sequoia-sq
       signal-desktop
