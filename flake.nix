@@ -38,19 +38,13 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    import-tree.url = "github:vic/import-tree";
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
-    mkHost = nixosModule:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [nixosModule];
-      };
-  in {
-    nixosConfigurations = {
-      monad = mkHost ./hosts/monad/configuration.nix;
-      arpano = mkHost ./hosts/arpano/configuration.nix;
-      argos = mkHost ./hosts/argos/configuration.nix;
-    };
-  };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 }

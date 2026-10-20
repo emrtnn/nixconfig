@@ -3,10 +3,10 @@
  *
  * Re-skins about:preferences, about:config, about:addons, about:profiles,
  * about:newtab, error pages… by overriding Firefox's design tokens.
- * Palette: ~/nixconfig/home/themes/caelus.nix (keep in sync).
+ * Palette: ~/nixconfig/modules/theme/_palette.nix (keep in sync).
  *
  * Managed by ~/nixconfig (home/programs/librewolf.nix): copied into every
- * LibreWolf profile on switch.  Edit dotfiles/librewolf/chrome/ there;
+ * LibreWolf profile on switch.  Edit modules/programs/librewolf/dotfiles/chrome/ there;
  * edits made in a profile are overwritten.
  *
  * about:blank and about:srcdoc are excluded on purpose: websites build

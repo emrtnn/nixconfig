@@ -2,6 +2,26 @@
   "nodes": {
     "flake-parts": {
       "inputs": {
+        "nixpkgs-lib": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790898470,
+        "narHash": "sha256-zTwuwezD0w3hpga6a6P8emidzAZFyWqlNeRBlpWOOl8=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "024633cd702b10285db5cb19b40ad48d2399ba60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
@@ -69,11 +89,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792098797,
-        "narHash": "sha256-u4DIIZgznEGzByxXrxWCXK19VcMtTBmi/M9gZ7Jk9bM=",
+        "lastModified": 1792495086,
+        "narHash": "sha256-TyoYH983Nsc++1scw0SoOEKshPSJWJDxK7tTmuZ974M=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "640725978b99076e18e069f6e7d2959124584f8f",
+        "rev": "ec80131710bffcdf3b8498cf41f3a0579833b023",
         "type": "github"
       },
       "original": {
@@ -82,34 +102,35 @@
         "type": "github"
       }
     },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1788467110,
+        "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "mangowm": {
       "inputs": {
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "nixpkgs": [
           "nixpkgs"
         ],
         "scenefx": "scenefx"
       },
       "locked": {
-<<<<<<< Updated upstream
-        "lastModified": 1792291497,
-        "narHash": "sha256-zlof5FjXivttHB+29/AH+EEh0Tc4/iQEJBbuW6WFiLg=",
-||||||| Stash base
-        "lastModified": 1792498552,
-        "narHash": "sha256-Axzqrvygbe95z+j+RxcnfXJ/8J3Z7MGNb24xiwR8qxQ=",
-=======
         "lastModified": 1792552670,
         "narHash": "sha256-hlaEVmg8c7+9zX7WGKA+Zwwt9QgH9qUZyayXOCC7JCk=",
->>>>>>> Stashed changes
         "owner": "mangowm",
         "repo": "mango",
-<<<<<<< Updated upstream
-        "rev": "37406bfab01fc4c3bf4c5302a4df531fcc09b73a",
-||||||| Stash base
-        "rev": "ce0a30a2f5a8deb19880825c13e3cd04c47a7d7d",
-=======
         "rev": "19ebdf1c2843ba02bba3e9df7beaabb41d99ac47",
->>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
@@ -178,27 +199,11 @@
     },
     "nixpkgs": {
       "locked": {
-<<<<<<< Updated upstream
-        "lastModified": 1792094642,
-        "narHash": "sha256-LPFRbrCWWyNsdQLO3SX1B/5UMkFK0hfe7bZR6lENvpc=",
-        "rev": "fe13242281a67641c0102cdb1087f0ebe586c7df",
-||||||| Stash base
-        "lastModified": 1792210252,
-        "narHash": "sha256-EFOYkCb5ZNtbPx1NInawzi4y/6JRdHia0ag0CbJoMNY=",
-        "rev": "09063bd1f2b36fd9fd793c36dfade7bd40a93dfc",
-=======
         "lastModified": 1792502884,
         "narHash": "sha256-ij8QUxzTOHovLrNOxVRx+RAhGQFOMsJbji0veiatH5k=",
         "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
->>>>>>> Stashed changes
         "type": "tarball",
-<<<<<<< Updated upstream
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1093333.fe13242281a6/nixexprs.tar.zst"
-||||||| Stash base
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1095516.09063bd1f2b3/nixexprs.tar.zst"
-=======
         "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1097682.02c087f3fe67/nixexprs.tar.zst"
->>>>>>> Stashed changes
       },
       "original": {
         "id": "nixpkgs",
@@ -260,25 +265,11 @@
         ]
       },
       "locked": {
-<<<<<<< Updated upstream
-        "lastModified": 1792396756,
-        "narHash": "sha256-QQ5vj+6PzshWeRdTXyzVCTqhOTJqifYuX8K/a2V53sU=",
-||||||| Stash base
-        "lastModified": 1792496530,
-        "narHash": "sha256-O+O12jSKQupMbR8o5I2msm2S5BEKa38Kd/i7Uozi3T0=",
-=======
         "lastModified": 1792571353,
         "narHash": "sha256-GsL/FqnR8wvb35V0H69N5Op5UFO0PDsoM9E2ekkpsvY=",
->>>>>>> Stashed changes
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-<<<<<<< Updated upstream
-        "rev": "f7f11e9e11096cdd71a69b08cd789c875b38d1da",
-||||||| Stash base
-        "rev": "0982a0a465b9e059ed4de13fc9860cfc6c18f7b5",
-=======
         "rev": "8daaa253ac3ea793677f53b4d0be5dc1dd88f8e4",
->>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
@@ -289,8 +280,10 @@
     },
     "root": {
       "inputs": {
+        "flake-parts": "flake-parts",
         "helium-browser": "helium-browser",
         "home-manager": "home-manager",
+        "import-tree": "import-tree",
         "mangowm": "mangowm",
         "niri": "niri",
         "nixpkgs": "nixpkgs",

@@ -1,130 +1,133 @@
-{pkgs, ...}: let
-  c = import ../themes/caelus.nix;
-  copyToClipboard = pkgs.writeShellScript "tmux-copy" ''
-    if [ -n "''${WAYLAND_DISPLAY:-}" ]; then
-      exec ${pkgs.wl-clipboard}/bin/wl-copy
-    else
-      exec ${pkgs.xclip}/bin/xclip -in -selection clipboard
-    fi
-  '';
+{config, ...}: let
+  c = config.theme.caelus;
 in {
-  programs.tmux = {
-    enable = true;
-    prefix = "C-a";
-    baseIndex = 1;
-    keyMode = "vi";
-    customPaneNavigationAndResize = true;
-    resizeAmount = 3;
-    mouse = true;
-    focusEvents = true;
-    escapeTime = 10;
-    historyLimit = 100000;
-    terminal = "tmux-256color";
-    shell = "${pkgs.zsh}/bin/zsh";
-
-    plugins = with pkgs.tmuxPlugins; [
-      {
-        plugin = resurrect;
-        extraConfig = ''
-          # Restore layouts and working directories, not SSH or agent commands.
-          set -g @resurrect-processes 'false'
-          set -g @resurrect-capture-pane-contents 'off'
-        '';
-      }
-      {
-        # Keep last: continuum adds its autosave hook to status-right.
-        plugin = continuum;
-        extraConfig = ''
-          # Home Manager loads plugins before the main extraConfig. Initialize
-          # status-right here so continuum's autosave hook survives.
-          set -g status-right '#[fg=${c.gray9},bg=${c.gray2}] #H #[fg=${c.gray7},bg=${c.gray0}] %Y-%m-%d #[fg=${c.orange}]%H:%M '
-          set -g @continuum-save-interval '5'
-          set -g @continuum-restore 'on'
-        '';
-      }
-    ];
-
-    extraConfig = ''
-      set -g renumber-windows on
-      set -g status-position top
-      set -g status-interval 5
-      set -g display-time 1500
-
-      # Foot/Kitty capabilities, focus reporting, and Yazi image passthrough.
-      set -as terminal-features ',xterm-kitty:RGB:extkeys,foot*:RGB:extkeys'
-      set -g extended-keys on
-      set -g extended-keys-format csi-u
-      set -g allow-passthrough on
-      set -ga update-environment ' WAYLAND_DISPLAY XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS TERM_PROGRAM'
-
-      # Native Caelus styling; status-right is initialized before continuum.
-      set -g status-style 'bg=${c.gray0},fg=${c.fg}'
-      set -g status-left-length 60
-      set -g status-right-length 100
-      set -g status-left '#[fg=${c.bg},bg=#{?client_prefix,${c.yellow},${c.orange}},bold] #{?client_prefix,PREFIX ,}#S#[default] '
-      set -g window-status-style 'bg=${c.gray1},fg=${c.gray7}'
-      set -g window-status-format ' #I:#W#{?window_flags, #F,} '
-      set -g window-status-current-style 'bg=${c.orange},fg=${c.bg},bold'
-      set -g window-status-current-format ' #I:#W#{?window_flags, #F,} '
-      set -g window-status-activity-style 'bg=${c.gray1},fg=${c.green}'
-      set -g window-status-bell-style 'bg=${c.red},fg=${c.bg},bold'
-      set -g window-status-last-style 'fg=${c.orangeLight}'
-      set -g window-status-separator ' '
-      set -g message-style 'bg=${c.gray1},fg=${c.fg}'
-      set -g message-command-style 'bg=${c.gray1},fg=${c.orange}'
-      set -g mode-style 'bg=${c.gray3},fg=${c.fg}'
-      set -g clock-mode-colour '${c.orange}'
-      set -g menu-style 'bg=${c.gray1},fg=${c.fg}'
-      set -g menu-selected-style 'bg=${c.orange},fg=${c.bg},bold'
-      set -g menu-border-style 'fg=${c.gray4}'
-      set -g pane-border-style 'fg=${c.gray3}'
-      set -g pane-active-border-style 'fg=${c.orange},bold'
-      set -g pane-border-status top
-      set -g pane-border-format ' #{pane_index}: #{pane_current_command} #{?pane_active,*,} '
-      set -g monitor-bell on
-      set -g bell-action other
-      set -g visual-bell off
-
-      # smart-splits.nvim (backend-tmux): Ctrl+h/j/k/l moves and Alt+h/j/k/l
-      # resizes across Neovim splits and tmux panes without a prefix. Neovim
-      # marks its pane with @pane-is-vim; at the edge, select-pane wraps
-      # (matches smart-splits' default move.at_edge = 'wrap').
-      bind -n C-h if -F '#{@pane-is-vim}' { send-keys C-h } { select-pane -L }
-      bind -n C-j if -F '#{@pane-is-vim}' { send-keys C-j } { select-pane -D }
-      bind -n C-k if -F '#{@pane-is-vim}' { send-keys C-k } { select-pane -U }
-      bind -n C-l if -F '#{@pane-is-vim}' { send-keys C-l } { select-pane -R }
-      bind -n M-h if -F '#{@pane-is-vim}' { send-keys M-h } { resize-pane -L 3 }
-      bind -n M-j if -F '#{@pane-is-vim}' { send-keys M-j } { resize-pane -D 3 }
-      bind -n M-k if -F '#{@pane-is-vim}' { send-keys M-k } { resize-pane -U 3 }
-      bind -n M-l if -F '#{@pane-is-vim}' { send-keys M-l } { resize-pane -R 3 }
-      bind -T copy-mode-vi C-h select-pane -L
-      bind -T copy-mode-vi C-j select-pane -D
-      bind -T copy-mode-vi C-k select-pane -U
-      bind -T copy-mode-vi C-l select-pane -R
-
-      bind C-l send-keys C-l
-
-      # Keep tmux's native session/window pickers (prefix+s / prefix+w).
-      # New windows and both native and mnemonic splits follow the current pane.
-      bind c new-window -c '#{pane_current_path}'
-      bind v split-window -h -c '#{pane_current_path}'
-      bind s split-window -v -c '#{pane_current_path}'
-      bind p display-popup -E -w 80% -h 80% -d '#{pane_current_path}'
-      bind r source-file ~/.config/tmux/tmux.conf \; display-message 'tmux configuration reloaded'
-      bind x kill-pane
-
-      # Bind 'e' to sessions tree explorer since its default keybind was 's'
-      bind e choose-tree -s
-
-      # Native vi copy mode; both keyboard and mouse copy to CLIPBOARD on X11.
-      # Choose the backend at copy time, rather than by installed executables.
-      set -s set-clipboard external
-      set -s copy-command '${copyToClipboard}'
-      bind -T copy-mode-vi v send-keys -X begin-selection
-      bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
-      bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
-      bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel
-      bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
+  flake.modules.homeManager.desktop = {pkgs, ...}: let
+    copyToClipboard = pkgs.writeShellScript "tmux-copy" ''
+      if [ -n "''${WAYLAND_DISPLAY:-}" ]; then
+        exec ${pkgs.wl-clipboard}/bin/wl-copy
+      else
+        exec ${pkgs.xclip}/bin/xclip -in -selection clipboard
+      fi
     '';
+  in {
+    programs.tmux = {
+      enable = true;
+      prefix = "C-a";
+      baseIndex = 1;
+      keyMode = "vi";
+      customPaneNavigationAndResize = true;
+      resizeAmount = 3;
+      mouse = true;
+      focusEvents = true;
+      escapeTime = 10;
+      historyLimit = 100000;
+      terminal = "tmux-256color";
+      shell = "${pkgs.zsh}/bin/zsh";
+
+      plugins = with pkgs.tmuxPlugins; [
+        {
+          plugin = resurrect;
+          extraConfig = ''
+            # Restore layouts and working directories, not SSH or agent commands.
+            set -g @resurrect-processes 'false'
+            set -g @resurrect-capture-pane-contents 'off'
+          '';
+        }
+        {
+          # Keep last: continuum adds its autosave hook to status-right.
+          plugin = continuum;
+          extraConfig = ''
+            # Home Manager loads plugins before the main extraConfig. Initialize
+            # status-right here so continuum's autosave hook survives.
+            set -g status-right '#[fg=${c.gray9},bg=${c.gray2}] #H #[fg=${c.gray7},bg=${c.gray0}] %Y-%m-%d #[fg=${c.orange}]%H:%M '
+            set -g @continuum-save-interval '5'
+            set -g @continuum-restore 'on'
+          '';
+        }
+      ];
+
+      extraConfig = ''
+        set -g renumber-windows on
+        set -g status-position top
+        set -g status-interval 5
+        set -g display-time 1500
+
+        # Foot/Kitty capabilities, focus reporting, and Yazi image passthrough.
+        set -as terminal-features ',xterm-kitty:RGB:extkeys,foot*:RGB:extkeys'
+        set -g extended-keys on
+        set -g extended-keys-format csi-u
+        set -g allow-passthrough on
+        set -ga update-environment ' WAYLAND_DISPLAY XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS TERM_PROGRAM'
+
+        # Native Caelus styling; status-right is initialized before continuum.
+        set -g status-style 'bg=${c.gray0},fg=${c.fg}'
+        set -g status-left-length 60
+        set -g status-right-length 100
+        set -g status-left '#[fg=${c.bg},bg=#{?client_prefix,${c.yellow},${c.orange}},bold] #{?client_prefix,PREFIX ,}#S#[default] '
+        set -g window-status-style 'bg=${c.gray1},fg=${c.gray7}'
+        set -g window-status-format ' #I:#W#{?window_flags, #F,} '
+        set -g window-status-current-style 'bg=${c.orange},fg=${c.bg},bold'
+        set -g window-status-current-format ' #I:#W#{?window_flags, #F,} '
+        set -g window-status-activity-style 'bg=${c.gray1},fg=${c.green}'
+        set -g window-status-bell-style 'bg=${c.red},fg=${c.bg},bold'
+        set -g window-status-last-style 'fg=${c.orangeLight}'
+        set -g window-status-separator ' '
+        set -g message-style 'bg=${c.gray1},fg=${c.fg}'
+        set -g message-command-style 'bg=${c.gray1},fg=${c.orange}'
+        set -g mode-style 'bg=${c.gray3},fg=${c.fg}'
+        set -g clock-mode-colour '${c.orange}'
+        set -g menu-style 'bg=${c.gray1},fg=${c.fg}'
+        set -g menu-selected-style 'bg=${c.orange},fg=${c.bg},bold'
+        set -g menu-border-style 'fg=${c.gray4}'
+        set -g pane-border-style 'fg=${c.gray3}'
+        set -g pane-active-border-style 'fg=${c.orange},bold'
+        set -g pane-border-status top
+        set -g pane-border-format ' #{pane_index}: #{pane_current_command} #{?pane_active,*,} '
+        set -g monitor-bell on
+        set -g bell-action other
+        set -g visual-bell off
+
+        # smart-splits.nvim (backend-tmux): Ctrl+h/j/k/l moves and Alt+h/j/k/l
+        # resizes across Neovim splits and tmux panes without a prefix. Neovim
+        # marks its pane with @pane-is-vim; at the edge, select-pane wraps
+        # (matches smart-splits' default move.at_edge = 'wrap').
+        bind -n C-h if -F '#{@pane-is-vim}' { send-keys C-h } { select-pane -L }
+        bind -n C-j if -F '#{@pane-is-vim}' { send-keys C-j } { select-pane -D }
+        bind -n C-k if -F '#{@pane-is-vim}' { send-keys C-k } { select-pane -U }
+        bind -n C-l if -F '#{@pane-is-vim}' { send-keys C-l } { select-pane -R }
+        bind -n M-h if -F '#{@pane-is-vim}' { send-keys M-h } { resize-pane -L 3 }
+        bind -n M-j if -F '#{@pane-is-vim}' { send-keys M-j } { resize-pane -D 3 }
+        bind -n M-k if -F '#{@pane-is-vim}' { send-keys M-k } { resize-pane -U 3 }
+        bind -n M-l if -F '#{@pane-is-vim}' { send-keys M-l } { resize-pane -R 3 }
+        bind -T copy-mode-vi C-h select-pane -L
+        bind -T copy-mode-vi C-j select-pane -D
+        bind -T copy-mode-vi C-k select-pane -U
+        bind -T copy-mode-vi C-l select-pane -R
+
+        bind C-l send-keys C-l
+
+        # Keep tmux's native session/window pickers (prefix+s / prefix+w).
+        # New windows and both native and mnemonic splits follow the current pane.
+        bind c new-window -c '#{pane_current_path}'
+        bind v split-window -h -c '#{pane_current_path}'
+        bind s split-window -v -c '#{pane_current_path}'
+        bind p display-popup -E -w 80% -h 80% -d '#{pane_current_path}'
+        bind r source-file ~/.config/tmux/tmux.conf \; display-message 'tmux configuration reloaded'
+        bind x kill-pane
+
+        # Bind 'e' to sessions tree explorer since its default keybind was 's'
+        bind e choose-tree -s
+
+        # Native vi copy mode; both keyboard and mouse copy to CLIPBOARD on X11.
+        # Choose the backend at copy time, rather than by installed executables.
+        set -s set-clipboard external
+        set -s copy-command '${copyToClipboard}'
+        bind -T copy-mode-vi v send-keys -X begin-selection
+        bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
+        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel
+        bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel
+        bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
+      '';
+    };
   };
 }

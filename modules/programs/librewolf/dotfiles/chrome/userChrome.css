@@ -2,12 +2,12 @@
  * LibreWolf · Caelus TUI — userChrome.css  (browser UI)
  *
  * Flat, square, monospace chrome in the spirit of a terminal UI.
- * Palette: ~/nixconfig/home/themes/caelus.nix (keep in sync).
+ * Palette: ~/nixconfig/modules/theme/_palette.nix (keep in sync).
  * Accent follows the desktop: mango focus_color / tmux active = orange.
  *
  * Managed by ~/nixconfig (home/programs/librewolf.nix): copied into every
  * LibreWolf profile on switch, together with the prefs it needs.  Edit
- * dotfiles/librewolf/chrome/ there; edits made in a profile are overwritten.
+ * modules/programs/librewolf/dotfiles/chrome/ there; edits made in a profile are overwritten.
  * Restart LibreWolf after a change.  To live-test, enable the Browser
  * Toolbox prefs in that module first (off by default), then Ctrl+Shift+Alt+I.
  * ========================================================================== */

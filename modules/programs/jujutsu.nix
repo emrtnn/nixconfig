@@ -1,35 +1,37 @@
-{config, ...}: {
-  programs.jujutsu = {
-    enable = true;
+{
+  flake.modules.homeManager.base = {config, ...}: {
+    programs.jujutsu = {
+      enable = true;
 
-    settings = {
-      aliases = {
-        logver = ["log" "--config" "ui.show-cryptographic-signatures=true"];
-      };
+      settings = {
+        aliases = {
+          logver = ["log" "--config" "ui.show-cryptographic-signatures=true"];
+        };
 
-      ui = {
-        color = "always";
-        editor = "nvim";
-        default-revset = "all()";
-        diff-formatter = ":git";
-        paginate = "auto";
-      };
+        ui = {
+          color = "always";
+          editor = "nvim";
+          default-revset = "all()";
+          diff-formatter = ":git";
+          paginate = "auto";
+        };
 
-      merge = {
-        conflict-marker-style = "diff3";
-      };
+        merge = {
+          conflict-marker-style = "diff3";
+        };
 
-      git = {
-        default-branch = "master";
-        colocate = true;
-      };
+        git = {
+          default-branch = "master";
+          colocate = true;
+        };
 
-      # Same SSH key and allowed signers as Git (home/programs/git.nix).
-      signing = {
-        backend = "ssh";
-        behavior = "own";
-        inherit (config.programs.git.signing) key;
-        backends.ssh.allowed-signers = "${config.xdg.configHome}/git/allowed_signers";
+        # Same SSH key and allowed signers as Git (modules/programs/git.nix).
+        signing = {
+          backend = "ssh";
+          behavior = "own";
+          inherit (config.programs.git.signing) key;
+          backends.ssh.allowed-signers = "${config.xdg.configHome}/git/allowed_signers";
+        };
       };
     };
   };

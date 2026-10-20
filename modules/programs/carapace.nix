@@ -1,7 +1,9 @@
-_: {
-  programs.carapace = {
-    enable = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+{
+  flake.modules.homeManager.base = _: {
+    programs.carapace = {
+      enable = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+    };
   };
 }

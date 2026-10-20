@@ -7,7 +7,7 @@ end
 return {
 	{
 		-- Ctrl+h/j/k/l moves and Alt+h/j/k/l resizes across Nvim splits and tmux
-		-- panes (bindings in home/programs/tmux.nix). Not keypress-loaded: tmux
+		-- panes (bindings in modules/programs/tmux.nix). Not keypress-loaded: tmux
 		-- keeps those keys until the backend marks the pane with @pane-is-vim.
 		-- VeryLazy does that right after the first draw, keeping the backend's
 		-- synchronous `tmux` call off the startup path.

@@ -1,6 +1,6 @@
 -- Caelus: warm cream on near-black with a saturated orange accent.
--- Palette: ~/nixconfig/home/themes/caelus.nix (keep in sync); colors from
--- dacctal's caelus. Syntax roles match home/themes/caelus-tmtheme.nix, so
+-- Palette: ~/nixconfig/modules/theme/_palette.nix (keep in sync); colors from
+-- dacctal's caelus. Syntax roles match modules/theme/_tmtheme.nix, so
 -- bat, Yazi and tuicr previews highlight code the same way.
 --
 -- Roles: keywords orange, functions yellow, strings green, types cyan,

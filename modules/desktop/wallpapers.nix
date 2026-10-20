@@ -1,6 +1,8 @@
-_: {
-  home.file."Pictures/Wallpapers" = {
-    source = ../../wallpapers;
-    recursive = true;
+{
+  flake.modules.homeManager.desktop = _: {
+    home.file."Pictures/Wallpapers" = {
+      source = ../../wallpapers;
+      recursive = true;
+    };
   };
 }

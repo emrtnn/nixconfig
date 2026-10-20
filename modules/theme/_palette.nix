@@ -3,8 +3,9 @@
 # nvim lua/caelus); the slightly more saturated greens, role assignments and
 # diff tints are local.
 # Shared data only: each application module remains independently selectable.
-# Hand-written copies (keep in sync): dotfiles/nvim/colors/caelus.lua,
-# dotfiles/librewolf/chrome/*.css, mango, niri, hypr, polybar, rofi, tmux.
+# Hand-written copies (keep in sync): modules/programs/nvim/dotfiles/colors/caelus.lua,
+# modules/programs/librewolf/dotfiles/chrome/*.css, mango, niri, hypr, polybar,
+# rofi, tmux.
 rec {
   # Surfaces, darkest to lightest (greys carry a slight green tint).
   bg = "#0f0f0f";

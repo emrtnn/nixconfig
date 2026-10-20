@@ -1,8 +1,16 @@
 {inputs, ...}: {
-  imports = [inputs.silentSDDM.nixosModules.default];
+  flake.modules.nixos.workstation = {
+    imports = [inputs.silentSDDM.nixosModules.default];
 
-  programs.silentSDDM = {
-    enable = true;
-    theme = "default";
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+
+    programs.silentSDDM = {
+      enable = true;
+      theme = "default";
+      profileIcons.impuremonad = ../../assets/.face;
+    };
   };
 }

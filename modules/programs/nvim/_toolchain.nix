@@ -1,5 +1,5 @@
 # Language servers, formatters and compilers for the editor.
-# Data only: home/programs/nvim.nix installs every group.
+# Data only: nvim.nix installs every group.
 pkgs:
 with pkgs; {
   # Python (The Astral Stack)

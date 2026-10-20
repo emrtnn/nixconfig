@@ -1,9 +1,10 @@
 {pkgs}:
 # TextMate theme generated from the shared palette, with the same syntax roles
-# as dotfiles/nvim/colors/caelus.lua. Reused by bat, Yazi previews and tuicr.
+# as modules/programs/nvim/dotfiles/colors/caelus.lua. Reused by bat, Yazi
+# previews and tuicr.
 let
   inherit (pkgs) lib;
-  c = import ./caelus.nix;
+  c = import ./_palette.nix;
   esc = lib.escapeXML;
 
   # [scope settings] pairs, applied in order (later rules win on ties).

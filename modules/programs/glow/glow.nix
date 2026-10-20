@@ -1,5 +1,7 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.glow];
+{
+  flake.modules.homeManager.base = {pkgs, ...}: {
+    home.packages = [pkgs.glow];
 
-  xdg.configFile."glow/glow.yml".source = ../../dotfiles/glow/glow.yml;
+    xdg.configFile."glow/glow.yml".source = ./dotfiles/glow.yml;
+  };
 }
