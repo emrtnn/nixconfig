@@ -25,7 +25,6 @@
     ../../nixos/services/tailscale.nix
     ../../nixos/programs/localsend.nix
     ../../nixos/desktop/silent-sddm.nix
-    ../../nixos/programs/gaming.nix
     ../../nixos/desktop/mango.nix
   ];
 
