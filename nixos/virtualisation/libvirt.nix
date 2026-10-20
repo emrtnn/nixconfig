@@ -35,7 +35,7 @@
   # let the host firewall trust it. Docker sets the FORWARD policy to DROP,
   # so explicitly allow forwarding for libvirt's bridge.
   networking.firewall = {
-    trustedInterfaces = ["virbr0"];
+    trustedInterfaces = ["virbr0" "virbr1"];
     interfaces.virbr0.allowedUDPPorts = [53 67];
     extraCommands = ''
       iptables -I FORWARD -i virbr0 -j ACCEPT
