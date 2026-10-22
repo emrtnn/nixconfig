@@ -37,6 +37,7 @@
       btop
       gh
       unzip
+      _7zz
       file
       jq
     ];
