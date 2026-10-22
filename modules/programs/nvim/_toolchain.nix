@@ -1,5 +1,5 @@
 # Language servers, formatters and compilers for the editor.
-# Data only: nvim.nix installs every group.
+# Data only: nvim.nix installs every group; Doom Emacs uses the same servers.
 pkgs:
 with pkgs; {
   # Python (The Astral Stack)
@@ -12,6 +12,7 @@ with pkgs; {
   web = [
     biome
     vtsls
+    typescript-language-server # Doom/lsp-mode's TS client (no vtsls client)
     astro-language-server
     prettier
     yaml-language-server

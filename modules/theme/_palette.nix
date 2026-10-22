@@ -4,6 +4,7 @@
 # diff tints are local.
 # Shared data only: each application module remains independently selectable.
 # Hand-written copies (keep in sync): modules/programs/nvim/dotfiles/colors/caelus.lua,
+# modules/programs/emacs/dotfiles/themes/caelus-theme.el,
 # modules/programs/librewolf/dotfiles/chrome/*.css, mango, niri, hypr, polybar,
 # rofi, tmux.
 rec {
