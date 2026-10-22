@@ -50,3 +50,33 @@
         (alist-get 'forge-fmt apheleia-formatters) '("forge" "fmt" "--raw" "-")
         (alist-get 'python-mode apheleia-mode-alist) 'ruff
         (alist-get 'python-ts-mode apheleia-mode-alist) 'ruff))
+
+;;; Dashboard: same hydra banner as nvim's snacks dashboard
+(defun caelus/dashboard-hydra-banner ()
+  (propertize
+   (string-join
+    '("⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆"
+      "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦"
+      "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄"
+      "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄"
+      "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀"
+      "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄"
+      "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄"
+      " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄"
+      " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄"
+      "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆"
+      "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃")
+    "\n")
+   'face '+dashboard-banner))
+
+(setq +dashboard-ascii-banner-fn #'caelus/dashboard-hydra-banner
+      fancy-splash-image nil)          ; use the ASCII banner in GUI frames too
+
+;; Replace the footer widget (GitHub icon linking to the Doom repo) with a
+;; blank spacer so the load-time line keeps its margin.
+(defun caelus/dashboard-widget-spacer ()
+  (insert "\n\n"))
+
+(setq +dashboard-functions
+      (cl-substitute #'caelus/dashboard-widget-spacer #'+dashboard-widget-footer
+                     +dashboard-functions))

@@ -190,7 +190,7 @@
       (diff-context :foreground ,gray9)
 
       ;; Dired ----------------------------------------------------------------
-      (dired-directory :foreground ,blue :weight bold)
+      (dired-directory :foreground ,orange :weight bold)
       (dired-symlink :foreground ,cyan)
       (dired-header :foreground ,orange :weight bold)
       (dired-mark :foreground ,orange :weight bold)
@@ -246,11 +246,11 @@
       (doom-modeline-urgent :foreground ,red :weight bold)
       (doom-modeline-lsp-success :foreground ,green)
       ;; Doom dashboard
-      (doom-dashboard-banner :foreground ,orange)
-      (doom-dashboard-menu-title :foreground ,fg)
-      (doom-dashboard-menu-desc :foreground ,gray7)
-      (doom-dashboard-footer-icon :foreground ,orange)
-      (doom-dashboard-loaded :foreground ,gray6)
+      (+dashboard-banner :foreground ,orange)
+      (+dashboard-menu-title :foreground ,fg)
+      (+dashboard-menu-desc :foreground ,gray7)
+      (+dashboard-footer-icon :foreground ,orange)
+      (+dashboard-loaded :foreground ,gray6)
       ;; evil
       (evil-ex-substitute-matches :foreground ,red :strike-through t)
       (evil-ex-substitute-replacement :foreground ,green :weight bold)
@@ -311,7 +311,7 @@
       (diff-hl-insert :foreground ,green :background ,green)
       (diff-hl-change :foreground ,yellow :background ,yellow)
       (diff-hl-delete :foreground ,red :background ,red)
-            ;; avy (flash.nvim)
+      ;; avy (flash.nvim)
       (avy-background-face :foreground ,gray5)
       (avy-lead-face :foreground ,bg :background ,orange :weight bold)
       (avy-lead-face-0 :foreground ,bg :background ,yellow :weight bold)
