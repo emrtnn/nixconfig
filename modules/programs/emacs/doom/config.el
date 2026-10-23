@@ -3,7 +3,7 @@
 ;; Personal settings. Reload with `M-x doom/reload' (SPC h r r).
 
 (setq doom-theme 'caelus              ; themes/caelus-theme.el
-      doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 18)
+      doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 22)
       display-line-numbers-type 'relative)
 
 ;; Cursor color per evil state, matching the modeline indicator.
@@ -80,3 +80,26 @@
 (setq +dashboard-functions
       (cl-substitute #'caelus/dashboard-widget-spacer #'+dashboard-widget-footer
                      +dashboard-functions))
+
+(setq vterm-max-scrollback 100000)
+
+(defun ai/pi ()
+  "Toggle a pi session for the current project in a right-side window."
+  (interactive)
+  (require 'vterm)
+  (let* ((root (or (doom-project-root) default-directory))
+         (name (format "pi:%s" (doom-project-name)))
+         (buf  (get-buffer name))
+         (win  (and buf (get-buffer-window buf))))
+    (if win
+        (delete-window win)
+      (unless (buffer-live-p buf)
+        (let ((default-directory root)
+              (vterm-shell "pi"))
+          (setq buf (save-window-excursion (vterm name)))))
+      (select-window
+       (display-buffer buf '((display-buffer-in-side-window)
+                             (side . right)
+                             (window-width . 0.4)))))))
+
+(map! :leader :desc "Pi" "o i" #'ai/pi)
